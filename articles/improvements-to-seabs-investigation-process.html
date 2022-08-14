@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="Today newspaper published an article on how SEAB handled the investigation into the O-level cheating case. I was mildly horrified upon reading it and...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="Improvements to SEAB's investigation process">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="Today newspaper published an article on how SEAB handled the investigation into the O-level cheating case. I was mildly horrified upon reading it and felt that the investigation could have been conducted in a more professional manner. The perpetrators discovered that they were caught even before the end of the …">
+<meta property="og:url" content="https://limbenjamin.com/articles/improvements-to-seabs-investigation-process.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Improvements to SEAB&#39;s investigation process</title>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40858819-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</head>
+
+<body class="home blog">
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="site-navigation-inner col-sm-12">
+              <div class="navbar-header">
+                <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul id="menu-all-pages" class="nav navbar-nav">
+                <li class="menu-item"><a href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/gpg.txt" >GPG Key
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              </ul>
+              </div>
+              <div class="social">   
+                <a href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a>
+                <a href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a>
+                <a href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a>
+                <a href="https://security.stackexchange.com/users/53583/limbenjamin" title="StackExchange" >
+<i class="fa fa-stack-exchange fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav><!-- .site-navigation -->
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (9)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (115)</a> &#124; 
+                <a href="../tag/server.html" >Server (26)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
+                <a href="../archives.html" >Archives (164)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2018-08-06 23:06:00+08:00">Aug 06, 2018</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/improvements-to-seabs-investigation-process.html">Improvements to SEAB's investigation process</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>Today newspaper published an <a href="https://www.todayonline.com/singapore/o-level-exam-cheating-case-invigilators-describe-how-cheating-was-discovered">article</a> on how SEAB handled the investigation into the O-level cheating case. I was mildly horrified upon reading it and felt that the investigation could have been conducted in a more professional manner. The perpetrators discovered that they were caught even before the end of the second paper and started to destroy evidence before the end of the day. From what I gathered, the prosecution had to rely on witness testimony because digital evidence was destroyed before law enforcement could get to it. There could have been more students involved and were not caught due to the lack of evidence. In my opinion, the following points could be improved upon.  </p>
+<blockquote>
+<p><i class="fa fa-quote-left fa-lg"></i>&nbsp;&nbsp;&nbsp;(SEAB advised Ms Chiew to) pull Mr Chen aside after the English Paper 1 exam to conduct further investigations. &nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right fa-lg"></i>  </p>
+</blockquote>
+<p>The decision to reveal the investigation should not be taken lightly. Where possible, investigations should first be conducted in a covert manner to avoid alarming the perpetrator. At this point, the most crucial thing is to determine if this is an isolated case or if it is part of a larger cheating ring. I would choose to discreetly observe and record down the student's actions and look out for similar suspicious activity from the other students. Only when no additional information can be gained from observation should the investigation then proceed in an overt manner.  </p>
+<blockquote>
+<p><i class="fa fa-quote-left fa-lg"></i>&nbsp;&nbsp;&nbsp;Mr Benin testified that the mobile phone they had confiscated from him (Mr Chen) began lighting up with messages in Mandarin &nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right fa-lg"></i>  </p>
+</blockquote>
+<p>This statement is rather revealing. If SEAB managed to preserve the digital evidence, the evidence would speak for itself and Mr Benin would not need to testify. Due to the lack of digital evidence, the court can only rely on witness testimony. Digital evidence, when collected in a forensically sound manner, carries more weight and would have made the prosecution's job easier.  </p>
+<p>While interrogating Mr Chen, he confessed that it involved a tuition centre. This shows that this case is very likely part of a larger cheating ring. At this point, I would either intimidate him or seek his cooperation in exchange for leniency depending on his mental state. I would return the phone and ask him to behave normally, so as not to alert the perpetrators. Since the name of the tuition centre is already known, law enforcement should be quickly involved to seize evidence from the tuition centre. By returning the phone, there is a risk that Mr Chen might alert the perpetrators, however confiscating the phone would also alert them.  </p>
+<blockquote>
+<p><i class="fa fa-quote-left fa-lg"></i>&nbsp;&nbsp;&nbsp;Using his own mobile phone, Mr Benin called that number on the pretext that someone had called him in the morning, and asked who was on the line. &nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right fa-lg"></i>  </p>
+</blockquote>
+<p>This is not a smart move. What response was Mr Benin expecting? Earlier on, we have already discovered that this is a cheating ring. That line is likely a dedicated line used to send out answers and thus would not be receiving incoming calls. This likely helped the perpetrators discover even earlier that they were caught.  </p>
+<blockquote>
+<p><i class="fa fa-quote-left fa-lg"></i>&nbsp;&nbsp;&nbsp;Ms Chiew and Mr Benin then drove to SEAB, located at Geylang Bahru Lane, to hand over the exam script and devices. When they got there, they noticed that "someone had somehow reset the phone".  &nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right fa-lg"></i>  </p>
+</blockquote>
+<p>There is a legal concept known as chain of custody. Upon confiscation, the phone should be sealed in a bag and signed. There should be accompanying documentation and the seal should only be broken by the forensic analyst. The entire process should be witnessed. This ensures that the evidence has not been tampered with. Mr Benin cannot just put the phone in his pocket. The defence lawyer can argue that Mr Benin works in a rival tuition agency and swapped the phone while in the car to sabotage this tuition agency.  </p>
+<p>This process should be quite familiar to SEAB as I believe exam papers are sealed in the same way to ensure that papers have not been swapped.  </p>
+<blockquote>
+<p><i class="fa fa-quote-left fa-lg"></i>&nbsp;&nbsp;&nbsp;When they got there, they noticed that "someone had somehow reset the phone. Mr Benin elaborated that the iPhone displayed... &nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right fa-lg"></i>  </p>
+</blockquote>
+<p>The best course of action would be to immediately place the phone in a Faraday bag. A Faraday bag blocks all electromagnetic transmission, the phone will lose all signal and thus it cannot be successfully wiped. The second best alternative would be to switch it off and remove the battery. Some volatile data would be lost, but I believe it is negligible in this case since Mr Benin already has the passcode.  </p>
+<p>Most smartphones have the ability to perform a remote wipe of lost devices. iPhones have encryption enabled by default. This means that once wiped, it is impossible to recover the original data. At this point, I believe that the tuition agency started wiping all their other phones and shredding all enrolment and student records to avoid implicating the other students who were not caught.  </p>
+<p>In conclusion, this investigation could have been handled in a much better manner. As cheating becomes more sophisticated, a better process should be put in place to deal with such cheating cases and closer cooperation with law enforcement is needed to quickly respond before the evidence is destroyed.  </p>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/bangladesh-bank-heist.html"><b>Bangladesh bank heist
+              (97% Similar) - </b>
+              The media initially attributed the hack to a couple of cheap second-hand $10 switches. However, according to further reverse engineering, this is not a snatch and grab but a full scale bank heist ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/first-cyberinsurance-claim.html"><b>First Cyberinsurance claim?
+              (97% Similar) - </b>
+              I first came across the term cyberinsurance earlier this year while attending an information session in DC. At that point, it was suggested that there needs to be a benchmark that takes into ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/reasonable-use-of-personal-data.html"><b>Reasonable use of personal data
+              (96% Similar) - </b>
+              I had to place an obituary in the Straits Times recently. SPH offers an online service where you can use their tool to design the obituary and make payment, all without going down to their ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/singapore-gazette-search.html"><b>Singapore Gazette Search
+              (96% Similar) - </b>
+              Update (9 Jan 2020) The government has announced the decision to make all publications in the Gazette freely available to the public. Kudos to the government for doing so! As such, there is no ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Sun Aug 14 18:39:56 2022<br />
+                    &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//limbenjamin.com/a/";
+      _paq.push(['setTrackerUrl', u+'js/']);
+      _paq.push(['setSiteId', 1]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/a.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+  <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+.st-gamification h1,
+.st-gamification h2,
+.st-gamification h3,
+.st-gamification h4 {
+  font-family: "SelaneWebSTTwenty", serif;
+  line-height: 105%;
+  font-weight: 200;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.st-gamification h1 {
+  font-size: 2.1875em;
+}
+
+.st-gamification h4 {
+  font-size: 1.625em;
+  font-weight: 400;
+}
+
+.st-gamification p {
+  margin-bottom: 4px;
+}
+
+.st-gamification p.subtext {
+  font-family: "SelaneWebSTTwenty", serif;
+  font-weight: 200;
+  font-size: 1em;
+  line-height: 150%;
+}
+
+.st-gamification p.small-text {
+  font-size: 0.875em;
+}
+
+.st-gamification body {
+  color: #222222;
+  background-color: #ffffff;
+}
+
+.st-gamification img.icon {
+  width: 1em;
+}
+
+.st-gamification a {
+  color: #12239a;
+}
+
+.st-gamification a.view-more {
+  text-transform: uppercase;
+  color: #222222;
+}
+
+.st-gamification a.btn {
+  display: inline-block;
+  border-radius: 100px;
+  text-align: center;
+  color: #fff;
+  background-color: #0c2b57;
+  padding: 10px 39px;
+  font-size: 0.9375em;
+  margin: 8px 0 15px;
+}
+
+.st-gamification a.btn:visited {
+  color: #fff;
+}
+
+.st-gamification a.btn.disabled {
+  background-color: rgba(12, 43, 87, 0.3);
+  pointer-events: none;
+}
+
+.st-gamification button.btn {
+  display: inline-block;
+  border-radius: 100px;
+  text-align: center;
+  color: #fff;
+  background-color: #0c2b57;
+  padding: 8px 30px 6px;
+  font-size: 15px;
+  margin: 8px 0 15px;
+}
+
+.st-gamification button.btn:hover {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.st-gamification button.btn:visited {
+  color: #fff;
+}
+
+.st-gamification button.btn:disabled {
+  background-color: rgba(12, 43, 87, 0.3);
+  pointer-events: none;
+}
+
+.st-gamification hr.short {
+  max-width: 460px;
+}
+
+.st-gamification .modal-dialog.custom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.st-gamification .modal-dialog.custom .modal-content {
+  height: auto;
+  width: 100%;
+  text-transform: none;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-header {
+  padding: 2px;
+  height: auto;
+  border: 0;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-header .prize-imgholder {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 218px;
+  width: 100%;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-header .close:before {
+  font-family: IconFontST;
+  font-size: 22px;
+  line-height: 5px;
+  color: #333333;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  content: "\e091";
+  cursor: pointer;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-header .close {
+  opacity: 1;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-body {
+  padding: 0px 15px;
+  font-size: 0.9375em;
+  text-align: center;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-body .prize-heading {
+  color: #333333;
+  font-size: 1.125em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-body .prize-desc {
+  margin-bottom: 15px;
+}
+
+.st-gamification .modal-dialog.custom .modal-content .modal-body button {
+  margin-top: 8px;
+}
+
+.st-gamification .tnc {
+  padding-top: 13px;
+}
+
+.st-gamification .faq {
+  padding-top: 14px;
+  padding-bottom: 25px;
+}
+.st-gamification {
+  color: #333333;
+}
+
+.modal_h1_text {
+  font-size: 30px;
+  font-family: "SelaneWebSTTwenty", serif;
+  line-height: 105%;
+  font-weight: 200;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+@media only screen and (min-width: 501px) {
+  .st-gamification .modal-dialog.custom .modal-content .modal-header {
+    height: 250px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+  .st-gamification .modal-dialog.custom .modal-content .modal-header .prize-imgholder {
+    max-width: 325px;
+    margin: 0 auto;
+  }
+  .st-gamification .modal-dialog.custom .modal-content .modal-body {
+    padding: 0px 25px;
+  }
+  .st-gamification p.subtext {
+    font-size: 1.25em;
+  }
+}

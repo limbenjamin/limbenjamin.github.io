@@ -1,0 +1,45 @@
+#wrapperTop {
+  width:970px;
+  background-color:#FFFFFF;
+  padding-bottom:2px;
+  border-bottom:1px solid #CCCCCC;
+  margin-bottom:5px;
+}
+#wrapperMain {
+  /* should be 970, but less buggy floats when it's set larger */
+  width:1000px;
+  background-color:#FFF;
+  margin-bottom:5px;
+}
+#wrapperMainCenter {
+  float:left;
+  width:634px;
+  background-color:#FFF;
+}
+#wrapperMainTop, #wrapperMainBottom {
+	padding-right:10px;
+}
+#wrapperInternalCenter {
+  float:left;
+  padding-top:5px;
+  padding-right:10px;
+  background-color:#FFF;
+}
+#wrapperInternalCenterNew {
+  float:left;
+  padding-right:10px;
+  background-color:#FFF;
+  padding-left:0;
+}
+#wrapperMainRight {
+  float:left;
+  width:336px;
+  background-color:#FFF;
+}
+#wrapperBottom {
+  clear:both;
+  width:970px;
+  background-color:#FFF;
+}
+#wrapperInvisibleTop, #wrapperInvisibleBottom {
+}

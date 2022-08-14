@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="Firstly, I wish to define abandonware as &#34;software that is ostensibly still protected by copyright, but is no longer being supported or marketed&#34;...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, NUS">
+
+<meta property="og:title" content="Ethical concerns regarding the transition from software to abandonware">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png">
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png">
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="Firstly, I wish to define abandonware as &#34;software that is ostensibly still protected by copyright, but is no longer being supported or marketed&#34; provided by Technopedia1. As such, my article will focus on the possible ethical issues companies and consumers might face when products are transiting from software to …">
+<meta property="og:url" content="https://limbenjamin.com/articles/ethical-concerns-regarding-the-transition-from-software-to-abandonware.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Ethical concerns regarding the transition from software to abandonware</title>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40858819-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</head>
+
+<body class="home blog">
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="site-navigation-inner col-sm-12">
+              <div class="navbar-header">
+                <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul id="menu-all-pages" class="nav navbar-nav">
+                <li class="menu-item"><a href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/gpg.txt" >GPG Key
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              </ul>
+              </div>
+              <div class="social">   
+                <a href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a>
+                <a href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a>
+                <a href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a>
+                <a href="https://security.stackexchange.com/users/53583/limbenjamin" title="StackExchange" >
+<i class="fa fa-stack-exchange fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav><!-- .site-navigation -->
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (9)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (115)</a> &#124; 
+                <a href="../tag/server.html" >Server (26)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
+                <a href="../archives.html" >Archives (164)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2012-10-10 03:59:00+08:00">Oct 10, 2012</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/ethical-concerns-regarding-the-transition-from-software-to-abandonware.html">Ethical concerns regarding the transition from software to abandonware</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p><img alt="image0" src="http://t3.gstatic.com/images?q=tbn:ANd9GcTliWIP6fiRJ7raMQVw7OJHcIE5xjR5UV50jcZxsBcZVlxFfUPUblYFutPHkQ" /></p>
+<p>Firstly, I wish to define abandonware as &quot;software that is ostensibly
+still protected by copyright, but is no longer being supported or
+marketed&quot; provided by Technopedia<sup>1</sup>. As such, my article will
+focus on the possible ethical issues companies and consumers might face
+when products are transiting from software to abandonware. I will
+provide examples of a few real life cases and evaluate if these actions
+are ethical and what considerations they might have taken into account
+when making these decisions.</p>
+<p><img alt="Full-size image (23 K)" src="http://ars.els-cdn.com/content/image/1-s2.0-S0094576509005165-gr3.jpg" /></p>
+<p>In order to evaluate the transition from software to abandonware, we
+must first examine a typical product lifecycle and determine which stage
+in its lifecycle is the transition most likely to fall in. As shown in
+the graph above by Perrault, William D. Jr<sup>2</sup>,the decline stage
+is where sales and profits reaped from a particular product plummets. It
+is also likely to be the stage where the transition occurs since the
+company is only earning minimal profits from the product, however,
+maintenance cost for the product is likely to have remained and thus
+continuing support for the product would be a loss making decision.
+Although the company might not have discontinued support for the
+product, they might choose to allocate less of their budget to
+maintaining the product and instead focus on the development of a new
+product.</p>
+<p>Windows 7 from Microsoft is an example of such a product that has
+entered this transition phase. As Microsoft focuses more on development
+of Windows 8, it is scaling down on maintenance of Windows 7. This is
+especially evident in the case of the bug that allows IPv6 Router
+Advertisement flooding to cause denial of service (DoS) in Windows 7
+client. The severity of the bug is described here<sup>3</sup>.In short, a
+simple tool used to spam ICMPv6 Router Advertisement requests would
+cause all clients running Windows 7, Vista, XP,&nbsp; Windows server 2003 and
+2008 in the same subnet to be inundated with requests, resulting a
+drastic increase in CPU usage and even causing the PC to crash. This
+issue was highlighted to Microsoft on the 10 July 2010 and Microsoft
+responded on 12 August 2010 that although they acknowledged the
+vulnerability, they had no intention of providing any fix to the
+problem<sup>4</sup>, despite the fact that support for Windows XP is
+slated to end only in 2014 and Windows 7 only in 2020.</p>
+<p>Looking at the issue from an act utilitarian standpoint, fixing the bug
+will entail minimal costs to Microsoft as it requires only a few lines
+of code to modify the behaviour of&nbsp; the operating system to ignore all
+remaining router advertisements for a period of time when dealt with a
+flood of router advertisements. Costs would also be incurred due to the
+usage of bandwidth to push down the updates to all clients. The
+negligible costs will definitely be dwarfed by the benefits due to the
+severity of the bug, in which one malicious user could crash more than
+200 clients on the same subnet, resulting in loss of productivity and
+profits as entire web servers might be taken down.</p>
+<p>Taking a Kantian approach, if we apply the first formulation, we would
+try to analyse what would occur if all software companies decided not to
+provide support for their products once they transit toward abandonware.
+Consumers will no longer have any trust in companies and may start
+turning towards open source software as these are maintained by people
+who are driven by passion instead of monetary incentives. As a result,
+commercial software would cease to exist as there is no longer any
+demand for it. Using the second formulation, we can deduce that the
+companies are simply using consumers as a means to an end, once the bulk
+of the profit has been made, the company ceases to care about the
+consumers who made that profit possible in the first place. Therefore,
+using both utilitarian and Kantian approaches to analyse the issue, I
+have come to the conclusion that such an action is unethical.</p>
+<p>However, one might argue that according to virtue ethics, Microsoft's
+actions are ethical as long as the organization itself is ethical.
+Microsoft was awarded the 'Most Ethical' award by ethisphere for the
+year 2011<sup>5</sup>. This was largely due to the millions in donations
+to non-profit organisations and infrastructural investments in less
+developed countries. Assuming that the motives behind these
+contributions are indeed ethical, it is still a fallacy to conclude that
+since some of its actions are ethical, therefore it as an entity must be
+ethical and therefore all its actions are ethical.</p>
+<p>In addition to being unethical, such an action is also unprofessional.
+Using the ACM code of conduct as a guideline<sup>6</sup>, this action
+violates clause 2.6 and 1.2 to name a few. By refusing to provide a fix
+for a bug that has serious ramifications on current software that is
+purportedly still supported, Microsoft has not honoured its assigned
+responsibilities. Before buying a product, a consumer takes into
+consideration the fact that Microsoft would continue to update its
+product to patch security and functional flaws until the end of its
+shelf life. The consumer is not expecting new features or functions but
+merely to fix problems that may have been undetected during the test
+phase. IPv6 was a feature included during the launch of Windows 7 and
+thus, Microsoft's refusal to fix a bug of an included feature is
+unprofessional. Microsoft also has to responsibility to prevent harm to
+users of its software to the best of its ability. Despite having been
+warned and acknowledging the vulnerability, Microsoft chose not to take
+any action that could potentially prevent harm to users of its software,
+therefore violating clause 1.2.</p>
+<p>So why has Microsoft chosen not to fix the bug even though it is
+unethical and unprofessional? One of the major reasons is due to profit
+motive, although the cost of fixing the bug is minimal, fixing the bug
+will reduce the incentive for customers to upgrade to Windows 8. This is
+because their current version of Windows is secure and functional, thus
+there is less need to upgrade. However, if there are major issues with
+security and functionality, a customer might be left with no choice but
+to upgrade. However, this strategy might backfire as customers might
+instead switch to different operating system such as Linux as they might
+see the same issue affecting Windows 8 when Microsoft releases Windows
+9.</p>
+<p>Fortunately, NUS DHCP servers distribute IPv4 addresses as shown by the
+screenshot below. Nevertheless, the computers below were all connected
+to the same subnet and thus could potentially be vulnerable to the
+abovementioned exploit if they are running Windows 7 or XP, if NUS
+upgrades to IPv6.</p>
+<p><img alt="image2" src="data:image/png;base64,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" /></p>
+<p>With that, I wish to move on to the second ethical concern regarding the
+transition from software to abandonware. Is it ethical to pirate
+abandonware? For this argument, I wish to focus on abandonware for which
+the manufacturing company is still in business today and has not decided
+to make the software freely available to the public. The reason being,
+if the company is out of business, the case becomes very clear that the
+pirating the software would only bring about benefits as there are
+simply no costs to consider using a utilitarianism approach. Using a
+Kantian approach, we are not using anyone as a means to an end since the
+entity which owns the copyright has ceased to exist. Lastly, if the
+software is made freely available to the public, it is now classified as
+freeware and is thus out of the scope specified. Back to the topic, the
+ethicality of pirating abandonware which is still owned by a company is
+interesting as the software is still under copyright protection and thus
+it is illegal in most cases. Nevertheless, I wish to explore if the law
+in this instance reflects the ethicality of the situation.</p>
+<p>The software I would like to examine is Windows 2000. Windows 2000 was
+released at the turn of the millennium and support for the product
+ceased in 2010<sup>7</sup>.Therefore, as of now, Microsoft provides no
+service to anyone that is currently using Windows 2000 and incurs no
+cost in further development or maintenance of the software. However, the
+software is still under copyright in most countries with copyright only
+expiring only in 2070 to 2120 depending on individual countries.</p>
+<p>Using the utilitarian method to approach this issue, the benefits of
+pirating the product are that it allows many poorer countries access to
+computers and the internet at a cheaper price as a greater proportion of
+the budget can now be channelled into provision of the hardware. While
+it lacks many features, it is still able to handle basic tasks such as
+web browsing and data entry and storage which would be invaluable to
+these users. It also benefits computing students who can now obtain a
+copy to learn more about how an operating system is written through
+reverse engineering. However, detractors might argue that Microsoft is a
+losing party as it has spent a lot on the development of the software
+and thus it needs to recoup those losses. It is worth pointing out
+though that Microsoft has stopped offering these products for sale many
+years ago, therefore, it has no means to recoup any costs even if the
+software was not pirated. Since support for the product has also ceased,
+Microsoft also does not face additional costs if one additional person
+were to use the software. In short, the benefits outweigh the cost
+because even if there was cost involved, Microsoft is making no attempts
+to recover it.</p>
+<p>Using the second formulation of Kantian ethics however, it is unethical
+because we are using Microsoft as a means to an end. In order to get
+access to their software without paying, we are pirating a copy.
+However, the limitation to using Kantian ethics is that such a statement
+might not fully represent the various aspects of the situation. It does
+not take into the account the fact that the piracy is meant for
+educational purposes, nor does it take into account the fact that the
+company is not in any way harmed by such an action. Nevertheless some
+might argue that a certain group of users might find that Windows 2000
+might be able to completely satisfy their computing requirements and
+therefore see no purpose in buying the current version of Windows. My
+response to that is the group of users is very small at best, and the
+effect is marginal. In fact, Microsoft might even benefit from such an
+action because it increases its market share and awareness, quite
+possibly, it might even influence these users to purchase Microsoft
+products in the future.</p>
+<p>In summary, although piracy of abandonware is largely illegal in most
+countries, I believe that the practice is not unethical due to the
+arguments presented above. In fact, the &quot;victim&quot; of such a piracy might
+even benefit in certain cases. Fortunately, most companies do realise
+that and even though they have the right to prosecute users who pirate
+abandonware, they seldom do so in reality.</p>
+<p>Abandonware picture from
+<a class="reference external" href="http://devilsworkshop.org/2-best-places-to-find-abandonware-ie-abandoned-softwares-games-tools-etc/">http://devilsworkshop.org/2-best-places-to-find-abandonware-ie-abandoned-softwares-games-tools-etc/</a></p>
+<ol class="arabic simple">
+<li>What is Abandonware? - Definition from Technopedia.com</li>
+</ol>
+<p>Retrieved from <a class="reference external" href="http://www.techopedia.com/definition/10396/abandonware">http://www.techopedia.com/definition/10396/abandonware</a></p>
+<p>2. Perrault, William D. Jr. &amp; E. Jerome McCarthy, Essentials of
+Marketing, 7th Edition, 1997. Chicago: Richard D. Irwin Company</p>
+<p>3. Microsoft Haven't Fixed Year Old IPv6 DoS Vulnerability in Windows |
+LIVE HACKING</p>
+<p>Retrieved from
+<a class="reference external" href="http://www.livehacking.com/2011/05/04/microsoft-havent-fixed-year-old-ipv6-dos-vulnerability-in-windows/">http://www.livehacking.com/2011/05/04/microsoft-havent-fixed-year-old-ipv6-dos-vulnerability-in-windows/</a></p>
+<p>4. <a class="reference external" href="http://www.mh-sec.de/downloads/mh-RA_flooding_CVE-2010-multiple.txt">http://www.mh-sec.de/downloads/mh-RA_flooding_CVE-2010-multiple.txt</a>
+- marc heuse - it-security consulting</p>
+<p>Retrieved from
+<a class="reference external" href="http://www.mh-sec.de/downloads/mh-RA_flooding_CVE-2010-multiple.txt">http://www.mh-sec.de/downloads/mh-RA_flooding_CVE-2010-multiple.txt</a></p>
+<p>5. Microsoft Wins 'Most Ethical' Award -- Google, Facebook, Apple Don't
+Make The List</p>
+<p>Retrieved from
+<a class="reference external" href="http://www.huffingtonpost.com/2011/03/17/microsoft-most-ethical-company_n_837003.html">http://www.huffingtonpost.com/2011/03/17/microsoft-most-ethical-company_n_837003.html</a></p>
+<ol class="arabic simple" start="6">
+<li>Code of ethics - Association for Computing Machinery</li>
+</ol>
+<p>Retrieved from <a class="reference external" href="http://www.acm.org/about/code-of-ethics">http://www.acm.org/about/code-of-ethics</a></p>
+<ol class="arabic simple" start="7">
+<li>Microsoft Product Lifecycle Search</li>
+</ol>
+<p>Retrieved from
+<a class="reference external" href="http://support.microsoft.com/lifecycle/search/?alpha=windows+2000">http://support.microsoft.com/lifecycle/search/?alpha=windows+2000</a></p>
+
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/nus.html">NUS</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/expanding-on-pyramid-of-pain.html"><b>Expanding on Pyramid of Pain
+              (96% Similar) - </b>
+              I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher up the pyramid. However, there is scarce ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/interesting-bluetooth-experiment.html"><b>Interesting bluetooth experiment
+              (91% Similar) - </b>
+              Earlier on, I paired my bluetooth keyboard to both my android and windows OS dual boot configuration. It is a hassle to keep re-pairing the keyboard whenever I switch OSes. This was done by ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/ubers-github-slip-up.html"><b>Uber's github slip up
+              (90% Similar) - </b>
+              Background : Uber or one of its contractors uploaded a security key to a public github gist. Malicious actors were able to use the key to access the database and made away with personal details ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/unrar.html"><b>unrar
+              (87% Similar) - </b>
+              I am quite surprised to find that linux has quite poor support for rar files. I have tried both unrar-free as well as the non-free version but both fail spectacularly at decompressing password ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Sun Aug 14 18:39:56 2022<br />
+                    &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//limbenjamin.com/a/";
+      _paq.push(['setTrackerUrl', u+'js/']);
+      _paq.push(['setSiteId', 1]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/a.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+  <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
+
+</body>
+</html>

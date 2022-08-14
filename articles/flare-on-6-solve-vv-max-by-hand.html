@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="FLARE-On 6 - Solve vv_max by hand">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach was different, I made use of memory breakpoints strategically placed at the address of the …">
+<meta property="og:url" content="https://limbenjamin.com/articles/flare-on-6-solve-vv-max-by-hand.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>FLARE-On 6 - Solve vv_max by hand</title>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40858819-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</head>
+
+<body class="home blog">
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="site-navigation-inner col-sm-12">
+              <div class="navbar-header">
+                <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul id="menu-all-pages" class="nav navbar-nav">
+                <li class="menu-item"><a href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/gpg.txt" >GPG Key
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              </ul>
+              </div>
+              <div class="social">   
+                <a href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a>
+                <a href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a>
+                <a href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a>
+                <a href="https://security.stackexchange.com/users/53583/limbenjamin" title="StackExchange" >
+<i class="fa fa-stack-exchange fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav><!-- .site-navigation -->
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (9)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (115)</a> &#124; 
+                <a href="../tag/server.html" >Server (26)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
+                <a href="../archives.html" >Archives (164)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2019-10-03 21:01:00+08:00">Oct 03, 2019</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/flare-on-6-solve-vv-max-by-hand.html">FLARE-On 6 - Solve vv_max by hand</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach was different, I made use of memory breakpoints strategically placed at the address of the arrays to find out which AVX function modified the array and manually reversed each function to arrive at the 32 character input. Most of the AVX functions tend to involve 1 dynamic variable and 1 static variable which is not affected by the input.  </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>final_byte_arr =  70 70 B2 AC 01 D2 5E 61 0A A7 2A A8 00 00 00 00 08 1C 86 1A E8 45 C8 29 B2 F3 A1 1E 00 00 00 00
+vpshufb_static = 02 01 00 06 05 04 0A 09 08 0E 0D 0C FF FF FF FF 02 01 00 06 05 04 0A 09 08 0E 0D 0C FF FF FF FF
+vpmaddwd_static = 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00 00 10 01 00
+vpmaddubsw_static = 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01
+vpshufb_static2 = 00 10 13 04 BF BF B9 B9 00 00 00 00 00 00 00 00 00 10 13 04 BF BF B9 B9 00 00 00 00 00 00 00 00
+vpand_static = 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F 2F
+
+# The complete equation is as follows:
+final_byte_arr = vpshufb(vpmaddwd(vpmaddubsw(vpaddb(input, intermediate_byte_arr), vpmaddubsw_static), vpmaddwd_static), vpshufb_static)
+intermediate_byte_arr = vpshufb(vpand(vpsrld(input, 0x4), vpand_static), vpshufb_static2)
+
+
+# Tracing backwards from final byte array
+
+# Reverse vpshufb (Shift position of bytes based on index in mask)
+IND 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+MAS 02 01 00 06 05 04 0A 09 08 0E 0D 0C FF FF FF FF 02 01 00 06 05 04 0A 09 08 0E 0D 0C FF FF FF FF
+DES 70 70 B2 AC 01 D2 5E 61 0A A7 2A A8 00 00 00 00 08 1C 86 1A E8 45 C8 29 B2 F3 A1 1E 00 00 00 00
+SRC B2 70 70 00 D2 01 AC 00 0A 61 5E 00 A8 2A A7 00 86 1C 08 00 45 E8 1A 00 B2 29 C8 00 1E A1 F3 00
+
+# Reverse vpmaddwd (This function is rather hard to invert, I eyeballed the position of each nibble based on patterns)
+IND 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+DES B2 70 70 00 D2 01 AC 00 0A 61 5E 00 A8 2A A7 00 86 1C 08 00 45 E8 1A 00 B2 29 C8 00 1E A1 F3 00
+SRC 07 07 B2 00 C0 0A D2 01 E6 05 0A 01 72 0A A8 0A 81 00 86 0C AE 01 45 08 82 0C B2 09 3A 0F 1E 01
+
+# Reverse vpmaddubsw (Just Math. 40x + 1y)
+IND 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+MAS 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01 40 01
+DES 07 07 B2 00 C0 0A D2 01 E6 05 0A 01 72 0A A8 0A 81 00 86 0C AE 01 45 08 82 0C B2 09 3A 0F 1E 01
+SRC 1C 07 02 32 2B 00 07 12 17 26 04 0A 29 32 2A 28 02 01 32 06 06 2E 21 05 32 02 26 32 3C 3A 04 1E
+
+707 (40 x 1C) + (01 x 7)
+0b2 (40 x 2) + (01 x 32)
+ac0 (40 x 2b) + (01 x 0)
+1d2 (40 x 7) + (01 x 12)
+5e6 (40 x 17) + (01 x 26)
+10a (40 x 4) + (01 x a)
+a72 (40 x 29) + (01 x 32)
+aa8 (40 x 2a) + (01 x 28)
+081 (40 x 2) + (01 x 1)
+c86 (40 x 32) + (01 x 6)
+1ae (40 x 6) + (01 x 2e)
+845 (40 x 21) + (01 x 5)
+c82 (40 x 32) + (01 x 2)
+9b2 (40 x 26) + (01 x 32)
+f3a (40 x 3c) + (01 x 3a)
+11e (40 x 4) + (01 x 1e)
+
+# At this point, we have
+vpaddb(input, intermediate_byte_arr) = 1C 07 02 32 2B 00 07 12 17 26 04 0A 29 32 2A 28 02 01 32 06 06 2E 21 05 32 02 26 32 3C 3A 04 1E
+
+# It gets a bit tricky to reverse past this point because the 32 character input is eventually used in both inputs to the vpaddb function.
+# However, for all remaining functions, a change in input at position X will only result in a change in output at position X. 
+# Hence, we can use a state table.
+
+# vpaddb state table
+# Note that the symbols and numbers have some overlap in output bytes. 
+A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z  
+00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 
+a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z  
+1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33
+~  #  $  %  &amp;  &#39;  (  )  *  +  ,  -  .  /  0  1  2  3  4  5  6  7  8  9  :  ;  &lt;  =  &gt;  ?  
+37 36 37 38 39 3A 3B 3C 3D 3E 3F 40 41 3F 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F 40 41 42 43  
+
+# The final answer is alphanumeric.
+DST 1C 07 02 32 2B 00 07 12 17 26 04 0A 29 32 2A 28 02 01 32 06 06 2E 21 05 32 02 26 32 3C 3A 04 1E
+SRC c  H  C  y  r  A  H  S  X  m  E  K  p  y  q  o  C  B  y  G  G  u  h  F  y  C  m  y  8  6  E  e
+cHCyrAHSXmEKpyqoCByGGuhFyCmy86Ee
+
+
+
+vv_max.exe FLARE2019 cHCyrAHSXmEKpyqoCByGGuhFyCmy86Ee
+
+That is correct!
+Flag: AVX2_VM_M4K3S_BASE64_C0MPL1C4T3D@flare-on.com
+</code></pre></div>
+</td></tr></table>
+<p>The graphic below demonstrates the eyeballing process for vpmaddwd to retrieve the reversed value. To be doubly sure that I did not make a mistake for any of the manually reversed byte arrays, I modified the value in memory and stepped through the function to confirm that the value returned is correct.  </p>
+<p><img alt="eyeballing the values" src="//limbenjamin.com/media/flareon6.png"></p>
+<p>Bonus:  </p>
+<p><img alt="eyeballing the values" src="//limbenjamin.com/media/flareon.jpg"></p>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
+              (90% Similar) - </b>
+              ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/fun-with-md5-collisions.html"><b>Fun with MD5 Collisions
+              (88% Similar) - </b>
+              We all know about MD5 hash collisions but I have never imagined that so much progress has been made. Meaningful hash collisions can now be computed on desktop grade hardware. The below collision ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/flare-on-5-wasm-with-chrome.html"><b>FLARE-On 5 wasm with Chrome
+              (87% Similar) - </b>
+              Most of the solutions for FLARE-On 5 web2point0 challenge involve the use of a framework to decompile WebAssembly. Chrome offers the ability to debug WebAssembly code which gives us the ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
+              (84% Similar) - </b>
+              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Sun Aug 14 18:39:56 2022<br />
+                    &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//limbenjamin.com/a/";
+      _paq.push(['setTrackerUrl', u+'js/']);
+      _paq.push(['setSiteId', 1]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/a.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+  <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+$(document).ready(function(){  
+	var height = $(window).height(); 
+	var width = $(window).width();
+
+}) 
+
+
+function openNav() {
+    document.getElementById("ca-menuDivId").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("ca-menuDivId").style.width = "0";
+}
+
+function closeTakeSurvey(){
+	PF('takeSurvey').hide();
+}
+
+function saveStorageTakeSurvey(){
+	var takeSurvey  = sessionStorage.getItem("isTakeSurvey");
+	
+	if(takeSurvey == null || takeSurvey == undefined ){
+		sessionStorage.setItem("isTakeSurvey", true);
+		
+		return true ;
+	}
+	
+	return false ;
+}
+
+function openTakeSurvey(epollURL){
+	//alert(epollURL);
+	closeTakeSurvey();
+	window.open(epollURL, '_blank');
+}
+
+function doSaveAsPdf() {
+	var doc = new jsPDF();
+
+	// All units are in the set measurement for the document
+	// This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+	doc.fromHTML($('body').get(0), 15, 15, {});
+	
+	doc.save('MinLaw E-Services.pdf');
+}
+
+function doSaveAs() {
+	var isIE = /*@cc_on!@*/false || !!document.documentMode;
+	
+	if (isIE) {
+		document.execCommand("SaveAs", true, "C:\\MinLaw E-Services.html");
+	}else{
+		var data=document.getElementsByTagName('html')[0].outerHTML;
+		export_raw('MinLaw E-Services.html', data);
+	}
+}
+
+function fake_click(obj) {
+    var ev = document.createEvent("MouseEvents");
+    ev.initMouseEvent(
+        "click", true, false, window, 0, 0, 0, 0, 0
+        , false, false, false, false, 0, null
+        );
+    obj.dispatchEvent(ev);
+}
+
+function export_raw(name, data) {
+   var urlObject = window.URL || window.webkitURL || window;
+
+   var export_blob = new Blob([data]);
+
+   var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+   save_link.href = urlObject.createObjectURL(export_blob);
+   save_link.download = name;
+   fake_click(save_link);
+}
+
+window.onscroll = function() {onscrollFun()};
+
+function onscrollFun() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+
+/*[S-IPT-2018-0001] on 20180212 start*/
+/*Start CS-CMN1901001   To validate 2FA mobile number update will allow only one mobile number can be registered to one account at any time.*/
+/*var myVar ;
+
+function sendSms(phoneValueId){
+	var indexCount = 120 ;
+	
+	var intlNumber = $("#phoneNo").intlTelInput("getNumber");
+	
+	var erroCode = $("#phoneNo").intlTelInput("getValidationError");
+	
+	if('0' == erroCode){
+		document.getElementById(phoneValueId).value = intlNumber;
+		
+		smsTimmer(indexCount);
+	}
+}
+*/
+var myVar ;
+function sendSms(){
+	var isexistflag = document.getElementById('addPhonePageForm:isexistPhoneNumber').value;
+	var errorflag = document.getElementById('addPhonePageForm:errflag').value;
+	if(errorflag == 'N' && errorflag != ''){
+		 if(isexistflag != 'Y' && isexistflag != '' ) {
+			var indexCount = 120 ;
+			smsTimmer(indexCount);
+		}
+	}
+}
+
+function setPhoneNo(phoneValueId){
+	auth();
+	var intlNumber = $("#phoneNo").intlTelInput("getNumber");
+	var erroCode = $("#phoneNo").intlTelInput("getValidationError");
+	if('0' == erroCode){
+		document.getElementById(phoneValueId).value = intlNumber;
+	}else
+	{
+    	document.getElementById(phoneValueId).value ='';
+	}
+}
+/* End CS-CMN1901001   To validate 2FA mobile number update will allow only one mobile number can be registered to one account at any time.*/
+function sendSmsChange(enterExistPhoneNoId, phoneValueId){
+	var indexCount = 120 ;
+	
+	var enterExistPhoneNo = $("#enterExistPhoneNo").intlTelInput("getNumber");
+	
+	var erroCode = $("#enterExistPhoneNo").intlTelInput("getValidationError");
+	
+	if('0' == erroCode){
+		document.getElementById(enterExistPhoneNoId).value = enterExistPhoneNo;
+	}
+	
+	var intlNumber = $("#phoneNo").intlTelInput("getNumber");
+	
+	var erroCode = $("#phoneNo").intlTelInput("getValidationError");
+	
+	if('0' == erroCode){
+		document.getElementById(phoneValueId).value = intlNumber;
+		
+		smsTimmer(indexCount);
+	}
+}
+
+function changeSms(enterExistPhoneNoId, phoneValueId){
+	var enterExistPhoneNo = $("#enterExistPhoneNo").intlTelInput("getNumber");
+	
+	var erroCode = $("#enterExistPhoneNo").intlTelInput("getValidationError");
+	
+	if('0' == erroCode){
+		document.getElementById(enterExistPhoneNoId).value = enterExistPhoneNo;
+	}
+	
+	var phoneNo = $("#phoneNo").intlTelInput("getNumber");
+	
+	var erroCode = $("#phoneNo").intlTelInput("getValidationError");
+	
+	if('0' == erroCode){
+		document.getElementById(phoneValueId).value = phoneNo;
+	}
+}
+
+function resendSms(){
+	var indexCount = 120 ;
+	
+	smsTimmer(indexCount);
+}
+
+function smsTimmer(indexCount){
+	sendBtnWidget.disable();
+	
+	var date = new Date();
+	date.setSeconds(date.getSeconds() + indexCount);
+	
+	$.cookie("sms-interval-time", indexCount, { expires: date, path: '/' });
+	
+	if(myVar)
+		clearInterval(myVar);
+	
+	myVar = setInterval(function(){ setMsg(indexCount--) }, 1000);
+}
+
+function setMsg(indexCount){
+	
+	if(indexCount == 0 || indexCount<0 ){
+		clearMsg();
+	}else{
+		$('#error-msg').html(indexCount +' second(s) to resend.');
+	}
+}
+
+function clearMsg(){
+	clearInterval(myVar);
+	$('#error-msg').empty();
+	sendBtnWidget.enable();
+	
+	$.cookie("sms-interval-time", null, { expires: -1, path: '/' });
+}
+
+function auth(){
+	clearMsg();
+}
+/*[S-IPT-2018-0001] on 20180212 end*/

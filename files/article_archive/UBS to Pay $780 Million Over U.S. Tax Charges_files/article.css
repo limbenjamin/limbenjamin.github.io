@@ -1,0 +1,609 @@
+a {
+	text-decoration:none;
+}
+#article a, #pagination_top a, #pagination_bottom a  {
+	text-decoration:underline;
+}
+#content_column a {
+	text-decoration:none;
+}
+#contentColumn {
+	float:right;
+	width:238px;
+	voice-family: "\"}\"" ;
+	voice-family:inherit;
+	width:228px;
+	padding-left:10px;
+	padding-bottom:5px;
+	background-color:#FFFFFF;
+}
+
+/* start breadcrumbs */
+#bread_crumbs {
+	width:100%;
+	padding-top:2px;
+	padding-left:10px;
+	color:#0D3159;
+	font-family:arial,ms-sans-serif,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+}
+#bread_crumbs a {
+	text-decoration:none;
+	color:#0D3159;
+}
+#bread_crumbs a:hover {
+	color:#CC0000;
+}
+
+#bread_crumbs h2 {
+	display:inline;
+	font-size:11px;
+    font-weight:bold;
+}
+.bread_crumbs {
+	font-family:arial,sans-serif ;
+	font-size:11px ;
+	font-weight:bold ;
+	color:#0D3159;
+}
+.bread_crumbs a {
+	color:#0D3159 ;
+	text-decoration:none ;
+}
+.bread_crumbs a:visited {
+	color:#08315A;
+}
+.bread_crumbs a:hover {
+	color:#CC0000;
+}
+.bread_crumbs h2 {
+	display:inline;
+	font-size:11px;
+}
+
+/* retrofit the stylechange to old, bad templates */
+.breadcrumbs {
+	width:100%;
+	padding-top:2px;
+	padding-left:10px;
+	color:#0D3159;
+	font-family:arial,ms-sans-serif,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+}
+.breadcrumbs h2 {
+	display:inline;
+	font-size:11px;
+    font-weight:bold;
+}    
+.breadcrumbs a {
+	text-decoration:none;
+	color:#0D3159;
+}
+.breadcrumbs a:hover {
+	color:#CC0000;
+}
+
+#bread_crumbs #bread_crumbs_inside {
+	width:624px;
+	float:left;
+}
+
+#PageArticleCommon #bread_crumbs #bread_crumbs_inside {
+	padding-top:4px;
+}
+
+#PageArticleCommon #bread_crumbs div {
+    margin:3px 0;
+}
+
+#bread_crumbs #bc-badges {
+	color:#333333;
+	float:left;
+	text-transform:uppercase;
+	width:336px;
+}
+
+#bread_crumbs #bc-badges img {
+	border:0px;
+	margin:0px;
+	padding:0px;
+	height:15px;
+	width: 15px;
+	vertical-align:text-bottom;
+}
+/* end breadcrumbs */
+
+/* start caption */
+#caption {
+	font-size:8pt;
+	font-family:arial,sans-serif;
+	color:#333333;
+	padding-bottom:10px;
+}
+
+.caption {
+	font-size:8pt;
+	font-family:arial,sans-serif;
+	color:#333333;
+	padding-bottom:4px;
+}
+
+#caption #credit {
+	color:#666666;
+}
+/* end caption */
+
+/* start article */
+#article, #media {
+}
+#article_body table tr td {
+	font-size:8pt;
+}
+#article h1, #media h1 { /* headline */
+	padding:0;
+	margin:0;
+	font-family:arial,sans-serif;
+	font-size:1.8em;
+	font-weight:bold;
+}
+#article h2 { /* subheadline */
+	padding:0;
+	margin:0;
+	font-size:1.4em;
+	font-weight:normal;
+}
+#article h6, #media h6 { /* kicker */
+	padding:0;
+	margin:0;
+	color:#CC0000;
+	font-size:1em;
+	font-weight:bold;
+}
+#byline {
+	font-style:italic;
+}
+#article_body {
+	font-family: "Times New Roman",times,serif;
+	font-size:1.5em;
+}
+#article_body .story-navigation-vertical-wrapper {
+	font-size:0.667em;
+}
+#article_body p h1 {
+	padding:0;
+	margin:0;
+	font-size:1.1em;
+}
+#article #article_body h1 {
+	padding:0;
+	margin:0;
+	font-size:1.1em;
+	font-weight:bold;
+}
+#article_body .lastPar {
+	padding-bottom:5px;
+}
+/* end article */
+
+#articleCopyright {
+	font-family: arial;
+	font-weight:bold;
+	font-size:12px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+#banner_wrapper_top {
+	clear:both;
+	border-bottom:1px solid black;
+	/*background-color:#EEF3F7;*/
+	background-color:#FFFFFF;
+	padding:5px 0 5px 0;
+}
+#banner_wrapper_bottom {
+	clear:both;
+	/*border-top:1px solid #0D3195;*/
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	background-color:#FFFFFF;
+	padding:5px 0 5px 0;
+}
+
+/* start toolbox */
+/* Note use of backgrounds instead of html image tags for icons, also note cascade of common div styles */
+.toolbox {
+	padding:6px;
+	border:1px solid #CCCCCC;
+	margin-bottom:4px;
+	text-align:left;
+	background-color:#FFFFFF;
+	font-family:arial,sans-serif;
+	font-size:8pt;
+	color:#0C4790;
+}
+.toolboxhack {
+	background-color:#08315A;
+	height:2px;
+}
+.toolbox div {
+	display:inline;
+	padding:0 2px 0 18px;
+	background-repeat:no-repeat;
+	background-position: 0 0px;
+}
+.toolbox .print_tool {
+	background-image:url(http://www.washingtonpost.com/wp-srv/article/pieces/articleIcon_print_15x11.gif);
+}
+.toolbox .email_tool {
+	background-image:url(http://www.washingtonpost.com/wp-srv/article/pieces/articleIcon_email_15x11.gif);
+}
+.toolbox .rss_tool {
+	display:none;
+	padding-left:28px;
+	background-image:url(http://media.washingtonpost.com/wp-srv/article/pieces/articleIcon_rss_25x13.gif);
+}
+.toolbox .permission_tool {
+	background-image:url(http://www.washingtonpost.com/wp-srv/article/pieces/articleIcon_permission_15x11.gif);
+}
+.toolbox .subscribe_tool {
+	background-image:url(http://www.washingtonpost.com/wp-srv/article/pieces/articleIcon_subscribe_15x11.gif);
+}
+#topborder_left {
+	border-top:0px solid #08315A;
+}
+#topborder_left a {
+	font-weight:bold;
+}
+#topborder_left div {
+	display:block;
+	margin-bottom:4px;
+}
+#topborder_bottom a {
+	font-weight:bold;
+}
+#topborder_bottom div {
+	display:inline;
+	margin-left:10px;
+}
+/* end toolbox */
+
+/* start extra toolbox */
+.extratool {
+	/* positioning */
+	background-color:#FFFFFF;
+	padding:0;
+	border-top:0;
+	border-left:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	margin-bottom:4px;
+
+	/* formatting */
+	font-family:arial,sans-serif;
+	font-size:8pt;
+	color:#0C4790;
+}
+.extratoolhack {
+	background-color:#08315A;
+	height:2px;
+}
+.extratool .rss_tool {
+	padding-left:28px;
+	background-image:url(http://media.washingtonpost.com/wp-srv/article/pieces/articleIcon_rss_25x13.gif);
+}
+.extratool .rss_topnews_tool {
+	padding-left:28px;
+	background-image:url(http://media.washingtonpost.com/wp-srv/article/pieces/articleIcon_rss_25x13.gif);
+}
+.extratool .rss_topnews_tool a, .extratool .rss_tool a {
+	font-weight:bold;
+}
+.extratool div {
+	margin-bottom:4px;
+	background-repeat:no-repeat;
+	background-position: 0 0px;
+}
+.extratool h2 {
+	background-color:#EEEEEE;
+	padding:2px 2px 2px 2px;
+	border-bottom:1px solid #CCCCCC;
+
+	font-size:8pt;
+	font-weight:bold;
+	text-align:center;
+	text-transform:uppercase;
+	color:#CC0000;
+	margin:0;
+}
+.extratool form {
+	padding:0;
+	border:0;
+	margin:0;
+}
+.extratoolcontent {
+	padding:6px 6px 6px 6px;
+}
+/* end extra toolbox */
+
+/* start correction */
+.correction {
+	margin-bottom:10px;
+	border-bottom:1px solid #CCCCCC;
+	padding-bottom:10px;
+	
+	font-family:arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+}
+.correction strong {
+	color:#CC0000;
+	text-transform:uppercase;
+}
+/* end correction */
+
+/* start list of headlines */
+#listOfHeadlines {
+	margin-bottom:5px;
+	background-color:#FFFFFF;
+	font-family:arial,sans-serif;
+	font-size:8pt;
+}
+#listHeader {
+	color:#CC0000;
+	font-weight:bold; 
+}
+listOfHeadlinesBullet {
+	color:#999999;
+}
+.listCredit {
+	color:#666666;
+}
+.listOfHeadlinesBullet {
+	color:#999999;
+}
+/* end list of headlines */
+
+#ArticleCommentsWrapper	{
+	display:none;
+}
+#ArticleCommentsWrapper a:link, #ArticleCommentsWrapper a:visited { color: #0c4790; text-decoration: none; }
+#ArticleCommentsWrapper a:hover, #ArticleCommentsWrapper a:active { color: #C00; text-decoration: underline; }
+/* start ad stuff */
+#virtual_marketplace, #tile_left, #tile_right, #topjobs, #textlinks, #ad_links_left, #ad_links_bottom {
+	display:block;
+	margin-top:4px;
+	margin-bottom:10px;
+}
+/* end ad stuff */
+#aggregate-knowledge-box {
+}
+#outbrain {
+	display:none;
+}
+
+/* for article design project */
+
+#breaking-news {float:left;font-weight:bold;margin-top:10px;padding-left:10px;width:250px;}
+#breaking-news .heading {color:#CC0000;font-size:1.3em;margin-bottom:10px;margin-left:0;margin-right:0;margin-top:10px;}
+#breaking-news p{font-weight:bold; line-height:1.4em; color:#0C4790;}
+#breaking-news p a{text-decoration:none;}, #breaking-news p a:hover{text-decoration:underline;}
+
+
+/* START: hot topics */
+.hot-topics {clear:both;height:33px;border-bottom:1px solid #d8d8d8;padding:0 0 0 10px;position:relative;overflow:hidden;}
+.hot-topics ul, hot-topics li {background:none repeat scroll 0 0 transparent;list-style-type:none;}
+.hot-topics ul {float:left;list-style:none outside none;list-style-position:outside;margin:0;overflow:hidden;padding:0;font-family:arial;font-size:12px;}
+.hot-topics ul li {float:left;font-weight:bold;color:#c1c1c1;line-height:33px;padding:0 10px;}
+.hot-topics ul li.first {padding:0 10px 0 0;} 
+.hot-topics ul li a {color:#000000;font-weight:bold;text-decoration:none;outline:medium none;}
+.hot-topics span.timestamp {display:none;position:absolute;right:10px;top:10px;font:normal .90em arial;color:#666;text-indent:0em;}
+.hot-topics span.label {font:bold 12px georgia;padding-right:21px;color:#c4151a;line-height:33px;float:left;}
+/* END: hot topics */
+
+/* START: hot topics - deprecated */
+#hot-topics {border-bottom:2px solid #ccc; font-size:12px; margin-top:10px; padding-left:5px; font-weight:bold;}	
+#hot-topics p{width:70px;  margin:0px; color:#cc0000; }
+#hot-topics ul {list-style-type:none; margin-left:70px; margin-top:-15px; padding-left:0px; position:relative;}
+#hot-topics ul li{display:inline; padding:0px 10px; position:relative; margin-top:-20px; padding-left:10px;}
+/* END: hot topics - deprecated */
+
+#more-in {font-weight:bold; width:250px; float:left; margin-top:0px; padding-left:10px;}
+#more-in .heading {font-size:1.3em; color:#cc0000; margin:10px 0;}
+#more-in ul {margin:0px; padding:0px;}
+#more-in ul li {list-style:disc; color:#rr0000; line-height:1.4em; height:1.4em; width:220px; overflow:hidden;}
+#top-promo { position:relative; float:left; clear:both; margin:10px 0px; 
+        border:1px solid #EEEEEE;background-image:url("http://media3.washingtonpost.com/wp-srv/ssi/article/carousel/img/bkgd-grey-gradient.png"); background-repeat:repeat-x; background-position:center bottom;
+    }
+
+/* Featured Stories */
+
+.FS-ww a{font-weight:normal;}
+.FS-module *,#FS-page *{padding:0px;margin:0px;border:none;}
+.FS-module-footer,.FS-module-sidebar{margin-bottom:10px;}
+.FS-ww .FS-module,#FS-page{font-family:Arial,Helvetica,sans-serif;font-size:11px;}
+.FS-ww .FS-module a,#FS-page a{text-decoration:none;color:#0c4790;}
+.FS-ww .FS-module a:hover,#FS-page a:hover{text-decoration:underline;}
+.FS-ww .FS-module li{list-style:none;background:none;}
+.FS-ww .FS-module .clear,#FS-page .clear{line-height:0px;font-size:0px;height:0px;clear:both;}
+.FS-ww .FS-blue-dot li,.FS-ww .FS-right-arrow-btn,.FS-ww .FS-liked-items li p,.FS-ww li span,.FS-ww .FS-tabs,.FS-ww .FS-ad-unit,.FS-ww .FS-header,.FS-ww .FS-header-iFSer,.FS-ww .FS-gray-btn,.FS-ww .FS-gray-btn span,.FS-ww .FS-tabs li,.FS-ww .FS-tabs,.FS-ww .FS-fb-logo,.FS-ww .FS-module-cap,.FS-ww .FS-module-cap-iFSer,.FS-ww .FS-info-btn,#FS-opted-out .FS-header, .FS-ww .FS-tbox-container-arrow, #tweet-box-container #tweeting-controls span.btn, .FS-ww a.FS-twttr-share span.FS-twttr-share-btn, .FS-ww .FS-tbox-wrap span.FS-tbox-close a,#FS-module-rr .FS-right-arrow-btn a.FS-follow-facebook,#FS-module-rr .FS-right-arrow-btn a.FS-follow-twitter{background:url('http://media.washingtonpost.com/wp-srv/css/images/featured-stories-sprite.png') no-repeat 0px 0px;}
+.FS-ww .FS-fright{float:right;}
+.FS-ww .FS-fleft{float:left;}
+.FS-ww .FS-header{padding-right:9px;background-position:right -39px;}
+.FS-ww .FS-header-iFSer{height:39px;padding-left:9px;}
+.FS-ww .FS-fb-logo{float:left;margin:9px 4px 0px 2px;height:20px;width:20px;background-position:-960px -414px;overflow:hidden;position:relative;}
+.FS-ww .FS-header h4{float:left;color:#ffffff;padding-top:11px; padding-left:5px; font-size:12px;text-transform:none;}
+.FS-ww .FS-header a{float:right;}
+.FS-ww .FS-header .FS-fb-logo a {float:none;}
+.FS-ww .FS-header .FS-gray-btn{margin-top:11px;text-transform:uppercase;}
+.FS-ww .FS-info-btn{display:block;width:12px;height:1px;background-position:-20px -353px;padding-top:12px;overflow:hidden;margin:13px 2px 0px 15px;}
+.FS-ww .FS-gray-btn{background-position:right -112px;padding-right:4px;color:#fff;font-size:9px;font-family:Verdana,Geneva,Tahoma,sans-serif;}
+.FS-ww .FS-gray-btn span{display:inline;display:inline-block;zoom:1;height:15px;background-position:0px -96px;padding:1px 2px 0px 6px;color:#fff;}
+.FS-ww .FS-content{border-left:1px solid #ccc;border-right:1px solid #ccc;padding:1px 4px;background-color:#fff;}
+.FS-ww .FS-module-cap{background-position:right -87px;padding-right:9px;height:9px;overflow:hidden;}
+.FS-ww .FS-module-cap-iFSer{background-position:0px -78px;height:9px;}
+.FS-ww .FS-ad-unit-ww{text-align:center;}
+.FS-ww .FS-ad-unit{width:200px;padding-left:10px;margin:9px auto 0px auto;background-position:-32px -353px;text-align:left;}
+.FS-ww .FS-liked-items li{clear:both;}
+.FS-ww .FS-liked-items li div,#FS-page .FS-liked-items li div{float:left;padding:5px 0px 0px 5px;}
+.FS-ww .FS-liked-items h5{font-size:12px;width:285px;}
+.FS-ww .FS-liked-items h5 a{color:#000;}
+.FS-ww .FS-liked-items li p{border-bottom:1px solid #dedede;font-size:11px;padding:0px 0px 4px 15px !important;margin-top:2px;background-position:0px -382px;}
+.FS-ww .FS-tabs{background-position:0px -153px;}
+.FS-ww .FS-tabs a:hover,#FS-page .FS-tabs a:hover{text-decoration:none;}
+.FS-ww .FS-tabs li{display:block;float:left;background-position:0px -153px;border-right:1px solid #fff;}
+.FS-ww .FS-tabs li.active,.FS-ww .FS-tabs li:hover{background-position:0px -128px;}
+.FS-ww .FS-tabs li span{display:block;float:left;height:25px;color:#fff;padding:0 10px;font-size:12px;line-height:25px;font-weight:bold;cursor:pointer;background-position:0px 50px;}
+#FS-module-profile .FS-tabs li span{line-height:1.5em;}
+#FS-module-hp .FS-tabs li span{padding-left:30px;padding-right:30px;}
+#FS-module-rr .FS-tabs li span{padding-left:10px;padding-right:10px;}
+#FS-module-rr .FS-tabs .single-tab li{width:100%;padding:0 0;}
+.FS-ww .FS-tabs li.active span,.FS-tabs li:hover span{display:block;background-position:center -203px;}
+.FS-ww .FS-right-arrow-btn, .FS-ww a.FS-right-arrow-btn{display:block;background-position:right -178px;padding:0px 33px 0px 14px;height:25px;font-size:11px;color:#000;text-align:right;line-height:25px;margin-top:4px;clear:both;}
+.FS-ww .FS-module-sidebar .FS-content,.FS-ww .FS-module-footer .FS-content{padding:4px 8px 0px 8px;}
+.FS-ww .FS-widget-panel{border:1px solid #999;border-top:1px solid #2b4190;}
+.FS-ww .FS-widget-panel .FS-widget-heading{font:bold 12px verdana, arial, sans-serif;color:#1e1e1e;display:block;padding:4px 0 1px;border-bottom:2px solid #1e1e1e;margin:0 10px;}
+/* START: right arrow button adjustments */
+.FS-ww .FS-module-sidebar .FS-right-arrow-btn{width:166px}
+.FS-ww .FS-module-footer .FS-right-arrow-btn{width:558px}
+#FS-module-rr .FS-right-arrow-btn{text-align:left;}
+#FS-module-rr .FS-right-arrow-btn a, #FS-module-rr .FS-right-arrow-btn span{display:block;float:left;margin-right:5px;color:#000;}
+#FS-module-rr .FS-right-arrow-btn span {font:bold 12px/25px helvetica, arial, sans-serif;}
+#FS-module-rr .FS-right-arrow-btn a.FS-follow-facebook{width:16px;height:16px;background-position:-16px -394px;text-indent:-9999px;overflow:hidden;margin-top:3px;}
+#FS-module-rr .FS-right-arrow-btn a.FS-follow-twitter{width:16px;height:16px;background-position:0 -394px;text-indent:-9999px;overflow:hidden;margin-top:3px;}
+#FS-module-rr .FS-right-arrow-btn a.FS-more-activity{float:right;padding-right:0;}
+/* END: right arrow button adjustments */
+.FS-ww .FS-module-footer p{padding-top:2px;}
+.FS-ww .FS-module-footer .FS-ad-unit{margin-top:5px;}
+.FS-ww .FS-module-sidebar img,.FS-ww .FS-module-footer img{margin-right:5px;}
+.FS-ww .FS-image-line{margin-top:10px;}
+.FS-ww .FS-image-line li{float:left;}
+.FS-ww .FS-module-sidebar .FS-info-btn{margin-left:5px;}
+.FS-ww .FS-mid-like-area{padding:14px 0px 10px 0px;}
+.FS-ww .FS-mid-like-area p{margin-bottom:5px;}
+.FS-ww .FS-mid-like-area img{margin-right:10px;}
+.FS-ww .FS-blue-dot li{background-position:-250px -364px;padding-left:7px}
+#FS-module-rr{padding-bottom:10px;}
+.FS-ww .FS-hide{display:none;}
+#FS-widget-like-article-box{position:relative;-overflow:hidden;width:208px;height:25px;min-height:25px;}
+#FS-widget-like-article-bar{position:relative;-overflow:hidden;width:604px;/* FB now auto-sizing */
+-height:70px;-min-height:70px;margin-bottom:5px;}
+#FS-widget-myactivity-rr{position:relative;overflow:hidden;width:326px;height:400px;min-height:104px;}
+#FS-widget-myactivity-profile{position:relative;overflow:hidden;width:624px;height:800px;min-height:104px;}
+.FS-widget-like-blog-bar{position:relative;overflow:hidden;width:454px;/* fb min 225 for standard layout */
+/* FB now auto-sizing */
+-height:25px;/* fb min 35 w/o faces,80 w/ faces for standard layout */
+-min-height:25px;}
+#FS-widget-recommendations-hp,#FS-widget-activity-hp,#FS-widget-myactivity-hp,#FS-widget-fan-hp{width:326px;height:104px;min-height:104px;}
+#FS-widget-myactivity-hp ul.FS-liked-items{width:326px;}
+.FS-scroll{position:relative;overflow-x:hidden;overflow-y:auto;}
+#FS-page{width:624px;}
+#FS-page h1.FS-header{background-position:-950px -383px;padding-left:35px;font-size:22px;color:#585862;margin-bottom:20px;height:30px;line-height:30px;}
+#FS-page .FS-tabs{background-position:0px -328px;}
+#FS-page .FS-tabs li{background-position:0px -228px;list-style:none;margin-left:10px;border:none;}
+#FS-page .FS-tabs li.active,.FS-page .FS-tabs li:hover{background-position:0px -278px;}
+#FS-page .FS-tabs li span{background-position:right -253px;height:20px;padding-right:5px;text-transform:uppercase;padding:5px 13px 0 13px;color:#454545;}
+#FS-page .FS-tabs li.active span,.FS-page .FS-tabs li:hover span{background-position:right -303px;color:#000;}
+#FS-page .FS-tabs-content{margin-top:15px;}
+#FS-page .FS-tabs-content h2{font-family:Georgia,"Times New Roman",Times,serif;font-size:34px;font-weight:normal;border-bottom:1px solid #bfc5c3;padding-bottom:3px;}
+#FS-page .FS-tabs-content h2 span{border-bottom:1px solid #bfc5c3;display:block;}
+/* START:About */
+#FS-page .FS-about{font-size:1.1em;height:800px;min-height:800px;}
+#FS-page .FS-about h3{padding:10px 0 4px;}
+#FS-page .FS-about p,#FS-page .FS-about li{padding-bottom:10px;line-height:1.4em;}
+#FS-page .FS-about ol,#FS-page .FS-about ul{padding:5px 0 10px 25px;}
+#FS-page .FS-about li{padding-bottom:0;}
+/* END:About */
+/* START Opt out */
+#FS-page #FS-opted-out{display:none;}
+.FS-ww a.FS-opt-out,.FS-ww a.FS-opt-out:hover,.FS-ww a.FS-opt-out:link,.FS-ww a.FS-opt-out:visited{text-decoration:none;}
+.FS-ww a.FS-gray-btn.FS-opt-out span{color:#FF0000;font-weight:bold;padding:1px 0px 0 5px;}
+.FS-ww a.FS-gray-btn, .FS-ww a.FS-gray-btn:hover{text-decoration:none;line-height:1.5em;display:inline;}
+.FS-ww a.FS-gray-btn span{cursor:pointer;}
+/* END Opt out */
+/* START:hp-specific */
+#hp #top .top-box-out{padding:0px !important;margin-bottom:10px;}
+#hp .FS-ww .FS-header h4,#hp .FS-ww .FS-header h4 a{float:left;color:#ffffff;padding:11px 0 0 0;font-size:12px;text-transform:none;color:white;}
+#hp #top .rtcol #flex-ad-area{height:auto;}
+#hp #top .rtcol #flex-ad-area .flex-ad{margin-bottom:0;}
+#hp #top .FS-ww .FS-module{padding-top:10px;}
+/* END:hp-specific */
+/* START:z-index instead of show/hide per FB's demands */
+#FS-module-hp .FS-iframe-wrapper{height:104px;}
+#FS-module-rr .FS-iframe-wrapper{height:400px;}
+#FS-module-profile .FS-iframe-wrapper{height:800px;}
+.FS-ww .FS-iframe-wrapper{position:relative;}
+.FS-ww .FS-iframe-container,.FS-ww .FS-iframe-container-sibling{position:absolute;top:0;left:0;z-index:-1;visibility:hidden;}
+.FS-ww .active .FS-iframe-container,.FS-ww .active .FS-iframe-container-sibling{z-index:10;visibility:visible;}
+.FS-ww .FS-iframe-container,.FS-ww .FS-iframe-container-sibling{position:absolute;top:0;left:0;}
+/* END:z-index instead of show/hide per FB's demands */
+/* START: "feed items": Tweet lists, FB likes */
+.FS-ww div.FS-feed{padding-top:5px;height:260px;overflow:auto;overflow-x:hidden;margin:0 10px;}
+.FS-ww div.FS-section-likes{height:auto;}
+.FS-ww div.FS-feed-item{padding:5px 0;clear:left;overflow:hidden;}
+.FS-ww div.FS-feed-item a.FS-avatar{float:left;display:block;margin-right:8px;}
+.FS-ww div.FS-feed-item p{font:normal 11px/14px 'lucida grande', tahoma, sans-serif;color:#444;float:left;width:235px;word-wrap:break-word;}
+.FS-ww div.FS-section-likes .FS-feed-item p{color:gray;}
+.FS-ww div.FS-feed-item p a{font-weight:bold;}
+.FS-ww div.FS-feed-item a.meta{font:normal 9px/11px 'lucida grande', tahoma, sans-serif;color:#808080;}
+/* START: Tweet box */
+.FS-ww #FS-tbox-rr{margin:4px;background:#f4f4f4;position:relative;border:1px solid transparent;}
+.FS-ww .FS-tbox-wrap span.FS-tbox-close{position:absolute;right:3px;top:6px;z-index:2147483647;}
+.FS-ww .FS-tbox-wrap span.FS-tbox-close a{display:block;width:16px;height:16px;background-color:transparent;background-position:0 -455px;text-indent:-9999px;overflow:hidden;}
+.FS-ww .FS-tbox-wrap span.FS-tbox-close a:hover{background-position:-16px -455px;}
+.FS-tbox-confirmation{display:block;position:absolute;left:12px;top:112px;background-color:#ffffb3;color:#222;font:normal 13px/1.3 arial, sans-serif;padding:3px 5px;z-index:2147483647;}
+.FS-tbox-confirmation span.disclaimer{display:block;font:normal 8px/1.3 verdana, sans-serif;color:#333;}
+.FS-ww iframe.twitter-anywhere-tweet-box{background:#f4f4f4;margin:10px;position:relative;z-index:2147483646;}
+#FS-module-rr iframe.twitter-anywhere-tweet-box{z-index:1;}
+.FS-ww .FS-tbox-wrap{background:#fff;border:1px solid #111;position:absolute;z-index:2147483645;min-width:26px;min-height:20px;}
+.FS-ww .FS-tbox-wrap iframe.twitter-anywhere-tweet-box{background:#fff;margin:4px;}
+.FS-ww .FS-tbox-container-arrow{display:block;width:7px;height:5px;position:absolute;left:10px;top:-5px;background-color:transparent;background-position:-22px -368px;}
+.FS-ww .FS-tbox-container{display:block;}
+#tweet-box-container #editor textarea#tweet-box{border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;border:1px solid #111;font:normal 12px/1.25 helvetica, arial, sans-serif;}
+#tweet-box-container #tweet-box-header label.doing, #tweet-box-header span#counter{font:bold 12px/1.5em helvetica, arial, sans-serif;color:#111;}
+#tweet-box-container #tweet-box-header span#counter{color:#999;float:right;display:block;}
+#tweet-box-container #tweet-box-header span#counter.danger{color:#d6152b;}
+#tweet-box-container #tweeting-controls span.btn{background-color:transparent;background-position:0 -430px;display:block;float:right;padding:0;border:none !important;}
+#tweet-box-container #tweeting-controls span.btn button{width:75px;height:25px;text-indent:-9999px;overflow:hidden;cursor:pointer;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;}
+#tweet-box-container #tweeting-controls span.btn:hover{background-position:-75px -430px;border-color:transparent !important;}
+/* END: Tweet box */
+/* START: Twitter share button */
+.FS-ww .FS-module a.FS-twttr-share, #article .FS-ww .FS-module a.FS-twttr-share{text-decoration:none;color:#333;font-weight:normal;font-size:12px;font:bold 11px/1.5 'lucida grande', tahoma, sans-serif;}*/
+.FS-ww .FS-module a.FS-twttr-share:hover, #article .FS-ww .FS-module a.FS-twttr-share:hover;{text-decoration:none;}
+.FS-ww a.FS-twttr-share span.FS-twttr-share-btn{display:block;float:left;vertical-align:middle;position:relative;top:-1px;margin-right:4px;width:62px;height:20px;background-color:transparent;background-position:0 -410px;text-indent:-9999px;overflow:hidden;}
+.FS-ww a.FS-twttr-share:hover span.FS-twttr-share-btn{background-position:-62px -410px;}
+/* END: Twitter share button */
+/* END: Tweets, right-rail */
+/* START: Fallback tweetbox area */
+#tweet-box-container:after{content:'.';display:block;height:0;clear:both;visibility:hidden;}
+#tweet-box-container #editor textarea#tweet-box{border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;border:1px solid #111;font:normal 12px/1.25 helvetica, arial, sans-serif;}
+#tweet-box-container #tweet-box-header label.doing, #tweet-box-header span#counter{font:bold 12px/1.5em helvetica, arial, sans-serif;color:#111;}
+#tweet-box-container #tweet-box-header label.doing span.twitter-icon{display:inline;display:inline-block;zoom:1;width:16px;height:16px;background:transparent url('http://media.washingtonpost.com/wp-srv/css/images/featured-stories-sprite.png') no-repeat 0 -394px;vertical-align:middle;position:relative;top:-2px;margin-right:4px;}
+#tweet-box-container #tweet-box-header span#counter{color:#999;float:right;display:block;margin-right:20px;}
+#tweet-box-container #tweet-box-header span#counter.danger{color:#d6152b;}
+#tweet-box-container #tweeting-controls{overflow:hidden;}
+#tweet-box-container #tweeting-controls span.btn, #tweet-box-container span.btn{background:transparent url('http://media.washingtonpost.com/wp-srv/css/images/featured-stories-sprite.png') no-repeat 0 -430px;display:block;float:right;padding:0;border:none !important;position:relative;}
+#tweet-box-container #tweeting-controls span.btn button, #tweet-box-container span.btn a{width:75px;height:25px;color:#fff;-webkit-text-shadow:none;-moz-text-shadow:none;text-shadow:none;font:bold 12px helvetica, arial, sans-serif;cursor:pointer;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;margin:0} #tweet-box-container span.btn a:hover{text-decoration:none}
+#tweet-box-container #tweeting-controls span.btn:hover, #tweet-box-container span.btn:hover{background-position:-75px -430px;border-color:transparent !important;}
+/* END: Fallback tweetbox area */
+
+.FS-module .featured-image{float:left; width:90px; margin:0px;}
+.FS-module .featured-image img{border:0;}
+.FS-module  .UIImageBlock_Content a{font-weight:bold; font-family:"lucida grande",tahoma,verdana,arial,sans-serif; font-size:11px; padding-top:10px; padding-right:5px;}
+.FS-module  .UIImageBlock_Content {display:block; margin-top:3px; margin-right:10px;}
+.FS-module  .UIImageBlock  {margin-top:3px;}
+
+/*  Outbrain */
+
+#outbrain2  #FS-module-rr #outbrain_widget_0 .ob-item-container {	width:120px; float:left; padding-left:18px; padding-right:10px;}
+#outbrain2 #FS-module-rr #outbrain_widget_0 .ob-item-container a{font-weight:bold;}
+#outbrain2 #FS-module-rr #outbrain_widget_0 .what_is_container {display:none;}
+#outbrain2 #FS-module-rr #outbrain_widget_0 #item-container-0-0, #outbrain2 #FS-module-rr #outbrain_widget_0 #item-container-0-1, #outbrain2 #FS-module-rr #outbrain_widget_0 #item-container-0-2{border-right:1px solid #CECECE; }
+#outbrain2 #FS-module-rr #outbrain_widget_0.FS-content{padding:15px; }
+#outbrain2 #FS-module-rr #outbrain_widget_0 #recommendationsFieldset_0_stripBox #outbrain_whatIs_0_stripBox .what_is_container {display:none;}
+#outbrain2 #FS-module-rr #outbrain_widget_0 #recommendationsFieldset_0_stripBox #outbrain_whatIs_0_stripBox.what_is_container {display:none;}
+
+
+
+
+	
