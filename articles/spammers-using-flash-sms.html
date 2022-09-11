@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Visit Stars Forks TCPHound is a free Win32 utility for auditing TCP connections. I decided to develop TCPHound because existing utilities out there are unable to meet my needs. TCPHound has 2 unique features. TCPHound provides data logging. Most utilities provide only real-time output. Once connections are closed, they are …">
+  <meta name="description" content="Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -25,20 +25,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin">
+<meta name="keywords" content="limbenjamin, Security">
 
-<meta property="og:title" content="TCPHound - TCP Audit Tool">
+<meta property="og:title" content="Spammers using Flash SMS">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/tcphound.png">
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/tcphound.png">
+<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Visit Stars Forks TCPHound is a free Win32 utility for auditing TCP connections. I decided to develop TCPHound because existing utilities out there are unable to meet my needs. TCPHound has 2 unique features. TCPHound provides data logging. Most utilities provide only real-time output. Once connections are closed, they are …">
-<meta property="og:url" content="https://limbenjamin.com/pages/tcphound.html">
+<meta property="og:description" content="Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked …">
+<meta property="og:url" content="https://limbenjamin.com/articles/spammers-using-flash-sms.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>TCPHound - TCP Audit Tool</title>
+  <title>Spammers using Flash SMS</title>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -128,51 +128,45 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2020-08-25 20:34:00+08:00">Last Modified Aug 25, 2020</time></span>
-        <h1 class="entry-title-single-page"><a href="../pages/tcphound.html">TCPHound - TCP Audit Tool</a></h1>
+        <span class="cat-item"><time datetime="2022-09-11 18:42:00+08:00">Sep 11, 2022</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/spammers-using-flash-sms.html">Spammers using Flash SMS</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p><a class="github-button" href="https://github.com/limbenjamin/tcphound" data-size="large" data-icon="octicon-mark-github" aria-label="Star limbenjamin/tcphound on GitHub">Visit</a>
-<a class="github-button" href="https://github.com/limbenjamin/tcphound" data-size="large" data-icon="octicon-star" data-show-count="true" aria-label="Star limbenjamin/tcphound on GitHub">Stars</a>
-<a class="github-button" href="https://github.com/limbenjamin/tcphound/fork" data-size="large" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork limbenjamin/tcphound on GitHub">Forks</a>
-<br/ >
-TCPHound is a free Win32 utility for auditing TCP connections. I decided to develop TCPHound because existing utilities out there are unable to meet my needs. TCPHound has 2 unique features.</p>
-<ol>
-<li><strong>TCPHound provides data logging.</strong> Most utilities provide only real-time output. Once connections are closed, they are removed from the list. Hence, you would have to stare at the screen continuously. With TCPHound, I can start the utility and come back 2 hours later to scroll through the logs. </li>
-<li><strong>TCPHound tracks connection duration.</strong> Connection duration is an important indicator of the type of traffic. A short connection might indicate a malware phoning home. A long connection with high outbound traffic might indicate data theft. A long connection with bursty traffic might indicate a C&amp;C channel. TCPHound can also resolve the organization which owns the IP, hence allowing you to quickly identify suspicious connections.</li>
-</ol>
-<p><img alt="image" src="//limbenjamin.com/media/tcphound.png"></p>
-<p><img alt="image" src="//limbenjamin.com/media/tcphound2.png"></p>
-<h1>Downloads</h1>
-<p><a href="https://limbenjamin.com/files/TCPHound/TCPHound_v1.5.exe">TCPHound v1.5</a> - SHA256() = 446fdd29b5eaf6ad4bb44696b6c5a081ec75bba9013637d6c0cb6109ff38f280</p>
-<h1>Q&amp;A</h1>
-<h2>Why not Wireshark?</h2>
-<p>Wireshark is a great tool if you know what you are looking for. Otherwise, you are looking for a needle in a haystack. TCPHound complements Wireshark by allowing you to identify suspicious connections. You can then filter your Wireshark captures and view traffic originating from only that specific IP address. Furthermore, TCPHound provides connection-to-process mapping, allowing you to identify the application that is generating that traffic.</p>
-<h2>How does the AS info query work?</h2>
-<p>TCP hound uses a self hosted web API to resolve the Autonomous System which supposedly owns the IP range (Hence, you might see TCPHound's own connection in the logs). So as not to accidentally disclose internal IP addresses, you would need to right click on the entry to manually trigger the IP resolution. Furthermore, we do not want to resolve the connection that is used to resolve the connection that is used to resolve the connection... You get the idea.  </p>
-<h2>Why display both image name and full path?</h2>
-<p>Image name is a quick way to determine the process owning the connection. However, full path is also important, we want to make sure that it is <code>C:\windows\explorer.exe</code> and not <code>C:\Users\user\explorer.exe</code>.</p>
-<h2>Can I have the source code?</h2>
-<p>Source code is available on <a href="https://github.com/limbenjamin/TCPHound">github</a></p>
-<h2>License?</h2>
-<p>The software is distributed "as is". No warranty of any kind is expressed or implied. You use at your own risk. The author will not be liable for data loss, damages, loss of profits or any other kind of loss while using or misusing this software.</p>
-<p>The Licensee is allowed to freely redistribute the software subject to the following conditions.<br>
-1.  The Software may be installed and used by the Licensee for any legal purpose.<br>
-2.  The Licensee will not charge money or fees for the software product, except to cover distribution costs.<br>
-3.  The Licensor retains all copyrights and other proprietary rights in and to the Software.<br>
-4.  Use within the scope of this License is free of charge and no royalty or licensing fees shall be paid by the Licensee.  </p>
-<h2>Bugs or comments?</h2>
-<p>Create an issue on <a href="https://github.com/limbenjamin/TCPHound">github</a></p>
-<h2>Changelog</h2>
-<p>v1.5 (25/08/20) - Updated hash function to SHA256. Deprecated 32-bit version. Open sourced the code.<br>
-v1.4 (27/10/19) - Added clear display and clear closed connection functionality.<br>
-v1.3 (28/07/19) - Fixed bug with stale process data. Added ability to monitor SYN_SENT state.<br>
-v1.2 (14/01/17) - Fixed bug with csv export. Self host IP to ASN mapping API. Added SHA1 hash functionality.<br>
-v1.1 (17/12/16) - Added export to file functionality.<br>
-v1.0 (11/12/16) - Initial Release.  </p>
-<script async defer src="/js/buttons.js"></script>
+        <p>Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked into thinking that the message comes from an official source.  </p>
+<p><img alt="image" src="//limbenjamin.com/media/flash_sms.png"></p>
+<p>Unfortunately, it seems difficult to disable Flash SMS. The SIM toolkit app is referenced in some instructions online, but the options available in the app is service provider specific. Some providers like mine are more interested in provider Value Added Services like 4D/TOTO results instead of actual important functionality. Until IDA and the Telcos start looking into spam SMS/calls seriously, the problem is just going to get worse and spammers will continue to find new functionality to abuse.  </p>
+<p>I had previously proposed checking the Home Location Register (HLR) for the last known location and dropping calls/SMSes based on that information. It will require some collaboration between the Telcos but I believe it is a feasible solution and should solve the problem. I am sure Telco engineers can come up with similar/better methods to scrub the intentional calls/SMSes ingress line of spoofed calls and SMSes. It appears to be more of apathy and lack of sound technical knowledge plaguing the management, allowing the problem to fester.  </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Scenario: +65 9123 4567 dialling in from overseas
+
+if +65 9123 4567 is currently not in use:
+    # confirm to be spoofed since number not in use
+    telco will terminate call 
+else:
+    if +65 9123 4567 last known location in HLR is in Singapore:
+        # handphone cannot be located in Singapore and overseas at the same time
+        telco will terminate call 
+    else:
+        # either handphone is located in Singapore but turned off (unlikely in present day) or handphone is overseas and it is a legitimate call
+        route the call to the recipient
+</code></pre></div>
+</td></tr></table>
       </div><!-- .entry-content -->
       <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>      </div>
+      <br />
     </div>
   </div>
 </article><!-- #post-## -->
@@ -231,6 +225,7 @@ v1.0 (11/12/16) - Initial Release.  </p>
   </script>
   <script type="text/javascript" src="../theme/js/functions.min.js"></script>
   <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+
 
 </body>
 </html>
