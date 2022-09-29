@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -143,14 +143,14 @@ b.   the communication of the statement in Singapore is likely to<br>
 </blockquote>
 <p>Let us satisfy the second condition first as it is much easier. Quoting directly from the Straits Times article, multiple organizations in the healthcare, media, telecommunications and engineering sector in Singapore are allegedly targeted by the attacker. Of course, the statement is prejudical to public safety and security. It has seeded fear, uncertainty and doubt into the minds of our citizens and business owners, casting doubts on public safety and security of the country as a whole.  </p>
 <p>The first condition is more difficult to satisfy, proving that the statement is false requires technical knowledge of cybersecurity. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>a196dfe4ef7d422aadf1709b12511ae82cb96aad030422b00a9c91fb60a12f17 - Trojan.Vcrodat
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>a196dfe4ef7d422aadf1709b12511ae82cb96aad030422b00a9c91fb60a12f17 - Trojan.Vcrodat
 6e874ac92c7061300b402dc616a1095fa7d13c8a18c8a3ea5b30ffa832a7372c - Trojan.Nibatad
 9d9a6337c486738edf4e5d1790c023ba172ce9b039df1b7b9720ed4c4c9ade90 - DLL Shellcode Loader
 93c9310f3984d96f53f226f5177918c4ca78b2070d5843f08d2cf351e8c239d5 - Mimikatz
@@ -158,8 +158,8 @@ b.   the communication of the statement in Singapore is likely to<br>
 dda22de8ad7d807cdac8c269b7e3b35a3021dcbff722b3d333f2a12d45d9908d - Simple command line remote access tool
 f562e9270098851dc716e3f17dbacc7f9e2f98f03ec5f1242b341baf1f7d544c - Simple command line remote access tool
 7de8b8b314f2d2fb54f8f8ad4bba435e8fc58b894b1680e5028c90c0a524ccd9 - Multi-purpose command tool
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>At the time of writing, the following hashes are among those listed as Indicators of Compromise in the report. However, all of these hashes have no hits on virustotal. If this is indeed malware used by an APT attacker, why are there no antivirus engines (including Symantec's own engine) detecting any of these binaries? Are these hashes of actual binaries or did the author of the report make them up?</p>
 <p>I have read the entire COI report on the SingHealth hack. The COI report mentions the use of a VM deployed on a workstation to RDP into the Citrix server. A database client was used to connect to the SCM database to perform the dump. The description of the hack is completely different from what Symantec reported. The COI report contains zero mentions of the words "DLL Hijacking", "rootkit", "termite" or "mimikatz". It is as if the author of the Symantec report was describing a completely different hack, probably one that happened in his dreams.</p>
 <blockquote>
@@ -205,7 +205,7 @@ f562e9270098851dc716e3f17dbacc7f9e2f98f03ec5f1242b341baf1f7d544c - Simple comman
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

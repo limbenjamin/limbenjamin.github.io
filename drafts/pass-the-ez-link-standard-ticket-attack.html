@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -135,7 +135,7 @@
         <p>Attacks on public transportation tickets have been around for a number of years. Two Italian students were able to <a href="http://mashable.com/2013/08/05/mifare-ultralights-hack-def-con/#rRkZel_tzuqP">lock a single use ticket</a> and continually use it on the Turin public transit system. After reading through the research, I decided to try find out if Singapore's public transit fare system is vulnerable to a similar exploit. </p>
 <p>The EZ-Link standard ticket is a single use ticket for the MRT system in Singapore. The standard ticket is only valid for a single day. However, commuters can get a refund for their unused tickets from any passenger service centre within 3 days of purchase of the ticket. In an effort to reduce wastage, the single ticket can also be topped up and used for up to 6 trips within 30 days. </p>
 <p>Upon scanning the standard ticket with an NFC reader, I discovered that the card used is Mifare Ultralight, which is same as that used in the Turin system. Mifare Ultralight does not support any form of encryption or access control, hence it is possible to obtain a card dump.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -152,7 +152,7 @@
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>13 Jun 2016     $1.50 Stored Value
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>13 Jun 2016     $1.50 Stored Value
 
 05 31 13 af     ID
 e9 54 b0 c1     ID + Chk Digit
@@ -170,10 +170,10 @@ d9 71 b1 75     Prog (Unlocked Permanently)
 c6 e4 76 4f     Prog (Unlocked Permanently)
 06 07 01 c4     Prog (Unlocked Permanently)
 17 f9 4a c2     Prog (Locked Permanently)
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Upon consulting the <a href="http://www.nxp.com/documents/data_sheet/MF0ICU1.pdf">Mifare Ultralight specifications</a>, I realised that the standard ticket worked differently from the Turin system. The attack on the Turin system involved locking the bits in the OTP page so they cannot be turned on or off, however the OTP page on the standard ticket was already permanently locked. Hence, the EZ-Link system must rely on a different method. At a cursory glance, I was unable to find the date of purchase, 13 June, nor the $1.50 stored value anywhere on the card. I needed more samples so I decided to acquire a second card and dump both cards in new and spent state.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -192,7 +192,7 @@ c6 e4 76 4f     Prog (Unlocked Permanently)
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Card #1         Card #1         Card #2         Card #2
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>Card #1         Card #1         Card #2         Card #2
 13 Jun 2016     13 Jun 2016     14 Jun 2016     14 Jun 2016 
 $1.50 value     $0 value        $1.50 value     $0 value
 
@@ -212,15 +212,15 @@ d9 71 b1 75     31 43 ed bd     fb 18 b0 4f     85 25 2a 49
 c6 e4 76 4f     92 1e 89 cf     18 13 18 34     38 00 f1 45
 06 07 01 c4     ce 66 38 60     6a 91 99 a1     36 c6 36 4f
 17 f9 4a c2     17 f9 4a c2     17 f9 4b 58     17 f9 4b 58
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>I wanted tickets that differed in only 1 attribute, in this case, the date, so I could identify which bits were flipped, which would indicate the page where the date was stored. The tickets were bought from the same dispensing machine, hence the similar ID numbers.</p>
 <p>Comparing the dumps, it became obvious that page 10 to 14 (Line 14-18) is used to store the data. However, a difference in only 1 attribute resulted in a significant difference in data. 13 June looked completely different from 14 June. $1.50 looked completely different from $0. In other words, the cipher used exhibited very good diffusion properties.</p>
 <h2>XOR cipher</h2>
 <p>We will start with the low hanging fruit first, the XOR cipher. When the key of the XOR cipher is as long as the plaintext, we get a one time pad which exhibits good randomness. The card ID, OTP and the last page is ruled out because they are too similar, hence given that the plaintext is similar, they will produce similar looking ciphertexts. The only candidate key is page 4 to 8 (Line 8-12). It is 160 bits long, exactly the same length as the plaintext and card #1 has a very different value compared to card #2. Unfortunately, the XORed result did not display any correlation.</p>
 <h2>3DES cipher</h2>
 <p>Moving on, I realised that the card UID is exactly 56 bits, which is the effective keysize for DES. Using a <a href="https://limbenjamin.com/articles/des-key-parity-bit-calculator.html">script which I wrote</a>, I expanded the key and used it to perform both DES-CBC and 3DES-CBC(DDD) decryption. DED is the preferred mode, most likely used in CEPAS as well, but with only 1 key, DED mode would be equivalent to DES. The results were similarly unspectacular.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -234,7 +234,7 @@ c6 e4 76 4f     92 1e 89 cf     18 13 18 34     38 00 f1 45
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Key - 05 31 13 af e9 54 b0
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>Key - 05 31 13 af e9 54 b0
 04984575FE4A5261
 
 1DES-CBC:       ED04580528C2727E2507E6A8FC0AD3BB38DD70B0E4115845
@@ -249,24 +249,24 @@ Key - 05 31 23 9f e9 54 b0
 1DES-CBC:       8A94E0E2D3964DF11864D116F1E1681977BBF528C273730F
 3DES-CBC(DDD):  3D2DE1CDB79C78824EB8039B167D63E7A528F17F84C39525
 3DES-CBC(DDD):  D8280E566E42A68C874074F21E9C01C928B7DC1ADE53A725
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Time for more research. NXP publishes <a href="http://www.nxp.com/documents/application_note/AN073121.pdf">a document</a> which provides implementation "hints". One of the tips include the use of a 128 bit Master Key which is encrypted with the card UID to produce 3 card keys which is used for 3DES(DED) decryption. The document also describes the use of zero padding and a default IV of 0s. In a last ditch attempt, I decided to follow the "hints" as closely as possible. Since I did not have a Master Key, I zero padded page 4 to 8 and used it in place of the Master Key. No dice. Looks like the crypto is sound.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>1DES-Enc(page 4-8): 7FB935FB60863D01 2FB080C66B00A5C6 9FB477A1C76B7543
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>1DES-Enc(page 4-8): 7FB935FB60863D01 2FB080C66B00A5C6 9FB477A1C76B7543
 3DES-Composite Key(DDD): 38FF80ADD7F5EE25715C151621A84253C44BCC6913C91C9F
 3DES-Composite Key(DDD): E14EAE79EB8CBBC6AEB01078209F02153C84C66C56DC3D03
 
 1DES-Enc(page 4-8): DAA7FD0D0E86CC1D 716A6CE00E13AAE3 0EC20A1433D41899
 3DES-Composite Key(DDD): 12354C9493AF218598B9DFD185E76A51E4A9CB5E0E2AACC6
 3DES-Composite Key(DDD): 7256341BCF51E70346D58D2E07ED17E1C182049F4178D2CC
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <h2>Pass the (EZ-Link Standard) ticket attack</h2>
 <p>The pass-the-ticket attack is based off the pass-the-hash attack, the idea being that if you cannot crack the hash, you simply forge a request and include the hash within. It is perfect for use with the Mifare Ultralight because the card does not contain a chip. It cannot perform a challenge response, or include a unique nonce or timestamp for each request. Therefore, it is trivial to perform a replay attack. In order to exploit the system, dump page 10 to 14 into a file. Go up to the passenger service centre and ask for a refund. Once out of sight, clone page 10 to 14 back onto the card. Go and ask for another refund at a different counter. Profit. </p>
 <p>With more than 100 MRT stations in Singapore, there is more than enough to rotate around. A single card with round trip fare can store up to $6+, assuming you refund 3 card per station (to avoid suspicion), it is $18/station. Assuming you can visit 5 stations in an hour, it is a cool $90/hour in cash. Some stations have multiple centres due to multiple exits or it being an interchange with multiple lines. Further Profit. Don't forget, you also get to travel for free by reloading a 4th card and using it for personal travel.</p>
@@ -311,7 +311,7 @@ Key - 05 31 23 9f e9 54 b0
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

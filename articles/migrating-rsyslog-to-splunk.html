@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,15 +134,15 @@
       <div class="entry-content">
         <p>I recently decided to migrate my server cluster's logging mechanism from rsyslog to Splunk. My previous setup was to use rsyslog to centralise all logging onto <code>/var/remotelog/</code> on a central server. I then configured the Splunk indexer to index both <code>/var/log/</code> as well as <code>/var/remotelog/</code>, this allowed me to monitor all security events from a single Splunk dashboard. However, there were a few minor issues with such a setup. Firstly, some services such as Apache do not natively support syslog, hence a workaround is to use <code>/usr/bin/logger</code> to perform the remote logging. This results in a log file with an additional hostname field that does not play nice with Splunk's pretrained source logs. Secondly, Splunk's log forwarding is supposedly more robust. The forwarder can buffer logs when the indexer is offline and is able to better buffer writes, thus reducing disk usage.</p>
 <p>With that, I started my migration. It was a relatively simple process. Firstly, I modified syslog configuration to log locally to <code>/var/log/</code>, installed splunk forwarder, and configured it to listen for changes to <code>/var/log/</code> , forwarding entries to the central server. Over on the central server (x.x.x.x), I set it up to listen on port yyyy.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>  dpkg -i /tmp/splunkforwarder-0.1.2.3-linux-0.1-amd64.deb
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>  dpkg -i /tmp/splunkforwarder-0.1.2.3-linux-0.1-amd64.deb
   /opt/splunkforwarder/bin/splunk add forward-server x.x.x.x:yyyy
   /opt/splunkforwarder/bin/splunk add monitor /var/log
   /opt/splunkforwarder/bin/splunk start
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>And the logs started coming in... However, the sourcetype was still wrong. I had <code>too_small</code> appended behind each of the sourcetypes. After some googling, I realised that because I had just switched to local logging, my log files were really small and Splunk was not able to analyse it and assign it one of the pretrained sourcetypes. At this point, there are 2 options. The first is to wait for the logs to naturally populate and setup Splunk another day. The alternative is to pad the files with appropriate content. If <code>auth.log</code> only had 200 lines, you could repeatedly copy those 200 lines until the file is approximately 100KB. Splunk will then be able to correctly detect the sourcetype. The annoying part about this is that Splunk would not recategorise the sourcetype automatically after the file is of a decent size, hence what I had to do was to uninstall the Splunk forwarder, reinstall and set it up once again.</p>
 <p>Happy logging! </p>
       </div><!-- .entry-content -->
@@ -155,23 +155,23 @@
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/replicating-uvb-76.html"><b>Replicating UVB-76
-              (98% Similar) - </b>
+              (99% Similar) - </b>
               For the uninitiated, UVB-76 is a station that broadcasts coded messages over AM radio. It is still active with messages transmitted as recently as Oct 2016 and is speculated to be related to the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/software-versioning.html"><b>Software Versioning
-              (96% Similar) - </b>
+              (95% Similar) - </b>
               I have recently started managing yet another server. The server is running Ubuntu 14.04 LTS and therefore support is good for another 5 years. Just to be safe, I double checked the openssl ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/iptables-f.html"><b>iptables -F
-              (94% Similar) - </b>
-              This command should be removed or come with confirmation message before execution. Today, I wanted to to turn my blacklist into a whitelist. Reason being as I added new services, I don't always ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/mysql-optimization.html"><b>mysql optimization
               (93% Similar) - </b>
               Recently did quite a lot of mysql related administration. Found quite a few ways to optimise that may make future administration easier. 1) If you are going to add/drop databases very frequently, ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/yubikey-wsl-agent-refused-operation.html"><b>Yubikey WSL: Agent refused operation
+              (92% Similar) - </b>
+              I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing ...</a>
               </blockquote>
           </div>
       </div>
@@ -204,7 +204,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

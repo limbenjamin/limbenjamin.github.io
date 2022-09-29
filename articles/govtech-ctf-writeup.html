@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -181,19 +181,19 @@ Punggol Park - Likely candidate  </p>
 <p>Do what you can! Find that hidden S3 bucket (in the format “word1-word2-s4fet3ch”) and find out what was exfiltrated! </p>
 </blockquote>
 <p>This seemed like a rather simple challenge, at least from the get go.  <code>cewl</code> is a good tool if you would like to automatically crawl websites for keywords. However, since there are only a few words and some of the words are in image form, I decided to do it manually. I wrote a python script to enumerate all possible word combinations from both the word cloud and the image.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;wireless&#39;</span><span class="p">,</span> <span class="s1">&#39;digital&#39;</span><span class="p">,</span> <span class="s1">&#39;parking&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;information&#39;</span><span class="p">,</span> <span class="s1">&#39;architecture&#39;</span><span class="p">,</span> <span class="s1">&#39;wifi&#39;</span><span class="p">,</span> <span class="s1">&#39;smartcity&#39;</span><span class="p">,</span> <span class="s1">&#39;computer&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">,</span> <span class="s1">&#39;technology&#39;</span><span class="p">,</span> <span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="s1">&#39;ai&#39;</span><span class="p">,</span> <span class="s1">&#39;fintech&#39;</span><span class="p">,</span> <span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="s1">&#39;applications&#39;</span><span class="p">,</span> <span class="s1">&#39;internet&#39;</span><span class="p">,</span> <span class="s1">&#39;cybersecurity&#39;</span><span class="p">,</span> <span class="s1">&#39;iot&#39;</span><span class="p">,</span> <span class="s1">&#39;innovation&#39;</span><span class="p">,</span> <span class="s1">&#39;systems&#39;</span><span class="p">,</span> <span class="s1">&#39;knowledge&#39;</span><span class="p">,</span> <span class="s1">&#39;communication&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;intelligent&#39;</span><span class="p">,</span> <span class="s1">&#39;safe&#39;</span><span class="p">,</span> <span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="s1">&#39;technologies&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;people&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy&#39;</span><span class="p">,</span> <span class="s1">&#39;enough&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;think&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;ones&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;steve&#39;</span><span class="p">,</span> <span class="s1">&#39;jobs&#39;</span><span class="p">]</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;wireless&#39;</span><span class="p">,</span> <span class="s1">&#39;digital&#39;</span><span class="p">,</span> <span class="s1">&#39;parking&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;information&#39;</span><span class="p">,</span> <span class="s1">&#39;architecture&#39;</span><span class="p">,</span> <span class="s1">&#39;wifi&#39;</span><span class="p">,</span> <span class="s1">&#39;smartcity&#39;</span><span class="p">,</span> <span class="s1">&#39;computer&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">,</span> <span class="s1">&#39;technology&#39;</span><span class="p">,</span> <span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="s1">&#39;ai&#39;</span><span class="p">,</span> <span class="s1">&#39;fintech&#39;</span><span class="p">,</span> <span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="s1">&#39;applications&#39;</span><span class="p">,</span> <span class="s1">&#39;internet&#39;</span><span class="p">,</span> <span class="s1">&#39;cybersecurity&#39;</span><span class="p">,</span> <span class="s1">&#39;iot&#39;</span><span class="p">,</span> <span class="s1">&#39;innovation&#39;</span><span class="p">,</span> <span class="s1">&#39;systems&#39;</span><span class="p">,</span> <span class="s1">&#39;knowledge&#39;</span><span class="p">,</span> <span class="s1">&#39;communication&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;intelligent&#39;</span><span class="p">,</span> <span class="s1">&#39;safe&#39;</span><span class="p">,</span> <span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="s1">&#39;technologies&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;people&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy&#39;</span><span class="p">,</span> <span class="s1">&#39;enough&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;think&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;ones&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;steve&#39;</span><span class="p">,</span> <span class="s1">&#39;jobs&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="s2">&quot;s4fet3ch&quot;</span>
         <span class="k">print</span> <span class="n">k</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>I then used <a href="https://github.com/FishermansEnemy/bucket_finder">bucket finder</a> to brute force and find the correct S3 bucket.</p>
 <p><img alt="bucket finder" src="//limbenjamin.com/media/gtctf_c0_bucketfinder.png"></p>
 <p>Oh shit, why is it encrypted? Interestingly, there seems to be a second encrypted file in there. Well, if we can find an unencrypted version somewhere on the web, maybe we can launch a known plaintext attack?  </p>
@@ -215,24 +215,24 @@ Punggol Park - Likely candidate  </p>
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/cloning-mifare-1k-cards.html"><b>Cloning Mifare 1K cards
-              (97% Similar) - </b>
-              Disclaimer : The information provided here is solely for educational purposes. The system I would be looking at is the ST Electronics' ST8100 Securnet. This is an integrated security management ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/ubers-github-slip-up.html"><b>Uber's github slip up
+              <a href="../articles/ipad-pos.html"><b>iPad POS
               (96% Similar) - </b>
-              Background : Uber or one of its contractors uploaded a security key to a public github gist. Malicious actors were able to use the key to access the database and made away with personal details ...</a>
+              While traveling in the US, I noticed that a considerable number of smaller food establishments used an iPad Point of Sale (POS) system. Given the number of POS vulnerabilities reported in the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/information-leakage.html"><b>Information Leakage
-              (95% Similar) - </b>
-              Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/biometrics-and-passwords.html"><b>Biometrics and Passwords
+              <a href="../articles/infosec-career-progression.html"><b>Infosec career progression
               (94% Similar) - </b>
-              Many people have the misconception that biometrics such as fingerprint readers are more secure than passwords. It probably stems from Hollywood spy movies showing Top Secret facilities protected ...</a>
+              What are the technical requirements to progress in your career in cybersecurity? How do you move from an entry level analyst position into a senior analyst position? Starting from the defensive ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/the-evolution-of-crypto.html"><b>The Evolution of Crypto
+              (93% Similar) - </b>
+              Crypto used to refer to cryptography, the study of protecting the confidentiality and integrity of information. It is one of the purest branches of computer security. Theoretical cryptography is ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/web-public.html"><b>Web = public
+              (92% Similar) - </b>
+              A very timely reminder that nothing on the web is private. Having just stumbled upon the awstats page for comp.nus, I have just unlocked a whole treasure trove of information. Among the most ...</a>
               </blockquote>
           </div>
       </div>
@@ -265,7 +265,7 @@ Punggol Park - Likely candidate  </p>
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

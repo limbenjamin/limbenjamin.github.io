@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>Found a couple of interesting DLL exports while hunting for LOLBAS. Most of these have not been documented as far as I know. There are potentially a lot more out there, the system was behaving strangely when enumerating the list of exports. Unfortunately, I do not know of a good way to determine the effect a command has on a system. It is trivial for obvious cases like logoff or reboot, or if the export name is descriptive, e.g. DnsFlushResolverCache. It can be challenging in other cases.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -149,7 +149,7 @@
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go"># Logoff</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go"># Logoff</span>
 <span class="go">rundll32 userinitext.dll,ProcesRemoteSessionInitialCommand</span>
 
 <span class="go"># Reboot</span>
@@ -166,8 +166,8 @@
 <span class="go"># Install inf files</span>
 <span class="go"># Have not been able to weaponize it</span>
 <span class="go">rundll32 printui.dll,PrintUIEntry</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p><img alt="image" src="https://limbenjamin.com/media/text_injection.png"></p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -188,14 +188,14 @@
               File history is a backup solution built into Windows from Windows 8 onwards. Once enabled, previous versions of files in Documents, Music, Pictures, Videos, Desktop and OneDrive folder will ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/crash-windows-event-logging-service.html"><b>Crash Windows Event Logging Service
-              (95% Similar) - </b>
-              While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows ...</a>
+              <a href="../articles/default-printer-settings.html"><b>Default printer settings
+              (96% Similar) - </b>
+              I have never paid much attention to setting default printer, normally setting it to the most commonly used printer for convenience sake. However, a reason episode made me think twice on whether ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/default-printer-settings.html"><b>Default printer settings
-              (94% Similar) - </b>
-              I have never paid much attention to setting default printer, normally setting it to the most commonly used printer for convenience sake. However, a reason episode made me think twice on whether ...</a>
+              <a href="../articles/yubikey-passwordless-windows-local-account-login.html"><b>Yubikey passwordless Windows local account login
+              (95% Similar) - </b>
+              Yubico used to publish a Windows Store application YubiKey for Windows Hello that allowed local non-domain joined accounts to login to Windows simply by inserting the YubiKey. However, that ...</a>
               </blockquote>
           </div>
       </div>
@@ -228,7 +228,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

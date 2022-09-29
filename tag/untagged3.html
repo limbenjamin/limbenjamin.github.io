@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher...">
+  <meta name="description" content="Articles tagged with 'Untagged <Page 3 of 3>' on this site">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -25,20 +25,8 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Security">
 
-<meta property="og:title" content="Expanding on Pyramid of Pain">
-<meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/threathunt.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/threathunt.png"/>
-<meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher up the pyramid. However, there is scarce information available to guide them in doing so. Using my red team knowledge, I would like to …">
-<meta property="og:url" content="https://limbenjamin.com/articles/expanding-on-pyramid-of-pain.html">
-<meta property="fb:admins" content="557193263"/>
-<meta property="fb:app_id" content="520142688161055"/>
-
-
-  <title>Expanding on Pyramid of Pain</title>
+  <title>Tag: Untagged <Page 3 of 3></title>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -124,69 +112,37 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
-<article>
-  <div class="blog-item-wrap">
-    <div class="post-inner-content">
-      <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2020-03-01 13:07:00+08:00">Mar 01, 2020</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/expanding-on-pyramid-of-pain.html">Expanding on Pyramid of Pain</a></h1>
-      </header><!-- .entry-header -->
-      <div class="entry-content">
-        <p>I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher up the pyramid. However, there is scarce information available to guide them in doing so. Using my red team knowledge, I would like to expand on the tools segment of the pyramid of pain to help threat hunters write better tool detection queries.</p>
-<p><img alt="image" src="//limbenjamin.com/media/threathunt.png"></p>
-<h2>Executable Name</h2>
-<p>To detect the use of <code>nmap</code>, the most straightforward query would simply be <code>sourcetype=os_logs process.name="nmap.exe"</code>. Some hunters will stop here and pat themselves on the back for reaching the top of the Pyramid of Pain. Unfortunately, it is one of the easiest query to circumvent. Almost every computer user knows how to rename a file. In this case, renaming <code>nmap</code> is sufficient to circumvent this query. No self respecting adversary is going to commit this mistake, the only instances of <code>nmap</code> you detect would be those owned by sysadmins who have no reason to hide their use of the binary. </p>
-<p>Sophisticated adversaries will even choose a name which suits the functionality of the tool. I like using a variant of <code>print discovery utility.exe</code>. Most printer vendors release utilities which will scan the subnet to detect connected printers and automatically install and configure it. A befitting name for <code>nmap</code> indeed.</p>
-<p>Also, certain OS binaries like <code>rundll32.exe</code> and <code>mavinject.exe</code> will work even if it has been renamed. Adversaries will make a copy of such binaries, place it in a different folder and profit.</p>
-<h2>Version Info</h2>
-<p>Detection based on Version Info resource is more frequently seen in YARA rules and less commonly available in threat hunting solutions. To detect <code>nmap</code> which is published by <code>Insecure.org</code>, a query such as <code>sourcetype=os_logs process.version_info="*Insecure.org*"</code> would be used. I would categorise it as a step above executable name as it causes slightly greater pain for the adversary. Instead of simply renaming the binary, the adversary has to use tools such as Resource Hacker to modify the Version Info. </p>
-<p>If a binary is signed, such a modification would cause the signature verification to fail.</p>
-<p><img alt="image" src="//limbenjamin.com/media/resourcehacker.png"></p>
-<h2>CLI arguments</h2>
-<p>Detection based on CLI arguments bring even greater pain to the adversary. To detect <code>nmap</code>, such a query may look like <code>sourcetype=os_logs (process.command_line="*--top-ports*" || process.command_line="* -p21,*" || process.command_line="* -p22,*"</code>. In order for the adversary to circumvent CLI argument detection, he will need to modify the source code and recompile the tool, or to change individual bytes in the binary itself. </p>
-<p>A bit of human psychology is at play here. Humans will tend to list numbers in ascending order, i.e. <code>"-p21,22,80,139,443,445,3389"</code>. Hence, by detecting the first few common ports, we will likely be able to catch most attempts. Listing every single combination exhaustively would just place too much stress on the query engine.</p>
-<p>I have seen hunters write queries such as <code>sourcetype=os_logs process.name="rundll32.exe" &amp;&amp; process.command_line="*zipfldr.dll,RouteTheCall*"</code>. Such a query is indeed useful in cutting down false positives and only picking up misuse of <code>rundll32.exe</code>. However, in terms of Pyramid of Pain, such a query would belong to the "Executable Name" level since it breaks once the adversary renames <code>rundll32.exe</code>. For it to belong at the CLI arguments level, the query should look like <code>sourcetype=os_logs process.command_line="*,RouteTheCall*"</code>. Of course, when crafting such queries, it is important to find command line arguments which are unique enough to stand alone by itself.</p>
-<p><img alt="image" src="//limbenjamin.com/media/dllordinal.png"></p>
-<p>Do take note that DLL exports can be called using their ordinal numbers as well. For example, <code>PrintUIEntryW</code> is ordinal <code>#3</code>. Hence, <code>rundll32 printui.dll,PrintUIEntry</code> can also be executed using the command <code>rundll32 printui.dll,#3</code>. As far as I know, using ordinal numbers will cause issues with arguments passed to the DLL, hence it does not work for certain LOLBAS. </p>
-<h2>All</h2>
-<p>Writing good queries require a bit of creativity and in depth understanding of the tools involved. I have found JPCERT's <a href="https://jpcertcc.github.io/ToolAnalysisResultSheet/">resources</a> to be very useful in understanding the various artefacts that are created when such tools are run. Hunters will also need to run these tools themselves, figure out how they work before they can write good queries.</p>
-<p>This section is named all because a combination of all different indicators used in a creative manner is the answer to good detection with low false positives. Adversaries may adopt some of these tactics to avoid detection, but as long as they miss out on one, you would be able to detect them. i.e. To detect <code>nmap</code>, a query like <code>sourcetype=os_logs (process.version_info="*Insecure.org*" || process.command_line="*--top-ports*" || process.command_line="* -p21,*" || process.command_line="* -p22,*")</code> uses multiple indicators. Adversaries will need to circumvent both the Version Info and the CLI arguments portion of the query to escape detection.</p>
-<p>Happy hunting!</p>
-      </div><!-- .entry-content -->
-      <br /><br />
-      <div class="article_meta">
-        Tags:
-          <a href="../tag/security.html">Security</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/windows-trust-boundaries.html"><b>Windows Trust Boundaries
-              (95% Similar) - </b>
-              Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an application developer, understanding these ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/ethical-concerns-regarding-the-transition-from-software-to-abandonware.html"><b>Ethical concerns regarding the transition from software to abandonware
-              (91% Similar) - </b>
-              Firstly, I wish to define abandonware as "software that is ostensibly still protected by copyright, but is no longer being supported or marketed" provided by Technopedia1. As such, my article ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/yubikey-passwordless-windows-local-account-login.html"><b>Yubikey passwordless Windows local account login
-              (89% Similar) - </b>
-              Yubico used to publish a Windows Store application YubiKey for Windows Hello that allowed local non-domain joined accounts to login to Windows simply by inserting the YubiKey. However, that ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/lolbin-fhmanagew.html"><b>LOLBin: fhmanagew.exe
-              (88% Similar) - </b>
-              File history is a backup solution built into Windows from Windows 8 onwards. Once enabled, previous versions of files in Documents, Music, Pictures, Videos, Desktop and OneDrive folder will ...</a>
-              </blockquote>
-          </div>
-      </div>
-      <br />
-    </div>
-  </div>
-</article><!-- #post-## -->
+<a href="../articles/300kb-300mb.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-05-25 10:01:00+08:00">May 25, 2013</time></span>
+					<h1 class="entry-title">300kb - 300mb</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I never cease to be amazed by how small something can be, especially in today's era of 2TB HDDs. Just few months ago. it was my arch Linux arm distro. Out of the box (OOTB) occupying less than 300mb on my SD card. Makes me wonder what on earth is inside windows 8 which took up a sizable portion ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
                 </div>
+<footer>
+<div id="paginator">
+  <span id="left">
+      <a href="../tag/untagged2.html"><i class="fa fa-arrow-circle-left"></i> Prev</a>
+  </span>
+  <span id="right">
+  </span>
+  <div>
+      <a href="../tag/untagged.html"> 1 </a>
+      <a href="../tag/untagged2.html"> 2 </a>
+      <a href="../tag/untagged3.html">[3]</a>
+  </div>
+</div>
+</footer>
+<div class="article_meta"></div>
               </div><!-- #main -->
           </div><!-- #primary -->
         </div>
@@ -241,7 +197,6 @@
   </script>
   <script type="text/javascript" src="../theme/js/functions.min.js"></script>
   <noscript><p><img src="//limbenjamin.com/a/a.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-
 
 </body>
 </html>

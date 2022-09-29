@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>There are a number of sites out there mentioning that macvlan has a limitation when used with docker or lxc containers. The host machine will not be able to communicate with the guest machine and vice versa. While this is true by default, there is a tweak that you can perform to make host guest connectivity possible. I found out about this through a <a href="http://noyaudolive.net/2012/05/09/lxc-and-macvlan-host-to-guest-connection/">2012 blog post</a> which is no longer around. It has worked for me all the way up till Ubuntu 20.04 where some further steps are needed.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -152,7 +152,7 @@
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># cat /etc/network/interfaces
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code># cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
 
@@ -172,10 +172,10 @@ iface macvlan0 inet dhcp
     # NOTE: adapt this line to your LAN address and netmask         
     pre-up route del -net 192.168.0.0 netmask 255.255.255.0
     pre-up ip link add link eth0 name macvlan0 type macvlan mode bridge
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>What this achieves is to give a static IP address to <code>eth0</code> on the host machine, so that it is easily accessible by other machines. As <code>eth0</code> is unable to communicate with the guest machine, we get pass this known limitation by deleting all routes through <code>eth0</code> then setup <code>macvlan0</code> interface and route all egress traffic through <code>macvlan0</code>. Since your host machine traffic is now routed through <code>macvlan0</code>, we can now communicate with the guest machine. Do note that all egress traffic from the host machine will now appear to originate from the DHCP IP, 192.168.0.55 in the example, and not the static IP. This does not stop me from hosting services on the host machine, I can SSH to the static IP just fine.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -190,7 +190,7 @@ iface macvlan0 inet dhcp
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># ifconfig
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code># ifconfig
 eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         inet 192.168.0.123  netmask 255.255.255.0  broadcast 192.168.0.255
         inet6 fe80::0  prefixlen 64  scopeid 0x20&lt;link&gt;
@@ -206,10 +206,10 @@ Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 default         192.168.0.1     0.0.0.0         UG    203    0        0 macvlan0
 192.168.0.0     0.0.0.0         255.255.255.0   U     203    0        0 macvlan0
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>For Ubuntu 20.04, I have found that the <code>eth0</code> route will still be present. This is because <code>dhcpcd</code> will automatically add the <code>eth0</code> route at regular intervals. To get around this, I added an additional line to set the eth0 route <code>metric</code> to 400 for the 2 files listed below. This means that the <code>macvlan0</code> route will be prioritised over the <code>eth0</code> route and connectivity is restored. It would also be prudent to try disabling/enabling <code>dhcpcd</code> to see the effect. I have found that allowing <code>dhcpcd</code> to run may result in multiple DHCP IPs to be requested by the <code>macvlan0</code> interface.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -233,7 +233,7 @@ default         192.168.0.1     0.0.0.0         UG    203    0        0 macvlan0
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># cat /etc/dhcpcd.conf
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code># cat /etc/dhcpcd.conf
 interface eth0
         static ip_address=192.168.0.123/24
         static routers=192.168.0.1
@@ -258,10 +258,10 @@ default         192.168.0.1     0.0.0.0         UG    203    0        0 macvlan0
 default         192.168.0.1     0.0.0.0         UG    400    0        0 eth0
 192.168.0.0     0.0.0.0         255.255.255.0   U     203    0        0 macvlan0
 192.168.0.0     0.0.0.0         255.255.255.0   U     400    0        0 eth0
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>If you are using LXC containers, the following profile should work. You can configure the <code>eth0</code> interface on the guest to either use a static IP or DHCP as per normal.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -269,7 +269,7 @@ default         192.168.0.1     0.0.0.0         UG    400    0        0 eth0
 <span class="normal">6</span>
 <span class="normal">7</span>
 <span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># lxc profile show default
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code># lxc profile show default
 config: {}
 description: Default LXD profile
 devices:
@@ -278,8 +278,7 @@ devices:
     parent: eth0
     type: nic
 ...
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -290,23 +289,23 @@ devices:
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/public-ip-hijacking-over-lan.html"><b>Public IP Hijacking over LAN
-              (99% Similar) - </b>
+              (98% Similar) - </b>
               This is a topic that is not commonly discussed. Most articles about IP hijacking deal with the subject at the ISP level, i.e. hijacking of BGP protocol. However, IP hijacking can be performed on ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/ip-hiding-and-cloaking-for-services.html"><b>IP Hiding and Cloaking for Services
-              (90% Similar) - </b>
-              It is relatively easy to hide the IP address of clients through the use of VPNs and proxies. However, it is a challenge for services since they need to be reachable by the clients. Imagine if ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/enumerate-sites-hosted-on-same-ip.html"><b>Enumerate sites hosted on same IP
-              (88% Similar) - </b>
-              Enumerating sites which are hosted on the same IP address can sometimes tell us a lot about a server. Is it shared hosting? Is it a legitimate server which was compromised for C2 operations? Does ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware
-              (85% Similar) - </b>
+              (92% Similar) - </b>
               Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/flashing-swos-from-windows.html"><b>Flashing SwOS from Windows
+              (83% Similar) - </b>
+              I recently acquired a cheap used Mikrotik RB250GS to play with port mirroring and VLAN tagging. The switch came with the original SwOS firmware which was buggy to the extent that firmware upgrade ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443
+              (79% Similar) - </b>
+              A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
               </blockquote>
           </div>
       </div>
@@ -339,7 +338,7 @@ devices:
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -136,7 +136,7 @@
 <p><img alt="image" src="//limbenjamin.com/media/power.jpg"></p>
 <p>The current price of electricity in Singapore is 17.68 cents/kWh.</p>
 <p>Readings I have obtained:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -197,7 +197,7 @@
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>--------------------------------------------------------------------
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code>--------------------------------------------------------------------
 Desktop Computer
 --------------------------------------------------------------------
 CPU                                 i7-4770 @ 3.40GHz
@@ -259,12 +259,12 @@ Storage                             500GB 2.5&quot; WD HDD
 
 Normal Load:                        38.9W
 Cost (24/7):                        5.11 SGD
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>One of the interesting observations was just how little power modern computers require. I own a relatively high end system with an i7 CPU and a GTX970 card but it consumes only 211W under load, scaling down efficiently to only 54W idle. It also consumes 3.5W even when switched off, I suspect this is due to the network card being set on a low power state to receive Wake On Lan packets. 3.5W is coincidentally the amount of power my quad core ARM server consumes when idling.</p>
 <p>My headless server consumes only 38.9W at regular load, costing approximately 5.11 SGD in electricity costs per month. This puts to an end the long standing argument that Digital Ocean's 5 USD/month VPS is cheaper than running your own server. A VPS does have its benefits, it does not require a capital outlay of approximately 300 SGD in equipment and is easier to set up and scale up. However, running your own server allows you to have much more storage for all your media and backups. Since the server is on the local network, you have much better bandwidth and latency. An old laptop is perfect for using as a server, you get to save on hardware costs and it consumes little power.</p>
 <p>The table below shows a comparison of the power consumption of other household devices and the electricity cost of running it for 100 hours. Through this episode, I am glad to know that my electronic devices are not significant contributors to the power bill. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -276,7 +276,7 @@ Cost (24/7):                        5.11 SGD
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>--------------------------------------------------------------------
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>--------------------------------------------------------------------
 Appliance           Wattage     Cost per 100 hours
 --------------------------------------------------------------------
 Study lamp          23.2W       0.41 SGD    
@@ -289,8 +289,7 @@ Dell Monitor        17.7W       0.31 SGD
 High End Desktop    132.35W     2.34 SGD
 Ordinary Desktop    38.9W       0.69 SGD
 Router              4.2W        0.07 SGD
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -301,23 +300,23 @@ Router              4.2W        0.07 SGD
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/yubikey-wsl-agent-refused-operation.html"><b>Yubikey WSL: Agent refused operation
-              (92% Similar) - </b>
+              (93% Similar) - </b>
               I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/saturating-1gbps-bandwidth.html"><b>Saturating 1Gbps bandwidth
+              <a href="../articles/usb-30.html"><b>USB 3.0
               (90% Similar) - </b>
+              I changed my workstation just recently from an old, heavy Lenovo with 2 hours of battery life to a new Acer W700 hybrid that is half the weight and has roughly 7 hours of battery life. Chief ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/saturating-1gbps-bandwidth.html"><b>Saturating 1Gbps bandwidth
+              (88% Similar) - </b>
               My ISP recently gave me a free speed bump from 500Mbps to 1 Gbps. I wanted to test if it was possible to fully utilise the bandwidth on a single file transfer. Firstly, we need to look at the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/problems-with-ftp.html"><b>Problems with FTP
-              (89% Similar) - </b>
-              1) No copy feature. There is no way to duplicate the file the file on the server for backup, testing or any other purposes. You have to download the file and upload it to another location, which ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/running-your-own-home-server.html"><b>Running your own home server
-              (88% Similar) - </b>
-              Just wanted to share my experience of running my own server at home. Before anyone conjures up a thought of large server rack with cooling equipment and thousands of dollars of investment. Let me ...</a>
+              <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443
+              (84% Similar) - </b>
+              A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
               </blockquote>
           </div>
       </div>
@@ -350,7 +349,7 @@ Router              4.2W        0.07 SGD
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,7 +134,7 @@
       <div class="entry-content">
         <p>Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about.</p>
 <p>Encryptor.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -174,7 +174,7 @@
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
-<span class="normal">41</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">rsa</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">hashes</span>
@@ -215,10 +215,10 @@
 <span class="p">)</span>
 
 <span class="nb">print</span> <span class="n">encrypted</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Decryptor.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -295,7 +295,7 @@
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">hashes</span>
 <span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">padding</span>
@@ -373,8 +373,8 @@
     <span class="p">)</span>
 
 <span class="n">create_shellcode_function</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)()</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
 <p>Student ID: SLAE64-XXXXX</p>
       </div><!-- .entry-content -->
@@ -386,24 +386,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/converting-winexec-shellcode.html"><b>Converting WinExec shellcode
-              (99% Similar) - </b>
-              I have found an interesting method to convert WinExec shellcode. This may be useful if WinExec cannot be used because the characters WinE are bad characters or if there are security solutions ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/slae64-4-sse42-crc32c-encoder.html"><b>SLAE64 #4 - SSE4.2 CRC32C Encoder
               (99% Similar) - </b>
               I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
-              (97% Similar) - </b>
-              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
+              <a href="../articles/converting-winexec-shellcode.html"><b>Converting WinExec shellcode
+              (98% Similar) - </b>
+              I have found an interesting method to convert WinExec shellcode. This may be useful if WinExec cannot be used because the characters WinE are bad characters or if there are security solutions ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
               (96% Similar) - </b>
               I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
+              (96% Similar) - </b>
+              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
               </blockquote>
           </div>
       </div>
@@ -436,7 +436,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

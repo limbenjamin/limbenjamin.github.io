@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -135,7 +135,7 @@
         <p>It is relatively easy to hide the IP address of clients through the use of VPNs and proxies. However, it is a challenge for services since they need to be reachable by the clients. Imagine if your phone number changed at the stroke of midnight everyday, it would be very difficult for others to reach you reliably. There are many methods for IP hiding, one of which is through the use of tor. However, one drawback is that it is reachable only through a <code>.onion</code> address and hence is accessible only to very savvy internet users. Other methods used by botnets include updating the A records every few seconds, however it is impractical as it requires you to be controlling large swathes of IP addresses.  </p>
 <p>The method I am going to illustrate involves the use of <code>iptables</code> for both hiding and cloaking. Hiding the IP address means that the actual IP hosting the questionable content is not the same IP that is revealed through an <code>nslookup</code>. Cloaking the IP address allows you to either whitelist or blacklist certain IP addresses from accessing the questionable content, serving them innocuous content instead.</p>
 <h1>Hiding IP addresses</h1>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -143,7 +143,7 @@
 <span class="normal">6</span>
 <span class="normal">7</span>
 <span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>piratecove.com A 2.2.2.2
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>piratecove.com A 2.2.2.2
 piratecove.org A 3.3.3.3
 piratecove.net A 4.4.4.4
 
@@ -152,30 +152,30 @@ piratecove.net A 4.4.4.4
 3.3.3.3:443 -------------------- 6.6.6.6:54321
                            |
 4.4.4.4:443 -- 5.5.5.5:443 /
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>For the above example, we have questionable content for the website <code>piratecove</code> hosted at 6.6.6.6. For redundancy purposes, the owner has purchased 3 domains with all serving the same content. However, resolution of domain will never reveal the actual IP address. In order to perform the redirection, the following commands have to be executed on 2.2.2.2 and 3.3.3.3. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 6.6.6.6:54321
 iptables -t nat -A POSTROUTING -j MASQUERADE
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>The redirection happens at the IP layer, therefore SSL connections will be end-to-end. Only encrypted traffic passes through 2.2.2.2 and no questionable content will be present on the server. However, if 2.2.2.2 is seized, investigators will be able to uncover the actual IP address by dumping the iptables rules. To get around that, we need multiple hops as implemented in 4.4.4.4.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 5.5.5.5:443 # Executed on 4.4.4.4
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 5.5.5.5:443 # Executed on 4.4.4.4
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 6.6.6.6:54321 # Executed on 5.5.5.5
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>In this particular case, once 4.4.4.4 is seized, the owner will immediately erase all data on 5.5.5.5 thus leaving a cold trail.</p>
 <h1>IP Cloaking</h1>
 <p>To further hinder investigations, IP cloaking can also be used. IP cloaking serves different content depending on the source IP of the visitor. Hence, if you know that Walt Sidney uses the IP range 9.9.9.9/24, we can forward this IP range to a different web server hosting a fan site dedicated to Walt Sidney.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>iptables -t nat -A PREROUTING -s 9.9.9.9/24 -p tcp --dport 443 -j DNAT --to-destination 127.0.0.1:1443
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>iptables -t nat -A PREROUTING -s 9.9.9.9/24 -p tcp --dport 443 -j DNAT --to-destination 127.0.0.1:1443
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 6.6.6.6:54321
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>In other cases, whitelisting might be a better option. For example, if you have a meterpreter listener and expect clients polling from a single static IP address. It is possible to whitelist only that address to forward to your listener and serve generic content to all other IP addresses.</p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -192,17 +192,17 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/public-ip-hijacking-over-lan.html"><b>Public IP Hijacking over LAN
-              (95% Similar) - </b>
+              (84% Similar) - </b>
               This is a topic that is not commonly discussed. Most articles about IP hijacking deal with the subject at the ISP level, i.e. hijacking of BGP protocol. However, IP hijacking can be performed on ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/macvlan-host-guest-connectivity.html"><b>macvlan host guest connectivity
-              (90% Similar) - </b>
-              There are a number of sites out there mentioning that macvlan has a limitation when used with docker or lxc containers. The host machine will not be able to communicate with the guest machine and ...</a>
+              <a href="../articles/cloudflare.html"><b>cloudflare
+              (81% Similar) - </b>
+              Finally decided to try out cloudflare to see if my site would load faster. I had already created an account ages ago but was hesitant due a a few reasons. 1) Changing DNS will affect my MX ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443
-              (86% Similar) - </b>
+              (78% Similar) - </b>
               A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
               </blockquote>
           </div>
@@ -236,7 +236,7 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

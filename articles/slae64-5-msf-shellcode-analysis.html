@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
 <meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind shellcode, the primary difference among them is that the meterpreter shellcode is a staged payload while the other is a stageless …">
+<meta property="og:description" content="I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind shellcode, the primary difference among them is that the meterpreter shellcode is a staged payload while the other is a stageless payload. As such …">
 <meta property="og:url" content="https://limbenjamin.com/articles/slae64-5-msf-shellcode-analysis.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>I would be analysing chunks of the <code>linux/x64/meterpreter/bind_tcp</code> and the <code>linux/x64/shell_bind_tcp</code> and see how they differ. Although both are TCP bind shellcode, the primary difference among them is that the meterpreter shellcode is a staged payload while the other is a stageless payload. As such, the meterpreter shellcode expects the server to provide a second stage while the other will immediately return a usable shell.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -204,7 +204,7 @@
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>linux/x64/meterpreter/bind_tcp payload
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code>linux/x64/meterpreter/bind_tcp payload
 
 0x400078        xor    %rdi,%rdi
 0x40007b        pushq  $0x9
@@ -276,9 +276,9 @@ sys_read to read second stage payload and write to allocated memory address at r
 
 I was not able to proceed further without the correct payload, however I believe the next step would be to jump to second stage 
 payload for execution.
-</code></pre></div>
-</td></tr></table>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+</code></pre></div></td></tr></table></div>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -335,7 +335,7 @@ payload for execution.
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>linux/x64/shell_bind_tcp payload
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code>linux/x64/shell_bind_tcp payload
 
 0x400078        pushq  $0x29
 0x40007a        pop    %rax
@@ -393,8 +393,8 @@ Register values: rax - 0x3b , rbx - 0x68732f6e69622f
 
 sys_execve call to /bin/sh
 0x68732f6e69622f - /bin/sh
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
 <p>Student ID: SLAE64-XXXXX</p>
       </div><!-- .entry-content -->
@@ -406,14 +406,14 @@ sys_execve call to /bin/sh
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-1-bindshell-tcp-shellcode.html"><b>SLAE64 #1 - Bindshell TCP shellcode
-              (100% Similar) - </b>
-              There are many SLAE64 blogposts each explaining their variant of shellcode out there. I thought I would join in the fun. This is my version of the Bindshell TCP shellcode. I'll keep it brief and ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/slae64-2-revshell-tcp-shellcode.html"><b>SLAE64 #2 - Revshell TCP shellcode
               (100% Similar) - </b>
               This shellcode is very similar to the Bindshell TCP shellcode, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make: Line 8/37: ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-1-bindshell-tcp-shellcode.html"><b>SLAE64 #1 - Bindshell TCP shellcode
+              (100% Similar) - </b>
+              There are many SLAE64 blogposts each explaining their variant of shellcode out there. I thought I would join in the fun. This is my version of the Bindshell TCP shellcode. I'll keep it brief and ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
@@ -422,7 +422,7 @@ sys_execve call to /bin/sh
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
-              (100% Similar) - </b>
+              (99% Similar) - </b>
               As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
               </blockquote>
           </div>
@@ -456,7 +456,7 @@ sys_execve call to /bin/sh
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

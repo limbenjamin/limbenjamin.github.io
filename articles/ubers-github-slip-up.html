@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -135,21 +135,21 @@
         <p>Background : Uber or one of its contractors uploaded a security key to a public github gist. Malicious actors were able to use the key to access the database and made away with personal details of 50,000 Uber drivers. Article <a href="http://arstechnica.com/security/2015/03/in-major-goof-uber-stored-sensitive-database-key-on-public-github-page/">here</a>.</p>
 <p>This is one of those pesky little problems with version control. Passwords have to be stored in config files which have to ship with the code. This is a problem with small open source projects with only a few collaborators often times working on only 1 master branch. Due to the small scale, it is not feasible to set up automated CI servers to run scripts to detect such slip ups. How then do we prevent it from happening?</p>
 <p>I must admit that it has happened to me once before. I accidentally committed a mysql user account and password into a pubic github repo. Fortunately, I realised it a few days later and managed to change the password (hopefully no one noticed it). This got me thinking about how to prevent a repeat of such an incident.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    $ cat ../../projA-secrets.txt
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ cat ../../projA-secrets.txt
     -----BEGIN RSA PRIVATE KEY-----
     -----BEGIN DSA PRIVATE KEY-----
     p@55w0rd
     s3cr3tK3y
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>So, the first step is to maintain a list of all secret keys and passwords for that project in a text file outside the root of the project directory. People might argue that it is unsafe to store all your passwords in a text file. But my response is that it is simply security by obscurity. The passwords are already stored in plaintext nested somewhere within the project, an experienced adversary would know where to look so it doesn't compromise much of security. If you really want to, you could name the file projA-README.txt or something.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    grep -HFf ../../projA-secrets.txt *
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    grep -HFf ../../projA-secrets.txt *
+</code></pre></div></td></tr></table></div>
+
 <p>The shell command above would recursively search and output a list of file names and the corresponding line number which contain any line in the secrets file. Therefore, by running this command before committing, you will be able to double check that you have removed all secrets. You can include this command into a pre-commit hook to make sure that it gets run before every commit.</p>
 <p>Ever since that incident more than a year ago, I have never made the same mistake again.</p>
       </div><!-- .entry-content -->
@@ -161,24 +161,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/cloning-mifare-1k-cards.html"><b>Cloning Mifare 1K cards
-              (96% Similar) - </b>
-              Disclaimer : The information provided here is solely for educational purposes. The system I would be looking at is the ST Electronics' ST8100 Securnet. This is an integrated security management ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/biometrics-and-passwords.html"><b>Biometrics and Passwords
-              (96% Similar) - </b>
+              (95% Similar) - </b>
               Many people have the misconception that biometrics such as fingerprint readers are more secure than passwords. It probably stems from Hollywood spy movies showing Top Secret facilities protected ...</a>
               </blockquote>
               <blockquote class="similar_posts">
+              <a href="../articles/interesting-bluetooth-experiment.html"><b>Interesting bluetooth experiment
+              (94% Similar) - </b>
+              Earlier on, I paired my bluetooth keyboard to both my android and windows OS dual boot configuration. It is a hassle to keep re-pairing the keyboard whenever I switch OSes. This was done by ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
               <a href="../articles/govtech-ctf-writeup.html"><b>GovTech CTF Writeup
-              (96% Similar) - </b>
+              (92% Similar) - </b>
               Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting Awesome Write-up Walking down a colourful ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/ipad-pos.html"><b>iPad POS
-              (94% Similar) - </b>
-              While traveling in the US, I noticed that a considerable number of smaller food establishments used an iPad Point of Sale (POS) system. Given the number of POS vulnerabilities reported in the ...</a>
+              <a href="../articles/flaws-of-a-single-ecosystem.html"><b>Flaws of a single ecosystem
+              (91% Similar) - </b>
+              The post is triggered by the recent leak of celebrity nude photos. Apple has claimed that the iCloud ecosystem is secure and the leak was the result of targeted attempts. Nevertheless, they ...</a>
               </blockquote>
           </div>
       </div>
@@ -211,7 +211,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -135,7 +135,7 @@
         <p>I wasn't expecting to do yet another SANS course but the opportunity did arise for me to do SEC760 in ondemand format. Previously, I had already done SEC660 as well as OSCE and was conversant with buffer overflows in a multitude of formats (EIP overrides, SEH overrides, ASLR/DEP bypass, return to libc, ROP, egghunters, venetian shellcode, alphanumeric shellcode, limited buffer space...), so it was time to move on to heap overflows and into kernel land.  </p>
 <p>There are only a few courses at a similar level, Offensive Security AWE, Corelan Advanced exploit development course and of course, SANS SEC760. I believe they are rather similar in content with AWE being heavier on Windows kernel security mitigations, Corelan being heavier on Windows heap exploitation and SEC760 bringing in Linux and browser exploitation.  </p>
 <p>The exploits in SEC760 are a lot more complicated than SEC660 and cannot be done from scratch. Researchers spend weeks or months fuzzing, reading through source code or reverse engineering binaries to find out how heap chunks are allocated and deallocated in certain OSes. They then find ways to exploit, for example discovering that allocating x chunks of a certain size and deallocating the chunks in a certain order or that creating certain HTML elements nested in a particular manner would cause a vulnerability to exist. SEC760 focuses on explaining the basics and then stepping through these well known exploits, breaking at certain points to demonstrate what is happening and how the exploit works. You would have to spend lots of time doing your own research on a particular area to really have a chance of building your own exploit from scratch.  </p>
-<p>At times, the exploitation feels more like an art than science. You tweak an address leak payload repeatedly to try to obtain a consistent leak of a function pointer. You spray the heap with the same shellcode x amount of times and hope the EIP lands somewhere in a nop sled. Browser are so complex and there are so many things going on at the same time, you might not know why an exploit failed. Even pausing too long at a breakpoint may affect the exploit as demonstrated in the walkthrough.  </p>
+<p>At times, the exploitation feels more like an art than science. You tweak an address leak payload repeatedly to try to obtain a consistent leak of a function pointer. You spray the heap with the same shellcode x amount of times and hope the EIP lands somewhere in a nop sled. Browsers are so complex and there are so many things going on at the same time, you might not know why an exploit failed. Even pausing too long at a breakpoint may affect the exploit as demonstrated in the walkthrough.  </p>
 <p>I feel that ondemand was a good way to do this course especially because I was totally unfamiliar with the heap and the Windows kernel. I found myself replaying the videos numerous times just to absorb the material since it is so information dense. I previously did SEC660, FOR508 and FOR610 live and had no issues keeping up with the material as I already had rough understanding of the material even before attending. I would have struggled doing SEC760 live. An additional benefit of ondemand is the ability to slowly work through all the CTF challenges. The CTF challenges are a really good way to test your understanding as they require you to find the the offsets and memory addresses specific to the CTF binary as opposed to just walking through and following the instructions on the sample binaries provided in class.  </p>
 <p>No coin this time, but 100% completion sure feels good.  </p>
 <p><img alt="sec760" src="//limbenjamin.com/media/sec760.png"></p>
@@ -148,24 +148,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/tips-for-winning-sans-ctfs.html"><b>Tips for winning SANS CTFs
-              (100% Similar) - </b>
-              Over the past 3 years, I have attended 3 SANS courses and participated in 3 NetWars events. I have won the challenge coin for every event I participated in. I hope this gives a bit more ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/SANS-SEC660-review.html"><b>SANS SEC660 review
-              (100% Similar) - </b>
-              SEC660 I recently had the opportunity to attend the SANS SEC660 course held in Singapore in October 2017. The course was conducted by Tim Medin and covered advanced penetration testing and ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/SANS-FOR508-review.html"><b>SANS FOR508 review
               (99% Similar) - </b>
               I was back at SANS October Singapore this year. Not much changed compared to the past year, the venue was the same, food was the same, even some of the course participants were familiar. This ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/osce-review.html"><b>OSCE review
-              (89% Similar) - </b>
+              (99% Similar) - </b>
               I have written an OSCP review and a SANS SEC660 review a few years ago. As time passes, I find these reviews harder and harder to write. Over the years, I have learnt on the job, through my own ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/SANS-SEC660-review.html"><b>SANS SEC660 review
+              (99% Similar) - </b>
+              SEC660 I recently had the opportunity to attend the SANS SEC660 course held in Singapore in October 2017. The course was conducted by Tim Medin and covered advanced penetration testing and ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/crest-cpsa-review.html"><b>CREST CPSA Review
+              (98% Similar) - </b>
+              Compared to the OSCP or even the CISSP exam, there seems to be very little information online about CREST examinations. Hence, the reason why I want to share my thoughts on the CREST CPSA exam. ...</a>
               </blockquote>
           </div>
       </div>
@@ -198,7 +198,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

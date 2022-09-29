@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,7 +134,7 @@
       <div class="entry-content">
         <p>D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic functionality. The ping function only displays success or failure and not the entire raw output of the command. Hence, on first look, it appears to be more secure. </p>
 <p>The first step involves downloading the router firmware from D-Link's website and using binwalk to unpack the firmware. binwalk detected a squashfs file system, which is what we are looking for. sqaushfs is a read only file system, perfect for embedded devices since we do not store files on routers. After searching through the filesystem, I found the page responsible for the ping function located at <code>/www/tools_vct.asp</code>. The pertinent code in the file is as follows.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -154,29 +154,29 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">check_ip</span><span class="p">(){</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">get_by_id</span><span class="p">(</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="p">).</span><span class="nx">value</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">){</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">tsc_pingt_msg2</span><span class="p">);</span>
-<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">check_ip</span><span class="p">(){</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">get_by_id</span><span class="p">(</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span><span class="w"></span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">tsc_pingt_msg2</span><span class="p">);</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
 
-<span class="p">}</span>
-<span class="p">...</span>
-<span class="o">&lt;</span><span class="nx">form</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;ping_response.cgi&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">align</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="o">&gt;&lt;</span><span class="nx">strong</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">show_words</span><span class="p">(</span><span class="nx">tsc_pingt_h</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">:&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/strong&gt;&lt;/div&gt;&lt;/td&gt;</span>
-<span class="o">&lt;</span><span class="nx">td</span> <span class="nx">height</span><span class="o">=</span><span class="s2">&quot;20&quot;</span> <span class="nx">valign</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="o">&gt;&amp;</span><span class="nx">nbsp</span><span class="p">;</span>
-<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="mf">30</span> <span class="nx">maxlength</span><span class="o">=</span><span class="mf">63</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;% CmoGetStatus(&quot;</span><span class="nx">ping_ipaddr</span><span class="s2">&quot;); %&gt;&quot;</span> <span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;input name=&quot;ping&quot; id=&quot;ping&quot; type=&quot;submit&quot; value=&quot;&#39;</span><span class="o">+</span><span class="nx">_ping</span><span class="o">+</span><span class="s1">&#39;&quot; onClick=&quot;return check_ip()&quot;&gt;&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;&lt;/td&gt;</span>
-<span class="o">&lt;</span><span class="err">/tr&gt; &lt;/form&gt;</span>
-</code></pre></div>
-</td></tr></table>
+<span class="p">}</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">form</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span><span class="w"> </span><span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="w"> </span><span class="nx">action</span><span class="o">=</span><span class="s2">&quot;ping_response.cgi&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">align</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="o">&gt;&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">show_words</span><span class="p">(</span><span class="nx">tsc_pingt_h</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span><span class="w"></span>
+<span class="o">&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">:&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/strong&gt;&lt;/div&gt;&lt;/td&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">td</span><span class="w"> </span><span class="nx">height</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="w"> </span><span class="nx">valign</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="o">&gt;&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="w"> </span><span class="nx">size</span><span class="o">=</span><span class="mf">30</span><span class="w"> </span><span class="nx">maxlength</span><span class="o">=</span><span class="mf">63</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;% CmoGetStatus(&quot;</span><span class="nx">ping_ipaddr</span><span class="s2">&quot;); %&gt;&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;input name=&quot;ping&quot; id=&quot;ping&quot; type=&quot;submit&quot; value=&quot;&#39;</span><span class="o">+</span><span class="nx">_ping</span><span class="o">+</span><span class="s1">&#39;&quot; onClick=&quot;return check_ip()&quot;&gt;&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;&lt;/td&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">/tr&gt; &lt;/form&gt;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+
 <p>Despite what the code suggests, I could not find <code>ping_response.cgi</code>. In fact, there were no CGI files found on anywhere on the file system. I began to suspect that D-Link designed their router firmware in a similar way as ASUS. A quick strings of the <code>/sbin/httpd</code> binary confirmed my suspicions, as a number of cgi filnames were found in the binary. The other function of interest is <code>CmoGetStatus("ping_ipaddr")</code>. I managed to find the corresponding function of the same name in the binary, it called the <code>get_ping_app_stat</code> function which performed the actual pinging.</p>
 <p><img alt="image" src="//limbenjamin.com/media/dlinkping.png"></p>
 <p>This time, the actual command used is <code>"ping -c 1 \"%s\" &gt; /var/misc/ping_app.txt"</code>. It seems remarkably similar in design to the ASUS router. Both used system commands and piped the output to a file. For D-Link's case, since the output is not displayed, the best we can achieve is blind command execution. Unfortunately, the router does not support telnet/ssh and there was no wget/curl/nc binary present. Hence, one possible way I could think of to verify success of command execution is to issue the reboot command. I tried the following without any success.</p>
@@ -194,24 +194,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware
-              (95% Similar) - </b>
-              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
-              (94% Similar) - </b>
+              (97% Similar) - </b>
               ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/singtels-5012nv-002-vulnerability.html"><b>Singtel's 5012NV-002 vulnerability
-              (93% Similar) - </b>
-              Type: Open port Affects: Singtel's firmware on 2wire 5012NV-002 Version: (HW version: 2701-000808-004, SW version: 9.3.1.29) (Unable to ascertain if other versions are affected as I do not have ...</a>
+              <a href="../articles/calling-iunknown-com-interface.html"><b>Calling IUnknown COM interface
+              (95% Similar) - </b>
+              While completing challenge 9 of Flare-On 7, I found a lack of information out there on reverse engineering COM objects. Most tutorials are written from a developer point of view where the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/calling-iunknown-com-interface.html"><b>Calling IUnknown COM interface
-              (90% Similar) - </b>
-              While completing challenge 9 of Flare-On 7, I found a lack of information out there on reverse engineering COM objects. Most tutorials are written from a developer point of view where the ...</a>
+              <a href="../articles/how-i-cheated-and-won-a-quiz.html"><b>How I (cheated and) won a quiz
+              (89% Similar) - </b>
+              The quiz in question. In case anyone is not familiar with it. (attractive?) prizes to be won. A quick packet capture revealed that the questions could be found here in JSON format. This is what ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
+              (88% Similar) - </b>
+              We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first ...</a>
               </blockquote>
           </div>
       </div>
@@ -244,7 +244,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

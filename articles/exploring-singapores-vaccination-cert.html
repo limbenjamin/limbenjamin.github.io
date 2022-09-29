@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,21 +134,21 @@
       <div class="entry-content">
         <p>Upon completing my COVID vaccination, I was pleasantly surprised to receive a digitally signed vaccination certificate. Based on my <a href="https://limbenjamin.com/articles/singapore-gazette-search.html">previous experience</a>, I knew that getting a traditionally certified genuine chop stamp true copy of a certificate was not going to be cheap. A quick <a href="https://singaporelegaladvice.com/law-articles/notary-public-fees-singapore/">google search</a> shows that it costs $10 to certify a one page document as a true copy, a further $75 for issuance of a notorial certificate and a further further $85.60 for the Singapore Academy of Law to authenticate the certified true copy, making the total cost a whopping $170.60. That is sure going to deter people from travelling, but fortunately we can now get it for free thanks to technology.  </p>
 <p>So, how does the digitally signed certificate work? The certificate, stored in a file extension ending in oa, is basically a JSON file. I do not recommend sharing that file as personal details such as birth date, IC number, passport number are stored unencrypted in the file. An encrypted copy of the certificate is also stored at <code>https://api-vaccine.storage.aws.notarise.gov.sg</code>. Based on code in the the <code>/dist/index.js</code> file of the <code>oa-encryption</code> library, the encryption algorithm appears to be <code>AES-GCM</code> with 256 bit key length, 96 bit IV and 128 bit tag length. Upon decryption, it appears that individual fields in certificate are stored separately. The field contains a uuid like string which is used as a salt, the data type and ends with the actual data.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&quot;name&quot;:[{
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>&quot;name&quot;:[{
     &quot;text&quot;:&quot;212aae69-512f-45f8-83df-52638cc7db7e:string:LIM BINJIE, BENJAMIN&quot;}],
     &quot;gender&quot;:&quot;62c839e9-87cf-4878-859c-4e2342cea026:string:male&quot;,
     &quot;country&quot;:&quot;93d3e245-a2ac-4544-adff-f15e03615ce1:string:SG&quot;}
     &quot;system&quot;:&quot;15dfead2-5ea7-46cc-855e-1bf5b8ca791f:string:http://standards.ihis.com.sg&quot;
     ...
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>The actual hashing is done using the <code>keccak256</code> algorithm, which is very similar to SHA3 except for some changes to the padding. This operation is performed in the <code>/dist/cjs/2.0/digest.js</code> file of the <code>open-attestation</code> library. The data is flattened, hashed, sorted in alphabetical order and then it goes through hashing once again ending up as the <code>targetHash</code>. Continuing from my sample data above, we see the following fields and their corresponding hashes.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -174,7 +174,7 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Hashing of individual fields
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code># Hashing of individual fields
 keccak256({&quot;fhirBundle.entry.0.name.0.text&quot;:&quot;212aae69-512f-45f8-83df-52638cc7db7e:string:LIM BINJIE, BENJAMIN&quot;})
 139ab12be28c4c90482a657bd394517a724e6aaae34265fd002d62440dc0b170
 
@@ -201,10 +201,10 @@ keccak256([136e180daf05b76b90ace1cf28a4c05eb485fac23ac011424d70a55a5c82df98,
 7c007a0b49968e107b8a1dee58c0096aebe1960a904659ae08a9a82d83d1493f
 ...])
 32fe558b4beff554c35f1f2903fdc0c90784f541dbb0af0a32e390acd0caea8f
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Since the vaccination certificate is individually issued and not as a batch, the <code>targetHash</code> is same as the <code>merkleRoot</code>. The certificate has a field stating the verification method, which in this case is <code>did:ethr</code>. The verification appears to be done in <code>/dist/cfs/common/did/verifier.js</code> file of the <code>oa-verify</code> library. The provider appears to be <code>infura</code> and the rpc url is <code>https://mainnet.infura.io/v3/bb46da3f80e040e8ab73c0a9ff365d18</code>. It is interesting to note that GovTech hardcoded their Project Id into the library. The <code>ethers</code> library is used to arrayify the <code>merkelRoot</code> into a byte array which is used together with the signature to compute the ethereumAddress and check if it matches. Continuing from my sample data above, we see the following being performed.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -216,7 +216,7 @@ keccak256([136e180daf05b76b90ace1cf28a4c05eb485fac23ac011424d70a55a5c82df98,
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># merkleRoot
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code># merkleRoot
 32fe558b4beff554c35f1f2903fdc0c90784f541dbb0af0a32e390acd0caea8f
 
 # messageByte
@@ -229,8 +229,8 @@ Ethers.arrayify(merkleRoot)
 # Check if computation of etherum address matches
 Ethers.VerifyMessage(messageByte, signature) == ethereumAddress
 0xa05e47618bf84101b032b300ab18fc11b90bd549 == 0xa05e47618bf84101b032b300ab18fc11b90bd549
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>And there we have it. After going on a journey starting from the <code>open-attestation-cli</code> library all through the <code>oa-encryption, open-attestation, oa-verify</code> library, we have managed to trace the entire process from reading in the certificate to the final verification. At times, the sheer amount of boilerplate code gave me nightmares from the days of writing getters and setters in Java. Maybe one day, someone will write a simple <code>verify.py</code> that does it all in a single script.  </p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -241,24 +241,24 @@ Ethers.VerifyMessage(messageByte, signature) == ethereumAddress
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/facebook-og-tags-modification.html"><b>Facebook Open Graph Tags Modification
-              (94% Similar) - </b>
-              A couple of weeks ago, I discovered that Facebook allowed you to change the title and description of links that you post. This allows you to craft some pretty interesting posts. For example: ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/visualizing-fitness-tracker-data.html"><b>Visualizing fitness tracker data
-              (93% Similar) - </b>
-              I recently started wearing a fitness band and wanted to visualize the activity data in a heatmap format. This article will go through my thought process in deciding how to parse the data. It is ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/flare-on-5-wasm-with-chrome.html"><b>FLARE-On 5 wasm with Chrome
               (93% Similar) - </b>
               Most of the solutions for FLARE-On 5 web2point0 challenge involve the use of a framework to decompile WebAssembly. Chrome offers the ability to debug WebAssembly code which gives us the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/how-i-cheated-and-won-a-quiz.html"><b>How I (cheated and) won a quiz
+              <a href="../articles/designing-an-offline-auth-system.html"><b>Designing an offline authentication system
               (91% Similar) - </b>
-              The quiz in question. In case anyone is not familiar with it. (attractive?) prizes to be won. A quick packet capture revealed that the questions could be found here in JSON format. This is what ...</a>
+              I have recently got to know of the igloohome digital lock. It is completely offline and connects to the app via bluetooth only. No internet connection. One of the most puzzling features is that ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/govtech-ctf-writeup.html"><b>GovTech CTF Writeup
+              (90% Similar) - </b>
+              Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting Awesome Write-up Walking down a colourful ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/analysis-of-3000-BMT-recruits.html"><b>Analysis of 3000 BMT Recruits
+              (89% Similar) - </b>
+              Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the 01/17 batch and present both facts as well as ...</a>
               </blockquote>
           </div>
       </div>
@@ -291,7 +291,7 @@ Ethers.VerifyMessage(messageByte, signature) == ethereumAddress
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

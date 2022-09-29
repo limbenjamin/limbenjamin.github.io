@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -141,7 +141,7 @@
 <p>The architecture would be as such. PIN code generation will take place server side. The information will be encoded and encrypted on the server before being sent to the client. Client will share the encrypted PIN code with the guest who will type it into the lock. The hardware in the lock will handle the decryption and decoding. Hence, there is a lower probability of the algorithm being leaked due the reverse engineering of the client.  </p>
 <h1>Encoding</h1>
 <p>The first problem is the encoding problem. With only 8 digits to play with, epoch time is out of the question. My solution involves using a modified version of epoch time, number of 5 minute block elapsed since Jan 1 2015 UTC. This is how I would encode the information.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -151,7 +151,7 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    XYYYYYYZ
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    XYYYYYYZ
 
     X - Type of PIN code 
         0 - permanent PIN code
@@ -162,14 +162,14 @@
         9 - duration PIN code (1 year)
     Y - Number of 5 minute block elapsed since Jan 1 2015 UTC (6 digits)
     Z - Checksum (modulus 9)
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Thus an unencrypted duration PIN code which will work for 3 days from 9am 10 Dec 2017 UTC will look like <code>23094207</code>. A 6 digit Y value will be able to encode up to 9 years before overflowing, which I believe is a reasonable lifetime for the lock.  </p>
 <h1>Encryption</h1>
 <p>The next problem is encryption. Without encryption, it would be trivial to reverse engineer the algorithm. Unencrypted PIN code for 9.05am will look like <code>23094216</code>, 9.15am will look like <code>23094234</code>. Encryption is tough. AES would not work. Although encrypting a 64 bit input generates a 64 bit output, the output will contain 0x00-0xff which include letters, non printable characters. It may be tempting to cheat and use a simple substitution cipher, replace 2 with 7, 3 with 0 but it adds little to security if the encryption key is reused. I briefly considered storing a few MBs of random digits to be used as a one time pad on the device but such an encryption scheme would require the PIN code to be used in sequence.  </p>
 <p>What is required in this case is format-preserving encryption. There is not much literature on it out there and would require a decently skilled cryptographer to implement correctly. It would likely be a Feistal structure with a customized S-box for digits only.  </p>
 <p>I would propose 1 round of polynumeric substitution. Using the previous example, if the unencrypted PIN code is <code>23094207</code> and the substitution table below is the key, the encrypted PIN code after substitution will be <code>07599304</code>. Of course, each lock should have its own unique substitution table generated during production and saved server side. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -178,7 +178,7 @@
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>                    Substitution
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>                    Substitution
         1   2   3   4   5   6   7   8   9   0
     1   4   0*  1   3   9   2   8   7   5   6
     2   6   2   7*  1   3   9   4   0   5   8
@@ -188,8 +188,8 @@ No. 4   1   6   4   0   5   8   2   3   9*  7
     6   9   3*  6   2   5   0   1   4   7   8
     7   5   7   4   1   2   3   6   8   9   0*
     8   2   0   1   3   5   6   4*  8   9   7
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <h1>Additional Notes</h1>
 <p>I am aware that the unencrypted PIN code need not be digits only. However, my reasoning for insisting on digits only is that it would be easier to encrypt a plaintext into a ciphertext with an equal or larger ciphertext space. If I used other character in the unencrypted PIN code, I will likely have compression issues at the encryption stage.  </p>
 <p>I have also considered cycling, which is basically AES encrypting multiple rounds until I encounter a ciphertext which is all digit only. Given that the AES can output 255 unique possibilities and there are only 10 digits, it might take quite a while.  </p>
@@ -204,24 +204,24 @@ No. 4   1   6   4   0   5   8   2   3   9*  7
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/layered-security.html"><b>Layered security
-              (96% Similar) - </b>
-              The unfortunate happened to me a few days back. While pushing a project onto a github public repo, I had forgotten to replace my mysql password with a dummy one. So, it was out there in the open ...</a>
+              <a href="../articles/analysis-of-35000-senior-civil-servants.html"><b>Analysis Of 35000 Senior Civil Servants
+              (92% Similar) - </b>
+              The civil service received a half month year-end bonus this year amid the economic downturn, but have you wondered who they are? Where do they work? Disclaimer The analysis was conducted using ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/web-development-in-singapore.html"><b>Web Development in Singapore
-              (94% Similar) - </b>
-              In light of the recent fiasco over the NDP website, I thought it would be apt for me to share my thoughts on how I believe web development in Singapore has ended up in this dismal state today. ...</a>
+              <a href="../articles/exploring-singapores-vaccination-cert.html"><b>Exploring Singapore's Vaccination Cert
+              (91% Similar) - </b>
+              Upon completing my COVID vaccination, I was pleasantly surprised to receive a digitally signed vaccination certificate. Based on my previous experience, I knew that getting a traditionally ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/analysis-of-3000-BMT-recruits.html"><b>Analysis of 3000 BMT Recruits
+              (89% Similar) - </b>
+              Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the 01/17 batch and present both facts as well as ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/govtech-ctf-writeup.html"><b>GovTech CTF Writeup
-              (91% Similar) - </b>
+              (88% Similar) - </b>
               Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting Awesome Write-up Walking down a colourful ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/orbital-project-wiki.html"><b>Orbital Project Wiki
-              (91% Similar) - </b>
-              **Project Reports for nusmods** This project is done at the Vostok (beginner) level. First Report (Week 3) The aim of the project is to develop a platform which will allow NUS students to easily ...</a>
               </blockquote>
           </div>
       </div>
@@ -254,7 +254,7 @@ No. 4   1   6   4   0   5   8   2   3   9*  7
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

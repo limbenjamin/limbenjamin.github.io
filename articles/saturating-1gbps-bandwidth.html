@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,35 +134,35 @@
       <div class="entry-content">
         <p>My ISP recently gave me a free speed bump from 500Mbps to 1 Gbps. I wanted to test if it was possible to fully utilise the bandwidth on a single file transfer. Firstly, we need to look at the test file size. I settled on a roughly 500MB to 1GB file size to minimise the effect of TCP window size scaling. To use an analogy, window size scaling is like when 2 joggers do not know each other's running pace, so they both start off with a slow jog. They then slowly increase the pace until it reaches the limit for one of the joggers, they then continue at that pace for the rest of the distance. The problem is when the distance is too short, that slow start is going to affect the average speed greatly, therefore the distance should be long enough. Similarly, the file size has to be large enough. In hindsight, I should have settled on a slightly larger file size, probably 3GB, since 500MB should theoretically take only 4 seconds to download on a 1Gbps connection.</p>
 <p>Firstly, I tested out my local network. No problems here, 113MBps = 0.904Gbps, just shy of 1Gbps. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ aria2c https://limbenjamin.com/files/ubuntu-14.04.4-server-i386.iso
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>$ aria2c https://limbenjamin.com/files/ubuntu-14.04.4-server-i386.iso
 
 Download Results:
 gid   |stat|avg speed  |path/URI
 ======+====+===========+=======================================================
 xxxxxx|OK  |   113MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Next, <code>speedtest.com.sg</code> , 38Mbps = 0.304Gbps, only about a third of the speed. I am sticking to Singapore based servers because anything outside would incur huge speed penalties, making it impossible to hit the speed limit.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ aria2c --split=8 http://www.speedtest.com.sg/test_random_1000mb.zip
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>$ aria2c --split=8 http://www.speedtest.com.sg/test_random_1000mb.zip
 
 Download Results:
 gid   |stat|avg speed  |path/URI
 ======+====+===========+=======================================================
 xxxxxx|OK  |    38MiB/s|/home/Benjamin/test_random_1000mb.zip
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Ok, next up, <code>mirror.nus.edu.sg</code>. From past experience, I know that I can obtain very good speeds from this server. I used <code>aria2c</code> instead of the more common <code>wget</code> because it supports multiple simultaneous connections. Notice that 16 connections is slightly slower than 8 connections, probably takes a little longer to splice the parts together.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -183,7 +183,7 @@ xxxxxx|OK  |    38MiB/s|/home/Benjamin/test_random_1000mb.zip
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ aria2c http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code>$ aria2c http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso
 
 Download Results:
 gid   |stat|avg speed  |path/URI
@@ -205,36 +205,36 @@ Download Results:
 gid   |stat|avg speed  |path/URI
 ======+====+===========+=======================================================
 xxxxxx|OK  |    52MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>It appears that 1 server might not be enough, how about downloading from 2 different servers, 8 connections per server. </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ aria2c --split=16 http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso http://download.nus.edu.sg/mirror/ubuntu-releases/14.04.4/ubuntu-14.04.4-server-i386.iso
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>$ aria2c --split=16 http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso http://download.nus.edu.sg/mirror/ubuntu-releases/14.04.4/ubuntu-14.04.4-server-i386.iso
 
 Download Results:
 gid   |stat|avg speed  |path/URI
 ======+====+===========+=======================================================
 xxxxxx|OK  |    51MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Ok, just for fun, 4 different servers, 8 connections per server. I expected the speeds to take a huge dive because aria2c naively chops the file into 4 equal chunks for each server, since the last 2 servers are located overseas and are much much slower, we end up having to wait for them, thus explaining the poor performance.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ aria2c --split=32 http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso http://download.nus.edu.sg/mirror/ubuntu-releases/14.04.4/ubuntu-14.04.4-server-i386.iso http://mirror.pregi.net/ubuntu-cdimage/14.04.4/ubuntu-14.04.4-server-i386.iso http://mirror.umd.edu/ubuntu-iso/14.04.4/ubuntu-14.04.4-server-i386.iso
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>$ aria2c --split=32 http://mirror.nus.edu.sg/ubuntu-ISO/14.04.4/ubuntu-14.04.4-server-i386.iso http://download.nus.edu.sg/mirror/ubuntu-releases/14.04.4/ubuntu-14.04.4-server-i386.iso http://mirror.pregi.net/ubuntu-cdimage/14.04.4/ubuntu-14.04.4-server-i386.iso http://mirror.umd.edu/ubuntu-iso/14.04.4/ubuntu-14.04.4-server-i386.iso
 
 Download Results:
 gid   |stat|avg speed  |path/URI
 ======+====+===========+=======================================================
 xxxxxx|OK  |    32MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>At this point, my best result is 55MBps = 0.440Gbps, under half of the limit. It could be due to:</p>
 <ol>
 <li>Hardware can switch 1Gbps but cannot route 1Gbps, need to upgrade router</li>
@@ -252,23 +252,23 @@ xxxxxx|OK  |    32MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/running-you-own-home-server-part-2.html"><b>Running you own home server part 2
-              (98% Similar) - </b>
-              As promised, I would cover what services I am currently running on my server and what I use it for. So the server stats can be accessed here . apache Web server - hosts my website, blog and a ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/yubikey-wsl-agent-refused-operation.html"><b>Yubikey WSL: Agent refused operation
-              (98% Similar) - </b>
-              I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/running-your-own-home-server.html"><b>Running your own home server
-              (97% Similar) - </b>
+              (98% Similar) - </b>
               Just wanted to share my experience of running my own server at home. Before anyone conjures up a thought of large server rack with cooling equipment and thousands of dollars of investment. Let me ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/apache-vs-nginxlighttpd.html"><b>apache vs nginx/lighttpd
+              <a href="../articles/iptables-f.html"><b>iptables -F
               (97% Similar) - </b>
+              This command should be removed or come with confirmation message before execution. Today, I wanted to to turn my blacklist into a whitelist. Reason being as I added new services, I don't always ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/yubikey-wsl-agent-refused-operation.html"><b>Yubikey WSL: Agent refused operation
+              (96% Similar) - </b>
+              I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/apache-vs-nginxlighttpd.html"><b>apache vs nginx/lighttpd
+              (95% Similar) - </b>
               Many articles out there extol the benefits of the event based servers such as nginx/lighttpd over apache. It supposedly consumes less resources under high load and excels at serving static pages. ...</a>
               </blockquote>
           </div>
@@ -302,7 +302,7 @@ xxxxxx|OK  |    32MiB/s|/home/Benjamin/ubuntu-14.04.4-server-i386.iso
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>We all know about MD5 hash collisions but I have never imagined that so much progress has been made. Meaningful hash collisions can now be computed on desktop grade hardware. The below collision was computed using <a href="https://github.com/corkami/collisions#unicoll-md5">unicoll</a> on an i3 desktop in under 30 minutes. Position of byte differences have been marked using <code>"</code>. Thanks to SANS Holiday Hack 2020 for introducing this subject at an approachable level.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -170,7 +170,7 @@
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ strings collision1.bin <span class="p">|</span> head -n <span class="m">1</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code>$ strings collision1.bin <span class="p">|</span> head -n <span class="m">1</span>
 I, Benjamin Lim, <span class="k">in</span> my lifetime, confess to the murder of a total no. of <span class="m">0</span> people/person.
 $ strings collision2.bin <span class="p">|</span> head -n <span class="m">1</span>
 I, Benjamin Lim, <span class="k">in</span> my lifetime, confess to the murder of a total no. of <span class="m">1</span> people/person.
@@ -208,10 +208,10 @@ $<span class="s2"> xxd collision2.bin</span>
 <span class="s2">00000090: 51ea fedf a78c b650 7a48 da5e 3f3e c2b5  Q......PzH.^?&gt;..</span>
 <span class="s2">000000a0: 7db7 8087 6312 a0f8 036f e1d6 f50e 6e99  }...c....o....n.</span>
 <span class="s2">000000b0: f315 2240 c9a2 0d77 4943 558b 15c7 6440  ..&quot;</span>@...wICU...d@
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>The generation process is as follows:  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -276,7 +276,7 @@ $<span class="s2"> xxd collision2.bin</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
-<span class="normal">66</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ xxd message.bin
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code>$ xxd message.bin
 <span class="m">00000000</span>: 492c <span class="m">2042</span> 656e 6a61 6d69 6e20 4c69 6d2c  I, Benjamin Lim,
 <span class="m">00000010</span>: <span class="m">2069</span> 6e20 6d79 206c <span class="m">6966</span> <span class="m">6574</span> 696d 652c   <span class="k">in</span> my lifetime,
 <span class="m">00000020</span>: <span class="m">2063</span> 6f6e <span class="m">6665</span> <span class="m">7373</span> <span class="m">2074</span> 6f20 <span class="m">7468</span> <span class="m">6520</span>   confess to the
@@ -342,8 +342,7 @@ f3f2f56ac8fbf44e1c326c19a93fe61c  collision2.bin
 2d7ff13b9c83243e722fc51b67128f49e5ec6d0f  collision2.bin
 <span class="m">4</span> -rw-r--r-- <span class="m">1</span> root root <span class="m">192</span> Dec <span class="m">31</span> <span class="m">08</span>:21 collision1.bin
 <span class="m">4</span> -rw-r--r-- <span class="m">1</span> root root <span class="m">192</span> Dec <span class="m">31</span> <span class="m">08</span>:21 collision2.bin
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -358,19 +357,19 @@ f3f2f56ac8fbf44e1c326c19a93fe61c  collision2.bin
               After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/des-key-parity-bit-calculator.html"><b>DES key parity bit calculator
-              (90% Similar) - </b>
-              I was doing some reverse engineering and I could not find any tool which expands a 56 bit DES key into a 64 bit key with the parity bit included. Expanding the key is a pretty laborious process ...</a>
+              <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
+              (89% Similar) - </b>
+              We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
-              (90% Similar) - </b>
+              (88% Similar) - </b>
               ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
+              <a href="../articles/visualizing-fitness-tracker-data.html"><b>Visualizing fitness tracker data
               (85% Similar) - </b>
-              We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first ...</a>
+              I recently started wearing a fitness band and wanted to visualize the activity data in a heatmap format. This article will go through my thought process in deciding how to parse the data. It is ...</a>
               </blockquote>
           </div>
       </div>
@@ -403,7 +402,7 @@ f3f2f56ac8fbf44e1c326c19a93fe61c  collision2.bin
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

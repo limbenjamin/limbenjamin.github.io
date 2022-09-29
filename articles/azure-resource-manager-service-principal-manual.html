@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,14 +134,14 @@
       <div class="entry-content">
         <p>I had some issues with automatically creating a service principal to set up Azure Resource Manager in Azure DevOps due to overly strict Azure AD policies resulting in the following error <code>Error encountered: Failed to create an app in Azure Active Directory. Error: Credential lifetime exceeds the max value allowed as per assigned policy</code>. This is a rather unique error with no results found on Google. Since the steps to manually create a service principal is rather complex, I have decided to document it here.</p>
 <p>1) Use the powershell console in Azure Portal to run the following command</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>PS /home/limbenjamin&gt; az ad sp create-for-rbac --name ServicePrincipalName
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>PS /home/limbenjamin&gt; az ad sp create-for-rbac --name ServicePrincipalName
 {
   &quot;appId&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;,
   &quot;displayName&quot;: &quot;ServicePrincipalName&quot;,
@@ -149,37 +149,36 @@
   &quot;password&quot;: &quot;00000000-1111-1111-1111-000000000000&quot;,
   &quot;tenant&quot;: &quot;00000000-2222-2222-2222-000000000000&quot;
 }
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>2) Go to Azure Portal -&gt; Subscriptions -&gt; Access Control (IAM) -&gt; Add Role Assignment and add Contributor role for ServicePrincipalName.<br>
 3) Go to Azure DevOps -&gt; Project Settings (At Bottom) -&gt; Service Connections -&gt; New Service Connection -&gt; Azure Resource Manager -&gt; Service Principal (Manual) and use the values from the command output in the earlier powershell console</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Service Principal Id: 00000000-0000-0000-0000-000000000000
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Service Principal Id: 00000000-0000-0000-0000-000000000000
 Service Principal Key: 00000000-1111-1111-1111-000000000000
 Tenant ID: 00000000-2222-2222-2222-000000000000
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>4) Setup a new pipeline in Azure DevOps. The new pipeline may not be able to detect the manually set up service principal and the build may fail, if that happens, you will need to visit the following URL to get the azureServiceConnectionId.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>https://dev.azure.com/&lt;&lt;Org Name&gt;&gt;/&lt;&lt;Project Name&gt;&gt;/_apis/serviceendpoint/endpoints?api-version=5.0-preview.2
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>https://dev.azure.com/&lt;&lt;Org Name&gt;&gt;/&lt;&lt;Project Name&gt;&gt;/_apis/serviceendpoint/endpoints?api-version=5.0-preview.2
 {&quot;count&quot;:1,&quot;value&quot;:[{&quot;data&quot;:{&quot;environment&quot;:&quot;AzureCloud&quot;,&quot;scopeLevel&quot;:&quot;Subscription&quot;,&quot;subscriptionId&quot;:&quot;00000000-3333-3333-3333-000000000000&quot;,&quot;subscriptionName&quot;:&quot;AzureSubsciptionName&quot;,&quot;creationMode&quot;:&quot;Manual&quot;},&quot;id&quot;:&quot;00000000-4444-4444-4444-000000000000&quot;,&quot;name&quot;:&quot;ServiceConnectionName&quot;.....
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>5) Manually edit the <code>azure-pipelines.yml</code> file and include the new azureServiceConnectionId. Your builds should now work.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>trigger:
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>trigger:
 - master
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureServiceConnectionId: &#39;00000000-4444-4444-4444-000000000000&#39;
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -189,24 +188,24 @@ variables:
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
+              <a href="../articles/preloading-pages.html"><b>preloading pages
+              (93% Similar) - </b>
+              For a long time, I have always wondered why my download managers always pops up dialog boxes to download files when I visit certain pages in chrome. I have always attributed it to false positives ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/new-form-of-ddos.html"><b>New Form of DDoS
+              (91% Similar) - </b>
+              I was always hesitant to use pay-as-you-use services like Amazon AWS, Microsoft Azure and Google App Engine for fear that the cost might spiral out of control if I turn out to be the target of a ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
               <a href="../articles/orbital-project-wiki.html"><b>Orbital Project Wiki
-              (92% Similar) - </b>
+              (90% Similar) - </b>
               **Project Reports for nusmods** This project is done at the Vostok (beginner) level. First Report (Week 3) The aim of the project is to develop a platform which will allow NUS students to easily ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/layered-security.html"><b>Layered security
-              (90% Similar) - </b>
-              The unfortunate happened to me a few days back. While pushing a project onto a github public repo, I had forgotten to replace my mysql password with a dummy one. So, it was out there in the open ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/how-i-cheated-and-won-a-quiz.html"><b>How I (cheated and) won a quiz
-              (90% Similar) - </b>
-              The quiz in question. In case anyone is not familiar with it. (attractive?) prizes to be won. A quick packet capture revealed that the questions could be found here in JSON format. This is what ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/deprecating-http-lessons-from-ssh-telnet.html"><b>Deprecating HTTP - Lessons from SSH/Telnet
+              <a href="../articles/mysql-optimization.html"><b>mysql optimization
               (89% Similar) - </b>
-              Recently, both Firefox and Chrome has been coming down hard on HTTP websites. According to this article, HTTP will be labelled as "Not Secure". This is hardly the first step, HTTP only websites ...</a>
+              Recently did quite a lot of mysql related administration. Found quite a few ways to optimise that may make future administration easier. 1) If you are going to add/drop databases very frequently, ...</a>
               </blockquote>
           </div>
       </div>
@@ -239,7 +238,7 @@ variables:
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

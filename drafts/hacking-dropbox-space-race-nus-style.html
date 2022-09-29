@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -144,29 +144,29 @@
 <p>There is no limit on the number of times you can change your email address and the change is also effected almost immediately. The short dropdown menu allows you to select either "_" or "." while the last input box allows you to select numbers from 01 to 99. Thus, every user can potentially generate a lower bound of ((6 * 2) * (4 + 3 + 2 + 1) * 100) =~ 12,000 unique email addresses, which is plenty for our purposes.</p>
 <p>Automating the process is also trivial, authentication is done through basic auth. You will need to echo back a number of session IDs and handle errors such as email address already in use. Python should make short work of it.</p>
 <p>Request:  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>GET /pea/applypea/pea.asp HTTP/1.1  
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>GET /pea/applypea/pea.asp HTTP/1.1  
 Host: exchange.nus.edu.sg  
 Authorization: Basic redactedforprivacy  
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Response (after a few 301s and 302s):  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK  
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>HTTP/1.1 200 OK  
 Set-Cookie: ASPSESSIONIDQARHCSAT=redactedforprivacy; secure; path=/  
 Cookie: __RequestVerificationToken=redactedforprivacy;   
 ASPSESSIONIDQARHCSAT=redactedforprivacy;   
 ASP.NET_SessionId=redactedforprivacy;   
 ASPSESSIONIDQERCBRAS=redactedforprivacy  
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Request:  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -181,7 +181,7 @@ ASPSESSIONIDQERCBRAS=redactedforprivacy
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>GET /fea/ HTTP/1.1  
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>GET /fea/ HTTP/1.1  
 Host: exchange.nus.edu.sg  
 Authorization: Basic redactedforprivacy  
 Cookie: __RequestVerificationToken=redactedforprivacy;   
@@ -197,12 +197,12 @@ Seperator3: paste
 Name4:  the  
 Seperator4: stuff     
 Number: here  
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Response:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK  
-</code></pre></div>
-</td></tr></table>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>HTTP/1.1 200 OK  
+</code></pre></div></td></tr></table></div>
+
 <p>At the end of it, you will receive an email confirming the successful change. Don't bother intercepting the GET request and trying to change the field to provost@u.nus.edu or something similar, input validation is done on the server side.</p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -238,7 +238,7 @@ Number: here
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

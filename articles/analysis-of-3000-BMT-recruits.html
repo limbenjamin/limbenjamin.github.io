@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -138,7 +138,7 @@
 <p>This data was obtained from a public source. BMTC Media Team posted these photos on Google Drive and shared the link on the official BMTC public Facebook page. I downloaded the entire dataset as a ZIP file in one single request. I did not use a script or perform any action which is illegal or against the Terms of Service in any way. This analysis is entirely my own idea, neither my employer nor MINDEF/BMTC is involved in any way. I am not responsible for any inaccuracies in the data.</p>
 </div>
 <h2>Analysis</h2>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -146,7 +146,7 @@
 <span class="normal">6</span>
 <span class="normal">7</span>
 <span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>----------------------------------------------------
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
 First 3 characters of NRIC number
 ----------------------------------------------------
 S88xxxxxx       1       S95xxxxxx       252
@@ -155,17 +155,17 @@ S91xxxxxx       7       S97xxxxxx       365
 S92xxxxxx       29      S98xxxxxx       1965
 S93xxxxxx       48      S99xxxxxx       18
 S94xxxxxx       77  
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>As expected, majority of the BMTC recruits (born in 1998) went through the JC route and hence enlisted at age 19. A smaller number (born in 1996/1997) went through the Polytechnic route. Those born between 1992 and 1995 probably went through Sec 5/ITE followed by Polytechnic and thus enlisted later. A significant number of the older recruits born before 1994 are females who have probably completed their degree program and are on the officer's scheme. The outliers will be covered in the next section <code>BMTC: Our life stories</code></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>----------------------------------------------------
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
 4th characters of NRIC number
 ----------------------------------------------------
 Sxx0xxxxx       751     Sxx5xxxxx       0
@@ -173,10 +173,10 @@ Sxx1xxxxx       606     Sxx6xxxxx       0
 Sxx2xxxxx       656     Sxx7xxxxx       223
 Sxx3xxxxx       635     Sxx8xxxxx       0
 Sxx4xxxxx       368     Sxx9xxxxx       48
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Most of us would know that NRIC numbers are issued from 0 onwards. Since Singapore has had about 40,000+ births or so every year in the 1990s, it makes sense for the numbers for <code>0, 1, 2, 3</code> to be relatively similar and for <code>4</code> to be less. <code>7</code> is issued to new citizens. <code>9</code> is issued to Singaporeans/PRs born overseas but have rights to be Singaporean/PRs. As we can see, the overwhelming majority of those serving NS are Singaporeans/PRs born in Singapore, only 223 are new citizen/PR converts and 48 who were born overseas.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -184,7 +184,7 @@ Sxx4xxxxx       368     Sxx9xxxxx       48
 <span class="normal">6</span>
 <span class="normal">7</span>
 <span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>----------------------------------------------------
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
 NRIC check digit
 ----------------------------------------------------
 SxxxxxxxA       313     SxxxxxxxG       333
@@ -193,8 +193,8 @@ SxxxxxxxC       283     SxxxxxxxI       286
 SxxxxxxxD       273     SxxxxxxxJ       286
 SxxxxxxxE       287     SxxxxxxxZ       328
 SxxxxxxxF       293
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>The NRIC check digit is generated using a weighted modulo 11 algorithm. Thus, this exercise shows that the algorithm generates check digits with a relatively good spread, perhaps with slight biases for <code>G</code> and <code>Z</code>.</p>
 <h2>BMTC: Our life stories</h2>
 <div class="admonition danger">
@@ -212,24 +212,24 @@ SxxxxxxxF       293
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/information-leakage.html"><b>Information Leakage
-              (96% Similar) - </b>
-              Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/analysis-of-35000-senior-civil-servants.html"><b>Analysis Of 35000 Senior Civil Servants
-              (95% Similar) - </b>
+              (97% Similar) - </b>
               The civil service received a half month year-end bonus this year amid the economic downturn, but have you wondered who they are? Where do they work? Disclaimer The analysis was conducted using ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/authenticating-with-nric-numbers-v2.html"><b>Authenticating with NRIC numbers v2
-              (93% Similar) - </b>
-              4 years ago, I wrote about why we should not use NRIC numbers for authentication. Unfortunately, this mistake was repeated and it can be exploited today to claim free masks from the government. ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/govtech-ctf-writeup.html"><b>GovTech CTF Writeup
               (91% Similar) - </b>
               Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting Awesome Write-up Walking down a colourful ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/ijis-plaintext-offender.html"><b>IJIS plaintext offender
+              (91% Similar) - </b>
+              I am always pissed off when I discover that a site I use is a plaintext offender. Well, if they are mom and pop establishments that do not deal with money or personal data, I might exhibit a wee ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/web-public.html"><b>Web = public
+              (90% Similar) - </b>
+              A very timely reminder that nothing on the web is private. Having just stumbled upon the awstats page for comp.nus, I have just unlocked a whole treasure trove of information. Among the most ...</a>
               </blockquote>
           </div>
       </div>
@@ -262,7 +262,7 @@ SxxxxxxxF       293
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

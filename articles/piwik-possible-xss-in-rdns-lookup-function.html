@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>The possible XSS vulnerability can be found in version 3.1.1 of the Piwik software itself. The getHostname() function in piwik/vendor/piwik/network/src/IP.php does not sanitize the hostname before returning the value. This results in a possible XSS if Piwik itself or any plugins use the output from the function without further sanitization.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -147,7 +147,7 @@
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># piwik\vendor\piwik\network\src\IP.php
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code># piwik\vendor\piwik\network\src\IP.php
 
 
 104    public function getHostname()
@@ -162,21 +162,21 @@
 113
 114       return $host;
 115    }
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <h2>Attack steps</h2>
 <p>As described by another security researcher <a href="http://zoczus.blogspot.sg/2014/05/how-reverse-dns-can-help-us-with-xss.html">here</a>, an attacker will need to be in control of an IP address where he can set the RDNS hostname to return JS script tags. After that, the attacker tunnels his traffic through that IP address and visits the target site. The getHostname() function will then resolve the IP address and obtain the JS code. Since it is not sanitized, any function which directly stores or displays the hostname will be susceptible to XSS.</p>
 <h2>Impact</h2>
 <p>Fortunately, to the best of my knowledge, none of the Piwik software itself directly stores or displays the hostname. Hence, Piwik software itself is not vulnerable. However, at least one Piwik marketplace plugin is vulnerable. The IP 2 Hostname plugin (https://plugins.piwik.org/Ip2Hostname) will directly store the JS code into the database. If it is displayed in a twig template with |raw filter, the code will be executed. I have not tested all plugins, hence I do not know if there are other plugins which are also vulnerable.</p>
 <h2>Testing</h2>
 <p>Due to the difficulty in obtaining an IP address with the possibility of setting valid JS as the RDNS hostname, it can be tested by poisoning the /etc/hosts file on the machine running Piwik. In the case below, visiting a website with Piwik and the IP 2 Hostname plugin activated from a machine with IP 192.168.1.100 will cause the hostname to be resolved as the JS code and stored into the database.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>cat /etc/hosts
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cat /etc/hosts
 127.0.0.1       localhost
 192.168.1.100   &lt;script&gt;alert(&quot;1&quot;);&lt;/script&gt; 
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p><img alt="image" src="//limbenjamin.com/media/piwikrdns.png"></p>
 <h2>Remediation</h2>
 <p>Since it does not seem to have any direct impact, the piwik team have decided to create a public issue in the repository of the project <a href="https://github.com/piwik/component-network/issues/8">here</a> and will address the issue in future.</p>
@@ -190,23 +190,23 @@
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/singtels-5012nv-002-vulnerability.html"><b>Singtel's 5012NV-002 vulnerability
-              (91% Similar) - </b>
+              (89% Similar) - </b>
               Type: Open port Affects: Singtel's firmware on 2wire 5012NV-002 Version: (HW version: 2701-000808-004, SW version: 9.3.1.29) (Unable to ascertain if other versions are affected as I do not have ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/public-ip-hijacking-over-lan.html"><b>Public IP Hijacking over LAN
-              (87% Similar) - </b>
-              This is a topic that is not commonly discussed. Most articles about IP hijacking deal with the subject at the ISP level, i.e. hijacking of BGP protocol. However, IP hijacking can be performed on ...</a>
+              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
+              (85% Similar) - </b>
+              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/enumerate-sites-hosted-on-same-ip.html"><b>Enumerate sites hosted on same IP
-              (84% Similar) - </b>
-              Enumerating sites which are hosted on the same IP address can sometimes tell us a lot about a server. Is it shared hosting? Is it a legitimate server which was compromised for C2 operations? Does ...</a>
+              <a href="../articles/calling-iunknown-com-interface.html"><b>Calling IUnknown COM interface
+              (85% Similar) - </b>
+              While completing challenge 9 of Flare-On 7, I found a lack of information out there on reverse engineering COM objects. Most tutorials are written from a developer point of view where the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/macvlan-host-guest-connectivity.html"><b>macvlan host guest connectivity
-              (84% Similar) - </b>
-              There are a number of sites out there mentioning that macvlan has a limitation when used with docker or lxc containers. The host machine will not be able to communicate with the guest machine and ...</a>
+              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware
+              (83% Similar) - </b>
+              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
               </blockquote>
           </div>
       </div>
@@ -239,7 +239,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

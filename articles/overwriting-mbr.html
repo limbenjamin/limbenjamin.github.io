@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first need to open a write handle to the physical device using the CreateFile API. The MBR is stored in the very first sector (512 bytes) of the hard drive, it is outside the C:\ NTFS volume, hence we need direct write access to the raw device. The <code>OVERLAPPED</code> structure is used because we want to be able to control the offset where the first byte is written. For the case of the MBR, the offset is 0 since it is the first sector. However, this technique can be used to overwrite other unallocated sectors outside the file system, in which case the offset will need to be set accordingly.  </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -157,7 +157,7 @@
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
 
 
@@ -182,8 +182,7 @@
 <span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;MBR Write Complete</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -193,24 +192,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
+              <a href="../articles/flashing-swos-from-windows.html"><b>Flashing SwOS from Windows
+              (93% Similar) - </b>
+              I recently acquired a cheap used Mikrotik RB250GS to play with port mirroring and VLAN tagging. The switch came with the original SwOS firmware which was buggy to the extent that firmware upgrade ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/fun-with-md5-collisions.html"><b>Fun with MD5 Collisions
+              (89% Similar) - </b>
+              We all know about MD5 hash collisions but I have never imagined that so much progress has been made. Meaningful hash collisions can now be computed on desktop grade hardware. The below collision ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
+              (88% Similar) - </b>
+              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
               <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
-              (95% Similar) - </b>
+              (88% Similar) - </b>
               ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/exploring-singapores-vaccination-cert.html"><b>Exploring Singapore's Vaccination Cert
-              (91% Similar) - </b>
-              Upon completing my COVID vaccination, I was pleasantly surprised to receive a digitally signed vaccination certificate. Based on my previous experience, I knew that getting a traditionally ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/flare-on-5-wasm-with-chrome.html"><b>FLARE-On 5 wasm with Chrome
-              (90% Similar) - </b>
-              Most of the solutions for FLARE-On 5 web2point0 challenge involve the use of a framework to decompile WebAssembly. Chrome offers the ability to debug WebAssembly code which gives us the ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/calling-iunknown-com-interface.html"><b>Calling IUnknown COM interface
-              (87% Similar) - </b>
-              While completing challenge 9 of Flare-On 7, I found a lack of information out there on reverse engineering COM objects. Most tutorials are written from a developer point of view where the ...</a>
               </blockquote>
           </div>
       </div>
@@ -243,7 +242,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

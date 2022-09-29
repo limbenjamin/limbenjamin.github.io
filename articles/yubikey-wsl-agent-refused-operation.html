@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
 <meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing failed for RSA &#34;/home/user/.ssh/id_rsa&#34; from agent: agent refused operation …">
+<meta property="og:description" content="I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing failed for RSA &#34;/home/user/.ssh/id_rsa&#34; from agent: agent refused operation. Most people on the …">
 <meta property="og:url" content="https://limbenjamin.com/articles/yubikey-wsl-agent-refused-operation.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -134,7 +134,7 @@
       <div class="entry-content">
         <p>I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error <code>sign_and_send_pubkey: signing failed for RSA "/home/user/.ssh/id_rsa" from agent: agent refused operation</code>. Most people on the internet recommend running <code>gpg-connect-agent updatestartuptty /bye</code> but it still did not work for me. Time to do a little more digging into the root cause.  </p>
 <p>Reading the <a href="https://linux.die.net/man/1/gpg-agent">GPG man page</a> revealed that <code>export GPG_TTY=$(tty)</code> should be added to <code>.bashrc</code>. The <a href="https://wiki.archlinux.org/title/GnuPG#Configure_pinentry_to_use_the_correct_TTY">archlinux wiki</a> shed even more light on what exactly had happened. I installed xserver recently and it was causing the <code>pinentry</code> program to start in the wrong TTY and hence failing.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -157,7 +157,7 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp"># </span>confirm that gpg <span class="k">in</span> WSL can detect the yubikey 
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gp"># </span>confirm that gpg <span class="k">in</span> WSL can detect the yubikey 
 <span class="gp">$ </span>gpg --card-status
 <span class="go">Reader ...........: Yubico YubiKey OTP FIDO CCID (0001234567) 00 00</span>
 <span class="go">Application type .: OpenPGP</span>
@@ -181,8 +181,7 @@
 <span class="go">OK</span>
 <span class="gp">$ </span>ssh user@192.168.0.1
 <span class="go">Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-107-generic x86_64)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -193,23 +192,23 @@
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/saturating-1gbps-bandwidth.html"><b>Saturating 1Gbps bandwidth
-              (98% Similar) - </b>
+              (96% Similar) - </b>
               My ISP recently gave me a free speed bump from 500Mbps to 1 Gbps. I wanted to test if it was possible to fully utilise the bandwidth on a single file transfer. Firstly, we need to look at the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/iptables-f.html"><b>iptables -F
-              (95% Similar) - </b>
+              (96% Similar) - </b>
               This command should be removed or come with confirmation message before execution. Today, I wanted to to turn my blacklist into a whitelist. Reason being as I added new services, I don't always ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/running-you-own-home-server-part-2.html"><b>Running you own home server part 2
-              (94% Similar) - </b>
-              As promised, I would cover what services I am currently running on my server and what I use it for. So the server stats can be accessed here . apache Web server - hosts my website, blog and a ...</a>
+              <a href="../articles/measuring-power-consumption.html"><b>Measuring Power Consumption
+              (93% Similar) - </b>
+              I have recently acquired an electricity usage meter off ebay and decided to measure the power consumption of some of my devices. For a device that costs just 15 SGD, it works wonderfully and can ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/software-versioning.html"><b>Software Versioning
+              <a href="../articles/deprecating-http-lessons-from-ssh-telnet.html"><b>Deprecating HTTP - Lessons from SSH/Telnet
               (93% Similar) - </b>
-              I have recently started managing yet another server. The server is running Ubuntu 14.04 LTS and therefore support is good for another 5 years. Just to be safe, I double checked the openssl ...</a>
+              Recently, both Firefox and Chrome has been coming down hard on HTTP websites. According to this article, HTTP will be labelled as "Not Secure". This is hardly the first step, HTTP only websites ...</a>
               </blockquote>
           </div>
       </div>
@@ -242,7 +241,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

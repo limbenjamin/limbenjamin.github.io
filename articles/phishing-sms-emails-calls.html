@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -139,7 +139,7 @@
 <p>CSA is rather fortunate because emails are a widely understood technology. Every major company runs their own email servers so there are plenty of IT engineers out there who are very familiar with all the inner workings of email. They understand details of all the protocols (IMAP/POP3/SMTP) to do with sending and receiving emails as well as all the security mechanisms (SPF/DKIM/DMARC) to safeguard email from spoofing. They can explain everything that happens from the moment you push the send button all the way until the email arrives in the recipient's inbox. This group of professionals can call CSA out when they observe insecure practices.  </p>
 <p>Unfortunately, SMS and phone calls are poorly understood technologies. In the past, companies used GSM modems or SMS gateways to send SMS. Nowadays, they may a service like Twilio. Regardless of the method, once the SMS leaves the endpoint, it enters a black box and re-emerges on the other side to reach the recipient. Very few people understand what happens inside that black box and can explain step by step how it works. ISPs are doing source IP spoofing and dropping packets, can something similar be done for calls/SMS? Are international calls/SMS from foreign Telcos routed the same way as local calls/SMSes? Do they come through the same pipe? How about local subscribers that are currently roaming and connected to foreign Telcos? Can those calls/SMSes be differentiated from the spoof calls/SMSes?  </p>
 <p>Coming from someone without a background in telecommunication technology, Telcos must have a way of determining if a number is in use because you get a recorded voice message telling you that the number is not in use otherwise. Telcos must also have a way of determining if the number is currently connected to a local base station, how else would they be able to make the phone ring and route the call. Both these operations should be possible in less than 3 seconds, which is about the time you take to get a response when dialing a number. Given these 2 assumptions, the following logic should be possible to stop these spam calls. Is it really implementable?</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -150,7 +150,7 @@
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Scenario: +65 9123 4567 dialling in from overseas
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>Scenario: +65 9123 4567 dialling in from overseas
 
 if +65 9123 4567 is currently not in use:
     # confirm to be spoofed since number not in use
@@ -162,8 +162,8 @@ else:
     else:
         # either handphone is located in Singapore but turned off (unlikely in present day) or handphone is overseas and it is a legitimate call
         route the call to the recipient
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Perhaps only senior engineers who have worked in Telcos have the answer to those questions. Given the age of SMS/telephony technology, many of those senior engineers may already be retired. Maintenance may have been outsourced and there may be very few people left with that technical expertise. Without an in-depth understanding of the technology, we will not be able to fully block phishing calls/SMSes and our regulators will have to continue what they do best, sending advisory after advisory telling people not to click on links and not to answer calls starting with +65.  </p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -174,24 +174,24 @@ else:
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/email-fraud.html"><b>Email fraud
-              (99% Similar) - </b>
-              A fraudster managed to email his way out of prison. Article here. The amount of trust that a lay person puts into emails today is quite alarming. Emails were first used in the 70s, when everyone ...</a>
+              <a href="../articles/luna-economics.html"><b>Luna economics
+              (97% Similar) - </b>
+              I started reading about Luna after the crash and the more I read, the more I failed to understand. So many articles were mentioning DeFi and articles explaining how Luna works covered the exact ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/email-fraud-part-2.html"><b>Email fraud part 2
-              (99% Similar) - </b>
-              While still on the topic of email fraud, I would like to touch on 419 scams, which are also known as Nigerian scams. Most of us routinely encounter such emails in our spam box, so it shouldn't be ...</a>
+              <a href="../articles/digital-nric-spoofing.html"><b>Digital NRIC Spoofing
+              (95% Similar) - </b>
+              Pretty interesting how easy it is to spoof the animated hologram thingy in the new Digital NRIC. Managed to build a Proof of Concept (POC) within a few hours of the news release. Govtech's ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/spf-dkim-dmarc-in-a-nutshell.html"><b>SPF, DKIM, DMARC in a nutshell
-              (98% Similar) - </b>
-              I have just learnt something new about how SPF and DMARC interact with each other and the unexpected behaviour that might result from it. I find that most articles tend to cover SPF and DMARC ...</a>
+              <a href="../articles/rules-of-engagement-in-cyberspace.html"><b>Rules of Engagement in Cyberspace
+              (94% Similar) - </b>
+              Rules of engagement is a concept familiar to most military personnels worldwide. The basic premise of having rules of engagement is to ensure an appropriate level of response or reaction to a ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/multiple-inboxes-with-same-email-address.html"><b>Multiple inboxes with same email address
-              (96% Similar) - </b>
-              Ever since google decided to nerf their google apps free account privileges(I created my account earlier and was grandfathered 10 free emails), I have been toying around with several other ...</a>
+              <a href="../articles/open-letter-to-icann-on-ppsai.html"><b>Open letter to ICANN on PPSAI
+              (93% Similar) - </b>
+              Subject: I may not need Domain Privacy, but others do! From: Benjamin Lim <mail@limbenjamin.com> Date: Fri, 3 Jul 2015 18:12:52 +0200 Dear ICANN, I will not attempt to speak on behalf of the ...</a>
               </blockquote>
           </div>
       </div>
@@ -224,7 +224,7 @@ else:
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

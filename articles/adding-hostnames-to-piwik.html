@@ -110,8 +110,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (117)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (16)</a> &#124; 
-                <a href="../archives.html" >Archives (166)</a>
+                <a href="../tag/untagged.html" >Untagged (17)</a> &#124; 
+                <a href="../archives.html" >Archives (167)</a>
         </div>
     </div>
 
@@ -136,29 +136,29 @@
 <p>Result:</p>
 <p><img alt="Result" src="//limbenjamin.com/media/piwik.png"></p>
 <p>Add the function to /plugins/CoreHome/Visitor.php</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">function getLocationHostname()</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="x">function getLocationHostname()</span>
 <span class="x">{</span>
 <span class="x">    if (isset($this-&gt;details[&#39;location_hostname&#39;])){</span>
 <span class="x">        return $this-&gt;details[&#39;location_hostname&#39;];</span>
 <span class="x">    }</span>
 <span class="x">    return null;</span>
 <span class="x">}</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Add to /plugins/CoreHome/CoreHome.php</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="x">$visitor[&#39;visitDurationPretty&#39;]         = $instance-&gt;getVisitLengthPretty();</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="x">$visitor[&#39;visitDurationPretty&#39;]         = $instance-&gt;getVisitLengthPretty();</span>
 <span class="x">$visitor[&#39;locationHostname&#39;]            = $instance-&gt;getLocationHostname(); #add this</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Create a file /plugin/CoreHome/Columns/IpHostname.php with</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -176,7 +176,7 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?php</span>
     <span class="k">namespace</span> <span class="nx">Piwik\Plugins\CoreHome\Columns</span><span class="p">;</span>
 
     <span class="k">use</span> <span class="nx">Piwik\Config</span><span class="p">;</span>
@@ -195,26 +195,25 @@
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Add to /plugins/Live/templates/_dataTableViz_visitorLog.twig</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>IP: <span class="cp">{{</span> <span class="nv">visitor.getColumn</span><span class="o">(</span><span class="s1">&#39;visitIp&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>IP: <span class="cp">{{</span> <span class="nv">visitor.getColumn</span><span class="o">(</span><span class="s1">&#39;visitIp&#39;</span><span class="o">)</span> <span class="cp">}}</span>
 <span class="cp">{%</span> <span class="k">if</span> <span class="nv">visitor.getColumn</span><span class="o">(</span><span class="s1">&#39;locationHostname&#39;</span><span class="o">)</span> <span class="k">is</span> <span class="k">not</span> <span class="nf">empty</span> <span class="cp">%}</span>     #add this
     (<span class="cp">{{</span> <span class="nv">visitor.getColumn</span><span class="o">(</span><span class="s1">&#39;locationHostname&#39;</span><span class="o">)</span> <span class="cp">}}</span>)           #add this
 <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>                                                     #add this
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
+
 <p>Add to /plugins/Live/templates/getLastVisitStart.twig</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>IP: <span class="cp">{{</span> <span class="nv">visitor.visitIp</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>IP: <span class="cp">{{</span> <span class="nv">visitor.visitIp</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
 <span class="cp">{%</span> <span class="k">if</span> <span class="nv">visitor.locationHostname</span> <span class="cp">%}</span> (<span class="cp">{{</span> <span class="nv">visitor.locationHostname</span> <span class="cp">}}</span>)<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span> #add this
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -224,24 +223,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/cve-2017-14126-participants-database-xss.html"><b>CVE-2017-14126 Participants Database < 1.7.5.10 - XSS
-              (97% Similar) - </b>
-              Exploit Title: Wordpress Plugin Participants Database < 1.7.5.10 - XSS Google Dork: inurl:wp-content/plugins/participants-database/ Date: 01-Sep-17 Exploit Author: Benjamin Lim Vendor Homepage: ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/top-2000-wp-plugins.html"><b>Top 2000 Wordpress Plugins
-              (96% Similar) - </b>
-              The top 2000 Wordpress plugins by popularity. 2419 to be exact, all plugins with at least 5000+ active installs. List is accurate as of 20 Jan 2018. Interestingly, I could not find something ...</a>
+              <a href="../articles/wp-like-button-auth-bypass.html"><b>WP Like Button 1.6.0 - Auth Bypass
+              (91% Similar) - </b>
+              Exploit Title: WP Like Button 1.6.0 - Auth Bypass Date: 05-Jul-19 Exploit Author: Benjamin Lim Vendor Homepage: http://www.crudlab.com Software Link: https://wordpress.org/plugins/wp-like-button/ ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/smart-google-code-inserter-auth-bypass.html"><b>Smart Google Code Inserter < 3.5 - Auth Bypass/SQLi
-              (95% Similar) - </b>
+              (90% Similar) - </b>
               Exploit Title: Smart Google Code Inserter < 3.5 - Auth Bypass/SQLi Google Dork: inurl:wp-content/plugins/smart-google-code-inserter/ Date: 26-Nov-17 Exploit Author: Benjamin Lim Vendor Homepage: ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/simple-student-result-auth-bypass.html"><b>CVE-2017-14766 Simple Student Result < 1.6.4 - Auth Bypass
-              (95% Similar) - </b>
-              Exploit Title: Simple Student Result < 1.6.4 - Auth Bypass Google Dork: inurl:wp-content/plugins/simple-student-result Date: 21-Sep-17 Exploit Author: Benjamin Lim Vendor Homepage: ...</a>
+              <a href="../articles/top-2000-wp-plugins.html"><b>Top 2000 Wordpress Plugins
+              (89% Similar) - </b>
+              The top 2000 Wordpress plugins by popularity. 2419 to be exact, all plugins with at least 5000+ active installs. List is accurate as of 20 Jan 2018. Interestingly, I could not find something ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/cve-2017-14126-participants-database-xss.html"><b>CVE-2017-14126 Participants Database < 1.7.5.10 - XSS
+              (88% Similar) - </b>
+              Exploit Title: Wordpress Plugin Participants Database < 1.7.5.10 - XSS Google Dork: inurl:wp-content/plugins/participants-database/ Date: 01-Sep-17 Exploit Author: Benjamin Lim Vendor Homepage: ...</a>
               </blockquote>
           </div>
       </div>
@@ -274,7 +273,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Sep 11 18:45:36 2022<br />
+                    Page generated on Thu Sep 29 18:42:42 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
