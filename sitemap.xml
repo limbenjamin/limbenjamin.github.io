@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2022-12-18T10:51:56-00:00</lastmod>
+<lastmod>2022-12-18T10:56:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2022-12-18T10:51:56-00:00</lastmod>
+<lastmod>2022-12-18T10:56:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2022-12-18T10:51:56-00:00</lastmod>
+<lastmod>2022-12-18T10:56:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -64,6 +64,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2017-06-04T14:51:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/articles/global-talent-search.html</loc>
+<lastmod>2022-12-18T10:10:00+08:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -1244,7 +1251,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/tag/untagged.html</loc>
-<lastmod>2022-11-13T21:53:00+06:55</lastmod>
+<lastmod>2022-12-18T10:10:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
