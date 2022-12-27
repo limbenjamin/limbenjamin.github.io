@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as...">
+  <meta name="description" content="Apparently, spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
 <meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked …">
+<meta property="og:description" content="Apparently, spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked …">
 <meta property="og:url" content="https://limbenjamin.com/articles/spammers-using-flash-sms.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
@@ -132,10 +132,10 @@
         <h1 class="entry-title-single-page"><a href="../articles/spammers-using-flash-sms.html">Spammers using Flash SMS</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>Apparently spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked into thinking that the message comes from an official source.  </p>
+        <p>Apparently, spammers are now using Flash SMS to send their messages. This is the first time I have heard of Flash SMS and it is deeply concerning as the message automatically opens and displays on the screen even if the phone is locked. Less savvy users may be easily tricked into thinking that the message comes from an official source.  </p>
 <p><img alt="image" src="//limbenjamin.com/media/flash_sms.png"></p>
-<p>Unfortunately, it seems difficult to disable Flash SMS. The SIM toolkit app is referenced in some instructions online, but the options available in the app is service provider specific. Some providers like mine are more interested in provider Value Added Services like 4D/TOTO results instead of actual important functionality. Until IDA and the Telcos start looking into spam SMS/calls seriously, the problem is just going to get worse and spammers will continue to find new functionality to abuse.  </p>
-<p>I had previously proposed checking the Home Location Register (HLR) for the last known location and dropping calls/SMSes based on that information. It will require some collaboration between the Telcos but I believe it is a feasible solution and should solve the problem. I am sure Telco engineers can come up with similar/better methods to scrub the intentional calls/SMSes ingress line of spoofed calls and SMSes. It appears to be more of apathy and lack of sound technical knowledge plaguing the management, allowing the problem to fester.  </p>
+<p>Unfortunately, it seems difficult to disable Flash SMS. The SIM toolkit app is referenced in some instructions online, but the options available in the app is service provider specific. Some providers like mine are more interested in providing Value Added Services like 4D/TOTO results instead of actual important functionality. Until IDA and the Telcos start looking into spam SMS/calls seriously, the problem is just going to get worse and spammers will continue to find new functionality to abuse.  </p>
+<p>I had previously proposed checking the Home Location Register (HLR) for the last known location and dropping calls/SMSes based on that information. It will require some collaboration between the Telcos but I believe it is a feasible solution. I am sure Telco engineers can come up with similar/better methods to scrub the intentional calls/SMSes ingress line of spoofed calls and SMSes. It appears to be more of apathy and lack of sound technical knowledge plaguing management, allowing the problem to fester.  </p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -146,20 +146,20 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>Scenario: +65 9123 4567 dialling in from overseas
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>Scenario: +65 9123 4567 phone call comes in from an overseas submarine cable.
 
-if +65 9123 4567 is currently not in use:
-    # confirm to be spoofed since number not in use
-    telco will terminate call 
+# Perform the following checks on the HLR
+if +65 9123 4567 [valid] is False:
+    telco will terminate call since number is not in use
+else if +65 9123 4567 [roaming_status] is not_roaming:
+    telco will terminate call since phone is in Singapore, but call is coming from overseas
+else if +65 9123 4567 [reachable] is absent:
+    telco will terminate call since phone is offline, but call is coming from overseas
 else:
-    if +65 9123 4567 last known location in HLR is in Singapore:
-        # handphone cannot be located in Singapore and overseas at the same time
-        telco will terminate call 
-    else:
-        # either handphone is located in Singapore but turned off (unlikely in present day) or handphone is overseas and it is a legitimate call
-        route the call to the recipient
+    route the call to the recipient since phone appears to be overseas
 </code></pre></div></td></tr></table></div>
+
+<p><img alt="image" src="//limbenjamin.com/media/hlr_check.png"></p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
@@ -170,23 +170,23 @@ else:
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/luna-economics.html"><b>Luna economics
-              (93% Similar) - </b>
+              (94% Similar) - </b>
               I started reading about Luna after the crash and the more I read, the more I failed to understand. So many articles were mentioning DeFi and articles explaining how Luna works covered the exact ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/rules-of-engagement-in-cyberspace.html"><b>Rules of Engagement in Cyberspace
+              <a href="../articles/on-physical-authentication.html"><b>On Physical Authentication
+              (93% Similar) - </b>
+              Recently, I moved into a new environment and had the opportunity to witness a number of processes. This experience further reinforced in me the importance of policies over technical measures. ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/authenticating-with-nric-numbers.html"><b>Authenticating with NRIC numbers
+              (90% Similar) - </b>
+              I was recently asked to take a survey which authenticated users solely using IC numbers. According to guideline 6 of PDPC's advisory on the use of NRIC numbers, NRIC numbers are widely used for ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/open-letter-to-icann-on-ppsai.html"><b>Open letter to ICANN on PPSAI
               (89% Similar) - </b>
-              Rules of engagement is a concept familiar to most military personnels worldwide. The basic premise of having rules of engagement is to ensure an appropriate level of response or reaction to a ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/digital-nric-spoofing.html"><b>Digital NRIC Spoofing
-              (87% Similar) - </b>
-              Pretty interesting how easy it is to spoof the animated hologram thingy in the new Digital NRIC. Managed to build a Proof of Concept (POC) within a few hours of the news release. Govtech's ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/spoofing-nus-wpa2-and-stealing-credentials.html"><b>Spoofing NUS WPA2 and stealing credentials
-              (87% Similar) - </b>
-              Warning Content in this post is for educational purposes only, it may be illegal to carry out the exploit mentioned. The author is not responsible for any action taken against you if you carry it ...</a>
+              Subject: I may not need Domain Privacy, but others do! From: Benjamin Lim <mail@limbenjamin.com> Date: Fri, 3 Jul 2015 18:12:52 +0200 Dear ICANN, I will not attempt to speak on behalf of the ...</a>
               </blockquote>
           </div>
       </div>
@@ -219,7 +219,7 @@ else:
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Dec 18 10:56:22 2022<br />
+                    Page generated on Wed Dec 28 07:37:28 2022<br />
                     &copy; 2012-2022 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
