@@ -40,7 +40,7 @@ th, td{
     &lt;tr&gt;
         &lt;td&gt;iText&lt;/td&gt;
         &lt;td&gt;Free for non commercial use&lt;/td&gt;
-        &lt;td&gt;iText is a library, not a ready solution. Probably the only solution allowing you to sign a doucment without uploading&lt;/td&gt;
+        &lt;td&gt;iText does provide a paid service. More interestingly, they provide a library that is free for non commercial use. &lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
         &lt;td&gt;Kofax&lt;/td&gt;
@@ -55,7 +55,7 @@ th, td{
     &lt;tr&gt;
         &lt;td&gt;Decodo&lt;/td&gt;
         &lt;td&gt;Unknown&lt;/td&gt;
-        &lt;td&gt;Decodo is the parent company for iText. Also allows you to sign a document without uploading&lt;/td&gt;
+        &lt;td&gt;Decodo claims to work closely with iText, possibly using same codebase. Also allows you to sign a document without uploading&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
         &lt;td&gt;Netrust Pte Ltd&lt;/td&gt;
@@ -87,8 +87,33 @@ th, td{
 
 &lt;p&gt;It appears that the service has been designed more for businesses. Some of the companies don't even advertise their service online while others are designed as part of a document workflow system where companies can pay a subscription to the service and upload templates, sending them out to their clients for signing. The clients don't have to pay to use the service.&lt;/p&gt;
 &lt;p&gt;For individual use, Modus Consulting's website looks dodgy. Their FAQ is riddled with spelling and grammatical errors. NeTrust seems to be your best bet. We just have to hope that "regular purging" is regular enough. NeTrust is also a Certificate Authority, that ought to count for something.&lt;/p&gt;
-&lt;p&gt;Unfortunately, there isn't a freely available easy to use software that communicates directly with the NDI API to do the signing. The iText library is a good starting point. Hopefully, someone can come up with a better interface so we don't have to draw signature rectangles using height, width, x, y coordinates. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;appearance&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setVisibleSignature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Rectangle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;dva&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;p&gt;For commercial use, iText or Decodo seem to be the best option. They allow for signing without uploading the document to the DSP's server and iText is the reference implementation. &lt;/p&gt;
+&lt;p&gt;Unfortunately, there isn't a freely available easy to use software that communicates directly with the NDI API to do the signing. The iText library is a good starting point. Unfortunately, the library does not come with the certificate for mTLS connection to NDI API and NDI client ID and secret that is required to connect to the NDI interface. Hence, it is not usable without applying as a DSP yourself.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    https://git.itextsupport.com/projects/RESEARCH/repos/ndi-demo/browse/ndi-demo/conf/application.conf
+
+    logger.config = &amp;quot;C:\\work\\ndi\\conf\\log4j.def.xml&amp;quot;
+    #logger.ndiConfig = ${?LOGGER_CONFIG}
+
+    //
+    //ndi.client.id =
+    //ndi.client.secret =
+
+
+    # modul
+    play.modules.enabled += &amp;quot;com.itextpdf.demo.ndi.modules.ApplicationModule&amp;quot;
+    play.cache.bindCaches = [&amp;quot;db-cache&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</content><category term="Security"></category></entry><entry><title>Global Talent Search</title><link href="https://limbenjamin.com/articles/global-talent-search.html" rel="alternate"></link><published>2022-12-18T10:10:00+08:00</published><updated>2022-12-18T10:10:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2022-12-18:/articles/global-talent-search.html</id><summary type="html">&lt;p&gt;People are up in arms over the fact that some technical sourcer from Meta is paid $100k per annum. How are technical sourcers different from your run-of-the-mill HR personnel?  &lt;/p&gt;
 &lt;p&gt;A technical sourcer from Facebook reached out to me (based in Singapore) over LinkedIn a few years back to apply for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;People are up in arms over the fact that some technical sourcer from Meta is paid $100k per annum. How are technical sourcers different from your run-of-the-mill HR personnel?  &lt;/p&gt;
 &lt;p&gt;A technical sourcer from Facebook reached out to me (based in Singapore) over LinkedIn a few years back to apply for a role based in the US. The role eventually went to a well qualified person (based in France) who has published research and spoke at conferences. I follow her blue ticked twitter account (back when blue tick actually meant something) and that is how I know that she got the job. She was clearly a better candidate and one of the top talents in the field. To get top talent, you need to do a global search and outreach. Not everyone is looking for a job all the time, not everyone is searching job portals in other countries, but they may be interested in trying if a good opportunity arises. Most run-of-the-mill HR personnel simply post a job in the job portal and sit around waiting for applicants. After a supposed "global talent search", some manage to find these global talents right in our backyard, fresh out of the military. &lt;/p&gt;

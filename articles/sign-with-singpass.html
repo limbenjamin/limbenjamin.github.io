@@ -155,7 +155,7 @@ th, td{
     <tr>
         <td>iText</td>
         <td>Free for non commercial use</td>
-        <td>iText is a library, not a ready solution. Probably the only solution allowing you to sign a doucment without uploading</td>
+        <td>iText does provide a paid service. More interestingly, they provide a library that is free for non commercial use. </td>
     </tr>
     <tr>
         <td>Kofax</td>
@@ -170,7 +170,7 @@ th, td{
     <tr>
         <td>Decodo</td>
         <td>Unknown</td>
-        <td>Decodo is the parent company for iText. Also allows you to sign a document without uploading</td>
+        <td>Decodo claims to work closely with iText, possibly using same codebase. Also allows you to sign a document without uploading</td>
     </tr>
     <tr>
         <td>Netrust Pte Ltd</td>
@@ -202,8 +202,33 @@ th, td{
 
 <p>It appears that the service has been designed more for businesses. Some of the companies don't even advertise their service online while others are designed as part of a document workflow system where companies can pay a subscription to the service and upload templates, sending them out to their clients for signing. The clients don't have to pay to use the service.</p>
 <p>For individual use, Modus Consulting's website looks dodgy. Their FAQ is riddled with spelling and grammatical errors. NeTrust seems to be your best bet. We just have to hope that "regular purging" is regular enough. NeTrust is also a Certificate Authority, that ought to count for something.</p>
-<p>Unfortunately, there isn't a freely available easy to use software that communicates directly with the NDI API to do the signing. The iText library is a good starting point. Hopefully, someone can come up with a better interface so we don't have to draw signature rectangles using height, width, x, y coordinates. </p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">appearance</span><span class="p">.</span><span class="na">setVisibleSignature</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Rectangle</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dva&quot;</span><span class="p">);</span><span class="w"></span>
+<p>For commercial use, iText or Decodo seem to be the best option. They allow for signing without uploading the document to the DSP's server and iText is the reference implementation. </p>
+<p>Unfortunately, there isn't a freely available easy to use software that communicates directly with the NDI API to do the signing. The iText library is a good starting point. Unfortunately, the library does not come with the certificate for mTLS connection to NDI API and NDI client ID and secret that is required to connect to the NDI interface. Hence, it is not usable without applying as a DSP yourself.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    https://git.itextsupport.com/projects/RESEARCH/repos/ndi-demo/browse/ndi-demo/conf/application.conf
+
+    logger.config = &quot;C:\\work\\ndi\\conf\\log4j.def.xml&quot;
+    #logger.ndiConfig = ${?LOGGER_CONFIG}
+
+    //
+    //ndi.client.id =
+    //ndi.client.secret =
+
+
+    # modul
+    play.modules.enabled += &quot;com.itextpdf.demo.ndi.modules.ApplicationModule&quot;
+    play.cache.bindCaches = [&quot;db-cache&quot;]
 </code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
@@ -239,7 +264,7 @@ th, td{
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Tue Jan 10 17:50:53 2023<br />
+                    Page generated on Tue Jan 10 21:50:31 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
