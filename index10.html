@@ -25,7 +25,7 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-  <meta name="keywords" content="limbenjamin, Untagged, Security, Server, Coding, Data, NUS">
+  <meta name="keywords" content="limbenjamin, Security, Untagged, Server, Coding, Data, NUS">
 
   <title>Benjamin Lim | Security, Tech & Data</title>
 
@@ -97,10 +97,10 @@
                 <a href="./tag/coding.html" >Coding (12)</a> &#124; 
                 <a href="./tag/data.html" >Data (9)</a> &#124; 
                 <a href="./tag/nus.html" >NUS (3)</a> &#124; 
-                <a href="./tag/security.html" >Security (117)</a> &#124; 
+                <a href="./tag/security.html" >Security (118)</a> &#124; 
                 <a href="./tag/server.html" >Server (26)</a> &#124; 
                 <a href="./tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="./archives.html" >Archives (169)</a>
+                <a href="./archives.html" >Archives (170)</a>
         </div>
     </div>
 
@@ -113,6 +113,21 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
+<a href="./articles/piwik-possible-xss-in-rdns-lookup-function.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2017-10-22 21:59:00+08:00">Oct 22, 2017</time></span>
+					<h1 class="entry-title">Piwik - Possible XSS in RDNS lookup function</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					The possible XSS vulnerability can be found in version 3.1.1 of the Piwik software itself. The getHostname() function in piwik/vendor/piwik/network/src/IP.php does not sanitize the hostname before returning the value. This results in a possible XSS if Piwik itself or any plugins use the output ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
 <a href="./articles/simple-student-result-auth-bypass.html">
 	<article class="post">
 		<div class="blog-item-wrap">
@@ -218,21 +233,6 @@
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/replicating-uvb-76.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-02-18 11:00:00+08:00">Feb 18, 2017</time></span>
-					<h1 class="entry-title">Replicating UVB-76</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					For the uninitiated, UVB-76 is a station that broadcasts coded messages over AM radio. It is still active with messages transmitted as recently as Oct 2016 and is speculated to be related to the Russian military. The transmission and tone generation equipment are from the analog era, hence I ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
                 </div>
 <footer>
 <div id="paginator">
@@ -293,7 +293,7 @@
                     <a href="./feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="./sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Tue Jan 10 17:43:40 2023<br />
+                    Page generated on Tue Jan 10 17:50:53 2023<br />
                     &copy; 2012-2023 <a href=".">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
