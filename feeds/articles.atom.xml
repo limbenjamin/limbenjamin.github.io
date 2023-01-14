@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-01-10T17:49:00+08:00</updated><entry><title>Sign with Singpass</title><link href="https://limbenjamin.com/articles/sign-with-singpass.html" rel="alternate"></link><published>2023-01-10T17:49:00+08:00</published><updated>2023-01-10T17:49:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-01-10:/articles/sign-with-singpass.html</id><summary type="html">&lt;p&gt;Apparently, you can now sign documents with Singpass using any of the &lt;a href="https://api.singpass.gov.sg/library/sign/business/Digital%20Signing%20Partners"&gt;digital signing partners&lt;/a&gt;. I have compiled the table below with each provider's most basic plan for easier reference.&lt;/p&gt;
-&lt;style&gt;
-th, td{
-    padding: 0.5em;
-}
-&lt;/style&gt;
-&lt;table border="1" width="100%"&gt;
-&lt;thead&gt;
-    &lt;tr&gt;
-        &lt;th&gt;Vendor&lt;/th&gt;
-        &lt;th&gt;Price&lt;/th&gt;
-        &lt;th&gt;Features&lt;/th&gt;
-    &lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-    &lt;tr&gt;
-        &lt;td&gt;DocuSign&lt;/td&gt;
-        &lt;td&gt;SGD 13/month&lt;/td&gt;
-        &lt;td&gt;Send up to 5 documents for eSignature monthly …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;Apparently, you can now sign documents with Singpass using any of the &lt;a href="https://api.singpass.gov.sg/library/sign/business/Digital%20Signing%20Partners"&gt;digital signing partners&lt;/a&gt;. I have compiled the table below with each provider's most basic plan for easier reference.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-01-10T17:49:00+08:00</updated><entry><title>Sign with Singpass</title><link href="https://limbenjamin.com/articles/sign-with-singpass.html" rel="alternate"></link><published>2023-01-10T17:49:00+08:00</published><updated>2023-01-10T17:49:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-01-10:/articles/sign-with-singpass.html</id><summary type="html">&lt;p&gt;Apparently, you can now sign documents with Singpass using any of the &lt;a href="https://api.singpass.gov.sg/library/sign/business/Digital%20Signing%20Partners"&gt;digital signing partners&lt;/a&gt;. I have compiled the table below with each provider's most basic plan for easier reference with a focus on individual and not corporate usage. The signing certificate used by Singpass is currently not trusted by …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Apparently, you can now sign documents with Singpass using any of the &lt;a href="https://api.singpass.gov.sg/library/sign/business/Digital%20Signing%20Partners"&gt;digital signing partners&lt;/a&gt;. I have compiled the table below with each provider's most basic plan for easier reference with a focus on individual and not corporate usage. The signing certificate used by Singpass is currently not trusted by the default CAs loaded into Windows, so do take that into account as well.&lt;/p&gt;
 &lt;style&gt;
 th, td{
     padding: 0.5em;

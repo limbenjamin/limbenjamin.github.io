@@ -1063,3 +1063,28 @@ p img{
 pre code{
   white-space: inherit;
 }
+
+.oval{
+  background: linear-gradient(90deg, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2);
+  background-size: 300% 300%;
+  -webkit-animation: rainbow 4s linear infinite;
+  animation: rainbow 4s linear infinite;
+  width: 50px;
+  border-radius: 80px / 50px;
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-bottom: 0.5em;
+}
+
+.merlion{
+  opacity: 70%;
+}
+
+@-webkit-keyframes rainbow {
+  0% { background-position: 0% 0% }
+  100% { background-position: 100% 100% }
+}
+@keyframes rainbow {
+  0% { background-position: 0% 0% }
+  100% { background-position: 100% 100% }
+}
