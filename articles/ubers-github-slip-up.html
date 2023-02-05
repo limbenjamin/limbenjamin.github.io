@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -144,15 +144,15 @@
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ cat ../../projA-secrets.txt
-    -----BEGIN RSA PRIVATE KEY-----
-    -----BEGIN DSA PRIVATE KEY-----
-    p@55w0rd
-    s3cr3tK3y
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span>cat<span class="w"> </span>../../projA-secrets.txt
+<span class="w">    </span>-----BEGIN<span class="w"> </span>RSA<span class="w"> </span>PRIVATE<span class="w"> </span>KEY-----
+<span class="w">    </span>-----BEGIN<span class="w"> </span>DSA<span class="w"> </span>PRIVATE<span class="w"> </span>KEY-----
+<span class="w">    </span>p@55w0rd
+<span class="w">    </span>s3cr3tK3y
 </code></pre></div></td></tr></table></div>
 
 <p>So, the first step is to maintain a list of all secret keys and passwords for that project in a text file outside the root of the project directory. People might argue that it is unsafe to store all your passwords in a text file. But my response is that it is simply security by obscurity. The passwords are already stored in plaintext nested somewhere within the project, an experienced adversary would know where to look so it doesn't compromise much of security. If you really want to, you could name the file projA-README.txt or something.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    grep -HFf ../../projA-secrets.txt *
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>grep<span class="w"> </span>-HFf<span class="w"> </span>../../projA-secrets.txt<span class="w"> </span>*
 </code></pre></div></td></tr></table></div>
 
 <p>The shell command above would recursively search and output a list of file names and the corresponding line number which contain any line in the secrets file. Therefore, by running this command before committing, you will be able to double check that you have removed all secrets. You can include this command into a pre-commit hook to make sure that it gets run before every commit.</p>
@@ -171,19 +171,19 @@
               Many people have the misconception that biometrics such as fingerprint readers are more secure than passwords. It probably stems from Hollywood spy movies showing Top Secret facilities protected ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/designing-an-offline-auth-system.html"><b>Designing an offline authentication system
-              (96% Similar) - </b>
-              I have recently got to know of the igloohome digital lock. It is completely offline and connects to the app via bluetooth only. No internet connection. One of the most puzzling features is that ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/windows-trust-boundaries.html"><b>Windows Trust Boundaries
+              <a href="../articles/cloning-mifare-1k-cards.html"><b>Cloning Mifare 1K cards
               (95% Similar) - </b>
-              Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an application developer, understanding these ...</a>
+              Disclaimer : The information provided here is solely for educational purposes. The system I would be looking at is the ST Electronics' ST8100 Securnet. This is an integrated security management ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/expanding-on-pyramid-of-pain.html"><b>Expanding on Pyramid of Pain
-              (94% Similar) - </b>
-              I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher up the pyramid. However, there is scarce ...</a>
+              <a href="../articles/flaws-of-a-single-ecosystem.html"><b>Flaws of a single ecosystem
+              (95% Similar) - </b>
+              The post is triggered by the recent leak of celebrity nude photos. Apple has claimed that the iCloud ecosystem is secure and the leak was the result of targeted attempts. Nevertheless, they ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/ipad-pos.html"><b>iPad POS
+              (92% Similar) - </b>
+              While traveling in the US, I noticed that a considerable number of smaller food establishments used an iPad Point of Sale (POS) system. Given the number of POS vulnerabilities reported in the ...</a>
               </blockquote>
           </div>
       </div>
@@ -216,7 +216,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

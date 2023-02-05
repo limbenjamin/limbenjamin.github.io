@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -188,55 +188,55 @@
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">onSubmitCtrl</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">action_mode</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nx">updateOptions</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">updateOptions</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">AppListArray</span><span class="p">[</span><span class="mf">0</span><span class="p">][</span><span class="mf">1</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">cmdMethod</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;ping&quot;</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">SystemCmd</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ping -c &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"></span>
-<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">SystemCmd</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">cmdMethod</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">validForm</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;checkCmdRet();&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">checkCmdRet</span><span class="p">(){</span><span class="w"></span>
-<span class="w">    </span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="w"></span>
-<span class="w">        </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/cmdRet_check.htm&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;checkCmdRet();&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span><span class="w"></span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">retArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;textarea&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">_cmdBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;cmdBtn&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;XU6J03M6&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="p">...</span><span class="w"></span>
-<span class="w">            </span><span class="nx">retArea</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;XU6J03M6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;button_gen_long&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;cmdBtn&quot;</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="s2">&quot;onSubmitCtrl(this, &#39; Refresh &#39;)&quot;</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;button&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;#1672#&gt;&quot;</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="nx">textarea</span><span class="w"> </span><span class="nx">cols</span><span class="o">=</span><span class="s2">&quot;63&quot;</span><span class="w"> </span><span class="nx">rows</span><span class="o">=</span><span class="s2">&quot;27&quot;</span><span class="w"> </span><span class="nx">wrap</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="nx">readonly</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;textarea&quot;</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="o">&lt;%</span><span class="w"> </span><span class="nx">nvram_dump</span><span class="p">(</span><span class="s2">&quot;syscmd.log&quot;</span><span class="p">,</span><span class="s2">&quot;syscmd.sh&quot;</span><span class="p">);</span><span class="w"> </span><span class="o">%&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="err">/textarea&gt;</span><span class="w"></span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">onSubmitCtrl</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">action_mode</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">s</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">updateOptions</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">updateOptions</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">AppListArray</span><span class="p">[</span><span class="mf">0</span><span class="p">][</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">cmdMethod</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;ping&quot;</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">SystemCmd</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ping -c &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">pingCNT</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">SystemCmd</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">cmdMethod</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">destIP</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">validForm</span><span class="p">()){</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;checkCmdRet();&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">checkCmdRet</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/cmdRet_check.htm&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">dataType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;checkCmdRet();&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">retArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;textarea&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">_cmdBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;cmdBtn&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;XU6J03M6&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">){</span>
+<span class="w">            </span><span class="p">...</span>
+<span class="w">            </span><span class="nx">retArea</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;XU6J03M6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">...</span>
+<span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;button_gen_long&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;cmdBtn&quot;</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="s2">&quot;onSubmitCtrl(this, &#39; Refresh &#39;)&quot;</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;button&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;#1672#&gt;&quot;</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;</span>
+<span class="o">&lt;</span><span class="nx">textarea</span><span class="w"> </span><span class="nx">cols</span><span class="o">=</span><span class="s2">&quot;63&quot;</span><span class="w"> </span><span class="nx">rows</span><span class="o">=</span><span class="s2">&quot;27&quot;</span><span class="w"> </span><span class="nx">wrap</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="nx">readonly</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;textarea&quot;</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;%</span><span class="w"> </span><span class="nx">nvram_dump</span><span class="p">(</span><span class="s2">&quot;syscmd.log&quot;</span><span class="p">,</span><span class="s2">&quot;syscmd.sh&quot;</span><span class="p">);</span><span class="w"> </span><span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="err">/textarea&gt;</span>
 
 
-<span class="err">#</span><span class="w"> </span><span class="nx">Contents</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">cmdRet_check</span><span class="p">.</span><span class="nx">htm</span><span class="w"></span>
-<span class="o">&lt;%</span><span class="w"> </span><span class="nx">nvram_dump</span><span class="p">(</span><span class="s2">&quot;syscmd.log&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="w"> </span><span class="o">%&gt;</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="nx">Contents</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">cmdRet_check</span><span class="p">.</span><span class="nx">htm</span>
+<span class="o">&lt;%</span><span class="w"> </span><span class="nx">nvram_dump</span><span class="p">(</span><span class="s2">&quot;syscmd.log&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="w"> </span><span class="o">%&gt;</span>
 </code></pre></div></td></tr></table></div>
 
 <p>The first impression looks good, input checking is done client side. My aim is to get to Line 16 so I just need to change <code>cmdMethod</code> variable to <code>cat</code> and <code>destIp</code> variable to <code>/tmp/etc/shadow</code>. However, it didn't work. Upon closer inspection, I noticed something interesting on Line 35. I decided to grep all firmware files for the string <code>XU6J03M6</code>. The only other place where the string was found was in the binary file /usr/sbin/httpd{s}. Initially, I thought that the file was a generic apache binary, however it was not so. The following strings were found in the binary.</p>
@@ -353,23 +353,23 @@
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
-              (97% Similar) - </b>
+              (98% Similar) - </b>
               D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand
-              (95% Similar) - </b>
-              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/calling-iunknown-com-interface.html"><b>Calling IUnknown COM interface
-              (94% Similar) - </b>
+              (97% Similar) - </b>
               While completing challenge 9 of Flare-On 7, I found a lack of information out there on reverse engineering COM objects. Most tutorials are written from a developer point of view where the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443
-              (89% Similar) - </b>
-              A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
+              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand
+              (96% Similar) - </b>
+              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/visualizing-fitness-tracker-data.html"><b>Visualizing fitness tracker data
+              (95% Similar) - </b>
+              I recently started wearing a fitness band and wanted to visualize the activity data in a heatmap format. This article will go through my thought process in deciding how to parse the data. It is ...</a>
               </blockquote>
           </div>
       </div>
@@ -402,7 +402,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

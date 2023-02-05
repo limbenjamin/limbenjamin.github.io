@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -166,33 +166,33 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdafx.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;winbase.h&gt;</span><span class="cp"></span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdafx.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;winbase.h&gt;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="n">NTSTATUS</span><span class="p">;</span><span class="w"></span>
-<span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">VERSION_NO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="n">NTSTATUS</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">VERSION_NO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">HANDLE</span><span class="w"> </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HANDLE</span><span class="w"> </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">65000</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">65000</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">125000</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">125000</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 
 <p>The exact crash is caused by an OOB memory read. I don't think it is exploitable beyond denial of service.</p>
@@ -303,24 +303,24 @@ Crash Details:
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
-              (96% Similar) - </b>
-              We have all come across malware which overwrites the Master Boot Record (MBR) of a machine, leaving it unbootable. The code required to overwrite the MBR is surprisingly simple. We will first ...</a>
+              <a href="../articles/lolbin-printui.html"><b>LOLBin: printui.dll
+              (97% Similar) - </b>
+              Printer Settings User Interface is an executable file that contains functions used by the printer configuration dialog boxes. Functionality includes listing printer properties, adding new ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/replicating-uvb-76.html"><b>Replicating UVB-76
+              <a href="../articles/lolbin-fhmanagew.html"><b>LOLBin: fhmanagew.exe
+              (97% Similar) - </b>
+              File history is a backup solution built into Windows from Windows 8 onwards. Once enabled, previous versions of files in Documents, Music, Pictures, Videos, Desktop and OneDrive folder will ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/interesting-DLL-exports.html"><b>Interesting DLL exports
               (95% Similar) - </b>
-              For the uninitiated, UVB-76 is a station that broadcasts coded messages over AM radio. It is still active with messages transmitted as recently as Oct 2016 and is speculated to be related to the ...</a>
+              Found a couple of interesting DLL exports while hunting for LOLBAS. Most of these have not been documented as far as I know. There are potentially a lot more out there, the system was behaving ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/flare-on-5-wasm-with-chrome.html"><b>FLARE-On 5 wasm with Chrome
-              (95% Similar) - </b>
-              Most of the solutions for FLARE-On 5 web2point0 challenge involve the use of a framework to decompile WebAssembly. Chrome offers the ability to debug WebAssembly code which gives us the ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/visualizing-fitness-tracker-data.html"><b>Visualizing fitness tracker data
-              (93% Similar) - </b>
-              I recently started wearing a fitness band and wanted to visualize the activity data in a heatmap format. This article will go through my thought process in deciding how to parse the data. It is ...</a>
+              <a href="../articles/windows-file-metadata.html"><b>windows file metadata
+              (94% Similar) - </b>
+              Windows seems to keep a very poor record of file attributes such as date created, date modified and date accessed. These attributes are important especially for audit purposes. My profs are even ...</a>
               </blockquote>
           </div>
       </div>
@@ -353,7 +353,7 @@ Crash Details:
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

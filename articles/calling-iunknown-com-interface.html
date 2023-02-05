@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -179,48 +179,48 @@
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;windows.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ObjBase.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tchar.h&quot;</span><span class="cp"></span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;windows.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ObjBase.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tchar.h&quot;</span>
 
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="w"> </span><span class="n">CLSID_SERVER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="p">{</span><span class="w"> </span><span class="mh">0xCEEACC6E</span><span class="p">,</span><span class="w"> </span><span class="mh">0xCCB2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4C4F</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mh">0xbc</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf6</span><span class="p">,</span><span class="w"> </span><span class="mh">0xd2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x17</span><span class="p">,</span><span class="w"> </span><span class="mh">0x60</span><span class="p">,</span><span class="w"> </span><span class="mh">0x37</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa7</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="mh">0xCEEACC6E</span><span class="p">,</span><span class="w"> </span><span class="mh">0xCCB2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4C4F</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mh">0xbc</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf6</span><span class="p">,</span><span class="w"> </span><span class="mh">0xd2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x17</span><span class="p">,</span><span class="w"> </span><span class="mh">0x60</span><span class="p">,</span><span class="w"> </span><span class="mh">0x37</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa7</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
 
 <span class="c1">//optional. Can use symbolic constant IID_IUnknown</span>
 <span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="w"> </span><span class="n">CLSID_IUNKOWN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="p">{</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x46</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="mh">0x00000000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0000</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x46</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
 
 <span class="n">interface</span><span class="w"> </span><span class="n">IUnKnownClass</span><span class="w"> </span><span class="o">:</span><span class="n">IUnknown</span><span class="w"> </span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span><span class="w"></span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func1</span><span class="p">(</span>
 <span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">y</span><span class="w">  </span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func2</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func2</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">z</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func3</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">HRESULT</span><span class="w">  </span><span class="kr">__stdcall</span><span class="w"> </span><span class="n">func3</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">_tmain</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">_TCHAR</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">_tmain</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">_TCHAR</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
 
-<span class="w">    </span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitializeEx</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">COINIT_APARTMENTTHREADED</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">IUnKnownClass</span><span class="o">*</span><span class="w"> </span><span class="n">cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_SERVER</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span><span class="w"> </span><span class="n">IID_IUnknown</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">cl</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitializeEx</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">COINIT_APARTMENTTHREADED</span><span class="p">);</span>
+<span class="w">    </span><span class="n">IUnKnownClass</span><span class="o">*</span><span class="w"> </span><span class="n">cl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_SERVER</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span><span class="w"> </span><span class="n">IID_IUnknown</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">cl</span><span class="w"> </span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func1</span><span class="p">(</span><span class="mi">5370220704</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func2</span><span class="p">(</span><span class="mi">205</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func3</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func1</span><span class="p">(</span><span class="mi">5370220704</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func2</span><span class="p">(</span><span class="mi">205</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">func3</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cl</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">CoFreeUnusedLibraries</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">CoFreeUnusedLibraries</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 
 <p>After loading the COM object successfully, we can now step through it in the Visual Studio debugger. We see that the vtable contains 3 entries, these are actually functions exposed by the InprocServer object and information about the memory address where the function is located. In order to call these functions, we can just define our own IDL. I have created my own IDL with 3 functions named <code>func1</code>, <code>func2</code> and <code>func3</code>. The first function defined will automatically map to the first function in the vtable located at <code>0x7ffc389214b4</code>, the second defined function will map to the second function in the vtable and so on.  </p>
@@ -236,8 +236,13 @@
           <div class="similararticlerow">
               <blockquote class="similar_posts">
               <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
-              (94% Similar) - </b>
+              (97% Similar) - </b>
               ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
+              (94% Similar) - </b>
+              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
               </blockquote>
               <blockquote class="similar_posts">
               <a href="../articles/overwriting-mbr.html"><b>Overwriting MBR
@@ -248,11 +253,6 @@
               <a href="../articles/flare-on-5-wasm-with-chrome.html"><b>FLARE-On 5 wasm with Chrome
               (93% Similar) - </b>
               Most of the solutions for FLARE-On 5 web2point0 challenge involve the use of a framework to decompile WebAssembly. Chrome offers the ability to debug WebAssembly code which gives us the ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function
-              (92% Similar) - </b>
-              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
               </blockquote>
           </div>
       </div>
@@ -285,7 +285,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

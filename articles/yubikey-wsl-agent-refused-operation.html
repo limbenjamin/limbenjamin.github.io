@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -162,15 +162,15 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gp"># </span>confirm that gpg <span class="k">in</span> WSL can detect the yubikey 
-<span class="gp">$ </span>gpg --card-status
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="gp"># </span>confirm<span class="w"> </span>that<span class="w"> </span>gpg<span class="w"> </span><span class="k">in</span><span class="w"> </span>WSL<span class="w"> </span>can<span class="w"> </span>detect<span class="w"> </span>the<span class="w"> </span>yubikey<span class="w"> </span>
+<span class="gp">$ </span>gpg<span class="w"> </span>--card-status
 <span class="go">Reader ...........: Yubico YubiKey OTP FIDO CCID (0001234567) 00 00</span>
 <span class="go">Application type .: OpenPGP</span>
 <span class="go">Version ..........: 2.1</span>
 <span class="go">Manufacturer .....: Yubico</span>
 
-<span class="gp"># </span>confirm that the GPG key is present <span class="k">in</span> SSH agent as an identity
-<span class="gp">$ </span>ssh-add -L
+<span class="gp"># </span>confirm<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>GPG<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>present<span class="w"> </span><span class="k">in</span><span class="w"> </span>SSH<span class="w"> </span>agent<span class="w"> </span>as<span class="w"> </span>an<span class="w"> </span>identity
+<span class="gp">$ </span>ssh-add<span class="w"> </span>-L
 <span class="go">ssh-rsa AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
 <span class="go">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
 <span class="go">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
@@ -180,11 +180,11 @@
 <span class="go">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</span>
 <span class="go">cardno:000123456789</span>
 
-<span class="gp"># </span>get GPG to use current TTY <span class="k">for</span> pinentry
-<span class="gp">$ </span><span class="nb">export</span> <span class="nv">GPG_TTY</span><span class="o">=</span><span class="k">$(</span>tty<span class="k">)</span>
-<span class="gp">$ </span>gpg-connect-agent updatestartuptty /bye
+<span class="gp"># </span>get<span class="w"> </span>GPG<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>current<span class="w"> </span>TTY<span class="w"> </span><span class="k">for</span><span class="w"> </span>pinentry
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">GPG_TTY</span><span class="o">=</span><span class="k">$(</span>tty<span class="k">)</span>
+<span class="gp">$ </span>gpg-connect-agent<span class="w"> </span>updatestartuptty<span class="w"> </span>/bye
 <span class="go">OK</span>
-<span class="gp">$ </span>ssh user@192.168.0.1
+<span class="gp">$ </span>ssh<span class="w"> </span>user@192.168.0.1
 <span class="go">Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-107-generic x86_64)</span>
 </code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
@@ -196,24 +196,24 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
+              <a href="../articles/iptables-f.html"><b>iptables -F
+              (93% Similar) - </b>
+              This command should be removed or come with confirmation message before execution. Today, I wanted to to turn my blacklist into a whitelist. Reason being as I added new services, I don't always ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
               <a href="../articles/saturating-1gbps-bandwidth.html"><b>Saturating 1Gbps bandwidth
-              (95% Similar) - </b>
+              (93% Similar) - </b>
               My ISP recently gave me a free speed bump from 500Mbps to 1 Gbps. I wanted to test if it was possible to fully utilise the bandwidth on a single file transfer. Firstly, we need to look at the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443
-              (94% Similar) - </b>
-              A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
+              <a href="../articles/migrating-rsyslog-to-splunk.html"><b>Migrating rsyslog to Splunk
+              (92% Similar) - </b>
+              I recently decided to migrate my server cluster's logging mechanism from rsyslog to Splunk. My previous setup was to use rsyslog to centralise all logging onto /var/remotelog/ on a central ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware
-              (93% Similar) - </b>
-              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/deprecating-http-lessons-from-ssh-telnet.html"><b>Deprecating HTTP - Lessons from SSH/Telnet
-              (93% Similar) - </b>
-              Recently, both Firefox and Chrome has been coming down hard on HTTP websites. According to this article, HTTP will be labelled as "Not Secure". This is hardly the first step, HTTP only websites ...</a>
+              <a href="../articles/measuring-power-consumption.html"><b>Measuring Power Consumption
+              (91% Similar) - </b>
+              I have recently acquired an electricity usage meter off ebay and decided to measure the power consumption of some of my devices. For a device that costs just 15 SGD, it works wonderfully and can ...</a>
               </blockquote>
           </div>
       </div>
@@ -246,7 +246,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

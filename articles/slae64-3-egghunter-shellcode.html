@@ -115,8 +115,8 @@
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (118)</a> &#124; 
                 <a href="../tag/server.html" >Server (26)</a> &#124; 
-                <a href="../tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="../archives.html" >Archives (170)</a>
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (171)</a>
         </div>
     </div>
 
@@ -179,43 +179,43 @@
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
-<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">global</span><span class="w"> </span><span class="nv">_start</span><span class="w"></span>
-<span class="k">section</span><span class="w"> </span><span class="nv">.text</span><span class="w"></span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">global</span><span class="w"> </span><span class="nv">_start</span>
+<span class="k">section</span><span class="w"> </span><span class="nv">.text</span>
 
 <span class="nl">_start:</span><span class="w"> </span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rdx</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dh</span><span class="p">,</span><span class="w"> </span><span class="mh">0x10</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rdi</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span><span class="w"></span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdx</span><span class="p">,</span><span class="w"> </span><span class="nb">rdx</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">dh</span><span class="p">,</span><span class="w"> </span><span class="mh">0x10</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rdi</span><span class="p">,</span><span class="w"> </span><span class="nb">rdi</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rsi</span><span class="p">,</span><span class="w"> </span><span class="nb">rsi</span>
 
 
-<span class="nl">check_access:</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span><span class="w"></span>
+<span class="nl">check_access:</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rax</span><span class="p">,</span><span class="w"> </span><span class="nb">rax</span>
 <span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="mh">0x15</span><span class="w">           </span>
-<span class="w">    </span><span class="nf">syscall</span><span class="w">     </span><span class="c1">; access syscall</span><span class="w"></span>
+<span class="w">    </span><span class="nf">syscall</span><span class="w">     </span><span class="c1">; access syscall</span>
 <span class="w">    </span><span class="nf">cmp</span><span class="w"> </span><span class="nb">al</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">14</span><span class="w">         </span>
-<span class="w">    </span><span class="nf">jne</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">finding_egg</span><span class="w"></span>
-<span class="w">    </span><span class="nf">inc</span><span class="w"> </span><span class="nb">rdi</span><span class="w"></span>
-<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">check_access</span><span class="w"></span>
+<span class="w">    </span><span class="nf">jne</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">finding_egg</span>
+<span class="w">    </span><span class="nf">inc</span><span class="w"> </span><span class="nb">rdi</span>
+<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">check_access</span>
 
 
-<span class="nl">finding_egg:</span><span class="w"></span>
-<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rcx</span><span class="p">,</span><span class="w"> </span><span class="nb">rcx</span><span class="w"></span>
+<span class="nl">finding_egg:</span>
+<span class="w">    </span><span class="nf">xor</span><span class="w"> </span><span class="nb">rcx</span><span class="p">,</span><span class="w"> </span><span class="nb">rcx</span>
 <span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">cl</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4</span><span class="w">    </span>
-<span class="w">    </span><span class="nf">shl</span><span class="w"> </span><span class="nb">rcx</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w">      </span><span class="c1">; find egg within page with access</span><span class="w"></span>
-<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">eax</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5090508f</span><span class="w"></span>
-<span class="w">    </span><span class="nf">inc</span><span class="w"> </span><span class="nb">eax</span><span class="c1">;        ; egghunter signature itself is never present in memory</span><span class="w"></span>
-<span class="w">    </span><span class="nf">repne</span><span class="w"> </span><span class="nv">scasd</span><span class="w"></span>
-<span class="w">    </span><span class="nf">jne</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">check_access</span><span class="w"> </span><span class="c1">; not found within this page, going back to check access</span><span class="w"></span>
+<span class="w">    </span><span class="nf">shl</span><span class="w"> </span><span class="nb">rcx</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w">      </span><span class="c1">; find egg within page with access</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="nb">eax</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5090508f</span>
+<span class="w">    </span><span class="nf">inc</span><span class="w"> </span><span class="nb">eax</span><span class="c1">;        ; egghunter signature itself is never present in memory</span>
+<span class="w">    </span><span class="nf">repne</span><span class="w"> </span><span class="nv">scasd</span>
+<span class="w">    </span><span class="nf">jne</span><span class="w"> </span><span class="nv">short</span><span class="w"> </span><span class="nv">check_access</span><span class="w"> </span><span class="c1">; not found within this page, going back to check access</span>
 
 
-<span class="nl">found:</span><span class="w"></span>
-<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nb">rdi</span><span class="w"></span>
+<span class="nl">found:</span>
+<span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="nb">rdi</span>
 
 
-<span class="k">section</span><span class="w"> </span><span class="nv">.data</span><span class="w"></span>
-<span class="w">    </span><span class="nl">_padding:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="w"> </span><span class="c1">; padding to align egg to 4 byte boundary</span><span class="w"></span>
-<span class="w">    </span><span class="nl">_egg:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x31</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc9</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf7</span><span class="p">,</span><span class="w"> </span><span class="mh">0xe1</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5f</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x83</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x08</span><span class="p">,</span><span class="w"> </span><span class="mh">0x68</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4b</span><span class="p">,</span><span class="w"> </span><span class="mh">0x20</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0a</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x89</span><span class="p">,</span><span class="w"> </span><span class="mh">0xe6</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x05</span><span class="p">,</span><span class="w"> </span><span class="mh">0x6a</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3c</span><span class="p">,</span><span class="w"> </span><span class="mh">0x58</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x05</span><span class="w"></span>
+<span class="k">section</span><span class="w"> </span><span class="nv">.data</span>
+<span class="w">    </span><span class="nl">_padding:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="w"> </span><span class="c1">; padding to align egg to 4 byte boundary</span>
+<span class="w">    </span><span class="nl">_egg:</span><span class="w"> </span><span class="kd">db</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x31</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc9</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf7</span><span class="p">,</span><span class="w"> </span><span class="mh">0xe1</span><span class="p">,</span><span class="w"> </span><span class="mh">0x50</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5f</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x83</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc2</span><span class="p">,</span><span class="w"> </span><span class="mh">0x08</span><span class="p">,</span><span class="w"> </span><span class="mh">0x68</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4b</span><span class="p">,</span><span class="w"> </span><span class="mh">0x20</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0a</span><span class="p">,</span><span class="w"> </span><span class="mh">0x48</span><span class="p">,</span><span class="w"> </span><span class="mh">0x89</span><span class="p">,</span><span class="w"> </span><span class="mh">0xe6</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x05</span><span class="p">,</span><span class="w"> </span><span class="mh">0x6a</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3c</span><span class="p">,</span><span class="w"> </span><span class="mh">0x58</span><span class="p">,</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">,</span><span class="w"> </span><span class="mh">0x05</span>
 </code></pre></div></td></tr></table></div>
 
 <p>This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:</p>
@@ -279,7 +279,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jan 14 09:45:02 2023<br />
+                    Page generated on Sun Feb  5 22:12:54 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
