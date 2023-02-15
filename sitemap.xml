@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2023-02-05T22:13:01-00:00</lastmod>
+<lastmod>2023-02-15T10:29:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2023-02-05T22:13:01-00:00</lastmod>
+<lastmod>2023-02-15T10:29:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2023-02-05T22:13:01-00:00</lastmod>
+<lastmod>2023-02-15T10:29:11-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -64,6 +64,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2017-06-04T14:51:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/articles/total-defense-and-falsehoods.html</loc>
+<lastmod>2023-02-15T09:17:00+08:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -1265,7 +1272,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/tag/untagged.html</loc>
-<lastmod>2023-02-05T17:29:00+06:55</lastmod>
+<lastmod>2023-02-15T09:17:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
