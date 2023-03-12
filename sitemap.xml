@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2023-02-16T15:33:10-00:00</lastmod>
+<lastmod>2023-03-12T19:13:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2023-02-16T15:33:10-00:00</lastmod>
+<lastmod>2023-03-12T19:13:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2023-02-16T15:33:10-00:00</lastmod>
+<lastmod>2023-03-12T19:13:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -48,6 +48,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://limbenjamin.com/pages/projects.html</loc>
 <lastmod>2020-03-07T10:46:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/pages/reading-list.html</loc>
+<lastmod>2023-03-12T18:56:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>

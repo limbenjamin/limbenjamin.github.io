@@ -62,7 +62,6 @@ body {
   word-wrap: break-word;
   font-family: 'Open Sans', serif;
   line-height: 1.789;
-  font-size: 1.9em;
 }
 
 a {
@@ -332,7 +331,7 @@ article.post:first-child .post-inner-content {
 .entry-title-single-page {
   font-weight: 400;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6em;
+  font-size: 1.8em;
   margin-bottom: 1.3em;
 }
 article.post .post-categories, .post-inner-content .cat-item {
@@ -424,6 +423,7 @@ article.grid iframe {
   font-family: 'Montserrat', sans-serif;
   margin-top: 10px;
   letter-spacing: 1px;
+  font-size: 1.2em;
 }
 
 button, html input[type=button],
@@ -456,13 +456,11 @@ input[type=submit]:hover,
 .nav>li>a {
   text-transform: uppercase;
 }
-.navbar.navbar-default {
+.navbar {
   background-color: #ffffff;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 0;
   font-weight: 400;
   min-height: auto;
-  padding: 0;
   border-bottom: 1px solid #dedede;
 }
 .navbar-default .navbar-nav > li > a {
@@ -771,6 +769,10 @@ letter-spacing: 1px;
   width: 100%;
 }
 
+.entry-content p {
+  font-size: 1.2em;
+}
+
 .entry-content code {
   color: #0e94ec;
 }
@@ -1064,6 +1066,12 @@ pre code{
   white-space: inherit;
 }
 
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
 .oval{
   background: linear-gradient(90deg, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2, #f0a4c8, #e9cdc8, #a1ded2);
   background-size: 300% 300%;
@@ -1072,8 +1080,6 @@ pre code{
   width: 50px;
   border-radius: 80px / 50px;
   display: inline-block;
-  margin-left: -1.5em;
-  margin-bottom: 0.5em;
 }
 
 .merlion{
