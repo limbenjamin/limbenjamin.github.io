@@ -1,1 +1,0 @@
-queryly.init('a7dbcffb18bb41eb',queryly.jquery('.navbar-toggle-search'));

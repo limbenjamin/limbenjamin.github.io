@@ -1,1 +1,0 @@
-define(["managers/edition"],function(e){return{en:{error:"Recaptcha verification failed. Please refresh the page and try again.",noBlank:"Message cannot be blank",tryAgain:"There was an error while sending your request. Please try again.",emailSent:"Your email has been sent."}}[e.getLanguage()]});
