@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin,...">
+  <meta name="description" content="Earlier this week, there was an interesting altercation in Katong. According to the Straits Times, the cyclist jumped onto the bonnet of the car which...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -25,20 +25,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Security">
+<meta name="keywords" content="limbenjamin, Untagged">
 
-<meta property="og:title" content="D-Link router's ping function">
+<meta property="og:title" content="Katong Cyclist vs Car - Tort">
 <meta property="og:type" content="website">
 <meta property="og:image" content="http:///media/code.png"/>
 <meta property="og:image:secure_url" content="https:///media/code.png"/>
 <meta property="og:site_name" content="https://">
-<meta property="og:description" content="D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic functionality. The ping function only displays success or failure and not the entire raw output of the command. Hence, on first …">
-<meta property="og:url" content="https:///articles/dlink-routers-ping-function.html">
+<meta property="og:description" content="Earlier this week, there was an interesting altercation in Katong. According to the Straits Times, the cyclist jumped onto the bonnet of the car which was then seen moving while the cyclist clung on. Both women have been arrested, I will refrain from commenting further on the criminal aspect since …">
+<meta property="og:url" content="https:///articles/katong-cyclist-car-tort.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>D-Link router&#39;s ping function</title>
+  <title>Katong Cyclist vs Car - Tort</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
@@ -125,93 +125,21 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2018-07-22 18:26:00+08:00">Jul 22, 2018</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/dlink-routers-ping-function.html">D-Link router's ping function</a></h1>
+        <span class="cat-item"><time datetime="2023-06-10 13:59:00+08:00">Jun 10, 2023</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/katong-cyclist-car-tort.html">Katong Cyclist vs Car - Tort</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic functionality. The ping function only displays success or failure and not the entire raw output of the command. Hence, on first look, it appears to be more secure. </p>
-<p>The first step involves downloading the router firmware from D-Link's website and using binwalk to unpack the firmware. binwalk detected a squashfs file system, which is what we are looking for. sqaushfs is a read only file system, perfect for embedded devices since we do not store files on routers. After searching through the filesystem, I found the page responsible for the ping function located at <code>/www/tools_vct.asp</code>. The pertinent code in the file is as follows.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">check_ip</span><span class="p">(){</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">get_by_id</span><span class="p">(</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="p">).</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">){</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">tsc_pingt_msg2</span><span class="p">);</span>
-<span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-<span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-
-<span class="p">}</span>
-<span class="p">...</span>
-<span class="o">&lt;</span><span class="nx">form</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;form5&quot;</span><span class="w"> </span><span class="nx">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="w"> </span><span class="nx">action</span><span class="o">=</span><span class="s2">&quot;ping_response.cgi&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_page&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;html_response_return_page&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;tools_vct.asp&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">align</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="o">&gt;&lt;</span><span class="nx">strong</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">show_words</span><span class="p">(</span><span class="nx">tsc_pingt_h</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">:&amp;</span><span class="nx">nbsp</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/strong&gt;&lt;/div&gt;&lt;/td&gt;</span>
-<span class="o">&lt;</span><span class="nx">td</span><span class="w"> </span><span class="nx">height</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="w"> </span><span class="nx">valign</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="o">&gt;&amp;</span><span class="nx">nbsp</span><span class="p">;</span>
-<span class="o">&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;ping_ipaddr&quot;</span><span class="w"> </span><span class="nx">size</span><span class="o">=</span><span class="mf">30</span><span class="w"> </span><span class="nx">maxlength</span><span class="o">=</span><span class="mf">63</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;% CmoGetStatus(&quot;</span><span class="nx">ping_ipaddr</span><span class="s2">&quot;); %&gt;&quot;</span><span class="w"> </span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;input name=&quot;ping&quot; id=&quot;ping&quot; type=&quot;submit&quot; value=&quot;&#39;</span><span class="o">+</span><span class="nx">_ping</span><span class="o">+</span><span class="s1">&#39;&quot; onClick=&quot;return check_ip()&quot;&gt;&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;&lt;/td&gt;</span>
-<span class="o">&lt;</span><span class="err">/tr&gt; &lt;/form&gt;</span>
-</code></pre></div></td></tr></table></div>
-
-<p>Despite what the code suggests, I could not find <code>ping_response.cgi</code>. In fact, there were no CGI files found on anywhere on the file system. I began to suspect that D-Link designed their router firmware in a similar way as ASUS. A quick strings of the <code>/sbin/httpd</code> binary confirmed my suspicions, as a number of cgi filnames were found in the binary. The other function of interest is <code>CmoGetStatus("ping_ipaddr")</code>. I managed to find the corresponding function of the same name in the binary, it called the <code>get_ping_app_stat</code> function which performed the actual pinging.</p>
-<p><img alt="image" src="//limbenjamin.com/media/dlinkping.png"></p>
-<p>This time, the actual command used is <code>"ping -c 1 \"%s\" &gt; /var/misc/ping_app.txt"</code>. It seems remarkably similar in design to the ASUS router. Both used system commands and piped the output to a file. For D-Link's case, since the output is not displayed, the best we can achieve is blind command execution. Unfortunately, the router does not support telnet/ssh and there was no wget/curl/nc binary present. Hence, one possible way I could think of to verify success of command execution is to issue the reboot command. I tried the following without any success.</p>
-<ul>
-<li>192.168.1.1#;/sbin/reboot</li>
-<li>192.168.1.1#";/sbin/reboot"</li>
-<li>192.168.1.1#\";/sbin/reboot\"</li>
-</ul>
+        <p>Earlier this week, there was an interesting <a href="https://www.straitstimes.com/singapore/two-arrested-after-cyclist-jumps-onto-moving-car-s-bonnet-in-katong">altercation</a> in Katong. According to the Straits Times, the cyclist jumped onto the bonnet of the car which was then seen moving while the cyclist clung on. Both women have been arrested, I will refrain from commenting further on the criminal aspect since it is sub judice. However is there a possibility of civil action that the cyclist can take against the driver?  </p>
+<p>It is unclear from both the videos and news article whether the cyclist suffered any physical injury. Furthermore, physical injury may only be revealed after a detailed medical exam. Nonetheless, psychiatric harm or nervous shock is claimable under tort especially since the cyclist is the primary victim who went through the traumatic event herself.  </p>
+<p>This falls under the tort of negligence. A driver owes a duty of care to other road users. The cyclist can argue that it was reasonably foreseeable that the cyclist will suffer physical and psychiatric harm directly as a result of her driving off with the cyclist on the bonnet. At first glance, it would seem like the cyclist does indeed have a cause of action.  </p>
+<p>What defence does the driver have against such a claim? The first would be the defence of contributory negligence. The driver can argue that by jumping onto the bonnet, the cyclist did not take reasonable care of her own safety and should bear some responsibility for her own injuries. However, the cyclist can also counter that argument by claiming that she could not have reasonably foreseen that the driver would actually drive off with her on the bonnet. It is also important to note here that according the the Straits Times article, the cyclist jumped onto the bonnet before the driver drove off. If the driver drove off and the cyclist jumped on to prevent being run over, then the courts would likely not find any contributory negligence due to it being an emergency situation as happened in Jones vs Boyce (1816).  </p>
+<p>The second possible defence that the driver has is that of Ex turpi causa non oritur actio. The driver can claim that the cyclist has engaged in illegal activity which resulted in the injuries sustained, and that the courts should not assist the cyclist as it would be against public policy. We do not want to encourage opportunistic members of public to start obstructing traffic all over the island and provoke drivers into performing a rash act, it would render our roads useless. This argument does have some merit as well.  </p>
+<p>An interesting case indeed. </p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function
-              (98% Similar) - </b>
-              ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/drupal-redirect-malware.html"><b>Drupal Redirect Malware
-              (94% Similar) - </b>
-              Just encountered a rather interesting redirection malware. The first sign that something was wrong was that the search engine results on Google had spammy metadata. This may not be an actual ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/singtels-5012nv-002-vulnerability.html"><b>Singtel's 5012NV-002 vulnerability
-              (91% Similar) - </b>
-              Type: Open port Affects: Singtel's firmware on 2wire 5012NV-002 Version: (HW version: 2701-000808-004, SW version: 9.3.1.29) (Unable to ascertain if other versions are affected as I do not have ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand
-              (90% Similar) - </b>
-              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
-              </blockquote>
-          </div>
-      </div>
+          <a href="../tag/untagged.html">Untagged</a>      </div>
       <br />
     </div>
   </div>
