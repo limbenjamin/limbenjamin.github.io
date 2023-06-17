@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in...">
+  <meta name="description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -25,20 +25,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Untagged">
+<meta name="keywords" content="limbenjamin, Server">
 
-<meta property="og:title" content="Total Defense and Falsehoods">
+<meta property="og:title" content="Barracuda ESG Replacement">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/london_confidence_singapore_defense.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/london_confidence_singapore_defense.png"/>
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An …">
-<meta property="og:url" content="https://limbenjamin.com/articles/total-defense-and-falsehoods.html">
+<meta property="og:description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant (https://www.mandiant.com/resources/blog/barracuda-esg-exploited-globally), it starts to make sense why Mandiant would recommended a complete replacement of all existing devices. It appears that upon detection, the attackers managed to quickly deploy …">
+<meta property="og:url" content="https://limbenjamin.com/articles/barracuda-esg-replacement.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Total Defense and Falsehoods</title>
+  <title>Barracuda ESG Replacement</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
@@ -125,64 +125,54 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2023-02-15 09:17:00+08:00">Feb 15, 2023</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/total-defense-and-falsehoods.html">Total Defense and Falsehoods</a></h1>
+        <span class="cat-item"><time datetime="2023-06-17 09:49:00+08:00">Jun 17, 2023</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/barracuda-esg-replacement.html">Barracuda ESG Replacement</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>As we commemorate Total Defense day, it is poignant to note the link to what is potentially some of the worst falsehoods to be perpetuated in Singapore, contributing in part to the death of thousands of people. The impact is probably greater any recorded use of POFMA to date. An excerpt of the copyrighted article from The Straits Times, 26 January 1942, Page 4 has been reproduced for the purpose of study and research.</p>
-<p><img alt="image" src="//limbenjamin.com/media/london_confidence_singapore_defense.png"></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>7.—(1)  A person must not do any act in or outside Singapore in order to communicate in Singapore a statement knowing or having reason to believe that —
-(a) it is a false statement of fact; and
-(b) the communication of the statement in Singapore is likely to —
-    (i)     be prejudicial to the security of Singapore or any part of Singapore;
-    (ii)    be prejudicial to public health, public safety, public tranquillity or public finances;
-    (iii)   be prejudicial to the friendly relations of Singapore with other countries;
-    (iv)    influence the outcome of an election to the office of President, a general election of Members of Parliament, a by‑election of a Member of Parliament, or a referendum;
-    (v)     incite feelings of enmity, hatred or ill‑will between different groups of persons; or
-    (vi)    diminish public confidence in the performance of any duty or function of, or in the exercise of any power by, the Government, an Organ of State, a statutory board, or a part of the Government, an Organ of State or a statutory board.
+        <p>As more details of the Barracuda ESG 0 day compromise emerge from both <a href="https://www.barracuda.com/company/legal/esg-vulnerability">Barracuda</a> and Mandiant (https://www.mandiant.com/resources/blog/barracuda-esg-exploited-globally), it starts to make sense why Mandiant would recommended a complete replacement of all existing devices.  </p>
+<p>It appears that upon detection, the attackers managed to quickly deploy SANDBAR, which is a kernel rootkit to hide processes with certain names. This demonstrates the capability of the attacker and with slightly more time, they will definitely be able to enhance the rootkit to not only hide traces of their activity but also make it seem that the appliance has been patched to an unaffected version. Hence, the only surefire way is to physically replace all devices.  </p>
+<p>These are some possible enhancements that the attackers could possibly do to make the appliance look like it has been patched.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>    # attacker will likely simulate traffic, extract/run the required files for masquerading and just update the version number
+    function perform_update(new_version_num)
+        curl https://vendor.com/product?ver=new_version_num &gt; /hidden_dir/updated_img
+        unsquashfs(&quot;/hidden_dir/updated_img&quot;); cp update_daemon /hidden_dir/update_daemon_ori;
+        /hidden_dir/update_daemon_ori; cat /proc/{pid}/mem &gt; /hidden_dir/update_daemon_memdump; kill -9 {pid}
+        sleep(30)
+        set_version_num(new_version_num)
+        return &quot;Update completed&quot;
+
+    # if forensics were to take a hash/copy the update daemon file, return the contents of the original clean file
+    # if forensics were to dump the memory of the running update daemon process, return a pre-dumped copy
+    # everything in linux is a file :)
+    function open(pathname)
+        if pathname == &quot;/bin/update_daemon&quot;:
+            pathname = &quot;/hidden_dir/update_daemon_ori&quot;
+        if pathname == &quot;/proc/{pid}/mem&quot;:
+            pathname = &quot;/hidden_dir/update_daemon_memdump&quot;
 </code></pre></div></td></tr></table></div>
 
-<p>Obviously, POFMA was passed decades after WWII and the law doesn't apply retroactively. However, let's look at how such an article would fare under POFMA as an exercise. </p>
-<p>There are 2 tests to POFMA. Firstly, it must be a false statement of fact. One might argue that the article above is an opinion and not a statement of fact. That is debatable. Even then, articles inspiring confidence in the defense of Singapore ran for days in multiple publications. With sufficient research, an article which skewed more towards fact than opinion will likely be found.</p>
-<p>When looking at the second test, even though it is not explicitly stated, it is obvious that each of the 6 limbs are to be read disjunctively. That is to say, as long as either one of the limbs is satisfied, the second test is deemed to be satisfied. The article above can be argued to satisfy 7 (b) (ii), in that the contents inspired a false sense of confidence in the government's ability, leading readers to make a wrong decision to remain in Singapore instead of evacuating, hence jeopardizing the health and safety of the public, some of whom eventually perished during the occupation.</p>
+<p>Once a device has been compromised to such a level, we will not be able to trust the output from any tools running on that system. We will need to do chip-off forensics; desolder the NAND flash chip, mount it onto a reader and read directly from the flash chip. This is a very intrusive process and may not work if there is disk encryption. It would thus make sense to recommend a complete replacement of all existing devices.</p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/untagged.html">Untagged</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/singapore-gazette-search.html"><b>Singapore Gazette Search
-              (98% Similar) - </b>
-              Update (9 Jan 2020) The government has announced the decision to make all publications in the Gazette freely available to the public. Kudos to the government for doing so! As such, there is no ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/first-cyberinsurance-claim.html"><b>First Cyberinsurance claim?
-              (97% Similar) - </b>
-              I first came across the term cyberinsurance earlier this year while attending an information session in DC. At that point, it was suggested that there needs to be a benchmark that takes into ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/private-tlds.html"><b>private TLDs
-              (96% Similar) - </b>
-              Well, this is pretty old news but here are my views on ICANN allowing organisations to buy out an entire TLD. For those not in the loop, basically, in addition to .com, .net, .org and others, ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/global-talent-search.html"><b>Global Talent Search
-              (94% Similar) - </b>
-              People are up in arms over the fact that some technical sourcer from Meta is paid $100k per annum. How are technical sourcers different from your run-of-the-mill HR personnel? A technical sourcer ...</a>
-              </blockquote>
-          </div>
-      </div>
+          <a href="../tag/server.html">Server</a>      </div>
       <br />
     </div>
   </div>
