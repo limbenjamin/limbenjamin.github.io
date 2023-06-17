@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant...">
+  <meta name="description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant, it starts to make sense why Mandiant would recommended...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
 <meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant (https://www.mandiant.com/resources/blog/barracuda-esg-exploited-globally), it starts to make sense why Mandiant would recommended a complete replacement of all existing devices. It appears that upon detection, the attackers managed to quickly deploy …">
+<meta property="og:description" content="As more details of the Barracuda ESG 0 day compromise emerge from both Barracuda and Mandiant, it starts to make sense why Mandiant would recommended a complete replacement of all existing devices. It appears that upon detection, the attackers managed to quickly deploy SANDBAR, which is a kernel rootkit to …">
 <meta property="og:url" content="https://limbenjamin.com/articles/barracuda-esg-replacement.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
@@ -129,7 +129,7 @@
         <h1 class="entry-title-single-page"><a href="../articles/barracuda-esg-replacement.html">Barracuda ESG Replacement</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>As more details of the Barracuda ESG 0 day compromise emerge from both <a href="https://www.barracuda.com/company/legal/esg-vulnerability">Barracuda</a> and Mandiant (https://www.mandiant.com/resources/blog/barracuda-esg-exploited-globally), it starts to make sense why Mandiant would recommended a complete replacement of all existing devices.  </p>
+        <p>As more details of the Barracuda ESG 0 day compromise emerge from both <a href="https://www.barracuda.com/company/legal/esg-vulnerability">Barracuda</a> and <a href="https://www.mandiant.com/resources/blog/barracuda-esg-exploited-globally">Mandiant</a>, it starts to make sense why Mandiant would recommended a complete replacement of all existing devices.  </p>
 <p>It appears that upon detection, the attackers managed to quickly deploy SANDBAR, which is a kernel rootkit to hide processes with certain names. This demonstrates the capability of the attacker and with slightly more time, they will definitely be able to enhance the rootkit to not only hide traces of their activity but also make it seem that the appliance has been patched to an unaffected version. Hence, the only surefire way is to physically replace all devices.  </p>
 <p>These are some possible enhancements that the attackers could possibly do to make the appliance look like it has been patched.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
@@ -151,7 +151,7 @@
 <span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>    # attacker will likely simulate traffic, extract/run the required files for masquerading and just update the version number
     function perform_update(new_version_num)
         curl https://vendor.com/product?ver=new_version_num &gt; /hidden_dir/updated_img
-        unsquashfs(&quot;/hidden_dir/updated_img&quot;); cp update_daemon /hidden_dir/update_daemon_ori;
+        unsquashfs(&quot;/hidden_dir/updated_img&quot;); cp update_daemon /hidden_dir/update_daemon_ori
         /hidden_dir/update_daemon_ori; cat /proc/{pid}/mem &gt; /hidden_dir/update_daemon_memdump; kill -9 {pid}
         sleep(30)
         set_version_num(new_version_num)
@@ -202,7 +202,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Jun 17 11:14:07 2023<br />
+                    Page generated on Sat Jun 17 11:20:11 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
