@@ -133,7 +133,7 @@
 <ol>
 <li>Although the official specifications mentioned 4GB RAM maximum, the device works when a single 8GB DDR3L RAM stick is inserted and can detect all 8 GB. Also, there is only 1 RAM slot.</li>
 <li>There's not much information on the AMD G-T48E processor. It is an APU with a Radeon HD 6250 graphic chip. You are able to choose how much RAM (384MB - 2GB) to allocate to the graphic chip in the BIOS. With 6GB RAM allocated to the CPU, it is able to run Home Assistant in a docker container as well as Pi-hole on the main OS. </li>
-<li>The <a href="radeon driver">https://manpages.ubuntu.com/manpages/trusty/man4/radeon.4.html</a> that comes with Ubuntu 22.04 supports the graphics card. It is the easiest option if you don't want to compile your own driver. The drivers on the manufacturer's page only work on outdated OS versions.  </li>
+<li>The <a href="https://manpages.ubuntu.com/manpages/trusty/man4/radeon.4.html">radeon driver</a> that comes with Ubuntu 22.04 supports the graphics card. It is the easiest option if you don't want to compile your own driver. The drivers on the manufacturer's page only work on outdated OS versions.  </li>
 <li>The Radeon HD 6250 graphic chip only supports hardware decoding for h264 codec. It does not support AV1/h265/VP9 codecs. I had initially wanted to use it as a media PC as well but abandoned the idea due to lack of modern codec support. With 2GB RAM allocated, it can playback 1080p h264 videos smoothly through hardware decoding. However, without hardware decoding, the CPU can only playback 480p VP9 videos. Attempts at higher resolution videos resulted in stuttering.</li>
 <li>There is enough space to fit a 2.5" inch SSD in place of the SATA DOM and still close the case fully. After opening up my Crucial MX500 SSD, I realised that the board inside is too large to fit the SATA DOM slot. Hence I got a 10cm 7+15 Pin SATA extension cable. 10cm is just the right length. Any longer and there may be too much slack to fit into the case. </li>
 </ol>
@@ -173,7 +173,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Jul  2 17:18:18 2023<br />
+                    Page generated on Sun Jul  2 17:28:01 2023<br />
                     &copy; 2012-2023 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
