@@ -779,6 +779,7 @@ letter-spacing: 1px;
   border: 1px solid #c7c7c7;
   border-collapse: collapse;
   margin-bottom: 1em;
+  font-size: 0.8em;
 }
 .entry-content table.highlighttable pre {
   border: none;
