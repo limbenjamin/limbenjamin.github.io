@@ -1,37 +1,5 @@
 /* latin */
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(./OpenSans.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(./OpenSans-Bold.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(./OpenSans-Italic.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(./OpenSans-BoldItalic.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
@@ -54,14 +22,29 @@
   src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url(./Montserrat-SemiBold.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./IM_FELL_English_DBL_FIX.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'IM Fell English SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./IM_FELL_English_SC_DBLQ_FIX.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 
 body {
   color: #000;
   background-color: #FFFFFF;
   word-wrap: break-word;
-  font-family: 'Open Sans', serif;
-  line-height: 1.789;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.2em;
 }
 
 a {
@@ -324,13 +307,13 @@ article.post:first-child .post-inner-content {
 }
 .entry-title {
   font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'IM Fell English SC', sans-serif;
   margin-top: 10px;
   margin-bottom: 15px;
 }
 .entry-title-single-page {
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'IM Fell English SC', sans-serif;
   font-size: 1.8em;
   margin-bottom: 1.3em;
 }
@@ -420,10 +403,10 @@ article.grid iframe {
 }
 .tagline {
   color: #1c202a;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'IM Fell English SC', sans-serif;
   margin-top: 10px;
-  letter-spacing: 1px;
-  font-size: 1.2em;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
 button, html input[type=button],
@@ -458,7 +441,7 @@ input[type=submit]:hover,
 }
 .navbar {
   background-color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'IM Fell English SC', sans-serif;
   font-weight: 400;
   min-height: auto;
   border-bottom: 1px solid #dedede;
