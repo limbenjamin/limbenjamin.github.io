@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-07-02T16:35:00+08:00</updated><entry><title>Upgrading Wyse 5010</title><link href="https://limbenjamin.com/articles/upgrading-wyse-5010.html" rel="alternate"></link><published>2023-07-02T16:35:00+08:00</published><updated>2023-07-02T16:35:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-07-02:/articles/upgrading-wyse-5010.html</id><summary type="html">&lt;p&gt;I've recently procured a used Wyse 5010 thin client for $15. While some information on this device is already out there, I've discovered quite a bit during the upgrading process which I would like to share here.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2023-08-09T11:46:00+08:00</updated><entry><title>Acorn Fan: Home Automation</title><link href="https://limbenjamin.com/articles/acorn-fan-home-automation.html" rel="alternate"></link><published>2023-08-09T11:46:00+08:00</published><updated>2023-08-09T11:46:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-08-09:/articles/acorn-fan-home-automation.html</id><summary type="html">&lt;p&gt;&lt;a href="https://acornceilingfan.com/"&gt;Acorn&lt;/a&gt; is a company in Singapore that sells ceiling fans. Some of the models have a remote control for convenience. However, they are not smart fans and you will not be able to control them using your home automation solution out of the box. However, if you have the remote …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://acornceilingfan.com/"&gt;Acorn&lt;/a&gt; is a company in Singapore that sells ceiling fans. Some of the models have a remote control for convenience. However, they are not smart fans and you will not be able to control them using your home automation solution out of the box. However, if you have the remote pictured below, then there may be a way to "convert" it into a smart fan very cheaply.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/acorn-fan.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Remote controlled fans such as these usually use RF as a means of communication. They can either use the 315Mhz or 433Mhz frequency. Through trial and error, I discovered that my fan uses 433Mhz. These fans usually use a simple static code so it would be possible to sniff and replay and same static code if you have a 433Mhz transceiver.  &lt;/p&gt;
+&lt;p&gt;The transceiver I got is this cheap &lt;a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.4d9c2e8dQuQu71&amp;amp;id=530515308004&amp;amp;_u=91orheug9837"&gt;$5 YS-UTR2 transceiver&lt;/a&gt;. As with all products from China, the documentation is extremely poor, the software is hosted on Baidu Pan which requires a China mobile number to sign up for. So it's time for some research and reverse engineering. There are &lt;a href="https://www.cnx-software.com/2017/05/23/this-8-usb-transceiver-can-add-433-mhz-device-support-to-your-home-automation-gateway/"&gt;people&lt;/a&gt; who have succeeded in the past, and after a bit of reading and through trial and error, I managed to get it to work.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# The brltty service uses the same CH340 chip. Linux will autoload the brltty driver so we must disable it
+sudo systemctl stop brltty.service
+sudo systemctl disable brltty.service
+sudo systemctl mask brltty-udev.service
+
+# Sniff the RF signal for each individual buttons
+# Connect to the device and log the binary output to file.
+screen -S mySession -L -Logfile off_button_log /dev/ttyUSB0 9600, cs8
+
+# When you press the button on the original remote, you should get binary data from the ttyUSB0 port.
+# The same code might be transmitted multiple times. 
+xxd off_button_log
+00000000: fd01 2345 6789 dffd 0123 4567 89df fd01
+00000010: 2345 6789 df
+
+# After removing the repeats, we get the following code.
+fd01 2345 6789 df
+
+# As shown in the taobao video, we will need to replace the preamble &amp;#39;fd&amp;#39; and the postamble &amp;#39;df&amp;#39; with &amp;#39;99&amp;#39;
+# We just need to send the binary data to ttyUSB0 port.
+echo -ne &amp;quot;\x99\x01\x23\x45\x67\x89\x99&amp;quot; &amp;gt; /dev/ttyUSB0
+
+# If you are using home assistant, you can save the command in a shell script and execute it over SSH.
+command_line:
+  - switch:
+      name: Fan
+      command_on: ssh -i /config/id_rsa -o &amp;#39;StrictHostKeyChecking=no&amp;#39; hauser@172.1.0.1 &amp;#39;/home/hauser/fan_control/fan_med.sh&amp;#39;
+      command_off: ssh -i /config/id_rsa -o &amp;#39;StrictHostKeyChecking=no&amp;#39; hauser@172.1.0.1 &amp;#39;/home/hauser/fan_control/fan_off.sh&amp;#39;
+  - switch:
+      name: Light
+      command_on: ssh -i /config/id_rsa -o &amp;#39;StrictHostKeyChecking=no&amp;#39; hauser@172.1.0.1 &amp;#39;/home/hauser/fan_control/light_on.sh&amp;#39;
+      command_off: ssh -i /config/id_rsa -o &amp;#39;StrictHostKeyChecking=no&amp;#39; hauser@172.1.0.1 &amp;#39;/home/hauser/fan_control/light_off.sh&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</content><category term="articles"></category><category term="Server"></category></entry><entry><title>Upgrading Wyse 5010</title><link href="https://limbenjamin.com/articles/upgrading-wyse-5010.html" rel="alternate"></link><published>2023-07-02T16:35:00+08:00</published><updated>2023-07-02T16:35:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2023-07-02:/articles/upgrading-wyse-5010.html</id><summary type="html">&lt;p&gt;I've recently procured a used Wyse 5010 thin client for $15. While some information on this device is already out there, I've discovered quite a bit during the upgrading process which I would like to share here.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although the official specifications mentioned 4GB RAM maximum, the device works when a …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;I've recently procured a used Wyse 5010 thin client for $15. While some information on this device is already out there, I've discovered quite a bit during the upgrading process which I would like to share here.&lt;/p&gt;
 &lt;ol&gt;

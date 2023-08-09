@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an...">
+  <meta name="description" content="Acorn is a company in Singapore that sells ceiling fans. Some of the models have a remote control for convenience. However, they are not smart fans...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -25,20 +25,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Security">
+<meta name="keywords" content="limbenjamin, Server">
 
-<meta property="og:title" content="Windows Trust Boundaries">
+<meta property="og:title" content="Acorn Fan: Home Automation">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
+<meta property="og:image" content="http://limbenjamin.com/media/acorn-fan.jpg"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/acorn-fan.jpg"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an application developer, understanding these boundaries will help you develop more secure applications. I have never found this information consolidated anywhere, hence this blogpost. th, td{ padding: 0.5em; } High …">
-<meta property="og:url" content="https://limbenjamin.com/articles/windows-trust-boundaries.html">
+<meta property="og:description" content="Acorn is a company in Singapore that sells ceiling fans. Some of the models have a remote control for convenience. However, they are not smart fans and you will not be able to control them using your home automation solution out of the box. However, if you have the remote …">
+<meta property="og:url" content="https://limbenjamin.com/articles/acorn-fan-home-automation.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Windows Trust Boundaries</title>
+  <title>Acorn Fan: Home Automation</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
@@ -125,81 +125,83 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2021-04-27 21:11:00+08:00">Apr 27, 2021</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/windows-trust-boundaries.html">Windows Trust Boundaries</a></h1>
+        <span class="cat-item"><time datetime="2023-08-09 11:46:00+08:00">Aug 09, 2023</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/acorn-fan-home-automation.html">Acorn Fan: Home Automation</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an application developer, understanding these boundaries will help you develop more secure applications. I have never found this information consolidated anywhere, hence this blogpost.</p>
-<style>
-th, td{
-    padding: 0.5em;
-}
-</style>
-<table class="table" width="100%">
-<thead>
-    <tr>
-        <th></th>
-        <th>High Integrity (Admin)</th>
-        <th>Medium Integrity (User)</th>
-        <th>Low Integrity (Sandboxed)</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>File System</td>
-        <td>Program Files Directory<br />C:\Windows Directory</td>
-        <td>ProgramData Directory</td>
-        <td>AppData\Low Directory<br />Temp Internet Files Directory</td>
-    </tr>
-    <tr>
-        <td>Registry</td>
-        <td>HKLM hive</td>
-        <td>HKCU hive</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Processes</td>
-        <td>Services/Scheduled Tasks</td>
-        <td>Scheduled Tasks</td>
-        <td></td>
-    </tr>   
-</tbody>
-</table>
+        <p><a href="https://acornceilingfan.com/">Acorn</a> is a company in Singapore that sells ceiling fans. Some of the models have a remote control for convenience. However, they are not smart fans and you will not be able to control them using your home automation solution out of the box. However, if you have the remote pictured below, then there may be a way to "convert" it into a smart fan very cheaply.  </p>
+<p><img alt="image" src="//limbenjamin.com/media/acorn-fan.jpg"></p>
+<p>Remote controlled fans such as these usually use RF as a means of communication. They can either use the 315Mhz or 433Mhz frequency. Through trial and error, I discovered that my fan uses 433Mhz. These fans usually use a simple static code so it would be possible to sniff and replay and same static code if you have a 433Mhz transceiver.  </p>
+<p>The transceiver I got is this cheap <a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.4d9c2e8dQuQu71&amp;id=530515308004&amp;_u=91orheug9837">$5 YS-UTR2 transceiver</a>. As with all products from China, the documentation is extremely poor, the software is hosted on Baidu Pan which requires a China mobile number to sign up for. So it's time for some research and reverse engineering. There are <a href="https://www.cnx-software.com/2017/05/23/this-8-usb-transceiver-can-add-433-mhz-device-support-to-your-home-automation-gateway/">people</a> who have succeeded in the past, and after a bit of reading and through trial and error, I managed to get it to work.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code># The brltty service uses the same CH340 chip. Linux will autoload the brltty driver so we must disable it
+sudo systemctl stop brltty.service
+sudo systemctl disable brltty.service
+sudo systemctl mask brltty-udev.service
 
-<p>This table is generally accurate, there are exceptions to the rule. Some services run under Network Service account, additionally specific applications may lock down their ProgramData folder and allow only High Integrity processes to access. Understanding this makes the hunt for vulnerabilities easier. If you see a process running in High Integrity accessing the ProgramData folder or the HKCU hive, there is an opportunity for vulnerabilities to exist. Likewise, if you can write to certain application's Program Files or subkeys in the HKLM hive as a Medium Integrity user, there is a similar opportunity.  </p>
-<p>The HKCR hive is a virtual hive that returns values from either HKLM or HKCU depending on the integrity level that the process is running under. This <a href="https://docs.microsoft.com/en-us/windows/win32/sysinfo/hkey-classes-root-key?redirectedfrom=MSDN">article</a> provides more information. It is important to trace the registry key down to the actual HKLM/HKCU key to determine if there is an opportunity for vulnerabilities to exist.  </p>
-<p>Most people would only look for privilege escalation vulnerabilities, however an application denial of service vulnerability is also possible. If you are able to delete the file, lock the file or change permissions of the file as a Medium Integrity user, the High Integrity application might terminate or crash.   </p>
-<p>Certain classes of software are more susceptible to these vulnerabilities. Antivirus software has to run in High Integrity to terminate malicious processes. They also have to access files in Medium Integrity folders when scanning them for malicious contents. Printer software is another area of concern. The print Spooler runs as System Integrity while users are able to install printers and print stuff while in Medium Integrity.  </p>
+# Sniff the RF signal for each individual buttons
+# Connect to the device and log the binary output to file.
+screen -S mySession -L -Logfile off_button_log /dev/ttyUSB0 9600, cs8
+
+# When you press the button on the original remote, you should get binary data from the ttyUSB0 port.
+# The same code might be transmitted multiple times. 
+xxd off_button_log
+00000000: fd01 2345 6789 dffd 0123 4567 89df fd01
+00000010: 2345 6789 df
+
+# After removing the repeats, we get the following code.
+fd01 2345 6789 df
+
+# As shown in the taobao video, we will need to replace the preamble &#39;fd&#39; and the postamble &#39;df&#39; with &#39;99&#39;
+# We just need to send the binary data to ttyUSB0 port.
+echo -ne &quot;\x99\x01\x23\x45\x67\x89\x99&quot; &gt; /dev/ttyUSB0
+
+# If you are using home assistant, you can save the command in a shell script and execute it over SSH.
+command_line:
+  - switch:
+      name: Fan
+      command_on: ssh -i /config/id_rsa -o &#39;StrictHostKeyChecking=no&#39; hauser@172.1.0.1 &#39;/home/hauser/fan_control/fan_med.sh&#39;
+      command_off: ssh -i /config/id_rsa -o &#39;StrictHostKeyChecking=no&#39; hauser@172.1.0.1 &#39;/home/hauser/fan_control/fan_off.sh&#39;
+  - switch:
+      name: Light
+      command_on: ssh -i /config/id_rsa -o &#39;StrictHostKeyChecking=no&#39; hauser@172.1.0.1 &#39;/home/hauser/fan_control/light_on.sh&#39;
+      command_off: ssh -i /config/id_rsa -o &#39;StrictHostKeyChecking=no&#39; hauser@172.1.0.1 &#39;/home/hauser/fan_control/light_off.sh&#39;
+</code></pre></div></td></tr></table></div>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/lolbin-fhmanagew.html"><b>LOLBin: fhmanagew.exe
-              (97% Similar) - </b>
-              File history is a backup solution built into Windows from Windows 8 onwards. Once enabled, previous versions of files in Documents, Music, Pictures, Videos, Desktop and OneDrive folder will ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/expanding-on-pyramid-of-pain.html"><b>Expanding on Pyramid of Pain
-              (96% Similar) - </b>
-              I believe most threat hunters would already be familiar with the Pyramid of Pain. Most hunters aim to detect artefacts and tools, as they are higher up the pyramid. However, there is scarce ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/crash-windows-event-logging-service.html"><b>Crash Windows Event Logging Service
-              (96% Similar) - </b>
-              While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/lolbin-printui.html"><b>LOLBin: printui.dll
-              (95% Similar) - </b>
-              Printer Settings User Interface is an executable file that contains functions used by the printer configuration dialog boxes. Functionality includes listing printer properties, adding new ...</a>
-              </blockquote>
-          </div>
-      </div>
+          <a href="../tag/server.html">Server</a>      </div>
       <br />
     </div>
   </div>
