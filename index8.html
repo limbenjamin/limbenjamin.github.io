@@ -25,7 +25,7 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-  <meta name="keywords" content="limbenjamin, Server, Untagged, Data, Security, Coding, NUS">
+  <meta name="keywords" content="limbenjamin, Untagged, Server, Data, Security, Coding, NUS">
 
   <title>Benjamin Lim | Security, Tech & Data</title>
 
@@ -96,8 +96,8 @@
                 <a href="./tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="./tag/security.html" >Security (119)</a> &#124; 
                 <a href="./tag/server.html" >Server (29)</a> &#124; 
-                <a href="./tag/untagged.html" >Untagged (22)</a> &#124; 
-                <a href="./archives.html" >Archives (178)</a>
+                <a href="./tag/untagged.html" >Untagged (23)</a> &#124; 
+                <a href="./archives.html" >Archives (179)</a>
         </div>
     </div>
 
@@ -110,6 +110,21 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
+<a href="./articles/slae64-6-polymorphic-shellcode.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2019-05-25 20:05:00+08:00">May 25, 2019</time></span>
+					<h1 class="entry-title">SLAE64 #6 - Polymorphic shellcode</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the presence of the /bin/sh string. Breaking up the string caused the modified versions of both shellcodes ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
 <a href="./articles/slae64-5-msf-shellcode-analysis.html">
 	<article class="post">
 		<div class="blog-item-wrap">
@@ -215,21 +230,6 @@
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/the-evolution-of-crypto.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2019-02-06 08:27:00+08:00">Feb 06, 2019</time></span>
-					<h1 class="entry-title">The Evolution of Crypto</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Crypto used to refer to cryptography, the study of protecting the confidentiality and integrity of information. It is one of the purest branches of computer security. Theoretical cryptography is almost fully governed by the laws of mathematics and physics. The only breakthrough possible is ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
                 </div>
 <footer>
 <div id="paginator">
@@ -291,7 +291,7 @@
                     <a href="./feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="./sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Fri Dec  1 20:43:03 2023<br />
+                    Page generated on Sun Dec  3 20:53:35 2023<br />
                     &copy; 2012-2023 <a href=".">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
