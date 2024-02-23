@@ -25,7 +25,7 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-  <meta name="keywords" content="limbenjamin, Untagged, Server, Data, Security, Coding, NUS">
+  <meta name="keywords" content="limbenjamin, Untagged, Data, Legal, Server, Security, Coding, NUS">
 
   <title>Benjamin Lim | Security, Tech & Data</title>
 
@@ -92,12 +92,13 @@
       </div><!-- end of #logo -->
         <div class="tagline">
                 <a href="./tag/coding.html" >Coding (12)</a> &#124; 
-                <a href="./tag/data.html" >Data (10)</a> &#124; 
+                <a href="./tag/data.html" >Data (18)</a> &#124; 
+                <a href="./tag/legal.html" >Legal (15)</a> &#124; 
                 <a href="./tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="./tag/security.html" >Security (119)</a> &#124; 
                 <a href="./tag/server.html" >Server (29)</a> &#124; 
-                <a href="./tag/untagged.html" >Untagged (23)</a> &#124; 
-                <a href="./archives.html" >Archives (179)</a>
+                <a href="./tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="./archives.html" >Archives (187)</a>
         </div>
     </div>
 
@@ -110,121 +111,121 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
-<a href="./articles/SANS-SEC660-review.html">
+<a href="./articles/dlink-routers-ping-function.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-11-04 21:46:00+08:00">Nov 04, 2017</time></span>
-					<h1 class="entry-title">SANS SEC660 review</h1>
+					<span class="cat-item"><time datetime="2018-07-22 18:26:00+08:00">Jul 22, 2018</time></span>
+					<h1 class="entry-title">D-Link router's ping function</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					SEC660 I recently had the opportunity to attend the SANS SEC660 course held in Singapore in October 2017. The course was conducted by Tim Medin and covered advanced penetration testing and exploit writing. SEC660 started off introducing ARP spoofing, SSL striping and IPv6 router advertisements ...
+					D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic functionality. The ping function only displays success or failure and not the entire raw output of the ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/piwik-possible-xss-in-rdns-lookup-function.html">
+<a href="./articles/crest-cpsa-review.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-10-22 21:59:00+08:00">Oct 22, 2017</time></span>
-					<h1 class="entry-title">Piwik - Possible XSS in RDNS lookup function</h1>
+					<span class="cat-item"><time datetime="2018-05-16 10:00:00+08:00">May 16, 2018</time></span>
+					<h1 class="entry-title">CREST CPSA Review</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					The possible XSS vulnerability can be found in version 3.1.1 of the Piwik software itself. The getHostname() function in piwik/vendor/piwik/network/src/IP.php does not sanitize the hostname before returning the value. This results in a possible XSS if Piwik itself or any plugins use the output ...
+					Compared to the OSCP or even the CISSP exam, there seems to be very little information online about CREST examinations. Hence, the reason why I want to share my thoughts on the CREST CPSA exam. That said, all candidates had to agree to an NDA, I will try to provide as much information as ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/simple-student-result-auth-bypass.html">
+<a href="./articles/asus-routers-ping-function.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-09-21 19:14:00+08:00">Sep 21, 2017</time></span>
-					<h1 class="entry-title">CVE-2017-14766 Simple Student Result < 1.6.4 - Auth Bypass</h1>
+					<span class="cat-item"><time datetime="2018-04-27 10:04:00+08:00">Apr 27, 2018</time></span>
+					<h1 class="entry-title">ASUS router's ping function</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					Exploit Title: Simple Student Result < 1.6.4 - Auth Bypass Google Dork: inurl:wp-content/plugins/simple-student-result Date: 21-Sep-17 Exploit Author: Benjamin Lim Vendor Homepage: https://ssr.saadamin.com/ Software Link: https://wordpress.org/plugins/simple-student-result/ Version: < 1.6.4 ...
+					ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, this seems like a really good entry point to perform command injection, have the router execute cat ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/cve-2017-14126-participants-database-xss.html">
+<a href="./articles/visualizing-fitness-tracker-data.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-09-06 08:00:00+08:00">Sep 06, 2017</time></span>
-					<h1 class="entry-title">CVE-2017-14126 Participants Database < 1.7.5.10 - XSS</h1>
+					<span class="cat-item"><time datetime="2018-03-04 12:33:00+08:00">Mar 04, 2018</time></span>
+					<h1 class="entry-title">Visualizing fitness tracker data</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					Exploit Title: Wordpress Plugin Participants Database < 1.7.5.10 - XSS Google Dork: inurl:wp-content/plugins/participants-database/ Date: 01-Sep-17 Exploit Author: Benjamin Lim Vendor Homepage: https://xnau.com/ Software Link: https://wordpress.org/plugins/participants-database/ Version: ...
+					I recently started wearing a fitness band and wanted to visualize the activity data in a heatmap format. This article will go through my thought process in deciding how to parse the data. It is not intended to be a copy and paste tutorial since the fitness band, app and visualization library I ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/oscp-review.html">
+<a href="./articles/deprecating-http-lessons-from-ssh-telnet.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-08-24 10:19:00+08:00">Aug 24, 2017</time></span>
-					<h1 class="entry-title">OSCP review</h1>
+					<span class="cat-item"><time datetime="2018-02-17 20:02:00+08:00">Feb 17, 2018</time></span>
+					<h1 class="entry-title">Deprecating HTTP - Lessons from SSH/Telnet</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					Having passed my OSCP exam last week, I thought it would be good for me to share my thoughts with OSCP aspirants out there. A little bit on my background first. I have a bachelors degree in computing specialising in information security and have worked as a network pen tester for slightly over ...
+					Recently, both Firefox and Chrome has been coming down hard on HTTP websites. According to this article, HTTP will be labelled as "Not Secure". This is hardly the first step, HTTP only websites have already had their search ranking penalised, and more stringent measures will surely be put in ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/enumerate-sites-hosted-on-same-ip.html">
+<a href="./articles/top-2000-wp-plugins.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-06-11 15:43:00+08:00">Jun 11, 2017</time></span>
-					<h1 class="entry-title">Enumerate sites hosted on same IP</h1>
+					<span class="cat-item"><time datetime="2018-01-20 14:16:00+08:00">Jan 20, 2018</time></span>
+					<h1 class="entry-title">Top 2000 Wordpress Plugins</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					Enumerating sites which are hosted on the same IP address can sometimes tell us a lot about a server. Is it shared hosting? Is it a legitimate server which was compromised for C2 operations? Does the site owner have any other shady business dealings on the side? I am aware that there are sites ...
+					The top 2000 Wordpress plugins by popularity. 2419 to be exact, all plugins with at least 5000+ active installs. List is accurate as of 20 Jan 2018. Interestingly, I could not find something similar online. The Wordpress plugins site does not allow sorting by popularity. Name Active Installs ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/remote-command-execution-on-google-assistant.html">
+<a href="./articles/smart-google-code-inserter-auth-bypass.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-04-29 13:03:00+08:00">Apr 29, 2017</time></span>
-					<h1 class="entry-title">Remote Command Execution on Google Assistant</h1>
+					<span class="cat-item"><time datetime="2018-01-01 10:27:00+08:00">Jan 01, 2018</time></span>
+					<h1 class="entry-title">Smart Google Code Inserter < 3.5 - Auth Bypass/SQLi</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					Recently, Burger King took out a TV advert and used Google voice assistant's "OK google" command to make devices read out a paragraph on the whopper burger. While most news reports take a rather cavalier attitude, treating it as a prank, this is actually remote command execution. The attacker ...
+					Exploit Title: Smart Google Code Inserter < 3.5 - Auth Bypass/SQLi Google Dork: inurl:wp-content/plugins/smart-google-code-inserter/ Date: 26-Nov-17 Exploit Author: Benjamin Lim Vendor Homepage: http://oturia.com/ Software Link: https://wordpress.org/plugins/smart-google-code-inserter/ Version: ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
 	</article><!-- #post-## -->
 </a>
-<a href="./articles/is-darktrace-working-with-the-nsa.html">
+<a href="./articles/designing-an-offline-auth-system.html">
 	<article class="post">
 		<div class="blog-item-wrap">
 			<div class="post-inner-content">
 				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2017-04-08 21:42:00+08:00">Apr 08, 2017</time></span>
-					<h1 class="entry-title">Is DarkTrace working with the NSA?</h1>
+					<span class="cat-item"><time datetime="2017-12-10 15:37:00+08:00">Dec 10, 2017</time></span>
+					<h1 class="entry-title">Designing an offline authentication system</h1>
 				</header><!-- .entry-header -->
 				<div class="entry-content">
-					DarkTrace is "led by leading government cyber intelligence officials from MI5, NSA and the CIA." Hmm... He also seems to have no idea that he has been trolled.
+					I have recently got to know of the igloohome digital lock. It is completely offline and connects to the app via bluetooth only. No internet connection. One of the most puzzling features is that the owner can remotely generate a PIN code, valid for a certain duration, and have it be effective ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
@@ -263,6 +264,7 @@
       <a href="./index21.html"> 21 </a>
       <a href="./index22.html"> 22 </a>
       <a href="./index23.html"> 23 </a>
+      <a href="./index24.html"> 24 </a>
   </div>
 </div>
 </footer>
@@ -291,8 +293,8 @@
                     <a href="./feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="./sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Tue Dec 26 12:30:32 2023<br />
-                    &copy; 2012-2023 <a href=".">Benjamin Lim</a> </div>
+                    Page generated on Fri Feb 23 21:31:06 2024<br />
+                    &copy; 2012-2024 <a href=".">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
       <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
