@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2024-02-28T12:00:47-00:00</lastmod>
+<lastmod>2024-03-01T20:28:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2024-02-28T12:00:47-00:00</lastmod>
+<lastmod>2024-03-01T20:28:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2024-02-28T12:00:47-00:00</lastmod>
+<lastmod>2024-03-01T20:28:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -1436,6 +1436,34 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2012-12-08T20:59:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/files/papers/Analyzing%20Zooms%20Customer%20License.pdf</loc>
+<lastmod>2024-03-01T20:09:20-00:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/files/papers/Mitigating%20Key%20Cyber%20Threats%20in%202023.pdf</loc>
+<lastmod>2024-03-01T20:09:20-00:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/files/papers/DTC%20Genetic%20Testing%20-%20Risks%20%26%20Safeguards.pdf</loc>
+<lastmod>2024-03-01T20:09:20-00:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/files/papers/LKY%20Impact%20Singapore%20Politics.pdf</loc>
+<lastmod>2024-03-01T20:09:20-00:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
 </url>
 
 </urlset>
