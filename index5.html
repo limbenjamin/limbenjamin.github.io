@@ -25,7 +25,7 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-  <meta name="keywords" content="limbenjamin, Untagged, Data, Legal, Server, Security, Coding, NUS">
+  <meta name="keywords" content="limbenjamin, Data, Legal, Untagged, Server, Security, Coding, NUS">
 
   <title>Benjamin Lim | Security, Tech & Data</title>
 
@@ -88,13 +88,13 @@
       </div><!-- end of #logo -->
         <div class="tagline">
                 <a href="./tag/coding.html" >Coding (12)</a> &#124; 
-                <a href="./tag/data.html" >Data (18)</a> &#124; 
-                <a href="./tag/legal.html" >Legal (17)</a> &#124; 
+                <a href="./tag/data.html" >Data (23)</a> &#124; 
+                <a href="./tag/legal.html" >Legal (24)</a> &#124; 
                 <a href="./tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="./tag/security.html" >Security (119)</a> &#124; 
                 <a href="./tag/server.html" >Server (29)</a> &#124; 
                 <a href="./tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="./archives.html" >Archives (188)</a>
+                <a href="./archives.html" >Archives (195)</a>
         </div>
     </div>
 
@@ -107,6 +107,111 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
+<a href="./articles/yubikey-wsl-agent-refused-operation.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2022-05-03 08:17:00+08:00">May 03, 2022</time></span>
+					<h1 class="entry-title">Yubikey WSL: Agent refused operation</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing failed for RSA "/home/user/.ssh/id_rsa" from agent: agent refused operation. Most people on the ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/SANS-SEC760-review.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2022-04-08 20:51:00+08:00">Apr 08, 2022</time></span>
+					<h1 class="entry-title">SANS SEC760 Review</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I wasn't expecting to do yet another SANS course but the opportunity did arise for me to do SEC760 in ondemand format. Previously, I had already done SEC660 as well as OSCE and was conversant with buffer overflows in a multitude of formats (EIP overrides, SEH overrides, ASLR/DEP bypass, return ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/phishing-sms-emails-calls.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2022-02-05 15:37:00+08:00">Feb 05, 2022</time></span>
+					<h1 class="entry-title">Phishing SMS/Emails/Calls</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					The Cyber Security Agency (CSA) posted an advisory about tech support scammers impersonating CSA officers 7 months ago. A few cybersecurity professional, me included, saw the post and immediately commented either directly on the post or on a copy shared by one of the deputy directors that the ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/azure-resource-manager-service-principal-manual.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2022-01-18 20:04:00+08:00">Jan 18, 2022</time></span>
+					<h1 class="entry-title">Azure Resource Manager - Service Principal (Manual)</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I had some issues with automatically creating a service principal to set up Azure Resource Manager in Azure DevOps due to overly strict Azure AD policies resulting in the following error Error encountered: Failed to create an app in Azure Active Directory. Error: Credential lifetime exceeds the ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/yubikey-passwordless-windows-local-account-login.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2021-12-23 21:17:00+08:00">Dec 23, 2021</time></span>
+					<h1 class="entry-title">Yubikey passwordless Windows local account login</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Yubico used to publish a Windows Store application YubiKey for Windows Hello that allowed local non-domain joined accounts to login to Windows simply by inserting the YubiKey. However, that application has since been retired and there is no current method to perform a password login for a local ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/converting-winexec-shellcode.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2021-12-15 12:24:00+08:00">Dec 15, 2021</time></span>
+					<h1 class="entry-title">Converting WinExec shellcode</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I have found an interesting method to convert WinExec shellcode. This may be useful if WinExec cannot be used because the characters WinE are bad characters or if there are security solutions monitoring for its execution. This method requires msvcrt.dll to be loaded as it uses the system call ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/digital-nric-spoofing.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2021-11-14 15:59:00+08:00">Nov 14, 2021</time></span>
+					<h1 class="entry-title">Digital NRIC Spoofing</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Pretty interesting how easy it is to spoof the animated hologram thingy in the new Digital NRIC. Managed to build a Proof of Concept (POC) within a few hours of the news release. Govtech's response is as follow: Hi Benjamin, We refer your report submitted under the Vulnerability Disclosure ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
 <a href="./articles/industry-consultation-licensing-csps.html">
 	<article class="post">
 		<div class="blog-item-wrap">
@@ -117,111 +222,6 @@
 				</header><!-- .entry-header -->
 				<div class="entry-content">
 					Below feedback was submitted to CSA on 11 Oct 2021 in an individual capacity. Q1 I refer to item 7 on page 6 of Annex A: Industry Consultation Document, reproduced below. If a company registered in Singapore or an individual residing and working in Singapore is only providing cybersecurity ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/police-and-private-sector-forensics-differences.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-09-22 20:07:00+08:00">Sep 22, 2021</time></span>
-					<h1 class="entry-title">Police and private sector forensics differences</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Due to the nature of work, there is a vast difference between the skillset of a law enforcement cyber forensics analyst and his private sector counterpart. If you are intending to hire an ex-law enforcement analyst, do read on to find out if it is a good fit. Law enforcement forensics analysts ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/lolbin-printui.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-09-06 21:09:00+08:00">Sep 06, 2021</time></span>
-					<h1 class="entry-title">LOLBin: printui.dll</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Printer Settings User Interface is an executable file that contains functions used by the printer configuration dialog boxes. Functionality includes listing printer properties, adding new printers, installing printer via inf file, storing printer settings into a file and loading printer ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/exploring-singapores-vaccination-cert.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-08-20 22:56:00+08:00">Aug 20, 2021</time></span>
-					<h1 class="entry-title">Exploring Singapore's Vaccination Cert</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Upon completing my COVID vaccination, I was pleasantly surprised to receive a digitally signed vaccination certificate. Based on my previous experience, I knew that getting a traditionally certified genuine chop stamp true copy of a certificate was not going to be cheap. A quick google search ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/spf-dkim-dmarc-in-a-nutshell.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-07-23 23:09:00+08:00">Jul 23, 2021</time></span>
-					<h1 class="entry-title">SPF, DKIM, DMARC in a nutshell</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					I have just learnt something new about how SPF and DMARC interact with each other and the unexpected behaviour that might result from it. I find that most articles tend to cover SPF and DMARC separately and hence I will attempt to document the interaction in this article. Before we can proceed, ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/infosec-career-progression.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-06-21 17:26:00+08:00">Jun 21, 2021</time></span>
-					<h1 class="entry-title">Infosec career progression</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					What are the technical requirements to progress in your career in cybersecurity? How do you move from an entry level analyst position into a senior analyst position? Starting from the defensive side of the house, an L1 SOC analyst usually starts with no experience in cybersecurity. The job role ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/heroku-build-timeout-2021.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-05-26 22:50:00+08:00">May 26, 2021</time></span>
-					<h1 class="entry-title">Heroku build timeout 2021</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					If you have a Heroku app that has worked for many years and is suddenly experiencing a Duplicate build version error or if you are following an old tutorial from before 2021 and see the following cryptic error message in the build log. 1 2 3 ! ! Build timed out while waiting to start. ! Heroku ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/windows-trust-boundaries.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2021-04-27 21:11:00+08:00">Apr 27, 2021</time></span>
-					<h1 class="entry-title">Windows Trust Boundaries</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Understanding Windows trust boundaries is important as a penetration tester as security vulnerabilities are usually found at these boundaries. As an application developer, understanding these boundaries will help you develop more secure applications. I have never found this information ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
@@ -261,6 +261,7 @@
       <a href="./index22.html"> 22 </a>
       <a href="./index23.html"> 23 </a>
       <a href="./index24.html"> 24 </a>
+      <a href="./index25.html"> 25 </a>
   </div>
 </div>
 </footer>
@@ -289,7 +290,7 @@
                     <a href="./feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="./sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Fri Jun 21 16:12:31 2024<br />
+                    Page generated on Fri Jun 28 14:14:46 2024<br />
                     &copy; 2012-2024 <a href=".">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

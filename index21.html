@@ -25,7 +25,7 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-  <meta name="keywords" content="limbenjamin, Untagged, Data, Legal, Server, Security, Coding, NUS">
+  <meta name="keywords" content="limbenjamin, Data, Legal, Untagged, Server, Security, Coding, NUS">
 
   <title>Benjamin Lim | Security, Tech & Data</title>
 
@@ -88,13 +88,13 @@
       </div><!-- end of #logo -->
         <div class="tagline">
                 <a href="./tag/coding.html" >Coding (12)</a> &#124; 
-                <a href="./tag/data.html" >Data (18)</a> &#124; 
-                <a href="./tag/legal.html" >Legal (17)</a> &#124; 
+                <a href="./tag/data.html" >Data (23)</a> &#124; 
+                <a href="./tag/legal.html" >Legal (24)</a> &#124; 
                 <a href="./tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="./tag/security.html" >Security (119)</a> &#124; 
                 <a href="./tag/server.html" >Server (29)</a> &#124; 
                 <a href="./tag/untagged.html" >Untagged (19)</a> &#124; 
-                <a href="./archives.html" >Archives (188)</a>
+                <a href="./archives.html" >Archives (195)</a>
         </div>
     </div>
 
@@ -107,6 +107,111 @@
             <div id="primary" class="content-area">
               <div id="main" class="site-main" role="main">
                 <div class="article-container">
+<a href="./articles/mysql-optimization.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-12-04 06:29:00+08:00">Dec 04, 2013</time></span>
+					<h1 class="entry-title">mysql optimization</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Recently did quite a lot of mysql related administration. Found quite a few ways to optimise that may make future administration easier. 1) If you are going to add/drop databases very frequently, you might want to add innodb_file_per_table=1 into your my.cnf config file. This will allow mysql ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/private-tlds.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-11-23 06:43:00+08:00">Nov 23, 2013</time></span>
+					<h1 class="entry-title">private TLDs</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Well, this is pretty old news but here are my views on ICANN allowing organisations to buy out an entire TLD. For those not in the loop, basically, in addition to .com, .net, .org and others, ICANN will be releasing lots of new TLDs so we could have stuff like .blog, .cloud or even .google. ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/url-shortening-services.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-11-16 20:11:00+08:00">Nov 16, 2013</time></span>
+					<h1 class="entry-title">URL shortening services</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					I have never liked nor seen the point of using URL shortening services such as bit.ly, is.gd . The only time I have used it is during lectures or talks when links are shared by copying them directly off the whiteboard or slides. Even then, there are probably better ways to share the links such ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/windows-file-metadata.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-11-12 07:49:00+08:00">Nov 12, 2013</time></span>
+					<h1 class="entry-title">windows file metadata</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Windows seems to keep a very poor record of file attributes such as date created, date modified and date accessed. These attributes are important especially for audit purposes. My profs are even using these dates (in UNIX fortunately) as submission dates. Furthermore, I believe that these dates ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/layered-security.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-11-06 18:01:00+08:00">Nov 06, 2013</time></span>
+					<h1 class="entry-title">Layered security</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					The unfortunate happened to me a few days back. While pushing a project onto a github public repo, I had forgotten to replace my mysql password with a dummy one. So, it was out there in the open for almost 1 entire day before I noticed it. Fortunately for me though, I had an additional layer of ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/web-public.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-11-03 17:41:00+08:00">Nov 03, 2013</time></span>
+					<h1 class="entry-title">Web = public</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					A very timely reminder that nothing on the web is private. Having just stumbled upon the awstats page for comp.nus, I have just unlocked a whole treasure trove of information. Among the most useful would be the list of 20000+ URLs generating most traffic, would be very interesting to poke in ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
+<a href="./articles/continuity-plan.html">
+	<article class="post">
+		<div class="blog-item-wrap">
+			<div class="post-inner-content">
+				<header class="entry-header page-header">
+					<span class="cat-item"><time datetime="2013-10-29 06:06:00+08:00">Oct 29, 2013</time></span>
+					<h1 class="entry-title">Continuity plan</h1>
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					Having a good continuity plan is important in case of unexpected incidents. Today, I brought my tablet in for servicing as the touch screen got a little wonky. It started exhibiting "phantom touches" and was bordering on unusable as it would cause foreground applications to go out of focus, ...
+	        	</div><!-- .entry-content -->
+			</div>
+		</div>
+	</article><!-- #post-## -->
+</a>
 <a href="./articles/happy-monthiversary.html">
 	<article class="post">
 		<div class="blog-item-wrap">
@@ -117,111 +222,6 @@
 				</header><!-- .entry-header -->
 				<div class="entry-content">
 					After more than half a year of tweaking + trial and error, I think I have finally pinpointed the cause of my server crashes. Nope, nothing to do with kernel stability, nothing to do with crond or any other service. Probable cause is hardware related, the pcb for the barrel connector power input ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/efi.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-10-15 06:02:00+08:00">Oct 15, 2013</time></span>
-					<h1 class="entry-title">EFI</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Just when I thought I have got everything sorted out nice, out comes a surprise. Turns out the industry has been stealthily moving away from BIOS towards EFI while I was happily using my old laptop. Result : All my bootable USB drives are no longer supported. Hooray! There goes all my bootable ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/rainmeter.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-10-04 19:05:00+08:00">Oct 04, 2013</time></span>
-					<h1 class="entry-title">rainmeter</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					I would like to share a software which I have been using over the last year or so. rainmeter is a desktop customization software. It is somewhat similar to the gadgets we are familiar with in windows 7 but rainmeter allows greater customization so you can theme all of them in a similar style. ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/default-printer-settings.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-09-23 23:46:00+08:00">Sep 23, 2013</time></span>
-					<h1 class="entry-title">Default printer settings</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					I have never paid much attention to setting default printer, normally setting it to the most commonly used printer for convenience sake. However, a reason episode made me think twice on whether it is wise. Recently, while using my hybrid laptop in school, a dialog popped up and disappeared ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/problems-with-ftp.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-09-15 03:35:00+08:00">Sep 15, 2013</time></span>
-					<h1 class="entry-title">Problems with FTP</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					1) No copy feature. There is no way to duplicate the file the file on the server for backup, testing or any other purposes. You have to download the file and upload it to another location, which is quite a hassle especially for large number of files. One would think that this is a common ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/hiding-compressed-files-in-images.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-09-06 19:53:00+08:00">Sep 06, 2013</time></span>
-					<h1 class="entry-title">Hiding compressed files in images</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Have been doing this for quite some time, just wanted to share the method. The following code should work on Linux/Mac. Step 1. Zip/Rar/7z your secret file zip hideme.zip s3cr3t Step 2. Append the zip file to a random image file cat hideme.zip > randompic.jpg Thats all. When you open the jpg, ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/hijacking-qr-codes.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-08-15 00:42:00+08:00">Aug 15, 2013</time></span>
-					<h1 class="entry-title">Hijacking QR codes</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Just finished printing my poster for a school project in which contained a QR code for users to download an android app. It was my first time printing out 300dpi@A1 size and thankfully it turned out well (A reprint would have cost $12). Anyway, that is beside the point. More importantly, the QR ...
-	        	</div><!-- .entry-content -->
-			</div>
-		</div>
-	</article><!-- #post-## -->
-</a>
-<a href="./articles/interesting-bluetooth-experiment.html">
-	<article class="post">
-		<div class="blog-item-wrap">
-			<div class="post-inner-content">
-				<header class="entry-header page-header">
-					<span class="cat-item"><time datetime="2013-08-12 06:34:00+08:00">Aug 12, 2013</time></span>
-					<h1 class="entry-title">Interesting bluetooth experiment</h1>
-				</header><!-- .entry-header -->
-				<div class="entry-content">
-					Earlier on, I paired my bluetooth keyboard to both my android and windows OS dual boot configuration. It is a hassle to keep re-pairing the keyboard whenever I switch OSes. This was done by pairing it with the android and extracting the link key, which is a 32bit binary code and then replacing ...
 	        	</div><!-- .entry-content -->
 			</div>
 		</div>
@@ -261,6 +261,7 @@
       <a href="./index22.html"> 22 </a>
       <a href="./index23.html"> 23 </a>
       <a href="./index24.html"> 24 </a>
+      <a href="./index25.html"> 25 </a>
   </div>
 </div>
 </footer>
@@ -289,7 +290,7 @@
                     <a href="./feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="./sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Fri Jun 21 16:12:31 2024<br />
+                    Page generated on Fri Jun 28 14:14:46 2024<br />
                     &copy; 2012-2024 <a href=".">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
