@@ -19,6 +19,8 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
 
   
  
@@ -39,20 +41,17 @@
 
 
   <title>GDPR: Transfer</title>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-028MBYWX6K');
-</script>
   
 </head>
 
 <body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="./pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
   <div>
     <header class="site-header">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -193,7 +192,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Fri Nov  1 18:00:25 2024<br />
+                    Page generated on Mon Nov  4 22:45:56 2024<br />
                     &copy; 2012-2024 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
@@ -212,5 +211,19 @@
   <script type="text/javascript" src="../theme/js/functions.min.js"></script>
 
 
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  });
+</script>
+  
 </body>
 </html>
