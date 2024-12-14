@@ -13,7 +13,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;S68XX541B&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Right off the bat, we are only missing 2 digits, hence there are only 100 possibilities. However, we can also narrow this down further, the final character is a checksum using the Modulo 11 algorithm. Therefore, this leaves us with only 9 possibilities that end with the checksum B. NRIC's are also issued sequentially, the first registered birth on Jan 1 1968 will be given S6800001G. Since there are 47,241 births in 1968, the last registered birth on 31st Dec 1968 will likely be S6847241E.&lt;/p&gt;
+&lt;p&gt;Right off the bat, we are only missing 2 digits, hence there are only 100 possibilities. However, we can also narrow this down further, as the final character is a checksum using the Modulo 11 algorithm. Therefore, this leaves us with only 9 possibilities that end with the checksum B. NRICs are also issued sequentially, the first registered birth on Jan 1 1968 will be given S6800001G. Since there are 47,241 births in 1968, the last registered birth on 31st Dec 1968 will likely be S6847241E.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;S6810541B&lt;br&gt;
 S6821541B&lt;br&gt;
@@ -25,7 +25,7 @@ S6876541B --&amp;gt; 3rd digit 7 is issued to new citizens.&lt;br&gt;
 S6887541B --&amp;gt; 3rd digit 8 is likely invalid, or possibly reserved if number of new citizens overflow.
 S6898541B --&amp;gt; 3rd digit 9 is issued to Singaporeans born overseas.  &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This leaves us with only 4 possible NRICs. Next, we will need to look at the number of births in each month in 1968. The data can be obtained from SingStats. Numbers in brackets are cumulative.&lt;/p&gt;
+&lt;p&gt;This leaves us with only 4 possible NRICs. Next, we will need to look at the number of births in each month in 1968. The data can be obtained from SingStat. Numbers in brackets are cumulative.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;1968 Jan - 4016&lt;br&gt;
 1968 Feb - 3636 (7652)&lt;br&gt;
