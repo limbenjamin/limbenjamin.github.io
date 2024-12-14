@@ -22,7 +22,7 @@ S6843541B&lt;br&gt;
 S6854541B --&amp;gt; There are only 47k births. Impossible to have 3rd digit of 5&lt;br&gt;
 S6865541B --&amp;gt; There are only 47k births. Impossible to have 3rd digit of 6 &lt;br&gt;
 S6876541B --&amp;gt; 3rd digit 7 is issued to new citizens.&lt;br&gt;
-S6887541B --&amp;gt; 3rd digit 8 is likely invalid, or possibly reserved if number of new citizens overflow.
+S6887541B --&amp;gt; 3rd digit 8 is likely invalid, or possibly reserved if number of new citizens overflow.&lt;br&gt;
 S6898541B --&amp;gt; 3rd digit 9 is issued to Singaporeans born overseas.  &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This leaves us with only 4 possible NRICs. Next, we will need to look at the number of births in each month in 1968. The data can be obtained from SingStat. Numbers in brackets are cumulative.&lt;/p&gt;
