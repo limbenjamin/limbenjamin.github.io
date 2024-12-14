@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the...">
+  <meta name="description" content="MDDI recently stated that &#34;people can make a good guess at someone&#39;s full NRIC number [...] especially if one also knows the year of birth of the...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -27,20 +27,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Security">
+<meta name="keywords" content="limbenjamin, Security, Data, Legal">
 
-<meta property="og:title" content="Information Leakage">
+<meta property="og:title" content="Deriving JoTeo's NRIC">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/information_leakage.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/information_leakage.png"/>
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where students can choose not to reveal their names. Unfortunately, correlations can be made through observing the style of …">
-<meta property="og:url" content="https://limbenjamin.com/articles/information-leakage.html">
+<meta property="og:description" content="MDDI recently stated that &#34;people can make a good guess at someone&#39;s full NRIC number [...] especially if one also knows the year of birth of the person&#34;. I will attempt to make a good guess at Minister Josephine Teo&#39;s NRIC based on available information. I will be working off this …">
+<meta property="og:url" content="https://limbenjamin.com/articles/deriving-joteos-nric.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Information Leakage</title>
+  <title>Deriving JoTeo&#39;s NRIC</title>
   
 </head>
 
@@ -121,37 +121,79 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2015-03-29 08:59:00+08:00">Mar 29, 2015</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/information-leakage.html">Information Leakage</a></h1>
+        <span class="cat-item"><time datetime="2024-12-14 21:48:00+08:00">Dec 14, 2024</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/deriving-joteos-nric.html">Deriving JoTeo's NRIC</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where students can choose not to reveal their names. Unfortunately, correlations can be made through observing the style of writing, causing information leakage. Just to clarify (pun intended), it is no fault of Piazza though.</p>
-<p>Update (27/08/15): Turns <a class="reference external" href="http://www.abc.net.au/news/2015-08-26/secret-anti-paedophile-operation-saves-children-from-abuse/6720304">out</a> that Queensland Police used the same exact technique to de-anonymise an administrator of a child porn tor site.</p>
-<p><img alt="image0" src="../media/information_leakage.png" /></p>
-
+        <p>MDDI recently <a href="https://www.straitstimes.com/singapore/personal-data-protection-commission-updating-guidelines-on-use-of-nric-numbers">stated</a> that "people can make a good guess at someone's full NRIC number [...] especially if one also knows the year of birth of the person". I will attempt to make a good guess at Minister Josephine Teo's NRIC based on available information.</p>
+<p>I will be working off this set of information</p>
+<blockquote>
+<ol>
+<li>Last 4 characters of her NRIC is 541B. Many establishments collect the last 4 characters of NRIC.</li>
+<li>Her date of birth is 8 July 1968. From Wikipedia.</li>
+<li>She was born in Singapore and a citizen at birth.</li>
+</ol>
+</blockquote>
+<p>Most would know that anyone born before 2000 will have an NRIC starting with S. Also, anyone born after 1 Jan 1968 will have the birth year as the first 2 digits of the NRIC. Therefore, the partially reconstructed NRIC will look like</p>
+<blockquote>
+<p>S68XX541B</p>
+</blockquote>
+<p>Right off the bat, we are only missing 2 digits, hence there are only 100 possibilities. However, we can also narrow this down further, the final character is a checksum using the Modulo 11 algorithm. Therefore, this leaves us with only 9 possibilities that end with the checksum B. NRIC's are also issued sequentially, the first registered birth on Jan 1 1968 will be given S6800001G. Since there are 47,241 births in 1968, the last registered birth on 31st Dec 1968 will likely be S6847241E.</p>
+<blockquote>
+<p>S6810541B<br>
+S6821541B<br>
+S6832541B<br>
+S6843541B<br>
+S6854541B --&gt; There are only 47k births. Impossible to have 3rd digit of 5<br>
+S6865541B --&gt; There are only 47k births. Impossible to have 3rd digit of 6 <br>
+S6876541B --&gt; 3rd digit 7 is issued to new citizens.<br>
+S6887541B --&gt; 3rd digit 8 is likely invalid, or possibly reserved if number of new citizens overflow.
+S6898541B --&gt; 3rd digit 9 is issued to Singaporeans born overseas.  </p>
+</blockquote>
+<p>This leaves us with only 4 possible NRICs. Next, we will need to look at the number of births in each month in 1968. The data can be obtained from SingStats. Numbers in brackets are cumulative.</p>
+<blockquote>
+<p>1968 Jan - 4016<br>
+1968 Feb - 3636 (7652)<br>
+1968 Mar - 3794 (11446)<br>
+1968 Apr - 3762 (15208) <br>
+1968 May - 3895 (19103)<br>
+1968 Jun - 3774 (22877) <br>
+1968 Jul - 3979 (26856) <br>
+1968 Aug - 4092 (30948) <br>
+1968 Sep - 4013 (34961) <br>
+1968 Oct - 4338 (39299) <br>
+1968 Nov - 3954 (43253) <br>
+1968 Dec - 3988 (47241)   </p>
+<p>S6810541B --&gt; 10541st registered birth. Occurred in Feb 1968. <br>
+S6821541B --&gt; 21541st registered birth. Occurred in May 1968.<br>
+S6832541B --&gt; 32541st registered birth. Occurred in Aug 1968. <br>
+S6843541B --&gt; 43541st registered birth. Occurred in Dec 1968.</p>
+</blockquote>
+<p>Assuming that the information we have earlier is accurate, Minister Josephine Teo's NRIC is likely to be either S6821541B or S6832541B. The latter seems slightly more promising because parents have up to 42 days to register the birth with ICA. However, it could also be the former. Back in 1968, there were more uneducated folks who may not have registered their child's birth timeously.</p>
+<p>I'm not sure who started the practice of collecting the last 4 characters of NRIC. As shown, it allows others to narrow down the possibilities greatly especially if we have the approximate date of birth and citizenship information. Collecting the first 4 characters of NRIC is also not ideal as it reveals a person's age and citizenship information. Unfortunately, there are no easy solutions. We have inherited this system where NRIC numbers are issued sequentially instead of randomly, hence allowing this sort of data derivation to occur.</p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
+          <a href="../tag/security.html">Security</a>,          <a href="../tag/data.html">Data</a>,          <a href="../tag/legal.html">Legal</a>        <br />
         <div class="similararticleline"></div>
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/asus-routers-ping-function.html"><b>ASUS router's ping function - </b>
-              ASUS routers have diagnostic tools built into their dashboard which allows authenticated web users to execute ping and netstat commands and have the output be displayed on the webpage. Naturally, ...</a>
+              <a href="../articles/big-tech-and-persuasion.html"><b>Big Tech and Persuasion - </b>
+              Zuboff believes that Big Tech has the capability to process large volumes of consumer behavioural data and use that to influence consumer behaviour [1]. According to Zuboff, this data is able to ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/online-text-binning-tool.html"><b>Online text binning tool - </b>
-              I was doing my crypto homework and found that there was no text binning tool available online. Hence, I decided to write my own. A text binning tool is useful for: Encryption using a rail cipher ...</a>
+              <a href="../articles/digital-colonialism.html"><b>Digital Colonialism - </b>
+              Kwet first speaks about economic domination, where US Big Tech companies like Uber are dominating the market in the Global South [1]. He laments that usage of these products will "create ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/dlink-routers-ping-function.html"><b>D-Link router's ping function - </b>
-              D-Link routers have a basic ping function built in to them. Unlike their ASUS counterparts, which have ping, netstat, traceroute and nslookup builtin, D-Link routers have much more basic ...</a>
+              <a href="../articles/regulating-recommenders.html"><b>Regulating Recommenders - </b>
+              Cobbe believes that it is important to regulate recommenders because they play a key role in promoting content to a "large audience" and thus has a larger impact [1]. This makes sense considering ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/public-private-partnerships-in-cybersecurity.html"><b>Public Private Partnerships in Cybersecurity - </b>
-              Living in DC has accorded me a number of privileges. Chief among them is the proximity to government offices as well as many NGOs. I am literally walking distance away from their offices. As a ...</a>
+              <a href="../articles/singapore-gazette-search.html"><b>Singapore Gazette Search - </b>
+              Update (9 Jan 2020) The government has announced the decision to make all publications in the Gazette freely available to the public. Kudos to the government for doing so! As such, there is no ...</a>
               </blockquote>
           </div>
       </div>
