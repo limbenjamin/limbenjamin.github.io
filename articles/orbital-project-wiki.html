@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="**Project Reports for nusmods** This project is done at the Vostok (beginner) level. First Report (Week 3) The aim of the project is to develop a...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+
+  
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Untagged">
+
+<meta property="og:title" content="Orbital Project Wiki">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png">
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png">
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="**Project Reports for nusmods** This project is done at the Vostok (beginner) level. First Report (Week 3) The aim of the project is to develop a platform which will allow NUS students to easily retrieve prerequisites and preclusions of modules offered by NUS. The motivation to do so is because …">
+<meta property="og:url" content="https://limbenjamin.com/articles/orbital-project-wiki.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Orbital Project Wiki</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="../pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class="fa  fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class="fa  fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="https://limbenjamin.com/feeds/all.atom.xml" title="Feed" >
+<i class="fa fa-rss fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (12)</a> &#124; 
+                <a href="../tag/data.html" >Data (25)</a> &#124; 
+                <a href="../tag/legal.html" >Legal (40)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (122)</a> &#124; 
+                <a href="../tag/server.html" >Server (30)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (214)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2013-06-01 04:02:00+08:00">Jun 01, 2013</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/orbital-project-wiki.html">Orbital Project Wiki</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>**Project Reports for nusmods**</p>
+<p>This project is done at the Vostok (beginner) level.</p>
+<hr class="docutils" />
+</p><div class="section" id="first-report-week-3">
+<h2>First Report (Week 3)</h2>
+</p><p>The aim of the project is to develop a platform which will allow NUS
+students to easily retrieve prerequisites and preclusions of modules
+offered by NUS. The motivation to do so is because the current system
+offered by NUS is not as user friendly, especially for bulk retrieval of
+information for several modules. We have targeted 2 platforms to develop
+for, namely, a web application as well as an android application. We
+would be using Google Datastore for storage and other platforms will
+access the data through a REST interface.</p>
+<p>The main features in the website are the table mode, graph mode and REST
+interface. The table mode allows users to view information of multiple
+modules in a single table. The graph mode allows them to manually map
+out a dependency graph of their modules. The REST interface allows other
+developers to make use of all module information that we have already
+preloaded into our database.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="second-report-week-8">
+<h2>Second Report (Week 8)</h2>
+</p><p>Over the last couple of weeks, we have managed to successfully implement
+all features that were proposed.The features are as follows:</p>
+<p>1.Beautifying the UI of the android app - The UI has been improved to
+include instructions and boxes for neater display of content, the submit
+button has also been enlarged so it is easier for users to hit it.
+Screenshots available at
+<a class="reference external" href="https://play.google.com/store/apps/details?id=com.limbenjamin.nusmods">https://play.google.com/store/apps/details?id=com.limbenjamin.nusmods</a>. The
+screenshots are pretty self explanatory in case you are not using
+android or do not want to install the app.</p>
+<p>2.Tidying up the code (currently most of the code is hacked together) -
+Most of the excess code for functions not being used has been stripped,
+query has been parameterised to improve on security.</p>
+<p>3.Share on facebook/twitter functionality - Can be observed on main
+site.</p>
+<p>Reponse to feedback</p>
+<p>Changing name because there is an existing nusmods.com - We will retain
+the URL nusmods.appspot.com but our page title and page name will be
+named &quot;NUS Modules&quot; to avoid confusion.</p>
+<p>Putting table at side of graph- We have added a feature so that when you
+hover your mouse over a module, the prerequisites will show in a popup
+bubble</p>
+<p>Additionally, we have also added in instructions throughout the website
+to guide users. Pictures in the banner to show users what they can
+expect. We have also added in additional data on which semester a module
+is offered as feedbacked.</p>
+<p>For the next sprint, we will working on the following three features:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Allowing users to export the table/graph as csv/jpg</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Improving the UI of the graph page</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Script to automate process of updating module information</p>
+<p>User Stories</p>
+<p>Feature 1: A year 1 arts student has spent the last 30 minutes graphing
+out her modules and wants to save it for future reference. She is not
+familiar with computers and does not know how to use the print screen
+function.</p>
+<p>Feature 2: A year 2 new media student wants a nicer looking graph page
+than the current drab grey coloured page.</p>
+<p>Feature 3: The developers of this app do not want to spend the rest of
+their time in NUS updating modules and want a script which will automate
+the process.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="final-report-week-12">
+<h2>Final Report (Week 12)</h2>
+</p><p>We have sucessfully implemented all the features that were targeted in
+the previous sprint. Video can be found
+[here](<a class="reference external" href="http://limbenjamin.com/video3.mp4">http://limbenjamin.com/video3.mp4</a>)</p>
+<p>1) Allowing users to export the table/graph as csv/jpg - instead of csv
+for the table and jpg for the image, we have implemented export to xls
+for table and png for image due to exising libraries which are already
+present for the file formats. Unfortunately, there are a few security
+features triggered which might inconvenience users, excel 2013 would
+display a warning that the file might be unsafe and chrome will block
+the image popup.</p>
+<p>2) Improving the UI of the graph page - The prerequisite popup bubble
+has been styled to look nicer, users have the option to toggle between
+white, red, green or blue background color for the module by double
+clicking on it. Colors can be used to differentiate between core and
+electives, or users can come up with their own color scheme, e.g.
+different colors for different level modules.</p>
+<p>3) Script to automate process of updating module information - The
+script to download and parse module information from IVLE website has
+been completed and uploaded <a class="reference external" href="https://github.com/limbenjamin/modulescrapper">here</a>. This script will generate a CSV
+file which is ready for upload to GAE using the bulkloader. We did not
+automate the uploading because of the amount of information will
+definitely exceed the daily upload quota.</p>
+<p>No additional work was done on the android app for this sprint.</p>
+<p>Initial aim : Vostok</p>
+<p>Current Estimated level : Gemini</p>
+<p>List of features implemented:</p>
+<ul class="simple">
+<li>Display of module information in table form</li>
+<li>Manually graph out module prerequisites</li>
+<li>API to allow other other developers to access database</li>
+<li>Android app to access module information</li>
+<li>Social media integration</li>
+<li>Export information as xls and png</li>
+<li>Shell script to automate updating process</li>
+</ul>
+<p>We intended to automate the graph generation but eventually decided not
+to implement it because parsing the prerequisites might introduce
+errors. E.g. instead of module A AND B, our parser might interpret it as
+module A OR B. This would be disastrous if the user did not double check
+and relied solely on our graph.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="comments-after-reading-evaluator-s-feedback-week-3">
+<h2>Comments after reading evaluator's feedback(Week 3)</h2>
+</p><p>Firstly, we would like to thank everyone for their time spent reviewing
+our application.Points that were raised include</p>
+<p>Changing name because there is an existing nusmods.com - We will
+consider the suggestion, the main problem faced is that it will take
+another 8 days to upload all 10,000 module's information due to daily
+quota limits of app engine.</p>
+<p>Using webview, or mobile view of website - Our current website is
+already optimized for mobile. The reason for having an android app is
+due to user story 3, because you might need module information in a
+hurry and might not remember the URL for the website. Secondly, the
+single module search only is actually a limit that we imposed, reason
+being it is meant for quick checking use as described in user story 3
+and not for mapping your entire 4 years. I also did not want to clutter
+the screen since screen size for mobile devices is quite small.Need not
+worry about the time it takes, we need to finds things to fill up 130
+hours.</p>
+<p>Putting table at side of graph- We have considered it but the main
+drawback is that you would have less screen real estate available to do
+your graphing. We may implement a popup bubble with prerequisites when
+you mouseover the module item.</p>
+<p>Better explanations throughout website - We have actually hinted by
+placing &quot;CS1010,is1103,EC1301&quot; in the search box to show that multiple
+modules are accepted and input is not case sensitive. Nevertheless, we
+do acknowledge that the website is very poorly explained because we were
+focusing on functionality and making sure everything works.</p>
+<p>We will be working on improving the user experience through better
+instructions to make sure that users are not confused when using the
+website. Xofel has also suggested adding in information on whether a
+module is offered during which semester. These 2 features will also be
+completed in the next sprint. As for the automated graph, we will be
+putting it on hold due to the complexity of the task.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="comments-after-reading-evaluator-s-feedback-week-8">
+<h2>Comments after reading evaluator's feedback(Week 8)</h2>
+</p><p>Feedback 1: Students have to first look through the module listing from
+school website before entering into NUS modules website.</p>
+<p>It will be very convenient if we could just select our major/stream and
+have the list of modules automatically loaded. Unfortunately, we do not
+know of a website which list all the required modules of all the various
+majors/streams from all faculties. It would be too troublesome to search
+each faculty's website and manually add in the modules. Furthermore,
+certain faculties may not even publish this information on their
+websites.</p>
+<p>Feedback 2: Location where instructions are placed are normally used for
+website description</p>
+<p>That is certainly true, we will look into modifying the layout to
+accommodate the instructions at a suitable location</p>
+<p>Feedback 3: Implement Unit testing</p>
+<p>May consider if we have time, but priority is to finish up the features
+specified.</p>
+<p>Feedback 4: Get non-SOC people to test</p>
+<p>We would try approaching a few non-SOC friends to get their feedback on
+the app.</p>
+<p>Since there is no feedback on the user stories for the next sprint, we
+will be retaining it.</p>
+<p>Note: The graph feature will continue to be manually drag-and-connect.
+Plans to automate it has been shelved because we cannot guarantee its
+accuracy to a reasonable level. Users will therefore have to
+double-check the generated graph to be safe (or they risk not graduating
+on time). There is no point automating the process if you have to
+manually double check the results, therefore we have decided not to
+implement it.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="comments-after-reading-evaluator-s-feedback-week-12">
+<h2>Comments after reading evaluator's feedback(Week 12)</h2>
+</p><p>Feedback 1: Seamless switching between graph and table mode without
+re-entry of modules.</p>
+<p>Why yes! We are unsure how this managed to escape all our minds for so
+long, but this is definitely a very good and useful feature.</p>
+<p>Feedback 2: Additional information e.g. timetable schedule, workload</p>
+<p>Unfortunately, we feel that this would deviate from the use case of the
+app. We intend to provide a way to easily look up and graph
+prerequisites for modules. We are not interested in creating a
+timetabling app or modules per semester app. By implementing too many
+features, it may dilute our core functionality. Others apps out there
+serve a very specific purpose as well. E.g. nusmods.com for timetabling,
+corspedia for CORS bidding and so on.</p>
+<p>Feedback 3: Input format restriction</p>
+<p>This is a concern. We will allow space for graph mode. However in the
+long run, we are looking are implementing an &quot;autocomplete&quot; type of
+dropdown menu so users can select instead of typing out the full module
+code. This would hopefully reduce input problems. However, one of the
+biggest challenges is that the &quot;autocomplete&quot; list has 10,000+ modules.</p>
+<p>Feedback 4: Graph UI improvement</p>
+<p>Improving and changing the UI is a continous process that we will be
+doing.</p>
+<p>Feedback 5: Video</p>
+<p>We apologise for the video. What happened was that both of us were very
+busy during submission week so we finished the video and wiki 1 week
+earlier. We had assumed that the video would be similar to previous
+iterations. I.E. less than 3 mins, introducing new features.
+Unfortunately, when prof released the details, it was a 5 minute video
+about the entire app. By then, we were already too busy and did not have
+enough time to redo the video.</p>
+<p>We would like to thank all our fellow peer evaluators for their time and
+effort reviewing and giving feedback for our app. We have certainly
+benefited from the constructive feedback and hope that we have not
+fallen short on our evaluation of your apps. We will continue to maintain
+this app for the next 6 months. Beyond that, it depends largely on the
+amount of traffic. It makes no sense to spend time on a project that is
+not utilised. We would rather work on something that is of use to
+someone.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="competitors">
+<h2>Competitors</h2>
+</p><p>Currently, we see no competitors as we do not know of a web app that
+provides similar functionality. The IVLE site provides minimal
+competition as the information is scattered and difficult to locate.
+Nevertheless, we have taken note that a number of teams in orbital are
+embarking on a similar project and might pose competition.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="stakeholders">
+<h2>Stakeholders</h2>
+</p><p>NUS students. This app is created for the community and will be provided
+free of charge. Students who feel that it is beneficial can choose to
+make use of it.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="external-dependencies">
+<h2>External Dependencies</h2>
+</p><p>We have scrapped information from over 10000+ modules in IVLE and
+uploaded it into the datastore, so there are currently no external
+dependencies in the short term, however, next semester when we wish to
+update the information, we have to scrap IVLE once again, so the only
+condition is that IVLE has to be updated and there are no major changes
+to the URL structure.</p>
+<hr class="docutils" />
+</p><p>For the next sprint, we will working on the following three features:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Beautifying the UI of the android app</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Tidying up the code (currently most of the code is hacked
+together)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Share on facebook/twitter functionality</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="user-stories">
+<h2>User Stories</h2>
+</p><p>1) A year 3 student at NUS, who has only 4 semesters left, must quickly
+figure out which remaining module is the most &quot;deeply nested&quot; so he can
+clear all its prerequisites before the final semester and graduate on
+time.</p>
+<p>2) A year 1 student at NUS wants to identify which core modules he is
+eligible to take next semester.</p>
+<p>3) A year 2 student is discussing with her friends over lunch on what
+module they should take next semester and wants to quickly find out the
+prerequisite for a certain module.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="tech-stack">
+<h2>Tech Stack</h2>
+</p><p>GAE/Python for website - Requirement for Vostok Level, greater level of
+support available</p>
+<p>Android for mobile app - Possess hardware required for development,
+easier to distribute final product</p>
+<p>ndb - Querying datastore faster and simpler then external db. ndb
+provides better caching which would be useful since only a small portion
+of the 10000+ modules will be accessed frequently.</p>
+<p>Rest - Simple. Port 80 is always open since it is used for HTTP. Easy to
+cache. Module information is available publicly for anyone to access, no
+security concerns</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="libraries-plugins">
+<h2>Libraries/Plugins</h2>
+</p><p>Boomi rest server - For rest interface</p>
+<p>jsPlumb - For the graph mode</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="data-schema">
+<h2>Data Schema</h2>
+</p><p>[<a class="reference external" href="http://nusmods.appspot.com/rest/metadata/Modules](http://nusmods.appspot.com/rest/metadata/Modules">http://nusmods.appspot.com/rest/metadata/Modules](http://nusmods.appspot.com/rest/metadata/Modules</a>)</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="timeline">
+<h2>Timeline</h2>
+</p><p>As of now, all of the major features suggested during ignition have
+already been completed. We will be working on minor details and touch
+up. If you have features you would like to see being implemented, please
+feel free to share with us.</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="roles">
+<h2>Roles</h2>
+</p><p>Benjamin</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Functionality</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Documentation</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Android</p>
+<p>Meng Di</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CSS/UI</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Flow of website</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Javascript animation</p>
+<hr class="docutils" />
+</p></div>
+<div class="section" id="links">
+<h2>Links</h2>
+</p><p>Project log here :
+[<a class="reference external" href="http://limbenjamin.com/blog/orbital-project-log](http://limbenjamin.com/blog/orbital-project-log">http://limbenjamin.com/blog/orbital-project-log](http://limbenjamin.com/blog/orbital-project-log</a>)</p>
+<p>The prototype for the website has already been uploaded to
+[<a class="reference external" href="http://nusmods.appspot.com/](http://nusmods.appspot.com/">http://nusmods.appspot.com/](http://nusmods.appspot.com/</a>)</p>
+<p>The android application prototype has been uploaded to
+[<a class="reference external" href="https://play.google.com/store/apps/details?id=com.limbenjamin.nusmods](https://play.google.com/store/apps/details">https://play.google.com/store/apps/details?id=com.limbenjamin.nusmods](https://play.google.com/store/apps/details</a>?id=com.limbenjamin.nusmods)</p>
+<p>APK can be downloaded here :
+[<a class="reference external" href="http://limbenjamin.com/nusmods.apk](http://limbenjamin.com/nusmods.apk">http://limbenjamin.com/nusmods.apk](http://limbenjamin.com/nusmods.apk</a>)</p>
+<p>Version 1.1(improved UI) :
+[<a class="reference external" href="http://limbenjamin.com/nusmods1.1.apk](http://limbenjamin.com/nusmods1.1.apk">http://limbenjamin.com/nusmods1.1.apk](http://limbenjamin.com/nusmods1.1.apk</a>)</p>
+<p>Prototype video can be downloaded here :
+[<a class="reference external" href="http://limbenjamin.com/video.mp4](http://limbenjamin.com/video.mp4">http://limbenjamin.com/video.mp4](http://limbenjamin.com/video.mp4</a>)</p>
+<p>Week 8 Prototype video :
+[<a class="reference external" href="http://limbenjamin.com/video2.mp4](http://limbenjamin.com/video2.mp4">http://limbenjamin.com/video2.mp4](http://limbenjamin.com/video2.mp4</a>)</p>
+<p>Week 8 Prototype video :
+[<a class="reference external" href="http://limbenjamin.com/video3.mp4](http://limbenjamin.com/video3.mp4">http://limbenjamin.com/video3.mp4](http://limbenjamin.com/video3.mp4</a>)</p>
+<p>IVLE scrapper :
+[<a class="reference external" href="https://github.com/limbenjamin/modulescrapper](https://github.com/limbenjamin/modulescrapper">https://github.com/limbenjamin/modulescrapper](https://github.com/limbenjamin/modulescrapper</a>)</p>
+</div>
+
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/untagged.html">Untagged</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/allure-of-sysprep.html"><b>Allure of sysprep - </b>
+              For someone like me, who has over the years collected an entire treasure trove of applications and utilities for all purposes, sysprep is a godsend. I wont have to re-install and re-configure all ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/private-tlds.html"><b>private TLDs - </b>
+              Well, this is pretty old news but here are my views on ICANN allowing organisations to buy out an entire TLD. For those not in the loop, basically, in addition to .com, .net, .org and others, ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/efi.html"><b>EFI - </b>
+              Just when I thought I have got everything sorted out nice, out comes a surprise. Turns out the industry has been stealthily moving away from BIOS towards EFI while I was happily using my old ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/rainmeter.html"><b>rainmeter - </b>
+              I would like to share a software which I have been using over the last year or so. rainmeter is a desktop customization software. It is somewhat similar to the gadgets we are familiar with in ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Tue Jul 15 12:35:32 2025<br />
+                    &copy; 2012-2025 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script type="text/javascript">
+    window.addEventListener('load', function(){
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>
