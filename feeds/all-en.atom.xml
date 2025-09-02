@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"/><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"/><id>https://limbenjamin.com/</id><updated>2025-06-06T21:17:00+08:00</updated><entry><title>Integrating Kasm with MS Azure Internal OIDC</title><link href="https://limbenjamin.com/articles/integrating-kasm-with-azure-oidc.html" rel="alternate"/><published>2025-06-06T21:17:00+08:00</published><updated>2025-06-06T21:17:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2025-06-06:/articles/integrating-kasm-with-azure-oidc.html</id><summary type="html">&lt;p&gt;Recently, I faced issues integrating Kasm with Microsoft Azure Internal OIDC due to &lt;a href="https://kasmweb.com/docs/latest/guide/oidc/microsoft_internal.html"&gt;outdated documentation&lt;/a&gt;. After some trial and error, I got it to work.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"/><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"/><id>https://limbenjamin.com/</id><updated>2025-09-02T14:37:00+08:00</updated><entry><title>When does Windows sleep?</title><link href="https://limbenjamin.com/articles/when-does-windows-sleep.html" rel="alternate"/><published>2025-09-02T14:37:00+08:00</published><updated>2025-09-02T14:37:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2025-09-02:/articles/when-does-windows-sleep.html</id><summary type="html">&lt;p&gt;I have always wondered about a somewhat inconsistent behaviour in how Windows decides when the computer is inactive, and to turn off the screen and subsequently sleep. As an example, if I have a 2 hour YouTube video playing in the browser, the screen will never turn off and the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have always wondered about a somewhat inconsistent behaviour in how Windows decides when the computer is inactive, and to turn off the screen and subsequently sleep. As an example, if I have a 2 hour YouTube video playing in the browser, the screen will never turn off and the computer will not go to sleep while the video is playing. &lt;/p&gt;
+&lt;p&gt;However, if I have a finance website open that constantly refreshes stock prices every minute via client side JavaScript, the screen will turn off and the computer will go to sleep according to the Power Settings configured on the machine.&lt;/p&gt;
+&lt;p&gt;In both scenarios, the keyboard and mouse is never moved, and my attention is captivated by the YouTube video or the constantly refreshing stock prices, but somehow Windows decides that the latter scenario is considered inactivity.&lt;/p&gt;
+&lt;p&gt;I finally chanced upon the answer earlier today while examining Windows APIs. Apparently, according to the &lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate"&gt;documentation&lt;/a&gt;, the &lt;code&gt;SetThreadExecutionState&lt;/code&gt; function takes in the &lt;code&gt;ES_DISPLAY_REQUIRED&lt;/code&gt; flag as well as the &lt;code&gt;ES_SYSTEM_REQUIRED&lt;/code&gt; flag which resets the respective idle timers. It is actually the browsers themselves which decide whether a particular activity is worthy of being kept alive and reset the timers at a regular interval. &lt;/p&gt;
+&lt;p&gt;While browsers implement keep alive for media playback by default, they do expose a &lt;a href="https://developer.chrome.com/docs/capabilities/web-apis/wake-lock"&gt;Screen Wake Lock API&lt;/a&gt; that programmers can use to stop the screen from turning off. The System Wake Lock was present in a previous version of the API but was &lt;a href="https://github.com/w3c/screen-wake-lock/blob/gh-pages/explainer.md"&gt;removed&lt;/a&gt;, possibly to prevent misuse.&lt;/p&gt;</content><category term="articles"/><category term="Coding"/><category term="Security"/></entry><entry><title>Integrating Kasm with MS Azure Internal OIDC</title><link href="https://limbenjamin.com/articles/integrating-kasm-with-azure-oidc.html" rel="alternate"/><published>2025-06-06T21:17:00+08:00</published><updated>2025-06-06T21:17:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2025-06-06:/articles/integrating-kasm-with-azure-oidc.html</id><summary type="html">&lt;p&gt;Recently, I faced issues integrating Kasm with Microsoft Azure Internal OIDC due to &lt;a href="https://kasmweb.com/docs/latest/guide/oidc/microsoft_internal.html"&gt;outdated documentation&lt;/a&gt;. After some trial and error, I got it to work.&lt;/p&gt;
 &lt;p&gt;Here's the list of inaccuracies in the documentation.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Step 17 is no longer required. sid will be automatically included in the token. You will not …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Recently, I faced issues integrating Kasm with Microsoft Azure Internal OIDC due to &lt;a href="https://kasmweb.com/docs/latest/guide/oidc/microsoft_internal.html"&gt;outdated documentation&lt;/a&gt;. After some trial and error, I got it to work.&lt;/p&gt;
@@ -5125,71 +5129,4 @@ DHCP Double Answer=0
 HttpBaseDirectory=.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</content><category term="articles"/><category term="Untagged"/></entry><entry><title>The Evolution of Crypto</title><link href="https://limbenjamin.com/articles/the-evolution-of-crypto.html" rel="alternate"/><published>2019-02-06T08:27:00+08:00</published><updated>2019-02-06T08:27:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-02-06:/articles/the-evolution-of-crypto.html</id><summary type="html">&lt;p&gt;Crypto used to refer to cryptography, the study of protecting the confidentiality and integrity of information. It is one of the purest branches of computer security. Theoretical cryptography is almost fully governed by the laws of mathematics and physics. The only breakthrough possible is through the discovery of a faster …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Crypto used to refer to cryptography, the study of protecting the confidentiality and integrity of information. It is one of the purest branches of computer security. Theoretical cryptography is almost fully governed by the laws of mathematics and physics. The only breakthrough possible is through the discovery of a faster algorithm to solve an existing difficult mathematical problem or the invention of computers that are an order of magnitude faster than those today. Cryptography is rarely concerned with the more human matters. It does not discriminate between a terrorist encrypting messages or the military encrypting secret orders, and will gladly offer the same level of security to both. Modern cryptography is built on advanced mathematical concepts like modular arithmetic and elliptic curves. Introductory level cryptography modules are often offered only at final year undergraduate or postgraduate level. Needless to say, it is a field reserved for the most brilliant of minds.&lt;/p&gt;
 &lt;p&gt;Crypto today refers to cryptocurrency. Cryptocurrency relies on cryptography to provide confidentiality, integrity and non-repudiation. These are important properties that ensure the coins in your wallet stay safe, that wallet balances cannot be tampered with, and that transactions cannot be reversed. Unfortunately, this is where the similarities end. Cryptocurrency is almost fully governed by the laws of economics, that of supply and demand. It is marred by the greed and folly of humanity. Greedy exchange operators who run away with their client's money. Greedy investors who only look at the return on their investment. Foolish enthusiasts who worship crypto gods that predict the next hottest coin. Few in the cryptocurrency community truly understand the cryptographic primitives, the basic building blocks of cryptocurrency. The very sanctity of cryptography is being violated when they start rolling back the blockchain because of human errors, or mark certain inputs as stolen or tainted. &lt;/p&gt;
-&lt;p&gt;The recent &lt;a href="https://www.bbc.com/news/world-us-canada-47123371"&gt;news&lt;/a&gt; on Quadriga's founder's death locking up $140m brings this full circle. $140m has just been locked up in an encrypted hard disk. Your false prophets cannot save you now. Only the crypto gods of the old, those schooled in mathematics, low level hardware and firmware have a shot.&lt;/p&gt;</content><category term="articles"/><category term="Security"/></entry><entry><title>Timestomping Programmatically</title><link href="https://limbenjamin.com/articles/timestomping-programmatically.html" rel="alternate"/><published>2019-01-27T10:18:00+08:00</published><updated>2019-01-27T10:18:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-01-27:/articles/timestomping-programmatically.html</id><summary type="html">&lt;p&gt;Timestomping is a favourite topic of red teamers and forensic analysts. They often speak about the tools and powershell commands that can be used to do timestomping. How do these tools work? In the course of developing &lt;a href="https://limbenjamin.com/pages/ntimetools.html"&gt;nTimetools&lt;/a&gt;, I read up on the various APIs and the extent of modification …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Timestomping is a favourite topic of red teamers and forensic analysts. They often speak about the tools and powershell commands that can be used to do timestomping. How do these tools work? In the course of developing &lt;a href="https://limbenjamin.com/pages/ntimetools.html"&gt;nTimetools&lt;/a&gt;, I read up on the various APIs and the extent of modification/access these APIs allow. A brief overview before I dive into the specifics.&lt;/p&gt;
-&lt;style&gt;
-th, td{
-    padding: 0.5em;
-}
-&lt;/style&gt;
-&lt;table class="table" width="100%"&gt;
-&lt;thead&gt;
-    &lt;tr&gt;
-        &lt;th&gt;API function&lt;/th&gt;
-        &lt;th&gt;Type&lt;/th&gt;
-        &lt;th&gt;Timestamp Access&lt;/th&gt;
-    &lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-    &lt;tr&gt;
-        &lt;td&gt;SetFileTime&lt;/td&gt;
-        &lt;td&gt;Win32 API&lt;/td&gt;
-        &lt;td&gt;Creation, Last Access, Last Write Time&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;SetFileInformationByHandle&lt;/td&gt;
-        &lt;td&gt;Win32 API&lt;/td&gt;
-        &lt;td&gt;Creation, Last Access, Last Write, Change Time (1)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;NtSetInformationFile&lt;/td&gt;
-        &lt;td&gt;undocumented NT API&lt;/td&gt;
-        &lt;td&gt;Creation, Last Access, Last Write, Change Time&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;CreateFile(.\PhysicalDrive0)&lt;/td&gt;
-        &lt;td&gt;Win32 API-ish&lt;/td&gt;
-        &lt;td&gt;All above $STD_INFO and others (e.g. $FILE_NAME) (2)&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Metadata change time can be progammatically set, however it will be overwritten to current time as this operation is considered changing file metadata. &lt;/li&gt;
-&lt;li&gt;As of Windows Vista and Server 2008, Microsoft has &lt;a href="https://support.microsoft.com/en-us/help/942448/changes-to-the-file-system-and-to-the-storage-stack-to-restrict-direct"&gt;blocked direct disk write to mounted volumes&lt;/a&gt;. Hence, this will not work on the SYSTEM drive.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1&gt;SetFileTime API&lt;/h1&gt;
-&lt;p&gt;This is the highest level API. It is rather uninteresting, as it does not allow us to modify the metadata change time. It will only be able to fool someone who uses &lt;code&gt;right click -&amp;gt;
-Properties&lt;/code&gt; to view the file timestamp information. Any further probing will reveal that the timestomping has been performed.&lt;/p&gt;
-&lt;h1&gt;SetFileInformationByHandle&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;SetFileInformationByHandle&lt;/code&gt; allows us to update the &lt;code&gt;_FILE_BASIC_INFORMATION&lt;/code&gt; structure. Internally, I believe what happens is that this function calls the &lt;code&gt;NtSetInformationFile&lt;/code&gt; function, after it has returned, it will update the &lt;code&gt;ChangeTime&lt;/code&gt; timestamp to the current time. This behaviour is not good since we are trying to do timestomping, hence we have to go deeper.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
-&lt;span class="normal"&gt;2&lt;/span&gt;
-&lt;span class="normal"&gt;3&lt;/span&gt;
-&lt;span class="normal"&gt;4&lt;/span&gt;
-&lt;span class="normal"&gt;5&lt;/span&gt;
-&lt;span class="normal"&gt;6&lt;/span&gt;
-&lt;span class="normal"&gt;7&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    typedef struct _FILE_BASIC_INFORMATION {
-      LARGE_INTEGER CreationTime;
-      LARGE_INTEGER LastAccessTime;
-      LARGE_INTEGER LastWriteTime;
-      LARGE_INTEGER ChangeTime;
-      ULONG         FileAttributes;
-    } FILE_BASIC_INFORMATION, *PFILE_BASIC_INFORMATION;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;h1&gt;NtSetInformationFile&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;NtSetInformationFile&lt;/code&gt; is an undocumented NT API. We cannot just import the library and call the function. In order to access the function, we will need to get the handle to &lt;code&gt;ntdll.dll&lt;/code&gt; during runtime and get the process address for &lt;code&gt;NtSetInformationFile&lt;/code&gt;. Once done, we can update the &lt;code&gt;_FILE_BASIC_INFORMATION&lt;/code&gt; structure. &lt;a href="https://limbenjamin.com/pages/ntimetools.html"&gt;nTimetools&lt;/a&gt; uses this API. Based on my testing, we can modify the &lt;code&gt;ChangeTime&lt;/code&gt; timestamp to any timestamp of our liking.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/ntimetools2.png"&gt;&lt;/p&gt;
-&lt;h1&gt;CreateFile(.\PhysicalDrive0)&lt;/h1&gt;
-&lt;p&gt;This is the lowest level possible. We are opening a handle to the raw device. With this level of access, we can read or write individual bytes on the hard disk itself. The challenge with this method is the lack of any data structures. You will need to define your own MFT entry structure, MFT structure and start parsing the blob of data you have just read. While the &lt;code&gt;$MFT&lt;/code&gt; is rather well researched, others such as &lt;code&gt;$I30&lt;/code&gt;, &lt;code&gt;$LogFile&lt;/code&gt; are largely unknown. That said, with this level of access, the sky is the limit. You could selectively overwrite event log entries or even system drivers. However, it is also extremely dangerous, improper writes may leave your filesystem in an inconsistent state or corrupt it entirely.  &lt;/p&gt;
-&lt;p&gt;As of Windows Vista and Server 2008, Microsoft has &lt;a href="https://support.microsoft.com/en-us/help/942448/changes-to-the-file-system-and-to-the-storage-stack-to-restrict-direct"&gt;blocked direct disk write to mounted volumes&lt;/a&gt;. It is still possible to do direct disk read on mounted volumes. The &lt;a href="https://github.com/clymb3r/PowerShell/tree/master/Invoke-NinjaCopy"&gt;Invoke-Ninjacopy library&lt;/a&gt; does just that. &lt;/p&gt;</content><category term="articles"/><category term="Coding"/><category term="Security"/></entry></feed>
+&lt;p&gt;The recent &lt;a href="https://www.bbc.com/news/world-us-canada-47123371"&gt;news&lt;/a&gt; on Quadriga's founder's death locking up $140m brings this full circle. $140m has just been locked up in an encrypted hard disk. Your false prophets cannot save you now. Only the crypto gods of the old, those schooled in mathematics, low level hardware and firmware have a shot.&lt;/p&gt;</content><category term="articles"/><category term="Security"/></entry></feed>
