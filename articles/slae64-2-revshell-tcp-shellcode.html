@@ -102,9 +102,9 @@
                 <a href="../tag/legal.html" >Legal (40)</a> &#124; 
                 <a href="../tag/nus.html" >NUS (3)</a> &#124; 
                 <a href="../tag/security.html" >Security (123)</a> &#124; 
-                <a href="../tag/server.html" >Server (30)</a> &#124; 
+                <a href="../tag/server.html" >Server (31)</a> &#124; 
                 <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
-                <a href="../archives.html" >Archives (215)</a>
+                <a href="../archives.html" >Archives (216)</a>
         </div>
     </div>
 
@@ -358,10 +358,6 @@
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-5-msf-shellcode-analysis.html"><b>SLAE64 #5 - MSF shellcode analysis - </b>
-              I would be analysing chunks of the linux/x64/meterpreter/bind_tcp and the linux/x64/shell_bind_tcp and see how they differ. Although both are TCP bind shellcode, the primary difference among them ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
               <a href="../articles/slae64-2-revshell-tcp-shellcode.html"><b>SLAE64 #2 - Revshell TCP shellcode - </b>
               This shellcode is very similar to the Bindshell TCP shellcode, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make: Line 8/37: ...</a>
               </blockquote>
@@ -370,8 +366,12 @@
               There are many SLAE64 blogposts each explaining their variant of shellcode out there. I thought I would join in the fun. This is my version of the Bindshell TCP shellcode. I'll keep it brief and ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode - </b>
-              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
+              <a href="../articles/slae64-4-sse42-crc32c-encoder.html"><b>SLAE64 #4 - SSE4.2 CRC32C Encoder - </b>
+              I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/slae64-7-crypters.html"><b>SLAE64 #7 - Crypters - </b>
+              Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about. Encryptor. ...</a>
               </blockquote>
           </div>
       </div>
@@ -404,7 +404,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Wed Sep 17 21:49:03 2025<br />
+                    Page generated on Mon Sep 29 21:43:37 2025<br />
                     &copy; 2012-2025 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2025-09-17T21:49:09-00:00</lastmod>
+<lastmod>2025-09-29T21:43:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2025-09-17T21:49:09-00:00</lastmod>
+<lastmod>2025-09-29T21:43:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2025-09-17T21:49:09-00:00</lastmod>
+<lastmod>2025-09-29T21:43:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -71,6 +71,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2017-06-04T14:51:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/articles/tuya-local-and-protocol-35-support.html</loc>
+<lastmod>2025-09-29T21:21:00+08:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -1579,6 +1586,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://limbenjamin.com/tag/server.html</loc>
+<lastmod>2025-09-29T21:21:00+06:55</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
+</url>
+
+<url>
 <loc>https://limbenjamin.com/tag/coding.html</loc>
 <lastmod>2025-09-02T14:37:00+06:55</lastmod>
 <changefreq>daily</changefreq>
@@ -1588,13 +1602,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://limbenjamin.com/tag/security.html</loc>
 <lastmod>2025-09-02T14:37:00+06:55</lastmod>
-<changefreq>daily</changefreq>
-<priority>1</priority>
-</url>
-
-<url>
-<loc>https://limbenjamin.com/tag/server.html</loc>
-<lastmod>2025-06-06T21:17:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
