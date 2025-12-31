@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the...">
+  <meta name="description" content="A couple of months ago, I acquired one of these N100 low power boards to replace my old Wyse 5010. These boards are way more powerful and have a lower...">
 
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
@@ -26,20 +26,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Security">
+<meta name="keywords" content="limbenjamin, Server">
 
-<meta property="og:title" content="Information Leakage">
+<meta property="og:title" content="N100 Low Power Server">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/information_leakage.png"/>
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/information_leakage.png"/>
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where students can choose not to reveal their names. Unfortunately, correlations can be made through observing the style of …">
-<meta property="og:url" content="https://limbenjamin.com/articles/information-leakage.html">
+<meta property="og:description" content="A couple of months ago, I acquired one of these N100 low power boards to replace my old Wyse 5010. These boards are way more powerful and have a lower power consumption, while still remaining relatively affordable. The CPU and motherboard combination can be had for under $200. I chose …">
+<meta property="og:url" content="https://limbenjamin.com/articles/n100-low-power-server.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Information Leakage</title>
+  <title>N100 Low Power Server</title>
   
 </head>
 
@@ -120,37 +120,40 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2015-03-29 08:59:00+08:00">Mar 29, 2015</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/information-leakage.html">Information Leakage</a></h1>
+        <span class="cat-item"><time datetime="2025-12-31 14:03:00+08:00">Dec 31, 2025</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/n100-low-power-server.html">N100 Low Power Server</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>Piazza is a learning management system that allows students to post questions which are then answered by fellow students or the lecturer. One of the features of Piazza is anonymous posting where students can choose not to reveal their names. Unfortunately, correlations can be made through observing the style of writing, causing information leakage. Just to clarify (pun intended), it is no fault of Piazza though.</p>
-<p>Update (27/08/15): Turns <a class="reference external" href="http://www.abc.net.au/news/2015-08-26/secret-anti-paedophile-operation-saves-children-from-abuse/6720304">out</a> that Queensland Police used the same exact technique to de-anonymise an administrator of a child porn tor site.</p>
-<p><img alt="image0" src="../media/information_leakage.png" /></p>
-
+        <p>A couple of months ago, I acquired one of these N100 low power boards to replace my <a href="//limbenjamin.com/articles/upgrading-wyse-5010.html">old Wyse 5010</a>. These boards are way more powerful and have a lower power consumption, while still remaining relatively affordable. The CPU and motherboard combination can be had for under $200.  </p>
+<p><img alt="image" src="//limbenjamin.com/media/n100.jpg"></p>
+<p>I chose a board with 4 ethernet ports (2.5G), 6 SATA ports, 1 PCIe slot and 2 NVMe slots. While it bumped up the cost and power consumption a little, it provided much extensibility.  </p>
+<p>I bridged the ethernet ports and replaced my network switch. Even though there are comments online discouraging running a switch in software on Linux, I found it to be relatively stable and good enough for my needs.  </p>
+<p>The SATA ports have been utilized for connecting multiple HDDs for NAS functionality, while the OS resides on an NVMe SSD. The HDDs are set to spindown when data is not being accessed.  </p>
+<p>Finally, the PCIe slot provides future extensibility, in case more network ports, SATA ports or wireless functionality is required in future.  </p>
+<p>The N100 has support for AV1, HEVC and VP9 hardware decoding which meant I could use this server for basic web browsing and media consumption. This meant I didn't have to fire up my beefy desktop regularly anymore, maybe only once a week when I want to game a little.  </p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
+          <a href="../tag/server.html">Server</a>        <br />
         <div class="similararticleline"></div>
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/on-physical-authentication.html"><b>On Physical Authentication - </b>
-              Recently, I moved into a new environment and had the opportunity to witness a number of processes. This experience further reinforced in me the importance of policies over technical measures. ...</a>
+              <a href="../articles/running-https-ssh-vpn-on-port-443.html"><b>Running HTTPS, SSH and VPN on port 443 - </b>
+              A port can only be bound to one service at a time, which makes perfect sense since the OS cannot possibly know which application to route the packet to. However, protocols often have distinct ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand - </b>
-              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
+              <a href="../articles/software-versioning.html"><b>Software Versioning - </b>
+              I have recently started managing yet another server. The server is running Ubuntu 14.04 LTS and therefore support is good for another 5 years. Just to be safe, I double checked the openssl ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/tips-for-winning-sans-ctfs.html"><b>Tips for winning SANS CTFs - </b>
-              Over the past 3 years, I have attended 3 SANS courses and participated in 3 NetWars events. I have won the challenge coin for every event I participated in. I hope this gives a bit more ...</a>
+              <a href="../articles/mysql-optimization.html"><b>mysql optimization - </b>
+              Recently did quite a lot of mysql related administration. Found quite a few ways to optimise that may make future administration easier. 1) If you are going to add/drop databases very frequently, ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware - </b>
-              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
+              <a href="../articles/xenserver-v2p-migration.html"><b>Xenserver V2P Migration - </b>
+              I have using xenserver as my hypervisor for the past 6 months and have run a number of VMs on it. However, there were some deal breakers which led me to migrate back to running Ubuntu as the base ...</a>
               </blockquote>
           </div>
       </div>

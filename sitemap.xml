@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://limbenjamin.com/</loc>
-<lastmod>2025-12-13T20:20:24-00:00</lastmod>
+<lastmod>2025-12-31T14:23:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/archives.html</loc>
-<lastmod>2025-12-13T20:20:24-00:00</lastmod>
+<lastmod>2025-12-31T14:23:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
 <loc>https://limbenjamin.com/tags.html</loc>
-<lastmod>2025-12-13T20:20:24-00:00</lastmod>
+<lastmod>2025-12-31T14:23:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -71,6 +71,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2017-06-04T14:51:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://limbenjamin.com/articles/n100-low-power-server.html</loc>
+<lastmod>2025-12-31T14:03:00+08:00</lastmod>
+<changefreq>never</changefreq>
+<priority>0.5</priority>
 </url>
 
 <url>
@@ -1593,15 +1600,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://limbenjamin.com/tag/legal.html</loc>
-<lastmod>2025-11-06T14:21:00+06:55</lastmod>
+<loc>https://limbenjamin.com/tag/server.html</loc>
+<lastmod>2025-12-31T14:03:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>https://limbenjamin.com/tag/server.html</loc>
-<lastmod>2025-09-29T21:21:00+06:55</lastmod>
+<loc>https://limbenjamin.com/tag/legal.html</loc>
+<lastmod>2025-11-06T14:21:00+06:55</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
