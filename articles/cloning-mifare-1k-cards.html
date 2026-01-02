@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="Disclaimer : The information provided here is solely for educational purposes. The system I would be looking at is the ST Electronics&#39; ST8100...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="Cloning Mifare 1K cards">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png">
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png">
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="Disclaimer : The information provided here is solely for educational purposes. The system I would be looking at is the ST Electronics&#39; ST8100 Securnet. This is an integrated security management system that includes an access control module that manages physical access to facilities. One of the smartcards supported by the system …">
+<meta property="og:url" content="https://limbenjamin.com/articles/cloning-mifare-1k-cards.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Cloning Mifare 1K cards</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="../pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class=" fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa-solid fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://bugcrowd.com/h/limbenjamin" title="Bugcrowd" >
+<i class="fa-brands fa-bimobject fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa-brands fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa-brands fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (13)</a> &#124; 
+                <a href="../tag/data.html" >Data (25)</a> &#124; 
+                <a href="../tag/legal.html" >Legal (41)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (123)</a> &#124; 
+                <a href="../tag/server.html" >Server (32)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (218)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2014-12-08 19:22:00+08:00">Dec 08, 2014</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/cloning-mifare-1k-cards.html">Cloning Mifare 1K cards</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>Disclaimer : The information provided here is solely for educational purposes.</p>
+<p>The system I would be looking at is the ST Electronics' ST8100 Securnet. This is an integrated security management system that includes an access control module that manages physical access to facilities. One of the smartcards supported by the system is the Mifare 1K cards. The system with the mifare card option is being used by a number of organizations including a university.</p>
+<hr class="docutils" />
+<div class="section" id="card-details">
+<h2>Card Details</h2>
+<p>The mifare card used by the system is the Mifare Classic 1K card, also known as the Mifare S50. Specifically, it uses the older 4 byte Non Unique ID (NUID) version. Out of the 16 sectors, only sector 1 and 2 are being used. Both Key A and key B for sectors 1 and 2 have been changed while the keys for all other sectors are left at default value. Key A for sector 1 and 2 is the same. All cards have unique keys for sector 1 and 2. Personal details of the individual card holder are stored in sector 1 and 2.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="system-implementation">
+<h2>System Implementation</h2>
+<p>Bearing in mind that the entire research was conducted in a blackbox manner, there are certain implementation details that are conjectures. It is possible to elicit 3 types of responses from the system.</p>
+<ol class="arabic simple">
+<li>No reponse</li>
+<li>No such user response</li>
+<li>Access granted</li>
+</ol>
+<p>No response - The system will not respond if the 4 bit NUID is not tied to any user in the system</p>
+<p>No such user response - The system will respond in such a way if the user does not belong to an access group that has access to the facility</p>
+<p>Access granted - The user belongs to an access group that has access to the facility</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="access-groups">
+<h2>Access Groups</h2>
+<p>I have encountered situations when granting additional access did not require me to surrender my card. Hence, I believe that the access groups are stored at the backend and not the card. However, existing material from the vendor claimed that the group ID is encoded on the card itself. Furthermore, analysis of cards belonging to users from different 'departments' revealed that bytes 4 and 5 in block 5 appears to be the group id. Therefore, apart from access groups, I believe that the system allows for finer-grained control of access rights which are stored on the controller. These controls are used, in my opinion, for granting temporary access rights to a facility whereas access groups are meant for permanent access rights.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="controller-pseudocode">
+<h2>Controller Pseudocode</h2>
+<pre class="literal-block">
+def login(4 byte NUID, facility ID)
+        if (4 byte NUID does not exist)
+                return
+        if (4 byte NUID has temporary access rights to facility ID)
+                return &quot;access granted&quot;
+        else
+                retrieve group ID (key A) // Key A is retrieved from a key-value table and is mapped by NUID. The key is required to access sector 1 and 2
+                if (group ID has access rights to facility ID)
+                        return &quot;access granted&quot;
+        return &quot;no such user&quot;
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="cloning-the-card">
+<h2>Cloning the card</h2>
+<p>Equipment required</p>
+<ol class="arabic simple">
+<li>UID changeable card (4 byte UID version)</li>
+<li>NFC dongle that is supported (I used the ACR122T)</li>
+<li>Linux machine</li>
+</ol>
+<p>Apart from cloning the contents of the card itself, we need to clone the 4 byte NUID as well. However, the UID for ordinary cards have been burned in. We would need to get the special &quot;chinese&quot; cards. Searching &quot;uid changeable&quot; on ebay or taobao will net you some. I would advise getting the full credit card sized version. The keychain sized one has problems with some readers probably because the antennae does provide enough power for the chip.</p>
+<p>We would first need to install libnfc and mfoc. You have might to install certain dependencies depending on your distro.</p>
+<pre class="literal-block">
+apt install libusb-dev
+
+git clone https://github.com/nfc-tools/libnfc.git
+cd libnfc
+git checkout libnfc-1.7.1
+autoreconf -vis
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+
+git clone https://github.com/nfc-tools/mfoc
+cd mfoc
+autoreconf -is
+./configure
+make
+sudo make install
+</pre>
+<p>Next, we would use mfoc to brute force the keys for sector 1 and 2 and dump the data. It should take only a few minutes.</p>
+<pre class="literal-block">
+LIBNFC_LOG_LEVEL=3 mfoc -P 500 -O card.mfd
+</pre>
+<p>Then, we will overwrite the 4 Byte UID.</p>
+<pre class="literal-block">
+LIBNFC_LOG_LEVEL=3 nfc-mfsetuid &lt;&lt;insert UID here&gt;&gt;
+</pre>
+<p>If the command above returns an error, You might have purchased a variant of the &quot;uid changable cards&quot; which uses normal write instructions instead of special write instructions. Modify the source code as shown and recompile to force writing on sector 0 with normal write instructions. If it still does not work despite carrying out this step, you might have bought a normal card instead of the UID changeable card. It is impossible to change the UID of a normal card, since it is already burned in.</p>
+<pre class="literal-block">
+# Comment out Line 434 and 435 of /utils/nfc-mfclassic.c
+// The first block 0x00 is read only, skip this
+//if (uiBlock == 0 &amp;&amp; !write_block_zero &amp;&amp; !magic2)
+        //continue;
+
+# Recompile
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+</pre>
+<p>Lastly, we would need to clone the binary data onto the new card.</p>
+<pre class="literal-block">
+LIBNFC_LOG_LEVEL=3 nfc-mfclassic w a card.mfd f
+LIBNFC_LOG_LEVEL=3 nfc-mfclassic w b card.mfd f
+</pre>
+</div>
+<hr class="docutils" />
+<div class="section" id="proof-of-concept">
+<h2>Proof of concept</h2>
+<video src="//limbenjamin.com/media/mifare.webm" controls>
+    Your browser does not support the video tag.
+    </video></div>
+
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/on-physical-authentication.html"><b>On Physical Authentication - </b>
+              Recently, I moved into a new environment and had the opportunity to witness a number of processes. This experience further reinforced in me the importance of policies over technical measures. ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand - </b>
+              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/tips-for-winning-sans-ctfs.html"><b>Tips for winning SANS CTFs - </b>
+              Over the past 3 years, I have attended 3 SANS courses and participated in 3 NetWars events. I have won the challenge coin for every event I participated in. I hope this gives a bit more ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware - </b>
+              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Fri Jan  2 15:21:36 2026<br />
+                    &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa-solid fa-angle-up"></i></div><!-- .scroll-to-top -->
+      <div class="dark-mode" style="display: block;"><i class="fa-solid fa-moon"></i></div><!-- .dark-mode -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script>
+    const darkmode =  new Darkmode();  
+  </script>
+  <script type="text/javascript">
+    window.addEventListener('load', function(){    
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>

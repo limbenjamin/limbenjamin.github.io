@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Security">
+
+<meta property="og:title" content="GovTech CTF Writeup">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/chip.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/chip.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="Index Forensics - Walking down a colourful memory lane OSINT - Sounds of freedom! Cloud - Find the leaking bucket! Bonus - Bonus flag for submitting Awesome Write-up Walking down a colourful memory lane We are trying to find out how did our machine get infected. What did the user do? Please view this …">
+<meta property="og:url" content="https://limbenjamin.com/articles/govtech-ctf-writeup.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>GovTech CTF Writeup</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="../pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class=" fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa-solid fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://bugcrowd.com/h/limbenjamin" title="Bugcrowd" >
+<i class="fa-brands fa-bimobject fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa-brands fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa-brands fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (13)</a> &#124; 
+                <a href="../tag/data.html" >Data (25)</a> &#124; 
+                <a href="../tag/legal.html" >Legal (41)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (123)</a> &#124; 
+                <a href="../tag/server.html" >Server (32)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (218)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2020-12-09 21:26:00+08:00">Dec 09, 2020</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/govtech-ctf-writeup.html">GovTech CTF Writeup</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <h1>Index</h1>
+<p>Forensics - <a href="#forensics">Walking down a colourful memory lane</a><br>
+OSINT - <a href="#osint">Sounds of freedom!</a><br>
+Cloud - <a href="#cloud">Find the leaking bucket!</a><br>
+Bonus - <a href="#bonus">Bonus flag for submitting Awesome Write-up</a></p>
+<h1><a name="forensics">Walking down a colourful memory lane</a></h1>
+<blockquote>
+<p>We are trying to find out how did our machine get infected. What did the user do?</p>
+<p>Please view this Document for download instructions. </p>
+<p>forensics-challenge-1.mem - 2.0GB</p>
+</blockquote>
+<p>I was kind of dreading this challenge when I first read it. I wouldn't have taken on this case as an ex-cyber forensics analyst. Forensic cases usually have a trigger point where analysis can start, a suspicious executable running on a workstation, a large data upload at a certain time... Finding anything malicious is not forensics, it is a treasure hunt. Are you referring to the adware running on the machine, or do I have to dig much much deeper to get to the UEFI rootkit.  </p>
+<p>Anyway, to start analysing the memory image, we normally run the volatility <code>imageinfo</code> plugin to determine the OS version. If multiple profiles are returned, the general rule of thumb is to select the most specific profile, the one with release version. It is likely to be a better fit and plugins will have a higher chance of working correctly.  </p>
+<p><img alt="imageinfo" src="//limbenjamin.com/media/gtctf_f0_imageinfo.png"></p>
+<p>After unsucessfully looking through various forensic artefacts (i.e. event logs, registry...), I decided to look at IE history using the volatility tool. We can see that the user is using IE to download Chrome. We finally have a lead to follow.  </p>
+<p><img alt="IE" src="//limbenjamin.com/media/gtctf_f1_ie.png"></p>
+<p>Unfortunately, the <code>chromehistory</code> plugin did not work for me. This is quite common as memory structures and locations may change with every chrome version update. I decided to manually dump the memory of the chrome process and parse the strings from there. The first step is to use the <code>pstree</code> plugin to get the pid of the process and then use the <code>vaddump</code> plugin to dump the memory. We cannot use <code>procdump</code> as it will only dump the process's executable image. The URLs and web page contents are likely in the heap memory. One benefit of using this generic memory dump method is that such methods work across different applications. It will work even if the user uses opera or other obscure browser or application without dedicated plugins.  </p>
+<p><img alt="chrome" src="//limbenjamin.com/media/gtctf_f2_chrome.png"></p>
+<p><img alt="vaddump" src="//limbenjamin.com/media/gtctf_f3_vaddump.png"></p>
+<p>Once the memory has been dumped, I used strings to parse both ASCII and unicode strings from the memory and piped it to a file. Searching for http revealed a mediafire URL that didn't really belong, as the rest of the URLs were related to cybersecurity or govtech.  </p>
+<p><img alt="mediafire" src="//limbenjamin.com/media/gtctf_f4_mediafire.png"></p>
+<p>Upon downloading the png file, I found that it was a tiny 1 row high PNG file and a color picker eventually revealed that the flag was encoded in the individual RGB values of the image. The flag was indeed hidden in a colourful lane!  </p>
+<p><img alt="color" src="//limbenjamin.com/media/gtctf_f5_color.png"></p>
+<p><code>Flag: govtech-csg{m3m0ry_R3dGr33nBlu3z}</code></p>
+<h1><a name="osint">Sounds of freedom!</a></h1>
+<blockquote>
+<p>In a recent raid on a suspected COViD hideout, we found this video in a thumbdrive on-site. We are not sure what this video signifies but we suspect COViD's henchmen might be surveying a potential target site for a biological bomb. We believe that the attack may happen soon. We need your help to identify the water body in this video! This will be a starting point for us to do an area sweep of the vicinity!</p>
+</blockquote>
+<video width="640" height="480" controls src="//limbenjamin.com/media/gtctf_o0__osint-challenge-7.mp4" ></video>
+
+<p>To me, this was a rather interesting challenge. It is one of the few which does not require any infosecurity knowledge and is fully solvable through observation and logical deduction.  </p>
+<p>The first clue came from the small road and bus stop opposite. The bus stop is clearly a design seen in Singapore and thus we can conclude that the video is shot in Singapore.</p>
+<p>The second clue involved listening to the sounds of freedom, the fighter jets roaring overhead. This suggests that the location is somewhere near the edge of Singapore's airspace, or near one of the airbases.  </p>
+<p>The third clue came in the form of the aircon compressors. This suggests a residential building since commercial buildings normally have centralised air-conditioning. The more "atas" facade also suggests either a condominium or a more premium form of public housing (i.e. HUDC/DBSS).  </p>
+<p>Combined with the fact that this building is directly opposite a park with a pond inside of it, a scroll around on google maps reveal a few locations in Singapore that could fulfil these criteria.  </p>
+<p><img alt="maps" src="//limbenjamin.com/media/gtctf_o1_maps.png"></p>
+<p>Bedok Reservoir Park - Quickly eliminated because Bedok Reservoir Road is much wider than the road in the video<br>
+Bukit Panjang Park - Eliminated because there are no Condos nearby<br>
+Pasir Ris Town Park - Eliminated because there are no bus stops along the road next to the park<br>
+Punggol Park - Likely candidate  </p>
+<p>Using Google street view on the 2 bus stops next to the DBSS at Punggol park quickly revealed that one of the bus stops is indeed the location as seen in the video. The video was shot from Parkland Residences Block 475B S(531475) and the postal code of Punggol park is S(538768). Kids, please be mindful before posting your 10 second tiktok videos.  </p>
+<p><code>Flag: govtech-csg{538768}</code></p>
+<p><img alt="streetview" src="//limbenjamin.com/media/gtctf_o2_streetview.png"></p>
+<h1><a name="cloud">Find the leaking bucket!</a></h1>
+<blockquote>
+<p>It was made known to us that agents of COViD are exfiltrating data to a hidden S3 bucket in AWS! We do not know the bucket name! One tip from our experienced officers is that bucket naming often uses common words related to the company’s business.</p>
+<p>Do what you can! Find that hidden S3 bucket (in the format “word1-word2-s4fet3ch”) and find out what was exfiltrated! </p>
+</blockquote>
+<p>This seemed like a rather simple challenge, at least from the get go.  <code>cewl</code> is a good tool if you would like to automatically crawl websites for keywords. However, since there are only a few words and some of the words are in image form, I decided to do it manually. I wrote a python script to enumerate all possible word combinations from both the word cloud and the image.  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;wireless&#39;</span><span class="p">,</span> <span class="s1">&#39;digital&#39;</span><span class="p">,</span> <span class="s1">&#39;parking&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;information&#39;</span><span class="p">,</span> <span class="s1">&#39;architecture&#39;</span><span class="p">,</span> <span class="s1">&#39;wifi&#39;</span><span class="p">,</span> <span class="s1">&#39;smartcity&#39;</span><span class="p">,</span> <span class="s1">&#39;computer&#39;</span><span class="p">,</span> <span class="s1">&#39;efficiency&#39;</span><span class="p">,</span> <span class="s1">&#39;technology&#39;</span><span class="p">,</span> <span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="s1">&#39;ai&#39;</span><span class="p">,</span> <span class="s1">&#39;fintech&#39;</span><span class="p">,</span> <span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="s1">&#39;applications&#39;</span><span class="p">,</span> <span class="s1">&#39;internet&#39;</span><span class="p">,</span> <span class="s1">&#39;cybersecurity&#39;</span><span class="p">,</span> <span class="s1">&#39;iot&#39;</span><span class="p">,</span> <span class="s1">&#39;innovation&#39;</span><span class="p">,</span> <span class="s1">&#39;systems&#39;</span><span class="p">,</span> <span class="s1">&#39;knowledge&#39;</span><span class="p">,</span> <span class="s1">&#39;communication&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;intelligent&#39;</span><span class="p">,</span> <span class="s1">&#39;safe&#39;</span><span class="p">,</span> <span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="s1">&#39;technologies&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;people&#39;</span><span class="p">,</span> <span class="s1">&#39;who&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy&#39;</span><span class="p">,</span> <span class="s1">&#39;enough&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">,</span> <span class="s1">&#39;think&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;are&#39;</span><span class="p">,</span> <span class="s1">&#39;ones&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;steve&#39;</span><span class="p">,</span> <span class="s1">&#39;jobs&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="s2">&quot;s4fet3ch&quot;</span>
+        <span class="k">print</span> <span class="n">k</span>
+</code></pre></div></td></tr></table></div>
+
+<p>I then used <a href="https://github.com/FishermansEnemy/bucket_finder">bucket finder</a> to brute force and find the correct S3 bucket.</p>
+<p><img alt="bucket finder" src="//limbenjamin.com/media/gtctf_c0_bucketfinder.png"></p>
+<p>Oh shit, why is it encrypted? Interestingly, there seems to be a second encrypted file in there. Well, if we can find an unencrypted version somewhere on the web, maybe we can launch a known plaintext attack?  </p>
+<p><img alt="stack form" src="//limbenjamin.com/media/gtctf_c1_stackform.png"></p>
+<p>I then used <a href="https://github.com/keyunluo/pkcrack">pkcrack</a> to perform the known plaintext attack. <code>pkcrack</code> requires us to zip the unencrypted copy using the same zip algorithm as the original encrypted zip file. I have also added a filler flag file named glag.txt just in case it is required.  </p>
+<p><img alt="zip" src="//limbenjamin.com/media/gtctf_c2_zip.png"></p>
+<p><img alt="pkcrack" src="//limbenjamin.com/media/gtctf_c3_crack.png"></p>
+<p>Got it!  </p>
+<p><code>Flag: govtech-csg{EnCrYpT!0n_D0e$_NoT_M3@n_Y0u_aR3_s4f3}</code> </p>
+<h1><a name="bonus">Bonus flag for submitting Awesome Write-up</a></h1>
+<p>Looks like there are more flags?</p>
+<p><code>Flag: govtech-csg{N5hawwrovddMKXD1xArQ}</code></p>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/security.html">Security</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/on-physical-authentication.html"><b>On Physical Authentication - </b>
+              Recently, I moved into a new environment and had the opportunity to witness a number of processes. This experience further reinforced in me the importance of policies over technical measures. ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/flare-on-6-solve-vv-max-by-hand.html"><b>FLARE-On 6 - Solve vv_max by hand - </b>
+              After looking at the published solutions for FLARE-On 6, I realised that for challenge 11, vv_max, most people used a script to either reverse the AVX functions or to brute force it. My approach ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/tips-for-winning-sans-ctfs.html"><b>Tips for winning SANS CTFs - </b>
+              Over the past 3 years, I have attended 3 SANS courses and participated in 3 NetWars events. I have won the challenge coin for every event I participated in. I hope this gives a bit more ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/dumping-aztech-DSL1015EN-firmware.html"><b>Dumping Aztech DSL1015EN firmware - </b>
+              Recently, I had the fortune to come across a spare DSL1015EN router cum modem. After dismantling the external case, this is what the internals look like. On the left, we can see 2 u.fl connectors ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Fri Jan  2 15:21:36 2026<br />
+                    &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa-solid fa-angle-up"></i></div><!-- .scroll-to-top -->
+      <div class="dark-mode" style="display: block;"><i class="fa-solid fa-moon"></i></div><!-- .dark-mode -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script>
+    const darkmode =  new Darkmode();  
+  </script>
+  <script type="text/javascript">
+    window.addEventListener('load', function(){    
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>

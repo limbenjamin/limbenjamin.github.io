@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="A listing of all articles on this site">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="./theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+  <meta name="keywords" content="limbenjamin, Server, Legal, Coding, Security, Data, Untagged, NUS">
+
+  <title>Archive</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="./pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class=" fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa-solid fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://bugcrowd.com/h/limbenjamin" title="Bugcrowd" >
+<i class="fa-brands fa-bimobject fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa-brands fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa-brands fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href="."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="./tag/coding.html" >Coding (13)</a> &#124; 
+                <a href="./tag/data.html" >Data (25)</a> &#124; 
+                <a href="./tag/legal.html" >Legal (41)</a> &#124; 
+                <a href="./tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="./tag/security.html" >Security (123)</a> &#124; 
+                <a href="./tag/server.html" >Server (32)</a> &#124; 
+                <a href="./tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="./archives.html" class="active">Archives (218)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="article_text">
+    <dl>
+        <h2>2025</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/n100-low-power-server.html"><time datetime="2025-12-31T14:03:00+08:00">Dec 31, 2025</time> - N100 Low Power Server</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/studying-for-an-it-llm.html"><time datetime="2025-11-06T14:21:00+08:00">Nov 06, 2025</time> - Studying for an IT LLM</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/tuya-local-and-protocol-35-support.html"><time datetime="2025-09-29T21:21:00+08:00">Sep 29, 2025</time> - Tuya Local and Protocol 3.5 support</a></li>
+              <li><a href="./articles/when-does-windows-sleep.html"><time datetime="2025-09-02T14:37:00+08:00">Sep 02, 2025</time> - When does Windows sleep?</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/integrating-kasm-with-azure-oidc.html"><time datetime="2025-06-06T21:17:00+08:00">Jun 06, 2025</time> - Integrating Kasm with MS Azure Internal OIDC</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/export-controls-on-software.html"><time datetime="2025-03-28T19:31:00+08:00">Mar 28, 2025</time> - Export Controls on Software</a></li>
+              <li><a href="./articles/territoriality-internet-crime.html"><time datetime="2025-03-09T23:49:00+08:00">Mar 09, 2025</time> - Territoriality: Internet Crime</a></li>
+              <li><a href="./articles/volume-of-digital-evidence.html"><time datetime="2025-03-01T17:57:00+08:00">Mar 01, 2025</time> - Volume of Digital Evidence</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/centralization-of-digital-evidence.html"><time datetime="2025-02-24T21:27:00+08:00">Feb 24, 2025</time> - Centralization of Digital Evidence</a></li>
+              <li><a href="./articles/ai-model-licensing.html"><time datetime="2025-02-09T13:31:00+08:00">Feb 09, 2025</time> - AI model licensing</a></li>
+              <li><a href="./articles/authenticity-of-digital-evidence.html"><time datetime="2025-02-08T21:12:00+08:00">Feb 08, 2025</time> - Authenticity of Digital Evidence</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/why-use-commercial-forensic-tools.html"><time datetime="2025-01-22T20:45:00+08:00">Jan 22, 2025</time> - Why Use Commercial Forensic Tools</a></li>
+              <li><a href="./articles/law-enforcement-use-only.html"><time datetime="2025-01-18T18:28:00+08:00">Jan 18, 2025</time> - Law Enforcement use only</a></li>
+              <li><a href="./articles/ai-systems-as-software.html"><time datetime="2025-01-12T18:10:00+08:00">Jan 12, 2025</time> - AI Systems as Software</a></li>
+              <li><a href="./articles/regulating-dos.html"><time datetime="2025-01-12T12:22:00+08:00">Jan 12, 2025</time> - Regulating DoS</a></li>
+          </ul>
+        <h2>2024</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/deriving-joteos-nric.html"><time datetime="2024-12-14T21:48:00+08:00">Dec 14, 2024</time> - Deriving JoTeo's NRIC</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/data-after-death.html"><time datetime="2024-11-23T21:12:00+08:00">Nov 23, 2024</time> - Data after death</a></li>
+              <li><a href="./articles/dsa-search-engines.html"><time datetime="2024-11-09T22:15:00+08:00">Nov 09, 2024</time> - DSA: Search Engines</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/psd2-stored-value-cards.html"><time datetime="2024-10-13T11:01:00+08:00">Oct 13, 2024</time> - PSD2: Stored value cards</a></li>
+              <li><a href="./articles/traders-and-consumers.html"><time datetime="2024-10-07T15:18:00+08:00">Oct 07, 2024</time> - Traders and Consumers</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/tort-centre-of-interests.html"><time datetime="2024-09-22T05:54:00+08:00">Sep 22, 2024</time> - Tort: Centre of Interests</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/usb-fan-remove-battery.html"><time datetime="2024-07-05T21:35:00+08:00">Jul 05, 2024</time> - USB Fan: Remove battery</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/digital-colonialism.html"><time datetime="2024-03-23T11:17:00+08:00">Mar 23, 2024</time> - Digital Colonialism</a></li>
+              <li><a href="./articles/challenges-with-aadhaar.html"><time datetime="2024-03-17T16:47:00+08:00">Mar 17, 2024</time> - Challenges with Aadhaar</a></li>
+              <li><a href="./articles/big-tech-and-surveillance.html"><time datetime="2024-03-13T09:47:00+08:00">Mar 13, 2024</time> - Big Tech and Surveillance</a></li>
+              <li><a href="./articles/big-tech-and-persuasion.html"><time datetime="2024-03-06T09:50:00+08:00">Mar 06, 2024</time> - Big Tech and Persuasion</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/content-filters-and-parenting.html"><time datetime="2024-02-14T11:30:00+08:00">Feb 14, 2024</time> - Content Filters and Parenting</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/regulating-recommenders.html"><time datetime="2024-01-31T11:59:00+08:00">Jan 31, 2024</time> - Regulating Recommenders</a></li>
+              <li><a href="./articles/privacy-in-sg-constitution.html"><time datetime="2024-01-22T20:51:00+08:00">Jan 22, 2024</time> - Privacy in SG's Constitution</a></li>
+          </ul>
+        <h2>2023</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/tensegrity-hourglass-tower.html"><time datetime="2023-12-03T20:47:00+08:00">Dec 03, 2023</time> - Tensegrity Hourglass Tower</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/gdpr-transfer.html"><time datetime="2023-11-15T10:00:00+08:00">Nov 15, 2023</time> - GDPR: Transfer</a></li>
+              <li><a href="./articles/gdpr-right-to-be-forgotten.html"><time datetime="2023-11-10T10:00:00+08:00">Nov 10, 2023</time> - GDPR: Right to be Forgotten</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/gdpr-breach-notification.html"><time datetime="2023-10-29T10:00:00+08:00">Oct 29, 2023</time> - GDPR: Breach Notification</a></li>
+              <li><a href="./articles/gdpr-data-minimisation.html"><time datetime="2023-10-17T10:00:00+08:00">Oct 17, 2023</time> - GDPR: Data Minimisation</a></li>
+              <li><a href="./articles/gdpr-consent.html"><time datetime="2023-10-12T10:00:00+08:00">Oct 12, 2023</time> - GDPR: Consent</a></li>
+              <li><a href="./articles/gdpr-grounds-processing.md.html"><time datetime="2023-10-09T10:00:00+08:00">Oct 09, 2023</time> - GDPR: Grounds for processing</a></li>
+              <li><a href="./articles/liabilities-of-intermediaries.html"><time datetime="2023-10-07T10:00:00+08:00">Oct 07, 2023</time> - Liabilities of Intermediaries</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/gdpr-changes-sensitive-personal-data.html"><time datetime="2023-09-28T10:00:00+08:00">Sep 28, 2023</time> - GDPR: Changes to Sensitive Personal Data</a></li>
+              <li><a href="./articles/roombas-data-protection-obligations.html"><time datetime="2023-09-19T10:00:00+08:00">Sep 19, 2023</time> - Roomba's Data Protection Obligations</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/acorn-fan-home-automation.html"><time datetime="2023-08-09T11:46:00+08:00">Aug 09, 2023</time> - Acorn Fan: Home Automation</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/upgrading-wyse-5010.html"><time datetime="2023-07-02T16:35:00+08:00">Jul 02, 2023</time> - Upgrading Wyse 5010</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/barracuda-esg-replacement.html"><time datetime="2023-06-17T09:49:00+08:00">Jun 17, 2023</time> - Barracuda ESG Replacement</a></li>
+              <li><a href="./articles/katong-cyclist-car-tort.html"><time datetime="2023-06-10T13:59:00+08:00">Jun 10, 2023</time> - Katong Cyclist vs Car - Tort</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/spf-promotion-statistics.html"><time datetime="2023-04-05T11:13:00+08:00">Apr 05, 2023</time> - SPF Promotion Statistics</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/drupal-redirect-malware.html"><time datetime="2023-03-18T09:03:00+08:00">Mar 18, 2023</time> - Drupal Redirect Malware</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/total-defense-and-falsehoods.html"><time datetime="2023-02-15T09:17:00+08:00">Feb 15, 2023</time> - Total Defense and Falsehoods</a></li>
+              <li><a href="./articles/sph-circulation-saga-misrepresentation.html"><time datetime="2023-02-05T17:29:00+08:00">Feb 05, 2023</time> - SPH Circulation Saga: Misrepresentation</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/sign-with-singpass.html"><time datetime="2023-01-10T17:49:00+08:00">Jan 10, 2023</time> - Sign with Singpass</a></li>
+          </ul>
+        <h2>2022</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/global-talent-search.html"><time datetime="2022-12-18T10:10:00+08:00">Dec 18, 2022</time> - Global Talent Search</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/miracast-compatible-devices.html"><time datetime="2022-11-13T21:53:00+08:00">Nov 13, 2022</time> - Miracast Compatible Devices</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/lifelong-spousal-maintenance.html"><time datetime="2022-09-29T17:39:00+08:00">Sep 29, 2022</time> - Lifelong Spousal Maintenance</a></li>
+              <li><a href="./articles/spammers-using-flash-sms.html"><time datetime="2022-09-11T18:42:00+08:00">Sep 11, 2022</time> - Spammers using Flash SMS</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/ms500-az500-sc200-exam-review.html"><time datetime="2022-08-12T21:13:00+08:00">Aug 12, 2022</time> - MS-500, AZ-500, SC-200 exam review</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/luna-economics.html"><time datetime="2022-06-24T19:52:00+08:00">Jun 24, 2022</time> - Luna economics</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/yubikey-wsl-agent-refused-operation.html"><time datetime="2022-05-03T08:17:00+08:00">May 03, 2022</time> - Yubikey WSL: Agent refused operation</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/SANS-SEC760-review.html"><time datetime="2022-04-08T20:51:00+08:00">Apr 08, 2022</time> - SANS SEC760 Review</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/phishing-sms-emails-calls.html"><time datetime="2022-02-05T15:37:00+08:00">Feb 05, 2022</time> - Phishing SMS/Emails/Calls</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/azure-resource-manager-service-principal-manual.html"><time datetime="2022-01-18T20:04:00+08:00">Jan 18, 2022</time> - Azure Resource Manager - Service Principal (Manual)</a></li>
+          </ul>
+        <h2>2021</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/yubikey-passwordless-windows-local-account-login.html"><time datetime="2021-12-23T21:17:00+08:00">Dec 23, 2021</time> - Yubikey passwordless Windows local account login</a></li>
+              <li><a href="./articles/converting-winexec-shellcode.html"><time datetime="2021-12-15T12:24:00+08:00">Dec 15, 2021</time> - Converting WinExec shellcode</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/digital-nric-spoofing.html"><time datetime="2021-11-14T15:59:00+08:00">Nov 14, 2021</time> - Digital NRIC Spoofing</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/industry-consultation-licensing-csps.html"><time datetime="2021-10-13T09:15:00+08:00">Oct 13, 2021</time> - Industry Consultation on Licensing for CSPs</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/police-and-private-sector-forensics-differences.html"><time datetime="2021-09-22T20:07:00+08:00">Sep 22, 2021</time> - Police and private sector forensics differences</a></li>
+              <li><a href="./articles/lolbin-printui.html"><time datetime="2021-09-06T21:09:00+08:00">Sep 06, 2021</time> - LOLBin: printui.dll</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/exploring-singapores-vaccination-cert.html"><time datetime="2021-08-20T22:56:00+08:00">Aug 20, 2021</time> - Exploring Singapore's Vaccination Cert</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/spf-dkim-dmarc-in-a-nutshell.html"><time datetime="2021-07-23T23:09:00+08:00">Jul 23, 2021</time> - SPF, DKIM, DMARC in a nutshell</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/infosec-career-progression.html"><time datetime="2021-06-21T17:26:00+08:00">Jun 21, 2021</time> - Infosec career progression</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/heroku-build-timeout-2021.html"><time datetime="2021-05-26T22:50:00+08:00">May 26, 2021</time> - Heroku build timeout 2021</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/windows-trust-boundaries.html"><time datetime="2021-04-27T21:11:00+08:00">Apr 27, 2021</time> - Windows Trust Boundaries</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/0-reportable-cybersecurity-incidents.html"><time datetime="2021-03-06T10:59:00+08:00">Mar 06, 2021</time> - 0 reportable cybersecurity incidents</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/lolbin-fhmanagew.html"><time datetime="2021-01-26T20:34:00+08:00">Jan 26, 2021</time> - LOLBin: fhmanagew.exe</a></li>
+          </ul>
+        <h2>2020</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/fun-with-md5-collisions.html"><time datetime="2020-12-31T13:24:00+08:00">Dec 31, 2020</time> - Fun with MD5 Collisions</a></li>
+              <li><a href="./articles/govtech-ctf-writeup.html"><time datetime="2020-12-09T21:26:00+08:00">Dec 09, 2020</time> - GovTech CTF Writeup</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/calling-iunknown-com-interface.html"><time datetime="2020-11-07T12:24:00+08:00">Nov 07, 2020</time> - Calling IUnknown COM interface</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/macvlan-host-guest-connectivity.html"><time datetime="2020-10-08T08:25:00+08:00">Oct 08, 2020</time> - macvlan host guest connectivity</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/bank-token-teardown.html"><time datetime="2020-08-04T07:18:00+08:00">Aug 04, 2020</time> - Bank Token Teardown</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/ntfs-owner-rights-sec-principal-logging.html"><time datetime="2020-07-05T19:47:00+08:00">Jul 05, 2020</time> - NTFS Owner Rights for Logging</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/public-ip-hijacking-over-lan.html"><time datetime="2020-06-20T17:32:00+08:00">Jun 20, 2020</time> - Public IP Hijacking over LAN</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/authenticating-with-nric-numbers-v2.html"><time datetime="2020-05-24T19:59:00+08:00">May 24, 2020</time> - Authenticating with NRIC numbers v2</a></li>
+              <li><a href="./articles/intelligence-led-red-teaming.html"><time datetime="2020-05-07T22:46:00+08:00">May 07, 2020</time> - Intelligence-led Red Teaming</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/crash-windows-event-logging-service.html"><time datetime="2020-03-22T17:33:00+08:00">Mar 22, 2020</time> - Crash Windows Event Logging Service</a></li>
+              <li><a href="./articles/interesting-DLL-exports.html"><time datetime="2020-03-12T10:24:00+08:00">Mar 12, 2020</time> - Interesting DLL exports</a></li>
+              <li><a href="./articles/expanding-on-pyramid-of-pain.html"><time datetime="2020-03-01T13:07:00+08:00">Mar 01, 2020</time> - Expanding on Pyramid of Pain</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/osce-review.html"><time datetime="2020-02-08T09:13:00+08:00">Feb 08, 2020</time> - OSCE review</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/vulnserver-order-of-difficulty.html"><time datetime="2020-01-23T23:34:00+08:00">Jan 23, 2020</time> - Vulnserver - Order of difficulty</a></li>
+              <li><a href="./articles/free-fresh-notes-for-ang-bao.html"><time datetime="2020-01-16T19:12:00+08:00">Jan 16, 2020</time> - Free fresh notes for ang bao</a></li>
+          </ul>
+        <h2>2019</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/phishing-with-actual-bait.html"><time datetime="2019-12-16T19:09:00+08:00">Dec 16, 2019</time> - Phishing with actual bait</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/overwriting-mbr.html"><time datetime="2019-11-01T20:09:00+08:00">Nov 01, 2019</time> - Overwriting MBR</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/flare-on-6-solve-vv-max-by-hand.html"><time datetime="2019-10-03T21:01:00+08:00">Oct 03, 2019</time> - FLARE-On 6 - Solve vv_max by hand</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/tips-for-winning-sans-ctfs.html"><time datetime="2019-09-22T17:59:00+08:00">Sep 22, 2019</time> - Tips for winning SANS CTFs</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/singapore-gazette-search.html"><time datetime="2019-08-24T20:17:00+08:00">Aug 24, 2019</time> - Singapore Gazette Search</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/wp-like-button-auth-bypass.html"><time datetime="2019-07-05T20:10:00+08:00">Jul 05, 2019</time> - WP Like Button 1.6.0 - Auth Bypass</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/on-the-cybersecurity-act.html"><time datetime="2019-06-09T09:46:00+08:00">Jun 09, 2019</time> - On the Cybersecurity Act</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/slae64-7-crypters.html"><time datetime="2019-05-25T20:21:00+08:00">May 25, 2019</time> - SLAE64 #7 - Crypters</a></li>
+              <li><a href="./articles/slae64-6-polymorphic-shellcode.html"><time datetime="2019-05-25T20:05:00+08:00">May 25, 2019</time> - SLAE64 #6 - Polymorphic shellcode</a></li>
+              <li><a href="./articles/slae64-5-msf-shellcode-analysis.html"><time datetime="2019-05-25T17:38:00+08:00">May 25, 2019</time> - SLAE64 #5 - MSF shellcode analysis</a></li>
+              <li><a href="./articles/slae64-4-sse42-crc32c-encoder.html"><time datetime="2019-05-18T10:33:00+08:00">May 18, 2019</time> - SLAE64 #4 - SSE4.2 CRC32C Encoder</a></li>
+              <li><a href="./articles/slae64-3-egghunter-shellcode.html"><time datetime="2019-05-18T10:20:00+08:00">May 18, 2019</time> - SLAE64 #3 - Egghunter shellcode</a></li>
+              <li><a href="./articles/slae64-2-revshell-tcp-shellcode.html"><time datetime="2019-05-17T22:45:00+08:00">May 17, 2019</time> - SLAE64 #2 - Revshell TCP shellcode</a></li>
+              <li><a href="./articles/slae64-1-bindshell-tcp-shellcode.html"><time datetime="2019-05-17T22:35:00+08:00">May 17, 2019</time> - SLAE64 #1 - Bindshell TCP shellcode</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/hiding-files-with-mount.html"><time datetime="2019-04-19T23:14:00+08:00">Apr 19, 2019</time> - Hiding files with mount</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/flashing-swos-from-windows.html"><time datetime="2019-03-25T23:13:00+08:00">Mar 25, 2019</time> - Flashing SwOS from Windows</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/the-evolution-of-crypto.html"><time datetime="2019-02-06T08:27:00+08:00">Feb 06, 2019</time> - The Evolution of Crypto</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/timestomping-programmatically.html"><time datetime="2019-01-27T10:18:00+08:00">Jan 27, 2019</time> - Timestomping Programmatically</a></li>
+          </ul>
+        <h2>2018</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/windows-persistency-with-openvpn-gui.html"><time datetime="2018-12-29T11:16:00+08:00">Dec 29, 2018</time> - Windows Persistency With OpenVPN GUI</a></li>
+              <li><a href="./articles/migrating-rsyslog-to-splunk.html"><time datetime="2018-12-02T19:04:00+08:00">Dec 02, 2018</time> - Migrating rsyslog to Splunk</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/SANS-FOR508-review.html"><time datetime="2018-11-01T22:55:00+08:00">Nov 01, 2018</time> - SANS FOR508 review</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/flare-on-5-wasm-with-chrome.html"><time datetime="2018-10-12T21:30:00+08:00">Oct 12, 2018</time> - FLARE-On 5 wasm with Chrome</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/reasonable-use-of-personal-data.html"><time datetime="2018-09-09T18:54:00+08:00">Sep 09, 2018</time> - Reasonable use of personal data</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/improvements-to-seabs-investigation-process.html"><time datetime="2018-08-06T23:06:00+08:00">Aug 06, 2018</time> - Improvements to SEAB's investigation process</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/dlink-routers-ping-function.html"><time datetime="2018-07-22T18:26:00+08:00">Jul 22, 2018</time> - D-Link router's ping function</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/crest-cpsa-review.html"><time datetime="2018-05-16T10:00:00+08:00">May 16, 2018</time> - CREST CPSA Review</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/asus-routers-ping-function.html"><time datetime="2018-04-27T10:04:00+08:00">Apr 27, 2018</time> - ASUS router's ping function</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/visualizing-fitness-tracker-data.html"><time datetime="2018-03-04T12:33:00+08:00">Mar 04, 2018</time> - Visualizing fitness tracker data</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/deprecating-http-lessons-from-ssh-telnet.html"><time datetime="2018-02-17T20:02:00+08:00">Feb 17, 2018</time> - Deprecating HTTP - Lessons from SSH/Telnet</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/top-2000-wp-plugins.html"><time datetime="2018-01-20T14:16:00+08:00">Jan 20, 2018</time> - Top 2000 Wordpress Plugins</a></li>
+              <li><a href="./articles/smart-google-code-inserter-auth-bypass.html"><time datetime="2018-01-01T10:27:00+08:00">Jan 01, 2018</time> - Smart Google Code Inserter < 3.5 - Auth Bypass/SQLi</a></li>
+          </ul>
+        <h2>2017</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/designing-an-offline-auth-system.html"><time datetime="2017-12-10T15:37:00+08:00">Dec 10, 2017</time> - Designing an offline authentication system</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/SANS-SEC660-review.html"><time datetime="2017-11-04T21:46:00+08:00">Nov 04, 2017</time> - SANS SEC660 review</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/piwik-possible-xss-in-rdns-lookup-function.html"><time datetime="2017-10-22T21:59:00+08:00">Oct 22, 2017</time> - Piwik - Possible XSS in RDNS lookup function</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/simple-student-result-auth-bypass.html"><time datetime="2017-09-21T19:14:00+08:00">Sep 21, 2017</time> - CVE-2017-14766 Simple Student Result < 1.6.4 - Auth Bypass</a></li>
+              <li><a href="./articles/cve-2017-14126-participants-database-xss.html"><time datetime="2017-09-06T08:00:00+08:00">Sep 06, 2017</time> - CVE-2017-14126 Participants Database < 1.7.5.10 - XSS</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/oscp-review.html"><time datetime="2017-08-24T10:19:00+08:00">Aug 24, 2017</time> - OSCP review</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/enumerate-sites-hosted-on-same-ip.html"><time datetime="2017-06-11T15:43:00+08:00">Jun 11, 2017</time> - Enumerate sites hosted on same IP</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/remote-command-execution-on-google-assistant.html"><time datetime="2017-04-29T13:03:00+08:00">Apr 29, 2017</time> - Remote Command Execution on Google Assistant</a></li>
+              <li><a href="./articles/is-darktrace-working-with-the-nsa.html"><time datetime="2017-04-08T21:42:00+08:00">Apr 08, 2017</time> - Is DarkTrace working with the NSA?</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/analysis-of-3000-BMT-recruits.html"><time datetime="2017-03-12T14:44:00+08:00">Mar 12, 2017</time> - Analysis of 3000 BMT Recruits</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/replicating-uvb-76.html"><time datetime="2017-02-18T11:00:00+08:00">Feb 18, 2017</time> - Replicating UVB-76</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/ip-hiding-and-cloaking-for-services.html"><time datetime="2017-01-22T18:01:00+08:00">Jan 22, 2017</time> - IP Hiding and Cloaking for Services</a></li>
+          </ul>
+        <h2>2016</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/analysis-of-35000-senior-civil-servants.html"><time datetime="2016-12-25T21:31:00+08:00">Dec 25, 2016</time> - Analysis Of 35000 Senior Civil Servants</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/authenticating-with-nric-numbers.html"><time datetime="2016-11-13T20:35:00+08:00">Nov 13, 2016</time> - Authenticating with NRIC numbers</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/security-theatre-samsung-note-7.html"><time datetime="2016-10-16T22:43:00+08:00">Oct 16, 2016</time> - Security Theatre: Samsung Note 7</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/national-vulnerability-reporting-programme.html"><time datetime="2016-09-18T15:15:00+08:00">Sep 18, 2016</time> - National Vulnerability Reporting Programme</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/analysing-smali-code.html"><time datetime="2016-08-06T19:55:00+08:00">Aug 06, 2016</time> - Analysing smali code</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/des-key-parity-bit-calculator.html"><time datetime="2016-07-03T10:44:00+08:00">Jul 03, 2016</time> - DES key parity bit calculator</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/pass-the-ez-link-standard-ticket-attack.html"><time datetime="2016-06-26T11:13:00+08:00">Jun 26, 2016</time> - Pass the (EZ-Link Standard) ticket attack</a></li>
+              <li><a href="./articles/bangladesh-bank-heist.html"><time datetime="2016-06-12T13:05:00+08:00">Jun 12, 2016</time> - Bangladesh bank heist</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/measuring-power-consumption.html"><time datetime="2016-05-15T14:11:00+08:00">May 15, 2016</time> - Measuring Power Consumption</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/saturating-1gbps-bandwidth.html"><time datetime="2016-04-26T14:35:00+08:00">Apr 26, 2016</time> - Saturating 1Gbps bandwidth</a></li>
+              <li><a href="./articles/running-https-ssh-vpn-on-port-443.html"><time datetime="2016-04-16T15:57:00+08:00">Apr 16, 2016</time> - Running HTTPS, SSH and VPN on port 443</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/protonmail-technical-prowess-legal-expertise-and-guts.html"><time datetime="2016-03-20T20:12:00+08:00">Mar 20, 2016</time> - ProtonMail: Technical prowess, Legal expertise and Guts</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/biometrics-and-passwords.html"><time datetime="2016-02-21T15:50:00+08:00">Feb 21, 2016</time> - Biometrics and Passwords</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/raid-is-not-backup.html"><time datetime="2016-01-17T19:40:00+08:00">Jan 17, 2016</time> - RAID is not backup</a></li>
+          </ul>
+        <h2>2015</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/the-golden-key-TSA-locks-and-encryption.html"><time datetime="2015-12-20T22:14:00+08:00">Dec 20, 2015</time> - The Golden Key - TSA Locks and Encryption</a></li>
+              <li><a href="./articles/xenserver-v2p-migration.html"><time datetime="2015-12-09T14:16:00+08:00">Dec 09, 2015</time> - Xenserver V2P Migration</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/verifying-js-integrity.html"><time datetime="2015-11-02T23:30:00+08:00">Nov 02, 2015</time> - Verifying JS Integrity</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/adding-hostnames-to-piwik.html"><time datetime="2015-10-28T11:13:00+08:00">Oct 28, 2015</time> - Adding hostnames or PTR records to piwik</a></li>
+              <li><a href="./articles/negative-space.html"><time datetime="2015-10-16T11:06:00+08:00">Oct 16, 2015</time> - Negative space</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/first-cyberinsurance-claim.html"><time datetime="2015-09-21T14:50:00+08:00">Sep 21, 2015</time> - First Cyberinsurance claim?</a></li>
+              <li><a href="./articles/2-gbps-fibre-is-a-gimmick.html"><time datetime="2015-09-05T19:01:00+08:00">Sep 05, 2015</time> - 2Gbps fibre is a gimmick</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/rules-of-engagement-in-cyberspace.html"><time datetime="2015-08-15T00:40:00+08:00">Aug 15, 2015</time> - Rules of Engagement in Cyberspace</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/facebook-og-tags-modification.html"><time datetime="2015-07-30T16:22:00+08:00">Jul 30, 2015</time> - Facebook Open Graph Tags Modification</a></li>
+              <li><a href="./articles/google-cal-api-v3.html"><time datetime="2015-07-12T16:37:00+08:00">Jul 12, 2015</time> - Google Calendar API v3</a></li>
+              <li><a href="./articles/open-letter-to-icann-on-ppsai.html"><time datetime="2015-07-03T09:19:00+08:00">Jul 03, 2015</time> - Open letter to ICANN on PPSAI</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/what-happens-when-a-website-goes-offline-for-3-months.html"><time datetime="2015-06-25T13:02:00+08:00">Jun 25, 2015</time> - Website goes offline for 3 months</a></li>
+              <li><a href="./articles/email-fraud-part-2.html"><time datetime="2015-06-01T10:46:00+08:00">Jun 01, 2015</time> - Email fraud part 2</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/email-fraud.html"><time datetime="2015-05-18T08:59:00+08:00">May 18, 2015</time> - Email fraud</a></li>
+          </ul>
+          <h3>April</h3>
+          <ul>
+              <li><a href="./articles/ipad-pos.html"><time datetime="2015-04-30T08:59:00+08:00">Apr 30, 2015</time> - iPad POS</a></li>
+              <li><a href="./articles/1fa.html"><time datetime="2015-04-24T08:59:00+08:00">Apr 24, 2015</time> - 1FA</a></li>
+              <li><a href="./articles/ijis-plaintext-offender.html"><time datetime="2015-04-12T08:59:00+08:00">Apr 12, 2015</time> - IJIS plaintext offender</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/information-leakage.html"><time datetime="2015-03-29T08:59:00+08:00">Mar 29, 2015</time> - Information Leakage</a></li>
+              <li><a href="./articles/ubers-github-slip-up.html"><time datetime="2015-03-06T20:47:00+08:00">Mar 06, 2015</time> - Uber's github slip up</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/asus-rt-n15u-external-antennae-mod.html"><time datetime="2015-02-28T09:54:00+08:00">Feb 28, 2015</time> - ASUS RT-N15U external antennae mod</a></li>
+              <li><a href="./articles/online-text-binning-tool.html"><time datetime="2015-02-07T17:19:00+08:00">Feb 07, 2015</time> - Online text binning tool</a></li>
+          </ul>
+          <h3>January</h3>
+          <ul>
+              <li><a href="./articles/public-private-partnerships-in-cybersecurity.html"><time datetime="2015-01-31T12:19:00+08:00">Jan 31, 2015</time> - Public Private Partnerships in Cybersecurity</a></li>
+              <li><a href="./articles/on-physical-authentication.html"><time datetime="2015-01-09T06:02:00+08:00">Jan 09, 2015</time> - On Physical Authentication</a></li>
+          </ul>
+        <h2>2014</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/dumping-aztech-DSL1015EN-firmware.html"><time datetime="2014-12-15T23:06:00+08:00">Dec 15, 2014</time> - Dumping Aztech DSL1015EN firmware</a></li>
+              <li><a href="./articles/cloning-mifare-1k-cards.html"><time datetime="2014-12-08T19:22:00+08:00">Dec 08, 2014</time> - Cloning Mifare 1K cards</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/a-different-kind-of-birthday-attack.html"><time datetime="2014-11-15T21:59:00+08:00">Nov 15, 2014</time> - A different kind of birthday attack</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/code-runs-on-code.html"><time datetime="2014-10-26T21:36:00+08:00">Oct 26, 2014</time> - Code runs on code</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/flaws-of-a-single-ecosystem.html"><time datetime="2014-09-07T10:24:00+08:00">Sep 07, 2014</time> - Flaws of a single ecosystem</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/software-versioning.html"><time datetime="2014-07-21T00:17:00+08:00">Jul 21, 2014</time> - Software Versioning</a></li>
+              <li><a href="./articles/wireless-woes.html"><time datetime="2014-07-12T10:45:00+08:00">Jul 12, 2014</time> - Wireless Woes</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/unrar.html"><time datetime="2014-06-22T22:31:00+08:00">Jun 22, 2014</time> - unrar</a></li>
+              <li><a href="./articles/problems-with-distributed-architecture.html"><time datetime="2014-06-16T20:47:00+08:00">Jun 16, 2014</time> - Problems with Distributed Architecture</a></li>
+              <li><a href="./articles/new-form-of-ddos.html"><time datetime="2014-06-02T06:22:00+08:00">Jun 02, 2014</time> - New Form of DDoS</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/web-development-in-singapore.html"><time datetime="2014-05-21T04:25:00+08:00">May 21, 2014</time> - Web Development in Singapore</a></li>
+              <li><a href="./articles/how-i-cheated-and-won-a-quiz.html"><time datetime="2014-05-08T07:09:00+08:00">May 08, 2014</time> - How I (cheated and) won a quiz</a></li>
+          </ul>
+          <h3>March</h3>
+          <ul>
+              <li><a href="./articles/immigration-checks.html"><time datetime="2014-03-10T09:19:00+08:00">Mar 10, 2014</time> - Immigration checks</a></li>
+          </ul>
+          <h3>February</h3>
+          <ul>
+              <li><a href="./articles/encryption-and-blackmailing.html"><time datetime="2014-02-22T20:26:00+08:00">Feb 22, 2014</time> - Encryption and blackmailing</a></li>
+              <li><a href="./articles/singtels-5012nv-002-vulnerability.html"><time datetime="2014-02-01T21:56:00+08:00">Feb 01, 2014</time> - Singtel's 5012NV-002 vulnerability</a></li>
+          </ul>
+        <h2>2013</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/multiple-inboxes-with-same-email-address.html"><time datetime="2013-12-15T06:45:00+08:00">Dec 15, 2013</time> - Multiple inboxes with same email address</a></li>
+              <li><a href="./articles/preloading-pages.html"><time datetime="2013-12-10T19:36:00+08:00">Dec 10, 2013</time> - preloading pages</a></li>
+              <li><a href="./articles/mysql-optimization.html"><time datetime="2013-12-04T06:29:00+08:00">Dec 04, 2013</time> - mysql optimization</a></li>
+          </ul>
+          <h3>November</h3>
+          <ul>
+              <li><a href="./articles/private-tlds.html"><time datetime="2013-11-23T06:43:00+08:00">Nov 23, 2013</time> - private TLDs</a></li>
+              <li><a href="./articles/url-shortening-services.html"><time datetime="2013-11-16T20:11:00+08:00">Nov 16, 2013</time> - URL shortening services</a></li>
+              <li><a href="./articles/windows-file-metadata.html"><time datetime="2013-11-12T07:49:00+08:00">Nov 12, 2013</time> - windows file metadata</a></li>
+              <li><a href="./articles/layered-security.html"><time datetime="2013-11-06T18:01:00+08:00">Nov 06, 2013</time> - Layered security</a></li>
+              <li><a href="./articles/web-public.html"><time datetime="2013-11-03T17:41:00+08:00">Nov 03, 2013</time> - Web = public</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/continuity-plan.html"><time datetime="2013-10-29T06:06:00+08:00">Oct 29, 2013</time> - Continuity plan</a></li>
+              <li><a href="./articles/happy-monthiversary.html"><time datetime="2013-10-18T07:17:00+08:00">Oct 18, 2013</time> - happy monthiversary</a></li>
+              <li><a href="./articles/efi.html"><time datetime="2013-10-15T06:02:00+08:00">Oct 15, 2013</time> - EFI</a></li>
+              <li><a href="./articles/rainmeter.html"><time datetime="2013-10-04T19:05:00+08:00">Oct 04, 2013</time> - rainmeter</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/default-printer-settings.html"><time datetime="2013-09-23T23:46:00+08:00">Sep 23, 2013</time> - Default printer settings</a></li>
+              <li><a href="./articles/problems-with-ftp.html"><time datetime="2013-09-15T03:35:00+08:00">Sep 15, 2013</time> - Problems with FTP</a></li>
+              <li><a href="./articles/hiding-compressed-files-in-images.html"><time datetime="2013-09-06T19:53:00+08:00">Sep 06, 2013</time> - Hiding compressed files in images</a></li>
+          </ul>
+          <h3>August</h3>
+          <ul>
+              <li><a href="./articles/hijacking-qr-codes.html"><time datetime="2013-08-15T00:42:00+08:00">Aug 15, 2013</time> - Hijacking QR codes</a></li>
+              <li><a href="./articles/interesting-bluetooth-experiment.html"><time datetime="2013-08-12T06:34:00+08:00">Aug 12, 2013</time> - Interesting bluetooth experiment</a></li>
+              <li><a href="./articles/usb-30.html"><time datetime="2013-08-05T20:54:00+08:00">Aug 05, 2013</time> - USB 3.0</a></li>
+              <li><a href="./articles/server-cluster-for-500.html"><time datetime="2013-08-03T05:56:00+08:00">Aug 03, 2013</time> - Server cluster for $500</a></li>
+              <li><a href="./articles/a-little-experiment.html"><time datetime="2013-08-03T05:53:00+08:00">Aug 03, 2013</time> - A little experiment</a></li>
+          </ul>
+          <h3>July</h3>
+          <ul>
+              <li><a href="./articles/cloudflare.html"><time datetime="2013-07-20T21:41:00+08:00">Jul 20, 2013</time> - cloudflare</a></li>
+              <li><a href="./articles/allure-of-sysprep.html"><time datetime="2013-07-07T22:07:00+08:00">Jul 07, 2013</time> - Allure of sysprep</a></li>
+              <li><a href="./articles/webview-vs-native.html"><time datetime="2013-07-02T05:07:00+08:00">Jul 02, 2013</time> - webview vs native</a></li>
+          </ul>
+          <h3>June</h3>
+          <ul>
+              <li><a href="./articles/iptables-f.html"><time datetime="2013-06-24T04:13:00+08:00">Jun 24, 2013</time> - iptables -F</a></li>
+              <li><a href="./articles/linux-box-to-ap-with-hostapddhcpdiptables.html"><time datetime="2013-06-18T02:19:00+08:00">Jun 18, 2013</time> - Linux box to AP with hostapd/dhcpd/iptables</a></li>
+              <li><a href="./articles/stealing-code.html"><time datetime="2013-06-15T20:42:00+08:00">Jun 15, 2013</time> - Stealing code</a></li>
+              <li><a href="./articles/spoofing-nus-wpa2-and-stealing-credentials.html"><time datetime="2013-06-13T19:34:00+08:00">Jun 13, 2013</time> - Spoofing NUS WPA2 and stealing credentials</a></li>
+              <li><a href="./articles/dual-booting.html"><time datetime="2013-06-13T04:48:00+08:00">Jun 13, 2013</time> - Dual booting</a></li>
+              <li><a href="./articles/orbital-project-log.html"><time datetime="2013-06-01T04:03:00+08:00">Jun 01, 2013</time> - Orbital Project Log</a></li>
+              <li><a href="./articles/orbital-project-wiki.html"><time datetime="2013-06-01T04:02:00+08:00">Jun 01, 2013</time> - Orbital Project Wiki</a></li>
+          </ul>
+          <h3>May</h3>
+          <ul>
+              <li><a href="./articles/apache-vs-nginxlighttpd.html"><time datetime="2013-05-30T21:40:00+08:00">May 30, 2013</time> - apache vs nginx/lighttpd</a></li>
+              <li><a href="./articles/running-you-own-home-server-part-2.html"><time datetime="2013-05-27T23:21:00+08:00">May 27, 2013</time> - Running you own home server part 2</a></li>
+              <li><a href="./articles/running-your-own-home-server.html"><time datetime="2013-05-26T23:28:00+08:00">May 26, 2013</time> - Running your own home server</a></li>
+              <li><a href="./articles/300kb-300mb.html"><time datetime="2013-05-25T10:01:00+08:00">May 25, 2013</time> - 300kb - 300mb</a></li>
+          </ul>
+        <h2>2012</h2>
+          <h3>December</h3>
+          <ul>
+              <li><a href="./articles/ethic-issues-concerned-with-artificial-intelligenceai-in-decision-making-processes.html"><time datetime="2012-12-08T20:59:00+08:00">Dec 08, 2012</time> - Ethic issues concerned with Artificial Intelligence(AI) in decision making processes</a></li>
+          </ul>
+          <h3>October</h3>
+          <ul>
+              <li><a href="./articles/ethical-concerns-regarding-the-transition-from-software-to-abandonware.html"><time datetime="2012-10-10T03:59:00+08:00">Oct 10, 2012</time> - Ethical concerns regarding the transition from software to abandonware</a></li>
+          </ul>
+          <h3>September</h3>
+          <ul>
+              <li><a href="./articles/ethicality-of-certain-practices-in-the-telecommunication-industry.html"><time datetime="2012-09-20T10:06:00+08:00">Sep 20, 2012</time> - Ethicality of certain practices in the telecommunication industry</a></li>
+          </ul>
+    </dl>
+  </div>
+  <div class="article_meta"></div>
+</article>
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="./pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="./feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="./sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Fri Jan  2 15:21:36 2026<br />
+                    &copy; 2012-2026 <a href=".">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa-solid fa-angle-up"></i></div><!-- .scroll-to-top -->
+      <div class="dark-mode" style="display: block;"><i class="fa-solid fa-moon"></i></div><!-- .dark-mode -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script>
+    const darkmode =  new Darkmode();  
+  </script>
+  <script type="text/javascript">
+    window.addEventListener('load', function(){    
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="./theme/js/functions.min.js"></script>
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>

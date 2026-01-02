@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Benjamin Lim">
+  <meta name="description" content="Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the...">
+
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="../theme/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" media="all">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../theme/css/cookies-eu-banner.default.css" type="text/css" media="all">
+  <script src="../theme/js/cookies-eu-banner.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+ 
+
+  <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
+
+<meta name="keywords" content="limbenjamin, Data">
+
+<meta property="og:title" content="Analysis of 3000 BMT Recruits">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
+<meta property="og:site_name" content="https://limbenjamin.com">
+<meta property="og:description" content="Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the 01/17 batch and present both facts as well as conjectures which I made. In the dataset, there are a total of 4534 …">
+<meta property="og:url" content="https://limbenjamin.com/articles/analysis-of-3000-BMT-recruits.html">
+<meta property="fb:admins" content="557193263"/>
+<meta property="fb:app_id" content="520142688161055"/>
+
+
+  <title>Analysis of 3000 BMT Recruits</title>
+  
+</head>
+
+<body class="home blog">
+    <div id="cookies-eu-banner" style="display: none;position:fixed;bottom: 0">
+        We use Google Analytics to analyze our traffic. By clicking "Accept", you consent to our use of cookies.
+        <a href="../pages/privacy-policy-disclaimer.html" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
+
+  <div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse navbar-default" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="/index.html" >Index
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about-me.html" >About me
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/files/cv.html" >Résumé
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/projects.html" >Projects
+<i class=" fa-lg"></i></a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/reading-list.html" >Reading List
+<i class=" fa-lg"></i></a></li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="#mail" title="Email" >
+<i class="fa-solid fa-envelope fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://bugcrowd.com/h/limbenjamin" title="Bugcrowd" >
+<i class="fa-brands fa-bimobject fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://sg.linkedin.com/in/1imbenjamin" title="LinkedIn" >
+<i class="fa-brands fa-linkedin fa-lg"></i></a><div style="padding-right: 1em;"></div>
+                <a class="nav-link" href="https://github.com/limbenjamin" title="GitHub" >
+<i class="fa-brands fa-github fa-lg"></i></a><div style="padding-right: 1em;"></div>
+               <div class="oval">
+                <center>
+                  <img src="/files/nricspecimengen/merlion.png" class="merlion" style="height: 30px;"/>
+                </center>
+               </div> 
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="logo">
+        <span class="site-name"><a class="navbar-brand" href=".."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"   width="233.45px" height="184.71px" viewBox="0 0 233.45 184.71" enable-background="new 0 0 233.45 184.71" xml:space="preserve"><ellipse id="c1" fill="none" cx="60.2" cy="57.5" rx="3.6" ry="3.1"/><ellipse id="c2" fill="none" cx="56.4" cy="103.3" rx="3.3" ry="3.2"/><ellipse id="c3" fill="none" cx="99.8" cy="121.7" rx="3.3" ry="3.1"/><ellipse id="c4" fill="none" cx="151.8" cy="124.9" rx="3.3" ry="2.8"/><ellipse id="c5" fill="none" cx="172.5" cy="87" rx="3.8" ry="2.9"/><ellipse id="c6" fill="none" cx="176.8" cy="41.1" rx="3.5" ry="3.1"/><ellipse id="c7" fill="none" cx="132.8" cy="23.3" rx="3.4" ry="3.2"/><ellipse id="c8" fill="none" cx="81.3" cy="19.8" rx="3.7" ry="3.4"/><path id="path4" fill="#FFF" stroke="#C4E6FC" stroke-width="12" stroke-miterlimit="10" d="M86 58l10-8s10-3 11-1c1 1-7 7-7 7L88 67v4c1 1 2 3 3 2l21-18 10-5h7L89 85l1 4 2 4c3 0 42-38 46-41h4l2 4-1 3-38 33-2 3 5 2 5-1c8-6 20-25 30-25l1 2 1 1-1 4s-19 12-17 18l5 1 4-2 6-4 5-4"/>    <path id="path3" fill="none" stroke="#0e94ec" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M114 85l-7 1-2-8h-2l11-1-12-10 13 2-7-6 8 1-7-5h3l5 2 6-2 2 5 5 3-9 3 7 1-8 4 9 2 1 3h-6l-4 1v4l3 2 4-3"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M64 139v15c0 5 3 8 7 8 5 1 9-2 10-6s-1-7-7-9l-7 2M154 163c-1-4 1-8-1-13-2-2-6-3-10-3-4 1-7 7-5 10 2 5 8 7 12 5l3-3"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M116 15c2 10 0 19 1 29M117 101c-1 9 1 19-1 29M183 72h-34M84 72H52"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M131 147v17c1 4-2 6-6 5M101 160c-6 3-9 3-14-2v-7c2-3 6-5 10-4s6 4 7 7l-16 1M15 140v23"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 87c-6-1-11 0-14 5l-11 8c1 3 1 6-3 7-3-2-3-2-3-6h6M133 101v7l16 14M174 44c4 1 4 1 7-2l-3-4c-5 0-6 1-4 6l-12 10c-4 4-8 5-13 4M85 23l8 7c6 4 7 9 7 14M85 49c-1 10 0 19 1 29v15c0 4 3 6 8 6l22 1 25-1"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M110 163v-7c0-6 0-7 7-9 6 0 8 4 7 8v8"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M84 23c0-2 2-4 0-6-3-1-5-1-7 2 1 4 3 5 7 4"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M175 150c2-2 5-4 9-3 4 2 5 5 5 8s1 5-1 8M43 150c3-2 5-4 9-3 5 2 5 5 5 8v8M204 150c2-2 5-3 8-3 9 3 5 10 6 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M100 101v16M133 27c-2 0-3-1-4-3 0-2 1-4 5-4 2 0 2 2 3 4-4 2-4 6-4 10v10M64 58c0 2-1 3-3 3-3 0-4-2-5-3l4-4 1 1c4 4 9 3 13 3h10M90 47l4-1h46s4 0 7 5v13a425 425 0 01-1 34"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M196 147v16M22 147c0 5-1 10 1 16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M106 82c-3-1-4 1-4 3 1 3 3 5 7 5 3 1 5-1 7-2M131 73c5 4 6 7 2 10l-3 3c-1 4-5 5-9 4-4 0-5-3-5-6l1-18M121 62l6-1v-6c-4-1-7-1-10 2M128 61c8 3 9 6 4 12M173 84c5 2 5 3 0 6-3 0-3-2-5-3 0 0 2-3 4-3M116 60c2-4-1-6-5-5-4 0-7 1-6 6"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43 163v-9c0-2 0-5-3-6s-6-1-9 1l-2 2c1 4-1 8 1 12M175 163v-9c0-2 0-5-4-6-3-1-6-1-8 1l-2 2v12M203 147v16"/><path class="path" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M108 101c0 3 1 6-1 9M125 34v10M84 65H73M84 80H73M109 34l-1 10M99 118c-3 1-3 3-2 5s3 2 5 1c2-2 2-5-2-6M106 61c-9 2-10 5-6 11M125 101v7M104 71c-8 4-8 8-2 13M150 122c-3 3-3 3 1 6 3 0 4-1 5-3-1-3-3-3-5-3M149 65h12M150 81h11M169 87h-19"/><path class="path2" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 144v-1M132 144v-1M196 144v-1"/></svg></a>
+        </span><!-- end of .site-name -->
+      </div><!-- end of #logo -->
+        <div class="tagline">
+                <a href="../tag/coding.html" >Coding (13)</a> &#124; 
+                <a href="../tag/data.html" >Data (25)</a> &#124; 
+                <a href="../tag/legal.html" >Legal (41)</a> &#124; 
+                <a href="../tag/nus.html" >NUS (3)</a> &#124; 
+                <a href="../tag/security.html" >Security (123)</a> &#124; 
+                <a href="../tag/server.html" >Server (32)</a> &#124; 
+                <a href="../tag/untagged.html" >Untagged (20)</a> &#124; 
+                <a href="../archives.html" >Archives (218)</a>
+        </div>
+    </div>
+
+  </header><!-- #masthead -->
+  </div>
+    <div id="content" class="site-content">
+      <div class="container main-content-area">
+        <div class="row">
+          <div class="main-content-inner col-sm-12 col-md-12">
+            <div id="primary" class="content-area">
+              <div id="main" class="site-main" role="main">
+                <div class="article-container">
+<article>
+  <div class="blog-item-wrap">
+    <div class="post-inner-content">
+      <header class="entry-header page-header">
+        <span class="cat-item"><time datetime="2017-03-12 14:44:00+08:00">Mar 12, 2017</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/analysis-of-3000-BMT-recruits.html">Analysis of 3000 BMT Recruits</a></h1>
+      </header><!-- .entry-header -->
+      <div class="entry-content">
+        <p>Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the 01/17 batch and present both facts as well as conjectures which I made. In the dataset, there are a total of 4534 profile photos of these recruits of which 3287 were tagged with unique NRIC numbers. I will be using these 3287 photos and NRIC numbers in the analysis.</p>
+<div class="admonition danger">
+<p class="admonition-title">Disclaimer</p>
+<p>This data was obtained from a public source. BMTC Media Team posted these photos on Google Drive and shared the link on the official BMTC public Facebook page. I downloaded the entire dataset as a ZIP file in one single request. I did not use a script or perform any action which is illegal or against the Terms of Service in any way. This analysis is entirely my own idea, neither my employer nor MINDEF/BMTC is involved in any way. I am not responsible for any inaccuracies in the data.</p>
+</div>
+<h2>Analysis</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
+First 3 characters of NRIC number
+----------------------------------------------------
+S88xxxxxx       1       S95xxxxxx       252
+S90xxxxxx       1       S96xxxxxx       524
+S91xxxxxx       7       S97xxxxxx       365
+S92xxxxxx       29      S98xxxxxx       1965
+S93xxxxxx       48      S99xxxxxx       18
+S94xxxxxx       77  
+</code></pre></div></td></tr></table></div>
+
+<p>As expected, majority of the BMTC recruits (born in 1998) went through the JC route and hence enlisted at age 19. A smaller number (born in 1996/1997) went through the Polytechnic route. Those born between 1992 and 1995 probably went through Sec 5/ITE followed by Polytechnic and thus enlisted later. A significant number of the older recruits born before 1994 are females who have probably completed their degree program and are on the officer's scheme. The outliers will be covered in the next section <code>BMTC: Our life stories</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
+4th characters of NRIC number
+----------------------------------------------------
+Sxx0xxxxx       751     Sxx5xxxxx       0
+Sxx1xxxxx       606     Sxx6xxxxx       0
+Sxx2xxxxx       656     Sxx7xxxxx       223
+Sxx3xxxxx       635     Sxx8xxxxx       0
+Sxx4xxxxx       368     Sxx9xxxxx       48
+</code></pre></div></td></tr></table></div>
+
+<p>Most of us would know that NRIC numbers are issued from 0 onwards. Since Singapore has had about 40,000+ births or so every year in the 1990s, it makes sense for the numbers for <code>0, 1, 2, 3</code> to be relatively similar and for <code>4</code> to be less. <code>7</code> is issued to new citizens. <code>9</code> is issued to Singaporeans/PRs born overseas but have rights to be Singaporean/PRs. As we can see, the overwhelming majority of those serving NS are Singaporeans/PRs born in Singapore, only 223 are new citizen/PR converts and 48 who were born overseas.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>----------------------------------------------------
+NRIC check digit
+----------------------------------------------------
+SxxxxxxxA       313     SxxxxxxxG       333
+SxxxxxxxB       321     SxxxxxxxH       284
+SxxxxxxxC       283     SxxxxxxxI       286
+SxxxxxxxD       273     SxxxxxxxJ       286
+SxxxxxxxE       287     SxxxxxxxZ       328
+SxxxxxxxF       293
+</code></pre></div></td></tr></table></div>
+
+<p>The NRIC check digit is generated using a weighted modulo 11 algorithm. Thus, this exercise shows that the algorithm generates check digits with a relatively good spread, perhaps with slight biases for <code>G</code> and <code>Z</code>.</p>
+<h2>BMTC: Our life stories</h2>
+<div class="admonition danger">
+<p class="admonition-title">Disclaimer</p>
+<p>The stories below are purely conjectures. Photos and full NRIC numbers are not posted to preserve their privacy. This section aims to illustrate how just a few pieces of data can actually be used to draw a surprisingly large number of conclusions.</p>
+</div>
+<p>REC Faiz (S9990XXXJ) was born overseas to Singaporean parents. He scored poorly in his O level exams and decided to work instead of going for further studies. He received his enlistment notice at age 18. He is one of the youngest recruits not only at A Coy Platoon 2, but throughout the entire BMTC.</p>
+<p>At 29, this female recruit (S8812XXXZ) is by far the oldest recruit. The next oldest recruit is 27 and also female. Due to the positioning of her name tag, I cannot discern her surname, but lets call her REC Ng. REC Ng is a university graduate. Unfortunately she was retrenched last year amidst the recession. Unable to find a job for nearly a year, she bit the bullet and joined the SAF. While it is quite demeaning for her to transit from junior management into a recruit, at least she draws a comfortable $3,000+ per month.</p>
+      </div><!-- .entry-content -->
+      <br /><br />
+      <div class="article_meta">
+        Tags:
+          <a href="../tag/data.html">Data</a>        <br />
+        <div class="similararticleline"></div>
+        <h2>Similar Articles</h2>
+          <div class="similararticlerow">
+              <blockquote class="similar_posts">
+              <a href="../articles/analysis-of-3000-BMT-recruits.html"><b>Analysis of 3000 BMT Recruits - </b>
+              Have you ever wondered how old is the average BMT recruit? How many are new citizens? The article will explore a dataset of 3287 recruits from the 01/17 batch and present both facts as well as ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/analysis-of-35000-senior-civil-servants.html"><b>Analysis Of 35000 Senior Civil Servants - </b>
+              The civil service received a half month year-end bonus this year amid the economic downturn, but have you wondered who they are? Where do they work? Disclaimer The analysis was conducted using ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/spf-promotion-statistics.html"><b>SPF Promotion Statistics - </b>
+              Congratulations to all 45,137 recipients of the Singapore Police Bicentennial 2020 medal. The medal is awarded to all SPF officers in service during the year of 2020, including regulars, NSFs, ...</a>
+              </blockquote>
+              <blockquote class="similar_posts">
+              <a href="../articles/reasonable-use-of-personal-data.html"><b>Reasonable use of personal data - </b>
+              I had to place an obituary in the Straits Times recently. SPH offers an online service where you can use their tool to design the obituary and make payment, all without going down to their ...</a>
+              </blockquote>
+          </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</article><!-- #post-## -->
+                </div>
+              </div><!-- #main -->
+          </div><!-- #primary -->
+        </div>
+      </div><!-- close .row -->
+    </div><!-- close .container -->
+  </div><!-- close .site-content -->
+
+  <div id="mail" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-area">
+    <footer id="colophon" class="site-footer" role="contentinfo">
+      <div class="site-info container">
+        <div class="row">
+                    <div class="copyright col-md-12">
+                    <a href="../pages/privacy-policy-disclaimer.html">Privacy & Disclaimer</a> | 
+                    <a href="../feeds/all.atom.xml">Atom Feed</a> | 
+                    <a href="../sitemap.xml">Sitemap</a><br />
+                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
+                    Page generated on Fri Jan  2 15:21:36 2026<br />
+                    &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
+        </div>
+      </div><!-- .site-info -->
+      <div class="scroll-to-top" style="display: none;"><i class="fa-solid fa-angle-up"></i></div><!-- .scroll-to-top -->
+      <div class="dark-mode" style="display: block;"><i class="fa-solid fa-moon"></i></div><!-- .dark-mode -->
+    </footer><!-- #colophon -->
+  </div>
+
+  <script>
+    const darkmode =  new Darkmode();  
+  </script>
+  <script type="text/javascript">
+    window.addEventListener('load', function(){    
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html'){
+      window.scroll(0, document.getElementById('main').offsetTop);
+    }})
+  </script>
+
+
+  <script type="text/javascript" src="../theme/js/functions.min.js"></script>
+
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
+<script>
+ new CookiesEuBanner(function () {
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-028MBYWX6K');
+  }, true);
+</script>
+  
+</body>
+</html>
