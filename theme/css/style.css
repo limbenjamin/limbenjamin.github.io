@@ -900,6 +900,19 @@ p img{
   margin: 0 auto;
 }
 
+.path-math {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 15s linear forwards;
+  animation-delay: 3s;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -907,23 +920,11 @@ p img{
   animation-delay: 0s;
 }
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 .path2 {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: dash 15s linear forwards;
-  animation-delay: 0s;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+  animation-delay: 1.5s;
 }
 
 #c1, #c5{
@@ -941,63 +942,27 @@ p img{
 #c2, #c6{
   animation: painta 1.5s linear forwards;
 }
-@keyframes painta {
-  99%{
-    fill: #FFF;
-  }
-  100% {
-    fill: #0E94EC;
-  }
-}
 
 #c3, #c7{
   animation: painta 2s linear forwards;
-}
-@keyframes painta {
-  99%{
-    fill: #FFF;
-  }
-  100% {
-    fill: #0E94EC;
-  }
 }
 
 #c4, #c8{
   animation: painta 2.5s linear forwards;
 }
-@keyframes painta {
-  99%{
-    fill: #FFF;
-  }
-  100% {
-    fill: #0E94EC;
-  }
-}
 
 #path3 {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: dash 12s linear forwards;
+  animation: dash 10s linear forwards;
   animation-delay: 1s;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
 }
 
 #path4 {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: dash 6s linear forwards;
+  animation: dash 5s linear forwards;
   animation-delay: 0s;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
 }
 
 .overlay {
