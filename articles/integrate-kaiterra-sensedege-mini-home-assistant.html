@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="1) No copy feature. There is no way to duplicate the file the file on the server for backup, testing or any other purposes. You have to download the...">
+  <meta name="description" content="I&#39;ve recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a...">
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -31,18 +31,18 @@
 
 <meta name="keywords" content="limbenjamin, Server">
 
-<meta property="og:title" content="Problems with FTP">
+<meta property="og:title" content="Integrate Kaiterra Sensedge Mini with HA">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://limbenjamin.com/media/code.png">
-<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png">
+<meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
+<meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="1) No copy feature. There is no way to duplicate the file the file on the server for backup, testing or any other purposes. You have to download the file and upload it to another location, which is quite a hassle especially for large number of files. One would think …">
-<meta property="og:url" content="https://limbenjamin.com/articles/problems-with-ftp.html">
+<meta property="og:description" content="I&#39;ve recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is …">
+<meta property="og:url" content="https://limbenjamin.com/articles/integrate-kaiterra-sensedege-mini-home-assistant.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Problems with FTP</title>
+  <title>Integrate Kaiterra Sensedge Mini with HA</title>
   
 </head>
 
@@ -195,28 +195,235 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2013-09-15 03:35:00+08:00">Sep 15, 2013</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/problems-with-ftp.html">Problems with FTP</a></h1>
+        <span class="cat-item"><time datetime="2026-02-27 18:42:00+08:00">Feb 27, 2026</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/integrate-kaiterra-sensedege-mini-home-assistant.html">Integrate Kaiterra Sensedge Mini with HA</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>1) No copy feature. There is no way to duplicate the file the file on
-the server for backup, testing or any other purposes. You have to
-download the file and upload it to another location, which is quite a
-hassle especially for large number of files. One would think that this
-is a common feature that should be present, unfortunately not so.</p>
-<p>2) No zip/unzip support. For CMSes like wordpress with thousands of
-small files, if your webhost only provides FTP, it can take almost an
-hour to upload less than 100MB. It is exponentially faster if you have
-access to a shell and upload the zipped version.</p>
-<p>3) Downloading content via FTP and HTTP is roughly equal in terms of
-speed. As HTTP is more common, it is less likely to run into problems
-compared to FTP.</p>
-<p>4) Largest Problem of all. Zero encryption. Passwords + Data transmitted
-in plain text. And people including me use it to transfer config files
-with db passwords and admin passwords for CMSes in them. (Note I am not
-willingly using FTP, only because the webhost does NOT provide any other
-options)</p>
+        <p>I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is through MQTT. Since I am using Home Assistant container, I had to run a mosquitto docker container first. Since mosquitto by default on port 1883 does not provide any protocol encryption, it seemed pointless to setup a password, hence I allowed anonymous access</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code># cat /mosquitto/config/mosquitto.conf
+persistence true
+persistence_location /mosquitto/data/
+log_dest file /mosquitto/log/mosquitto.log
 
+listener 1883
+## Authentication ##
+allow_anonymous true
+password_file /mosquitto/config/mosquitto.passwd
+
+# create a mosquitto user anyway
+mosquitto_passwd -c /mosquitto/config/pwfile mosquitto
+
+# cat docker-compose.yml
+...
+  mosquitto:
+    image: eclipse-mosquitto
+    network_mode: host
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+...
+# docker compose up -d
+</code></pre></div></td></tr></table></div>
+
+<p>After mosquitto is running, it was time to setup the Sensedge Mini. At this point, you will want to download the Kaiterra Enterprise Configuration Tool from their website. Insert the modules and power it up, it will start advertising a network with "Kaiterra" in the name. I had good results with the Windows version and the Android apk and struggled with the Linux one. Do not download from Google Play, the version on Google Play requires a Kaiterra account and there is no way to create one. You will only be given a Kaiterra account if you purchased it from an authorized channel. After connecting to the Wifi network and starting the tool, you will enter the configuration page where you can setup the WiFi network to connect to as well as the MQTT server IP address and credentials. At this point, it is important to note down the udid, or you would have to reconnect to it again. If you did the setup correctly, you would see the device connecting on the MQTT server logs</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cat mosquitto.log
+1772187934: Client Kaiterra-SE-200-ffffff [(null):0] disconnected: session taken over.
+1772187934: New client connected from 192.168.10.111:62758 as Kaiterra-SE-200-fffff (p4, c0, k60).
+</code></pre></div></td></tr></table></div>
+
+<p>Now, we shift our focus to Home Assistant, you will need to Add integration, select MQTT and set it up with the IP address and credentials. Once that is done, the easiest way is to setup the sensors by adding the following lines to configuration.yaml and restarting Home Assistant.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code>mqtt:
+  sensor:
+
+    # 🌡 Temperature
+    - name: &quot;Kaiterra Temperature&quot;
+      unique_id: kaiterra_temp_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data.rtemp }}&quot;
+      unit_of_measurement: &quot;°C&quot;
+      device_class: temperature
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+        name: &quot;Kaiterra Air Monitor&quot;
+        manufacturer: &quot;Kaiterra&quot;
+        model: &quot;VG21D21021&quot;
+
+    # 💧 Humidity
+    - name: &quot;Kaiterra Humidity&quot;
+      unique_id: kaiterra_humidity_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data.rhumid }}&quot;
+      unit_of_measurement: &quot;%&quot;
+      device_class: humidity
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+
+    # 🫁 CO2
+    - name: &quot;Kaiterra CO2&quot;
+      unique_id: kaiterra_co2_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data[&#39;rco2 (ppm)&#39;] }}&quot;
+      unit_of_measurement: &quot;ppm&quot;
+      device_class: carbon_dioxide
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+
+    # 🌫 PM2.5
+    - name: &quot;Kaiterra PM2.5&quot;
+      unique_id: kaiterra_pm25_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data[&#39;km200.rpm25&#39;] }}&quot;
+      unit_of_measurement: &quot;µg/m³&quot;
+      device_class: pm25
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+
+    # 🌪 PM10
+    - name: &quot;Kaiterra PM10&quot;
+      unique_id: kaiterra_pm10_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data[&#39;km200.rpm10&#39;] }}&quot;
+      unit_of_measurement: &quot;µg/m³&quot;
+      device_class: pm10
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+
+    # 🧪 TVOC
+    - name: &quot;Kaiterra TVOC&quot;
+      unique_id: kaiterra_tvoc_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data[&#39;km203.rtvoc (ppb)&#39;] }}&quot;
+      unit_of_measurement: &quot;ppb&quot;
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+
+    # 📶 WiFi Signal
+    - name: &quot;Kaiterra Signal Strength&quot;
+      unique_id: kaiterra_signal_0fffffff
+      state_topic: &quot;kaiterra/device/history/udid-here&quot;
+      value_template: &quot;{{ value_json.data.signal_strength }}&quot;
+      unit_of_measurement: &quot;dBm&quot;
+      device_class: signal_strength
+      state_class: measurement
+      device:
+        identifiers: [&quot;kaiterra_0fffffff&quot;]
+</code></pre></div></td></tr></table></div>
+
+<p>Enjoy.</p>
+<p><img alt="image" src="//limbenjamin.com/media/kaiterra.jpeg"></p>
+<p><img alt="image" src="//limbenjamin.com/media/kaiterra2.jpeg"></p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
