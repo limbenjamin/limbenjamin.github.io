@@ -653,6 +653,104 @@
       font-weight: 500;
     }
 
+    /* ══ CATEGORY CHIP (question card) ══ */
+    .q-category-chip {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.12rem 0.55rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+      margin-left: auto;
+    }
+
+    /* ══ CATEGORY STRENGTH CHART ══ */
+    .cat-section { margin-top: 1.5rem; }
+
+    .cat-section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cat-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .cat-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .cat-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+    }
+
+    .cat-row-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.45rem;
+      gap: 0.5rem;
+    }
+
+    .cat-name {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 600;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cat-score-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .cat-pct-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 38px;
+      text-align: right;
+    }
+
+    .cat-bar-track {
+      height: 8px;
+      background: var(--border);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .cat-bar-fill {
+      height: 100%;
+      border-radius: 1px;
+      transition: width 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
     /* ══ FOOTER ══ */
     .site-footer {
       border-top: 1px solid var(--border);
@@ -887,14 +985,14 @@
       <div class="tag-row">
         <span class="tag tag-accent">20 Questions / Session</span>
         <span class="tag tag-accent">Randomised</span>
-        <span class="tag tag-accent">57 Questions in Pool</span>
+        <span class="tag tag-accent" id="pool-count-tag">— Questions in Pool</span>
       </div>
     </header>
 
     <!-- Question Panel -->
     <div id="quiz-panel">
       <div class="question-card" id="question-card">
-        <div class="q-meta"><span class="q-meta-dot"></span><span id="q-meta">Question 1</span></div>
+        <div class="q-meta"><span class="q-meta-dot"></span><span id="q-meta">Question 1</span><span class="q-category-chip" id="q-category-chip"></span></div>
         <div class="q-text" id="q-text"></div>
         <ul class="options-list" id="options-list"></ul>
         <div class="explanation" id="explanation">
@@ -918,7 +1016,8 @@
         <div class="result-pct" id="r-pct"></div>
         <div class="result-msg" id="r-msg"></div>
       </div>
-      <div class="result-section-label">Question breakdown</div>
+      <div class="cat-section" id="cat-section"></div>
+      <div class="result-section-label" style="margin-top:1.5rem">Question breakdown</div>
       <ul class="history-list" id="history-list"></ul>
       <div class="review-section" id="review-section"></div>
       <div class="btn-row" style="margin-top:1.2rem">
@@ -1341,6 +1440,132 @@
     "options": ["Availability", "Separation of duties", "Confidentiality", "Encryption"],
     "answer": 1,
     "explanation": "Job rotation reduces the risk of fraud and abuse by ensuring that no single individual maintains continuous control over critical processes."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Which type of malware is designed to replicate itself and spread without user interaction?",
+    "options": ["Trojan", "Worm", "Spyware", "Ransomware"],
+    "answer": 1,
+    "explanation": "A worm is self-replicating malware that spreads automatically across networks without requiring user action."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Which malware type disguises itself as legitimate software?",
+    "options": ["Trojan", "Virus", "Rootkit", "Logic bomb"],
+    "answer": 0,
+    "explanation": "A Trojan pretends to be legitimate software to trick users into installing it, after which it performs malicious actions."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Ransomware primarily impacts which security objective?",
+    "options": ["Availability", "Integrity", "Authentication", "Non-repudiation"],
+    "answer": 0,
+    "explanation": "Ransomware encrypts files and denies access to systems, directly affecting availability."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Which malware type secretly collects user information without consent?",
+    "options": ["Worm", "Adware", "Spyware", "Bot"],
+    "answer": 2,
+    "explanation": "Spyware monitors user activity and collects sensitive information such as credentials or browsing habits."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A virus differs from a worm because a virus:",
+    "options": ["Does not require a host file", "Requires user interaction to spread", "Only spreads via email", "Cannot infect networks"],
+    "answer": 1,
+    "explanation": "A virus attaches itself to a host file and typically requires user interaction, such as opening a file, to spread."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Which phishing attack specifically targets high-level executives?",
+    "options": ["Smishing", "Whaling", "Vishing", "Clone phishing"],
+    "answer": 1,
+    "explanation": "Whaling is a targeted phishing attack aimed at senior executives or high-profile individuals."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Phishing conducted through SMS messages is known as:",
+    "options": ["Vishing", "Spear phishing", "Smishing", "Pharming"],
+    "answer": 2,
+    "explanation": "Smishing uses SMS or text messages to trick victims into revealing sensitive information."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Spear phishing is best described as:",
+    "options": ["A random mass email attack", "A highly targeted phishing attack", "A phone-based scam", "A DNS redirection attack"],
+    "answer": 1,
+    "explanation": "Spear phishing targets specific individuals or organizations using personalized information."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A Denial-of-Service (DoS) attack attempts to:",
+    "options": ["Steal credentials", "Modify system files", "Overwhelm a system to make it unavailable", "Encrypt sensitive data"],
+    "answer": 2,
+    "explanation": "A DoS attack floods a system with traffic or requests, preventing legitimate users from accessing services."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A Distributed Denial-of-Service (DDoS) attack differs from a DoS attack because it:",
+    "options": ["Uses multiple compromised systems", "Only targets websites", "Is launched internally", "Encrypts traffic"],
+    "answer": 0,
+    "explanation": "A DDoS attack uses multiple compromised systems (often a botnet) to generate a large-scale attack."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "In a Man-in-the-Middle (MitM) attack, the attacker:",
+    "options": ["Blocks network traffic entirely", "Intercepts and possibly alters communication between parties", "Deletes system logs", "Disables antivirus software"],
+    "answer": 1,
+    "explanation": "A MitM attacker secretly intercepts and may modify communications between two parties without their knowledge."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "ARP spoofing is commonly associated with which type of attack?",
+    "options": ["MitM attack", "DoS attack", "Phishing attack", "Ransomware infection"],
+    "answer": 0,
+    "explanation": "ARP spoofing can redirect network traffic through an attacker’s system, enabling a Man-in-the-Middle attack."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A rootkit is designed to:",
+    "options": ["Encrypt files for ransom", "Provide remote access to attackers", "Hide the presence of malicious software", "Spread via email attachments"],
+    "answer": 2,
+    "explanation": "A rootkit conceals malware or malicious processes to maintain persistent, stealthy access to a system."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A botnet is best described as:",
+    "options": ["A single infected computer", "A network of compromised devices controlled by an attacker", "A phishing website", "A firewall misconfiguration"],
+    "answer": 1,
+    "explanation": "A botnet consists of multiple compromised systems controlled remotely, often used for DDoS attacks."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "A logic bomb is triggered by:",
+    "options": ["User login time", "A specific condition or event", "Opening an email attachment", "Network congestion"],
+    "answer": 1,
+    "explanation": "A logic bomb activates when certain conditions are met, such as a specific date or action."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Vishing is conducted through:",
+    "options": ["Voice calls", "SMS messages", "Malicious USB drives", "Social media posts"],
+    "answer": 0,
+    "explanation": "Vishing (voice phishing) uses phone calls or VoIP to trick victims into revealing sensitive information."
+  },
+  {
+    "category": "Types of Threats",
+    "question": "Tailgating occurs when an attacker:",
+    "options": ["Follows an authorized person into a restricted area", "Intercepts encrypted data", "Launches a DoS attack", "Installs ransomware"],
+    "answer": 0,
+    "explanation": "Tailgating is a physical social engineering attack where an unauthorized individual follows someone into a secure area."
+  },
+  {
+    "category": "Malware",
+    "question": "Which malware type primarily displays unwanted advertisements?",
+    "options": ["Adware", "Worm", "Rootkit", "Trojan"],
+    "answer": 0,
+    "explanation": "Adware generates unwanted advertisements and may track user behavior for marketing or malicious purposes."
   }
 ];
   /* ===================================================================== */
@@ -1426,6 +1651,9 @@
     const qNum = QUESTIONS_PER_SESSION - queue.length;
     document.getElementById('q-meta').textContent = `Question ${qNum} of ${QUESTIONS_PER_SESSION}`;
     document.getElementById('q-text').textContent = current.question;
+    const chip = document.getElementById('q-category-chip');
+    chip.textContent = current.category || '';
+    chip.style.display = current.category ? '' : 'none';
 
     const ul = document.getElementById('options-list');
     ul.innerHTML = '';
@@ -1480,6 +1708,7 @@
     if (isCorrect) sessionCorrect++;
     history.push({
       question: current.question,
+      category: current.category || 'Uncategorised',
       options: current.options,
       answer: current.answer,
       selected: selectedOption,
@@ -1536,6 +1765,65 @@
     document.getElementById('r-pct').textContent = pct + '%';
     document.getElementById('r-msg').textContent = resultMessage(pct);
 
+    // ── Category strength chart ──────────────────────────────
+    const catStats = {};
+    history.forEach(h => {
+      const c = h.category;
+      if (!catStats[c]) catStats[c] = { correct: 0, total: 0 };
+      catStats[c].total++;
+      if (h.correct) catStats[c].correct++;
+    });
+
+    const cs = document.getElementById('cat-section');
+    cs.innerHTML = '';
+
+    const catLabel = document.createElement('div');
+    catLabel.className = 'cat-section-label';
+    catLabel.textContent = 'Performance by Category';
+    cs.appendChild(catLabel);
+
+    const grid = document.createElement('div');
+    grid.className = 'cat-grid';
+
+    // Sort categories: weakest first
+    const sorted = Object.entries(catStats).sort((a, b) => {
+      const pa = a[1].correct / a[1].total;
+      const pb = b[1].correct / b[1].total;
+      return pa - pb;
+    });
+
+    sorted.forEach(([cat, stat]) => {
+      const catPct = Math.round(stat.correct / stat.total * 100);
+      // Colour: red <50, amber 50-79, green 80+
+      const colour = catPct >= 80 ? 'var(--correct)' : catPct >= 50 ? '#d97706' : 'var(--wrong)';
+
+      const row = document.createElement('div');
+      row.className = 'cat-row';
+      row.innerHTML = `
+        <div class="cat-row-top">
+          <span class="cat-name">${cat}</span>
+          <span class="cat-score-label">${stat.correct}/${stat.total}</span>
+          <span class="cat-pct-label" style="color:${colour}">${catPct}%</span>
+        </div>
+        <div class="cat-bar-track">
+          <div class="cat-bar-fill" style="width:0%;background:${colour}" data-width="${catPct}%"></div>
+        </div>
+      `;
+      grid.appendChild(row);
+    });
+
+    cs.appendChild(grid);
+
+    // Animate bars after paint
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        cs.querySelectorAll('.cat-bar-fill').forEach(el => {
+          el.style.width = el.dataset.width;
+        });
+      });
+    });
+
+    // ── Question breakdown list ──────────────────────────────
     const hl = document.getElementById('history-list');
     hl.innerHTML = '';
     history.forEach((h, i) => {
@@ -1549,7 +1837,7 @@
       hl.appendChild(li);
     });
 
-    // Wrong answer review cards
+    // ── Wrong answer review cards ────────────────────────────
     const keys = ['A', 'B', 'C', 'D', 'E', 'F'];
     const wrongItems = history.filter(h => !h.correct);
     const rs = document.getElementById('review-section');
@@ -1566,12 +1854,11 @@
     sectionLabel.textContent = `Review — ${wrongItems.length} incorrect answer${wrongItems.length > 1 ? 's' : ''}`;
     rs.appendChild(sectionLabel);
 
-    wrongItems.forEach((h, idx) => {
+    wrongItems.forEach((h) => {
       const globalIdx = history.indexOf(h);
       const card = document.createElement('div');
       card.className = 'review-card';
 
-      // Header (clickable toggle)
       const header = document.createElement('div');
       header.className = 'review-card-header';
       header.innerHTML = `
@@ -1581,24 +1868,21 @@
       `;
       header.addEventListener('click', () => card.classList.toggle('open'));
 
-      // Body
       const body = document.createElement('div');
       body.className = 'review-card-body';
 
-      // Full question text
       const qFull = document.createElement('div');
       qFull.className = 'review-q-full';
       qFull.textContent = h.question;
       body.appendChild(qFull);
 
-      // Options list
       const ol = document.createElement('ul');
       ol.className = 'review-options';
       h.options.forEach((opt, i) => {
         const li = document.createElement('li');
         li.className = 'review-option';
-        if (i === h.answer)    li.classList.add('ro-correct');
-        if (i === h.selected)  li.classList.add('ro-wrong');
+        if (i === h.answer)   li.classList.add('ro-correct');
+        if (i === h.selected) li.classList.add('ro-wrong');
 
         let badge = '';
         if (i === h.answer && i === h.selected) {
@@ -1608,13 +1892,11 @@
         } else if (i === h.selected) {
           badge = `<span class="review-option-badge badge-your">✗ your pick</span>`;
         }
-
         li.innerHTML = `<span class="review-option-key">${keys[i]}</span>${opt}${badge}`;
         ol.appendChild(li);
       });
       body.appendChild(ol);
 
-      // Explanation
       const exp = document.createElement('div');
       exp.className = 'review-explanation';
       exp.innerHTML = `<div class="review-explanation-label">Explanation</div>${h.explanation}`;
@@ -1632,6 +1914,7 @@
     history = [];
     queue = shuffle(QUESTION_POOL).slice(0, QUESTIONS_PER_SESSION);
     updateSidebar();
+    document.getElementById('pool-count-tag').textContent = QUESTION_POOL.length + ' Questions in Pool';
     document.getElementById('result-screen').classList.remove('show');
     document.getElementById('quiz-panel').style.display = '';
     loadQuestion();
