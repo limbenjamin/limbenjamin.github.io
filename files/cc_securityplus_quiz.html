@@ -1361,33 +1361,14 @@
     setInterval(check, 1000);
   })();
 
-  (function sizeDetect() {
-    const threshold = 160;
-    function check() {
-      if (
-        window.outerWidth - window.innerWidth > threshold ||
-        window.outerHeight - window.innerHeight > threshold
-      ) {
-        nuke();
-      }
-    }
-    setInterval(check, 1500);
-  })();
-
   document.addEventListener('contextmenu', e => e.preventDefault());
 
   document.addEventListener('keydown', e => {
-    // F12
     if (e.key === 'F12') { e.preventDefault(); return; }
-    // Ctrl+Shift+I / Cmd+Opt+I
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') { e.preventDefault(); return; }
-    // Ctrl+Shift+J / Cmd+Opt+J
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'J') { e.preventDefault(); return; }
-    // Ctrl+Shift+C
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') { e.preventDefault(); return; }
-    // Ctrl+U (view source)
     if ((e.ctrlKey || e.metaKey) && e.key === 'u') { e.preventDefault(); return; }
-    // Ctrl+S (save page)
     if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); return; }
   });
 
@@ -1395,8 +1376,6 @@
     document.documentElement.innerHTML = '';
     window.location.replace('about:blank');
   }
-
-  // ── End anti-debugging ───────────────────────────────────────────────
 
   // Init
   restartQuiz();
