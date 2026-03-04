@@ -1190,7 +1190,7 @@
     document.getElementById('drawer-progress').textContent = progress;
 
     // Mobile header score
-    document.getElementById('mobile-score').textContent = 'Session Score: ' + sessionCorrect + ' / ' + total;
+    document.getElementById('mobile-score').textContent = 'Session Score: ' + sessionCorrect + ' / ' + total + ' (' + pctStr + ')';
   }
 
   function openDrawer() {
@@ -1380,5 +1380,6 @@
   // Init
   restartQuiz();
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-028MBYWX6K"></script>
 </body>
 </html>
