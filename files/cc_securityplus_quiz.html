@@ -500,6 +500,159 @@
     .history-result.ok  { color: var(--correct); }
     .history-result.bad { color: var(--wrong); }
 
+    /* Wrong answer review cards */
+    .review-section { margin-top: 1.5rem; }
+
+    .review-section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--wrong);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .review-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--wrong-bg);
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--wrong);
+      margin-bottom: 0.7rem;
+      overflow: hidden;
+    }
+
+    .review-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.13s;
+    }
+
+    .review-card-header:hover { background: var(--bg); }
+
+    .review-card-qnum {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--wrong);
+      flex-shrink: 0;
+    }
+
+    .review-card-qtext {
+      flex: 1;
+      font-size: 0.88rem;
+      color: var(--text);
+      font-family: var(--serif);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .review-card-chevron {
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .review-card.open .review-card-chevron { transform: rotate(180deg); }
+
+    .review-card-body {
+      display: none;
+      padding: 0 1rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .review-card.open .review-card-body { display: block; }
+
+    .review-q-full {
+      font-family: var(--serif);
+      font-size: 0.97rem;
+      line-height: 1.65;
+      color: var(--text);
+      padding: 0.85rem 0 0.9rem;
+    }
+
+    .review-options { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.9rem; }
+
+    .review-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      background: var(--bg);
+    }
+
+    .review-option.ro-correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+    }
+
+    .review-option.ro-wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+    }
+
+    .review-option-key {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--muted);
+      flex-shrink: 0;
+      padding-top: 0.04rem;
+      min-width: 16px;
+    }
+
+    .ro-correct .review-option-key { color: var(--correct); }
+    .ro-wrong   .review-option-key { color: var(--wrong); }
+
+    .review-option-badge {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.1rem 0.4rem;
+      margin-left: auto;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .badge-your   { background: var(--wrong);   color: #fff; }
+    .badge-answer { background: var(--correct);  color: #fff; }
+
+    .review-explanation {
+      border-left: 3px solid var(--accent);
+      padding: 0.8rem 1rem;
+      background: var(--accent-bg);
+      font-size: 0.87rem;
+      line-height: 1.68;
+    }
+
+    .review-explanation-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
     /* ══ FOOTER ══ */
     .site-footer {
       border-top: 1px solid var(--border);
@@ -767,9 +920,9 @@
       </div>
       <div class="result-section-label">Question breakdown</div>
       <ul class="history-list" id="history-list"></ul>
+      <div class="review-section" id="review-section"></div>
       <div class="btn-row" style="margin-top:1.2rem">
         <button class="btn btn-primary" onclick="restartQuiz()">Try Again</button>
-        <a href="https://limbenjamin.com" class="btn" style="text-decoration:none">← Back to Blog</a>
       </div>
     </div>
   </main>
@@ -1268,8 +1421,15 @@
     const isCorrect = selectedOption === current.answer;
     sessionAnswered++;
     if (isCorrect) sessionCorrect++;
-    history.push({ question: current.question, correct: isCorrect });
-    updateSidebar();
+    history.push({
+      question: current.question,
+      options: current.options,
+      answer: current.answer,
+      selected: selectedOption,
+      explanation: current.explanation,
+      correct: isCorrect
+    });
+
 
     document.querySelectorAll('.option-item').forEach(li => {
       const idx = parseInt(li.dataset.index);
@@ -1329,6 +1489,82 @@
         <span class="history-result ${h.correct ? 'ok' : 'bad'}">${h.correct ? '✓ correct' : '✗ wrong'}</span>
       `;
       hl.appendChild(li);
+    });
+
+    // Wrong answer review cards
+    const keys = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const wrongItems = history.filter(h => !h.correct);
+    const rs = document.getElementById('review-section');
+    rs.innerHTML = '';
+
+    if (wrongItems.length === 0) {
+      rs.innerHTML = `<div style="font-family:var(--serif);font-style:italic;font-size:0.93rem;color:var(--correct);margin-top:1.2rem;">Perfect score — no mistakes to review!</div>`;
+      return;
+    }
+
+    const sectionLabel = document.createElement('div');
+    sectionLabel.className = 'review-section-label';
+    sectionLabel.style.marginTop = '1.5rem';
+    sectionLabel.textContent = `Review — ${wrongItems.length} incorrect answer${wrongItems.length > 1 ? 's' : ''}`;
+    rs.appendChild(sectionLabel);
+
+    wrongItems.forEach((h, idx) => {
+      const globalIdx = history.indexOf(h);
+      const card = document.createElement('div');
+      card.className = 'review-card';
+
+      // Header (clickable toggle)
+      const header = document.createElement('div');
+      header.className = 'review-card-header';
+      header.innerHTML = `
+        <span class="review-card-qnum">Q${globalIdx + 1}</span>
+        <span class="review-card-qtext">${h.question}</span>
+        <svg class="review-card-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      `;
+      header.addEventListener('click', () => card.classList.toggle('open'));
+
+      // Body
+      const body = document.createElement('div');
+      body.className = 'review-card-body';
+
+      // Full question text
+      const qFull = document.createElement('div');
+      qFull.className = 'review-q-full';
+      qFull.textContent = h.question;
+      body.appendChild(qFull);
+
+      // Options list
+      const ol = document.createElement('ul');
+      ol.className = 'review-options';
+      h.options.forEach((opt, i) => {
+        const li = document.createElement('li');
+        li.className = 'review-option';
+        if (i === h.answer)    li.classList.add('ro-correct');
+        if (i === h.selected)  li.classList.add('ro-wrong');
+
+        let badge = '';
+        if (i === h.answer && i === h.selected) {
+          badge = `<span class="review-option-badge badge-answer">✓ correct</span>`;
+        } else if (i === h.answer) {
+          badge = `<span class="review-option-badge badge-answer">✓ answer</span>`;
+        } else if (i === h.selected) {
+          badge = `<span class="review-option-badge badge-your">✗ your pick</span>`;
+        }
+
+        li.innerHTML = `<span class="review-option-key">${keys[i]}</span>${opt}${badge}`;
+        ol.appendChild(li);
+      });
+      body.appendChild(ol);
+
+      // Explanation
+      const exp = document.createElement('div');
+      exp.className = 'review-explanation';
+      exp.innerHTML = `<div class="review-explanation-label">Explanation</div>${h.explanation}`;
+      body.appendChild(exp);
+
+      card.appendChild(header);
+      card.appendChild(body);
+      rs.appendChild(card);
     });
   }
 
