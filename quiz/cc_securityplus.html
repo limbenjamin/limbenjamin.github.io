@@ -1561,12 +1561,412 @@
     "explanation": "Tailgating is a physical social engineering attack where an unauthorized individual follows someone into a secure area."
   },
   {
-    "category": "Malware",
+    "category": "Types of Threats",
     "question": "Which malware type primarily displays unwanted advertisements?",
     "options": ["Adware", "Worm", "Rootkit", "Trojan"],
     "answer": 0,
     "explanation": "Adware generates unwanted advertisements and may track user behavior for marketing or malicious purposes."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which device is primarily used to filter network traffic based on predefined security rules?",
+    "options": ["Router", "Firewall", "Switch", "Access Point"],
+    "answer": 1,
+    "explanation": "A firewall monitors and filters incoming and outgoing network traffic based on predefined security rules to protect networks from unauthorized access."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which protocol is commonly used to securely manage network devices remotely?",
+    "options": ["Telnet", "FTP", "SSH", "SNMPv1"],
+    "answer": 2,
+    "explanation": "SSH (Secure Shell) encrypts communications and is commonly used for secure remote administration of network devices."
+  },
+  {
+    "category": "Network Security",
+    "question": "What is the primary purpose of a Virtual Private Network (VPN)?",
+    "options": ["To compress network traffic", "To encrypt network communication over untrusted networks", "To block malware", "To increase network bandwidth"],
+    "answer": 1,
+    "explanation": "A VPN creates an encrypted tunnel over public networks, protecting data confidentiality and integrity during transmission."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which network device operates primarily at Layer 2 of the OSI model?",
+    "options": ["Switch", "Firewall", "Router", "Proxy"],
+    "answer": 0,
+    "explanation": "A switch operates at the data link layer (Layer 2) and forwards frames based on MAC addresses."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which network security technology monitors traffic and alerts administrators about suspicious activity?",
+    "options": ["IDS", "VPN", "NAT", "Load balancer"],
+    "answer": 0,
+    "explanation": "An Intrusion Detection System (IDS) monitors network traffic and generates alerts when suspicious patterns or potential attacks are detected."
+  },
+  {
+    "category": "Network Security",
+    "question": "What is the primary difference between IDS and IPS?",
+    "options": ["IDS blocks traffic while IPS only monitors", "IDS encrypts traffic", "IPS can actively block malicious traffic", "IPS only works on wireless networks"],
+    "answer": 2,
+    "explanation": "An Intrusion Prevention System (IPS) can actively block or prevent malicious traffic, while an IDS typically only detects and alerts."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which protocol provides secure web communication?",
+    "options": ["HTTP", "HTTPS", "FTP", "SMTP"],
+    "answer": 1,
+    "explanation": "HTTPS uses TLS encryption to protect the confidentiality and integrity of web traffic."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which network architecture separates systems into zones with different security levels?",
+    "options": ["Flat network", "Peer-to-peer network", "Network segmentation", "Broadcast domain"],
+    "answer": 2,
+    "explanation": "Network segmentation divides networks into smaller zones to limit access and reduce the spread of attacks."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which wireless security protocol is considered the most secure among common Wi-Fi standards?",
+    "options": ["WEP", "WPA", "WPA2", "WPA3"],
+    "answer": 3,
+    "explanation": "WPA3 provides stronger encryption and improved authentication mechanisms compared to earlier Wi-Fi security protocols."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which device determines the best path for packets between different networks?",
+    "options": ["Router", "Switch", "Hub", "Repeater"],
+    "answer": 0,
+    "explanation": "Routers operate at the network layer (Layer 3) and determine the best path to forward packets between networks."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which technique hides internal IP addresses behind a single public IP address?",
+    "options": ["NAT", "VLAN", "DNS", "ARP"],
+    "answer": 0,
+    "explanation": "Network Address Translation (NAT) allows multiple internal devices to share one public IP address while hiding internal network structure."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which network component resolves domain names to IP addresses?",
+    "options": ["DHCP", "DNS", "ARP", "NTP"],
+    "answer": 1,
+    "explanation": "DNS (Domain Name System) translates human-readable domain names into IP addresses used by network devices."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which protocol automatically assigns IP addresses to devices on a network?",
+    "options": ["DNS", "DHCP", "FTP", "SNMP"],
+    "answer": 1,
+    "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses and other network settings to devices."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which attack involves capturing network traffic for analysis?",
+    "options": ["Packet sniffing", "Pharming", "Smishing", "Tailgating"],
+    "answer": 0,
+    "explanation": "Packet sniffing involves capturing network packets to analyze traffic, potentially exposing sensitive information if not encrypted."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which network security control limits communication between systems within the same network?",
+    "options": ["Load balancing", "Network segmentation", "DNS resolution", "ARP caching"],
+    "answer": 1,
+    "explanation": "Network segmentation restricts communication between systems to reduce attack spread and improve security."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which protocol provides secure file transfer over a network?",
+    "options": ["FTP", "TFTP", "SFTP", "SMTP"],
+    "answer": 2,
+    "explanation": "SFTP (SSH File Transfer Protocol) securely transfers files over encrypted SSH connections."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which wireless attack involves setting up a rogue access point that mimics a legitimate network?",
+    "options": ["Evil twin attack", "ARP poisoning", "DNS tunneling", "Session hijacking"],
+    "answer": 0,
+    "explanation": "An evil twin attack uses a fake access point that appears legitimate to trick users into connecting and exposing their data."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which protocol is commonly used for network time synchronization?",
+    "options": ["NTP", "SMTP", "SNMP", "ICMP"],
+    "answer": 0,
+    "explanation": "NTP (Network Time Protocol) synchronizes clocks across network devices, which is important for logging and security monitoring."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which type of firewall inspects the state of active connections and makes decisions based on connection context?",
+    "options": ["Packet-filtering firewall", "Stateful firewall", "Application proxy firewall", "Next-generation firewall"],
+    "answer": 1,
+    "explanation": "A stateful firewall tracks active connections and uses connection state information to make filtering decisions."
+  },
+  {
+    "category": "Network Security",
+    "question": "Which security concept involves placing publicly accessible servers in a separate network zone?",
+    "options": ["VLAN tagging", "Port forwarding", "DMZ", "ARP inspection"],
+    "answer": 2,
+    "explanation": "A Demilitarized Zone (DMZ) isolates public-facing systems from the internal network to reduce security risks."
+  },
+  {
+    "category": "Cryptography",
+    "question": "What is the primary purpose of encryption?",
+    "options": ["Ensure confidentiality of data", "Improve network speed", "Compress files", "Authenticate users"],
+    "answer": 0,
+    "explanation": "Encryption converts plaintext into ciphertext to prevent unauthorized parties from reading sensitive data, ensuring confidentiality."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which type of cryptography uses the same key for both encryption and decryption?",
+    "options": ["Asymmetric cryptography", "Hashing", "Symmetric cryptography", "Digital signatures"],
+    "answer": 2,
+    "explanation": "Symmetric cryptography uses a single shared key for both encryption and decryption, making it fast but requiring secure key distribution."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which type of cryptography uses a public key and a private key?",
+    "options": ["Hashing", "Asymmetric cryptography", "Symmetric encryption", "Salting"],
+    "answer": 1,
+    "explanation": "Asymmetric cryptography uses a pair of keys: a public key for encryption and a private key for decryption."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which cryptographic function is primarily used to verify data integrity?",
+    "options": ["Encryption", "Key exchange", "Hashing", "Tokenization"],
+    "answer": 2,
+    "explanation": "Hashing generates a fixed-length digest from input data, allowing verification that data has not been altered."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which algorithm is an example of asymmetric encryption?",
+    "options": ["AES", "DES", "RSA", "Blowfish"],
+    "answer": 2,
+    "explanation": "RSA is a widely used asymmetric encryption algorithm that uses public and private key pairs."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which algorithm is commonly used for symmetric encryption?",
+    "options": ["AES", "RSA", "ECC", "Diffie-Hellman"],
+    "answer": 0,
+    "explanation": "AES (Advanced Encryption Standard) is a widely used symmetric encryption algorithm known for its security and efficiency."
+  },
+  {
+    "category": "Cryptography",
+    "question": "What is the primary purpose of a digital signature?",
+    "options": ["Compress data", "Provide authentication and integrity", "Encrypt entire databases", "Improve network latency"],
+    "answer": 1,
+    "explanation": "Digital signatures verify the identity of the sender and ensure the integrity of the message."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which cryptographic technique converts data into a fixed-length output regardless of input size?",
+    "options": ["Encryption", "Encoding", "Hashing", "Tokenization"],
+    "answer": 2,
+    "explanation": "Hash functions produce a fixed-length output known as a hash or digest regardless of the input size."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which protocol is commonly used to secure web communications?",
+    "options": ["FTP", "SMTP", "DNS", "TLS"],
+    "answer": 3,
+    "explanation": "TLS (Transport Layer Security) encrypts communications between clients and servers, such as in HTTPS."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which key is typically shared publicly in asymmetric encryption?",
+    "options": ["Private key", "Session key", "Master key", "Public key"],
+    "answer": 3,
+    "explanation": "The public key can be distributed openly, while the private key is kept secret by the owner."
+  },
+  {
+    "category": "Cryptography",
+    "question": "What is the primary role of a certificate authority (CA)?",
+    "options": ["Encrypt files", "Issue and validate digital certificates", "Store passwords", "Manage firewalls"],
+    "answer": 1,
+    "explanation": "A certificate authority issues and verifies digital certificates, helping establish trust in public key infrastructures."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which concept ensures that data has not been altered during transmission?",
+    "options": ["Integrity", "Availability", "Authentication", "Confidentiality"],
+    "answer": 0,
+    "explanation": "Integrity ensures that data remains unchanged during storage or transmission."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which cryptographic technique adds random data to a password before hashing?",
+    "options": ["Key stretching", "Encryption", "Salting", "Encoding"],
+    "answer": 2,
+    "explanation": "Salting adds random data to passwords before hashing to protect against rainbow table attacks."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which algorithm is commonly used for secure key exchange?",
+    "options": ["Diffie-Hellman", "AES", "SHA-256", "MD5"],
+    "answer": 0,
+    "explanation": "Diffie-Hellman allows two parties to securely establish a shared secret over an insecure channel."
+  },
+  {
+    "category": "Cryptography",
+    "question": "What is the primary function of a hash function in password storage?",
+    "options": ["Encrypt passwords for reversible use", "Convert passwords into irreversible digests", "Compress passwords", "Transmit passwords securely"],
+    "answer": 1,
+    "explanation": "Hash functions convert passwords into fixed-length digests that cannot easily be reversed, improving security."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which cryptographic method is generally faster and used for bulk data encryption?",
+    "options": ["Asymmetric encryption", "Symmetric encryption", "Digital signatures", "Public key infrastructure"],
+    "answer": 1,
+    "explanation": "Symmetric encryption is computationally efficient and commonly used for encrypting large volumes of data."
+  },
+  {
+    "category": "Cryptography",
+    "question": "Which component of PKI binds a public key to an identity?",
+    "options": ["Hash", "Certificate", "Private key", "Nonce"],
+    "answer": 1,
+    "explanation": "A digital certificate binds a public key to an entity’s identity and is issued by a certificate authority."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "What is the primary goal of a Business Continuity Plan (BCP)?",
+    "options": ["Ensure business operations continue during disruptions", "Prevent all cyber attacks", "Improve system performance", "Replace backup systems"],
+    "answer": 0,
+    "explanation": "A Business Continuity Plan ensures that essential business operations can continue during and after a disruption."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "What is the primary focus of a Disaster Recovery Plan (DRP)?",
+    "options": ["Employee training", "Restoring IT systems and data after a disaster", "Improving physical security", "Preventing phishing attacks"],
+    "answer": 1,
+    "explanation": "A Disaster Recovery Plan focuses on restoring IT infrastructure, applications, and data after a disruptive event."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which analysis identifies critical business functions and their dependencies?",
+    "options": ["Risk assessment", "Vulnerability scan", "Business Impact Analysis (BIA)", "Penetration test"],
+    "answer": 2,
+    "explanation": "A Business Impact Analysis identifies critical processes, their dependencies, and the potential impact of disruptions."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "What does Recovery Time Objective (RTO) define?",
+    "options": ["Maximum acceptable data loss", "Time between system backups", "Total cost of downtime", "Maximum acceptable downtime for a system"],
+    "answer": 3,
+    "explanation": "RTO defines the maximum amount of time a system can be unavailable before significant impact occurs."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "What does Recovery Point Objective (RPO) represent?",
+    "options": ["Maximum acceptable data loss measured in time", "Total recovery cost", "Time needed to restore hardware", "Maximum network latency"],
+    "answer": 0,
+    "explanation": "RPO represents the maximum acceptable amount of data loss measured as a time interval between backups."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which type of backup copies only data that has changed since the last full backup?",
+    "options": ["Differential backup", "Incremental backup", "Snapshot backup", "Mirror backup"],
+    "answer": 1,
+    "explanation": "Incremental backups store only data that has changed since the most recent backup, reducing storage and backup time."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which type of backup copies all changes made since the last full backup?",
+    "options": ["Differential backup", "Incremental backup", "Full backup", "Cold backup"],
+    "answer": 0,
+    "explanation": "Differential backups capture all changes since the last full backup, simplifying restoration compared to incremental backups."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which type of disaster recovery site has fully configured systems ready to operate immediately?",
+    "options": ["Cold site", "Warm site", "Hot site", "Backup site"],
+    "answer": 2,
+    "explanation": "A hot site contains fully operational systems and data replication, allowing rapid recovery with minimal downtime."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which recovery site provides facilities and infrastructure but requires systems to be installed before use?",
+    "options": ["Cold site", "Hot site", "Warm site", "Active site"],
+    "answer": 0,
+    "explanation": "A cold site provides physical space, power, and connectivity but requires hardware installation and configuration before operations resume."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which recovery site has some hardware installed but requires data restoration before operations can resume?",
+    "options": ["Cold site", "Warm site", "Hot site", "Cloud site"],
+    "answer": 1,
+    "explanation": "A warm site has partially configured systems that allow faster recovery than a cold site but slower than a hot site."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which process ensures backups and recovery procedures actually work as intended?",
+    "options": ["System hardening", "Disaster recovery testing", "Firewall configuration", "Log monitoring"],
+    "answer": 1,
+    "explanation": "Regular disaster recovery testing verifies that backup systems and recovery procedures function correctly during an incident."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which testing method reviews plans without performing actual recovery operations?",
+    "options": ["Full interruption test", "Simulation test", "Tabletop exercise", "Parallel test"],
+    "answer": 2,
+    "explanation": "A tabletop exercise involves discussing disaster scenarios and response procedures without interrupting operations."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which disaster recovery test runs recovery systems alongside production systems?",
+    "options": ["Parallel test", "Tabletop test", "Simulation test", "Checklist test"],
+    "answer": 0,
+    "explanation": "A parallel test runs recovery systems in parallel with production systems to verify recovery capability without disrupting operations."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which backup strategy creates a complete copy of all data each time?",
+    "options": ["Differential backup", "Incremental backup", "Full backup", "Partial backup"],
+    "answer": 2,
+    "explanation": "A full backup copies all data regardless of changes, making restoration simple but requiring more storage."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which concept focuses on maintaining critical operations during a disruption?",
+    "options": ["Disaster recovery", "Business continuity", "Incident response", "Risk transference"],
+    "answer": 1,
+    "explanation": "Business continuity ensures that essential business functions continue during disruptions."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which type of disaster recovery test completely shuts down production systems to test recovery?",
+    "options": ["Full interruption test", "Parallel test", "Checklist test", "Tabletop exercise"],
+    "answer": 0,
+    "explanation": "A full interruption test shuts down the primary environment to test whether systems can be fully recovered."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which factor is most important when prioritizing systems in a BIA?",
+    "options": ["Hardware cost", "Business impact of system failure", "Operating system version", "Network bandwidth"],
+    "answer": 1,
+    "explanation": "A Business Impact Analysis prioritizes systems based on the operational and financial impact if they become unavailable."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which strategy involves operating two sites simultaneously so one can take over immediately?",
+    "options": ["Cold standby", "Warm standby", "Active-active", "Backup rotation"],
+    "answer": 2,
+    "explanation": "Active-active systems operate simultaneously at multiple sites, providing immediate failover if one site fails."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which type of event is most likely to trigger a disaster recovery plan?",
+    "options": ["Scheduled system update", "Minor software bug", "Power outage affecting data center", "Password change"],
+    "answer": 2,
+    "explanation": "Major disruptions such as power outages or natural disasters can trigger a disaster recovery plan."
+  },
+  {
+    "category": "Business Continuity and Disaster Recovery",
+    "question": "Which document typically defines roles, responsibilities, and communication during a disaster?",
+    "options": ["Security policy", "Disaster recovery plan", "Acceptable use policy", "Network diagram"],
+    "answer": 1,
+    "explanation": "A disaster recovery plan includes procedures, responsibilities, and communication processes for responding to disruptions."
   }
+
 ];
   /* ===================================================================== */
 
