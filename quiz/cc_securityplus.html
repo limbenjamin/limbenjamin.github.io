@@ -408,7 +408,10 @@
     }
 
     /* Buttons */
-    .btn-row { display: flex; gap: 0.65rem; margin-top: 1.1rem; flex-wrap: wrap; }
+    .btn-row { display: flex; gap: 0.65rem; margin-top: 1.1rem; flex-wrap: wrap; align-items: center; }
+    .btn-row-end { margin-left: auto; }
+    .btn-danger { border-color: var(--wrong); color: var(--wrong); background: var(--surface); }
+    .btn-danger:hover { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
 
     .btn {
       font-family: var(--mono);
@@ -486,6 +489,38 @@
       background: var(--surface);
       border: 1px solid var(--border);
     }
+
+    .history-item.history-item-wrong {
+      cursor: pointer;
+      border-left: 3px solid var(--wrong);
+      transition: background 0.13s;
+    }
+
+    .history-item.history-item-wrong:hover { background: var(--wrong-bg); }
+
+    .history-item.history-item-wrong.open { border-bottom: none; }
+
+    .history-chevron {
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+      opacity: 0.6;
+    }
+
+    .history-item.open .history-chevron { transform: rotate(180deg); }
+
+    .history-item-wrapper { display: flex; flex-direction: column; }
+
+    .history-dropdown {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-left: 3px solid var(--wrong);
+      padding: 0 1rem 1rem;
+    }
+
+    .history-item-wrapper.open .history-dropdown { display: block; }
 
     .history-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .dot-correct { background: var(--correct); }
@@ -983,9 +1018,9 @@
       </div>
       <h1>ISC2 CC & CompTIA Security+ Quiz</h1>
       <div class="tag-row">
-        <span class="tag tag-accent">20 Questions / Session</span>
+        <span class="tag tag-accent" id="per-session-tag"></span>
         <span class="tag tag-accent">Randomised</span>
-        <span class="tag tag-accent" id="pool-count-tag">— Questions in Pool</span>
+        <span class="tag tag-accent" id="pool-count-tag"></span>
       </div>
     </header>
 
@@ -1004,6 +1039,7 @@
         <button class="btn btn-primary" id="btn-submit" onclick="submitAnswer()">Submit Answer</button>
         <button class="btn" id="btn-next" onclick="nextQuestion()" style="display:none">Next Question →</button>
         <button class="btn" id="btn-finish" onclick="showResults()" style="display:none">See Results →</button>
+        <button class="btn btn-danger btn-row-end" id="btn-end" onclick="endQuizEarly()">End Quiz</button>
       </div>
     </div>
 
@@ -1019,7 +1055,6 @@
       <div class="cat-section" id="cat-section"></div>
       <div class="result-section-label" style="margin-top:1.5rem">Question breakdown</div>
       <ul class="history-list" id="history-list"></ul>
-      <div class="review-section" id="review-section"></div>
       <div class="btn-row" style="margin-top:1.2rem">
         <button class="btn btn-primary" onclick="restartQuiz()">Try Again</button>
       </div>
@@ -1041,7 +1076,7 @@
 </footer>
 
 <script>
-  const QUESTION_POOL = [
+const QUESTION_POOL = [
   {
     "category": "Objectives and Controls (CIA, AAA)", 
     "question": "Which principle of the CIA triad ensures that sensitive information is only accessible to authorized individuals?",
@@ -1970,7 +2005,7 @@
 ];
   /* ===================================================================== */
 
-  const QUESTIONS_PER_SESSION = Math.min(20, QUESTION_POOL.length);
+  const QUESTIONS_PER_SESSION = Math.min(100, QUESTION_POOL.length);
 
   let queue = [];
   let current = null;
@@ -2151,6 +2186,14 @@
     }
   }
 
+  function endQuizEarly() {
+    if (sessionAnswered === 0) {
+      // Nothing answered yet — confirm before bailing
+      if (!confirm('You haven\'t answered any questions yet. End the quiz anyway?')) return;
+    }
+    showResults();
+  }
+
   function nextQuestion() { loadQuestion(); }
 
   function showResults() {
@@ -2160,10 +2203,15 @@
     const pct = sessionAnswered > 0
       ? Math.round(sessionCorrect / sessionAnswered * 100) : 0;
 
+    const endedEarly = queue.length > 0;
     document.getElementById('r-correct').textContent = sessionCorrect;
     document.getElementById('r-total').textContent = sessionAnswered;
-    document.getElementById('r-pct').textContent = pct + '%';
-    document.getElementById('r-msg').textContent = resultMessage(pct);
+    document.getElementById('r-pct').textContent = sessionAnswered > 0 ? pct + '%' : '—';
+    document.getElementById('r-msg').textContent = sessionAnswered === 0
+      ? 'No questions answered.'
+      : (endedEarly
+          ? `Quiz ended early — ${sessionAnswered} of ${QUESTIONS_PER_SESSION} answered. ${resultMessage(pct)}`
+          : resultMessage(pct));
 
     // ── Category strength chart ──────────────────────────────
     const catStats = {};
@@ -2223,89 +2271,80 @@
       });
     });
 
-    // ── Question breakdown list ──────────────────────────────
+    // ── Question breakdown list (with inline wrong-answer dropdowns) ─────
+    const keys = ['A', 'B', 'C', 'D', 'E', 'F'];
     const hl = document.getElementById('history-list');
     hl.innerHTML = '';
+
+    let allCorrect = true;
+
     history.forEach((h, i) => {
-      const li = document.createElement('li');
-      li.className = 'history-item';
-      li.innerHTML = `
+      const wrapper = document.createElement('li');
+      wrapper.className = 'history-item-wrapper';
+
+      const row = document.createElement('div');
+      row.className = 'history-item' + (h.correct ? '' : ' history-item-wrong');
+
+      row.innerHTML = `
         <span class="history-dot ${h.correct ? 'dot-correct' : 'dot-wrong'}"></span>
         <span class="history-q">Q${i + 1}: ${h.question}</span>
         <span class="history-result ${h.correct ? 'ok' : 'bad'}">${h.correct ? '✓ correct' : '✗ wrong'}</span>
+        ${!h.correct ? `<svg class="history-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>` : ''}
       `;
-      hl.appendChild(li);
+
+      wrapper.appendChild(row);
+
+      if (!h.correct) {
+        allCorrect = false;
+
+        const dropdown = document.createElement('div');
+        dropdown.className = 'history-dropdown';
+
+        const qFull = document.createElement('div');
+        qFull.className = 'review-q-full';
+        qFull.textContent = h.question;
+        dropdown.appendChild(qFull);
+
+        const ol = document.createElement('ul');
+        ol.className = 'review-options';
+        h.options.forEach((opt, j) => {
+          const li = document.createElement('li');
+          li.className = 'review-option';
+          if (j === h.answer)   li.classList.add('ro-correct');
+          if (j === h.selected) li.classList.add('ro-wrong');
+
+          let badge = '';
+          if (j === h.answer && j === h.selected) {
+            badge = `<span class="review-option-badge badge-answer">✓ correct</span>`;
+          } else if (j === h.answer) {
+            badge = `<span class="review-option-badge badge-answer">✓ answer</span>`;
+          } else if (j === h.selected) {
+            badge = `<span class="review-option-badge badge-your">✗ your pick</span>`;
+          }
+          li.innerHTML = `<span class="review-option-key">${keys[j]}</span>${opt}${badge}`;
+          ol.appendChild(li);
+        });
+        dropdown.appendChild(ol);
+
+        const exp = document.createElement('div');
+        exp.className = 'review-explanation';
+        exp.innerHTML = `<div class="review-explanation-label">Explanation</div>${h.explanation}`;
+        dropdown.appendChild(exp);
+
+        wrapper.appendChild(dropdown);
+
+        row.addEventListener('click', () => wrapper.classList.toggle('open'));
+      }
+
+      hl.appendChild(wrapper);
     });
 
-    // ── Wrong answer review cards ────────────────────────────
-    const keys = ['A', 'B', 'C', 'D', 'E', 'F'];
-    const wrongItems = history.filter(h => !h.correct);
-    const rs = document.getElementById('review-section');
-    rs.innerHTML = '';
-
-    if (wrongItems.length === 0) {
-      rs.innerHTML = `<div style="font-family:var(--serif);font-style:italic;font-size:0.93rem;color:var(--correct);margin-top:1.2rem;">Perfect score — no mistakes to review!</div>`;
-      return;
+    if (allCorrect) {
+      const note = document.createElement('div');
+      note.style.cssText = 'font-family:var(--serif);font-style:italic;font-size:0.93rem;color:var(--correct);margin-top:1rem;';
+      note.textContent = 'Perfect score — no mistakes to review!';
+      hl.insertAdjacentElement('afterend', note);
     }
-
-    const sectionLabel = document.createElement('div');
-    sectionLabel.className = 'review-section-label';
-    sectionLabel.style.marginTop = '1.5rem';
-    sectionLabel.textContent = `Review — ${wrongItems.length} incorrect answer${wrongItems.length > 1 ? 's' : ''}`;
-    rs.appendChild(sectionLabel);
-
-    wrongItems.forEach((h) => {
-      const globalIdx = history.indexOf(h);
-      const card = document.createElement('div');
-      card.className = 'review-card';
-
-      const header = document.createElement('div');
-      header.className = 'review-card-header';
-      header.innerHTML = `
-        <span class="review-card-qnum">Q${globalIdx + 1}</span>
-        <span class="review-card-qtext">${h.question}</span>
-        <svg class="review-card-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      `;
-      header.addEventListener('click', () => card.classList.toggle('open'));
-
-      const body = document.createElement('div');
-      body.className = 'review-card-body';
-
-      const qFull = document.createElement('div');
-      qFull.className = 'review-q-full';
-      qFull.textContent = h.question;
-      body.appendChild(qFull);
-
-      const ol = document.createElement('ul');
-      ol.className = 'review-options';
-      h.options.forEach((opt, i) => {
-        const li = document.createElement('li');
-        li.className = 'review-option';
-        if (i === h.answer)   li.classList.add('ro-correct');
-        if (i === h.selected) li.classList.add('ro-wrong');
-
-        let badge = '';
-        if (i === h.answer && i === h.selected) {
-          badge = `<span class="review-option-badge badge-answer">✓ correct</span>`;
-        } else if (i === h.answer) {
-          badge = `<span class="review-option-badge badge-answer">✓ answer</span>`;
-        } else if (i === h.selected) {
-          badge = `<span class="review-option-badge badge-your">✗ your pick</span>`;
-        }
-        li.innerHTML = `<span class="review-option-key">${keys[i]}</span>${opt}${badge}`;
-        ol.appendChild(li);
-      });
-      body.appendChild(ol);
-
-      const exp = document.createElement('div');
-      exp.className = 'review-explanation';
-      exp.innerHTML = `<div class="review-explanation-label">Explanation</div>${h.explanation}`;
-      body.appendChild(exp);
-
-      card.appendChild(header);
-      card.appendChild(body);
-      rs.appendChild(card);
-    });
   }
 
   function restartQuiz() {
@@ -2315,6 +2354,7 @@
     queue = shuffle(QUESTION_POOL).slice(0, QUESTIONS_PER_SESSION);
     updateSidebar();
     document.getElementById('pool-count-tag').textContent = QUESTION_POOL.length + ' Questions in Pool';
+    document.getElementById('per-session-tag').textContent = QUESTIONS_PER_SESSION + ' Questions / Session';    
     document.getElementById('result-screen').classList.remove('show');
     document.getElementById('quiz-panel').style.display = '';
     loadQuestion();
