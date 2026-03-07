@@ -557,91 +557,22 @@ time{
   font-size: 0.78em;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.04em;
-  color: #696969;
-  text-decoration: none;
+  color: #696969 !important;
+  text-decoration: none !important;
   transition: all 0.2s;
 }
 .tagline a:hover,
 .tagline a:focus {
   border-color: #0e94ec;
-  color: #0e94ec;
+  color: #0e94ec !important;
   background: #f0f8ff;
-  text-decoration: none;
 }
-.tagline a.active {
+.tagline a.active,
+.tagline a.active:hover,
+.tagline a.active:focus {
   background: #0e94ec;
   border-color: #0e94ec;
-  color: #fff;
-}
-
-/* Size-weighted tag cloud by post count */
-.tagline a[data-count="1"],
-.tagline a[data-count="2"],
-.tagline a[data-count="3"] { font-size: 0.72em; opacity: 0.75; }
-
-.tagline a[data-count="4"],
-.tagline a[data-count="5"],
-.tagline a[data-count="6"],
-.tagline a[data-count="7"],
-.tagline a[data-count="8"],
-.tagline a[data-count="9"] { font-size: 0.82em; opacity: 0.85; }
-
-.tagline a[data-count="10"],
-.tagline a[data-count="11"],
-.tagline a[data-count="12"],
-.tagline a[data-count="13"],
-.tagline a[data-count="14"],
-.tagline a[data-count="15"],
-.tagline a[data-count="16"],
-.tagline a[data-count="17"],
-.tagline a[data-count="18"],
-.tagline a[data-count="19"] { font-size: 0.92em; }
-
-.tagline a[data-count="20"],
-.tagline a[data-count="21"],
-.tagline a[data-count="22"],
-.tagline a[data-count="23"],
-.tagline a[data-count="24"],
-.tagline a[data-count="25"],
-.tagline a[data-count="26"],
-.tagline a[data-count="27"],
-.tagline a[data-count="28"],
-.tagline a[data-count="29"],
-.tagline a[data-count="30"],
-.tagline a[data-count="31"],
-.tagline a[data-count="32"],
-.tagline a[data-count="33"],
-.tagline a[data-count="34"],
-.tagline a[data-count="35"],
-.tagline a[data-count="36"],
-.tagline a[data-count="37"],
-.tagline a[data-count="38"],
-.tagline a[data-count="39"],
-.tagline a[data-count="40"],
-.tagline a[data-count="41"],
-.tagline a[data-count="42"],
-.tagline a[data-count="43"],
-.tagline a[data-count="44"],
-.tagline a[data-count="45"],
-.tagline a[data-count="46"],
-.tagline a[data-count="47"],
-.tagline a[data-count="48"],
-.tagline a[data-count="49"] { font-size: 1.0em; font-weight: 600; }
-
-/* 50+ posts: largest tier */
-.tagline a[data-count^="5"],
-.tagline a[data-count^="6"],
-.tagline a[data-count^="7"],
-.tagline a[data-count^="8"],
-.tagline a[data-count^="9"],
-.tagline a[data-count^="10"],
-.tagline a[data-count^="11"],
-.tagline a[data-count^="12"] { font-size: 1.1em; font-weight: 600; }
-
-.tag-count {
-  font-size: 0.8em;
-  opacity: 0.6;
-  margin-left: 0.15em;
+  color: #fff !important;
 }
 
 p a{
