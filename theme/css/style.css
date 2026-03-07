@@ -538,8 +538,75 @@ time{
   margin-left: 8px;
 }
 
-#paginator{
+#paginator {
   text-align: center;
+  margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+/* Prev / Next links */
+.page-nav {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #696969 !important;
+  text-decoration: none !important;
+  padding: 0.2em 0.8em;
+  transition: color 0.2s;
+}
+.page-nav:hover,
+.page-nav:focus {
+  color: #0e94ec !important;
+}
+.page-nav.disabled {
+  color: #ccc !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Page number pills */
+.page-num {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #696969 !important;
+  text-decoration: none !important;
+  padding: 0.2em 0.7em;
+  border: 1px solid #dedede;
+  border-radius: 2em;
+  transition: all 0.2s;
+}
+.page-num:hover,
+.page-num:focus {
+  border-color: #0e94ec;
+  color: #0e94ec !important;
+  background: #f0f8ff;
+}
+.page-num.active,
+.page-num.active:hover,
+.page-num.active:focus {
+  background: #0e94ec;
+  border-color: #0e94ec;
+  color: #fff !important;
+  font-weight: 600;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Ellipsis */
+.page-ellipsis {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78em;
+  color: #aaa;
+  padding: 0 0.2em;
+  user-select: none;
 }
 
 .tagline{
