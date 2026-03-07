@@ -261,7 +261,7 @@ article.post {
 ----------------------------------------------- */
 .navbar {
   background-color: #ffffff;
-  font-family: 'IM Fell English SC', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   min-height: auto;
   border-bottom: 1px solid #dedede;
@@ -269,14 +269,15 @@ article.post {
 }
 .navbar .navbar-nav > li > a {
   color: #1c202a;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78em;
+  font-weight: 600;
   text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
   text-decoration: none;
+  letter-spacing: 0.04em;
   padding: 20px 0;
   margin-right: 25px;
   line-height: 2.6;
-  letter-spacing: 1px;
 }
 .site-name {
   display: inline-block;
