@@ -2019,7 +2019,7 @@ const QUESTION_POOL = [
     [40, 59,  "A decent start. Review the explanations."],
     [60, 79,  "Good effort. A bit more practice and you'll ace it."],
     [80, 89,  "Great work. You clearly know your stuff."],
-    [90, 100, "Excellent! Near-perfect score."],
+    [90, 100, "Excellent! You are ready for the exam."],
   ];
 
   function shuffle(arr) {
@@ -2207,10 +2207,10 @@ const QUESTION_POOL = [
     document.getElementById('r-correct').textContent = sessionCorrect;
     document.getElementById('r-total').textContent = sessionAnswered;
     document.getElementById('r-pct').textContent = sessionAnswered > 0 ? pct + '%' : '—';
-    document.getElementById('r-msg').textContent = sessionAnswered === 0
+    document.getElementById('r-msg').innerHTML = sessionAnswered === 0
       ? 'No questions answered.'
       : (endedEarly
-          ? `Quiz ended early — ${sessionAnswered} of ${QUESTIONS_PER_SESSION} answered. ${resultMessage(pct)}`
+          ? `<span style="font-style:normal;color:var(--wrong)">Quiz ended early, ${sessionAnswered} of ${QUESTIONS_PER_SESSION} answered.</span><br>${resultMessage(pct)}`
           : resultMessage(pct));
 
     // ── Category strength chart ──────────────────────────────
@@ -2339,12 +2339,6 @@ const QUESTION_POOL = [
       hl.appendChild(wrapper);
     });
 
-    if (allCorrect) {
-      const note = document.createElement('div');
-      note.style.cssText = 'font-family:var(--serif);font-style:italic;font-size:0.93rem;color:var(--correct);margin-top:1rem;';
-      note.textContent = 'Perfect score — no mistakes to review!';
-      hl.insertAdjacentElement('afterend', note);
-    }
   }
 
   function restartQuiz() {
