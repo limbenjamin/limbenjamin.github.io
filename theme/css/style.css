@@ -538,6 +538,62 @@ time{
   margin-left: 8px;
 }
 
+/* =Archives page
+----------------------------------------------- */
+.archive-month {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin: 1.5em 0 0.4em 0;
+  border-bottom: none;
+  display: block;
+}
+
+.archive-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5em 0;
+}
+
+.archive-item {
+  display: flex;
+  align-items: baseline;
+  padding: 0.3em 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.archive-item:last-child {
+  border-bottom: none;
+}
+
+.archive-day {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75em;
+  color: #0e94ec;
+  font-weight: 600;
+  min-width: 2.2em;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.archive-item a {
+  font-family: 'IM Fell English', serif;
+  font-size: 1em;
+  color: #444;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.archive-item a:hover {
+  color: #0e94ec;
+  text-decoration: none;
+}
+
+
+
 #paginator {
   text-align: center;
   margin: 2em 0;
