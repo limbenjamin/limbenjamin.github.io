@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Benjamin Lim — Senior Principal Engineer, Cybersecurity. MDR, Red Team, Forensics, Penetration Testing.">
+	<meta name="author" content="Benjamin Lim">
 	<title>Benjamin Lim | Resume</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap' rel='stylesheet' type='text/css'>
 	<style>
@@ -19,7 +21,6 @@
 
 		.sheet {
 			margin: 0;
-			overflow: hidden;
 			position: relative;
 			box-sizing: border-box;
 			page-break-after: always;
@@ -35,13 +36,10 @@
 			.container { box-shadow: 0 .5mm 2mm rgba(0,0,0,.3); }
 		}
 
-		/** Fix for Chrome issue #273306 **/
+		/** Print **/
 		@media print {
 			body.A4 { width: 210mm; }
-			* {
-				-webkit-print-color-adjust: exact !important;
-				print-color-adjust: exact !important;
-			}
+			* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 			.page-break { margin-top: 40px; }
 		}
 
@@ -61,51 +59,30 @@
 			border-bottom: 2px solid #0e94ec;
 			padding-bottom: 16px;
 		}
-		.header .full-name {
+		.full-name {
 			font-size: 36px;
 			text-transform: uppercase;
 			margin-bottom: 6px;
 			line-height: 1.1;
 		}
-		.header .last-name {
-			font-weight: 300;
-			margin-right: 8px;
-		}
-		.header .first-name {
-			font-weight: 700;
-		}
-		.header .contact-info {
-			font-size: 13px;
-			color: #555;
-		}
-		.header .contact-label {
-			color: #999;
-			font-weight: 300;
-			margin-right: 2px;
-		}
-		.header .separator {
+		.last-name { font-weight: 300; margin-right: 8px; }
+		.first-name { font-weight: 700; }
+		.contact-info { font-size: 13px; color: #555; }
+		.contact-label { color: #999; font-weight: 300; margin-right: 2px; }
+		.separator {
 			display: inline-block;
 			border-left: 1px solid #ccc;
 			margin: 0 10px;
 			height: 11px;
 			vertical-align: middle;
 		}
-		.header a {
-			color: #0e94ec;
-			text-decoration: none;
-		}
+		.header a { color: #0e94ec; text-decoration: none; }
 
 		/* =Sections
 		----------------------------------------------- */
-		.details {
-			line-height: 20px;
-		}
-		.section {
-			margin-bottom: 22px;
-		}
-		.section:last-of-type {
-			margin-bottom: 0;
-		}
+		.details { line-height: 20px; }
+		.section { margin-bottom: 22px; }
+		.section:last-of-type { margin-bottom: 0; }
 		.section__title {
 			font-size: 11px;
 			letter-spacing: 2px;
@@ -118,12 +95,12 @@
 		}
 		.section__list-item {
 			margin-bottom: 10px;
+			page-break-inside: avoid;
+			break-inside: avoid;
 		}
-		.section__list-item:last-of-type {
-			margin-bottom: 0;
-		}
+		.section__list-item:last-of-type { margin-bottom: 0; }
 
-		/* =Row: name + date
+		/* =Row: role + date
 		----------------------------------------------- */
 		.row {
 			display: flex;
@@ -132,14 +109,12 @@
 			font-size: 12px;
 			margin-bottom: 2px;
 		}
-		.row .role {
-			font-weight: 700;
-		}
-		.row .company {
-			font-weight: 700;
-			color: #0e94ec;
-		}
-		.row .date {
+		.role { font-weight: 700; }
+		.company { font-weight: 700; color: #0e94ec; }
+
+		/* =Shared date style
+		----------------------------------------------- */
+		.date, .cert-date {
 			font-size: 12px;
 			font-weight: 600;
 			color: #555;
@@ -148,7 +123,7 @@
 			flex-shrink: 0;
 		}
 
-		/* =Bullet lists
+		/* =Certifications
 		----------------------------------------------- */
 		.cert-row {
 			display: flex;
@@ -157,74 +132,45 @@
 			font-size: 12px;
 			padding: 3px 0;
 			border-bottom: 1px solid #f2f2f2;
+			page-break-inside: avoid;
+			break-inside: avoid;
 		}
-		.cert-row:last-child {
-			border-bottom: none;
-		}
-		.cert-row .cert-name {
-			font-weight: 400;
-		}
-		.cert-row .cert-date {
-			font-size: 12px;
-			font-weight: 600;
-			color: #555;
-			white-space: nowrap;
-			margin-left: 12px;
-			flex-shrink: 0;
-		}
-		.cert-row.inactive {
-			opacity: 0.45;
-		}
-		.cert-row.expired .cert-name::after {
-			content: ' — Expired';
-			font-size: 11px;
-			color: #999;
-			font-weight: 400;
-		}
+		.cert-row:last-child { border-bottom: none; }
+		.cert-row.inactive { opacity: 0.45; }
+		.cert-row.expired .cert-name::after,
 		.cert-row.retired .cert-name::after {
-			content: ' — Retired';
 			font-size: 11px;
 			color: #999;
 			font-weight: 400;
 		}
+		.cert-row.expired .cert-name::after { content: ' — Expired'; }
+		.cert-row.retired .cert-name::after { content: ' — Retired'; }
 
 		/* =Bullet lists
 		----------------------------------------------- */
 		.bullets {
-			list-style: none;
+			list-style: disc;
 			margin: 4px 0 8px 0;
-			padding: 0;
+			padding-left: 16px;
 		}
 		.bullets li {
-			position: relative;
 			font-size: 12px;
 			line-height: 18px;
 			color: #333;
-			padding-left: 14px;
+			padding-left: 2px;
 			margin-bottom: 2px;
 		}
-		.bullets li::before {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 7px;
-			width: 5px;
-			height: 5px;
-			background: #0e94ec;
-			border-radius: 1px;
-			-webkit-print-color-adjust: exact;
-			print-color-adjust: exact;
-		}
-		.bullets li:last-child {
-			margin-bottom: 0;
-		}
+		.bullets li::marker { color: #0e94ec; font-size: 10px; }
+		.bullets li:last-child { margin-bottom: 0; }
+
 		/* Sub-bullets */
 		.bullets .sub {
 			list-style: none;
-			margin: 2px 0 2px 0;
+			margin: 2px 0;
 			padding: 0;
 		}
 		.bullets .sub li {
+			position: relative;
 			padding-left: 14px;
 			color: #555;
 			font-size: 11px;
@@ -238,23 +184,34 @@
 			width: 5px;
 			height: 1px;
 			background: #aaa;
-			border-radius: 0;
 			-webkit-print-color-adjust: exact;
 			print-color-adjust: exact;
 		}
 
-		/* =Achievement list items (flex with right-aligned date)
+		/* =Achievement items (bullet + right-aligned date)
 		----------------------------------------------- */
 		.bullets li.achiev-li {
 			display: flex;
 			justify-content: space-between;
 			align-items: baseline;
+			list-style: none;
+			position: relative;
 			padding-left: 14px;
 		}
-		.bullets li.achiev-li .achiev-text {
-			flex: 1;
+		.bullets li.achiev-li::before {
+			content: '';
+			position: absolute;
+			left: 2px;
+			top: 6px;
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: #0e94ec;
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
 		}
-		.bullets li.achiev-li .achiev-date {
+		.achiev-text { flex: 1; }
+		.achiev-date {
 			font-size: 11px;
 			font-weight: 600;
 			color: #555;
@@ -263,33 +220,20 @@
 			flex-shrink: 0;
 		}
 
-		/* =Page break injection
-	----------------------------------------------- */
-	.page-break {
-		page-break-before: always;
-		break-before: page;
-		height: 0;
-		display: block;
-	}
-	/* Section/item should not break mid-block where possible */
-	.section__list-item {
-		page-break-inside: avoid;
-		break-inside: avoid;
-	}
-	.cert-row {
-		page-break-inside: avoid;
-		break-inside: avoid;
-	}
-
-	/* =Links
+		/* =Page break
 		----------------------------------------------- */
-		a {
-			color: #000;
+		.page-break {
+			page-break-before: always;
+			break-before: page;
+			height: 0;
+			display: block;
 		}
-		a:hover {
-			color: #0e94ec;
-		}
-</style>
+
+		/* =Links
+		----------------------------------------------- */
+		a { color: #000; }
+		a:hover { color: #0e94ec; }
+	</style>
 </head>
 <body class="A4">
 
@@ -377,7 +321,7 @@
 			</div><!-- /Experience -->
 
 			<div class="section">
-				<div class="section__title">Courses &amp; Certifications</div>
+				<div class="section__title">Courses & Certifications</div>
 				<div class="section__list">
 					<div class="cert-row"><span class="cert-name">Microsoft Identity and Access Administrator Associate (SC-300)</span><span class="cert-date">2026</span></div>
 					<div class="cert-row"><span class="cert-name">GIAC Continuous Monitoring (GMON)</span><span class="cert-date">2025</span></div>
@@ -438,7 +382,7 @@
 			</div><!-- /Achievements -->
 
 			<div class="section">
-				<div class="section__title">Organizations &amp; Volunteer Work</div>
+				<div class="section__title">Organizations & Volunteer Work</div>
 				<div class="section__list">
 
 					<div class="section__list-item">
@@ -475,7 +419,6 @@
 	// 1mm = 3.7795px at 96dpi
 	const MM_TO_PX = 3.7795;
 	const PAGE_H_MM = 296;      // A4 height
-	const MARGIN_MM = 40 * 2;   // container top+bottom padding (40px each ≈ ~10.6mm each)
 	const CONTAINER_PADDING_PX = 40; // matches CSS .container padding
 
 	// After fonts load, measure and inject breaks
