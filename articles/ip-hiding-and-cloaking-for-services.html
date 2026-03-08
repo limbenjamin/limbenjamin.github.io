@@ -201,7 +201,7 @@
       <div class="entry-content">
         <p>It is relatively easy to hide the IP address of clients through the use of VPNs and proxies. However, it is a challenge for services since they need to be reachable by the clients. Imagine if your phone number changed at the stroke of midnight everyday, it would be very difficult for others to reach you reliably. There are many methods for IP hiding, one of which is through the use of tor. However, one drawback is that it is reachable only through a <code>.onion</code> address and hence is accessible only to very savvy internet users. Other methods used by botnets include updating the A records every few seconds, however it is impractical as it requires you to be controlling large swathes of IP addresses.  </p>
 <p>The method I am going to illustrate involves the use of <code>iptables</code> for both hiding and cloaking. Hiding the IP address means that the actual IP hosting the questionable content is not the same IP that is revealed through an <code>nslookup</code>. Cloaking the IP address allows you to either whitelist or blacklist certain IP addresses from accessing the questionable content, serving them innocuous content instead.</p>
-<h1>Hiding IP addresses</h1>
+<h2>Hiding IP addresses</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -236,7 +236,7 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination
 </code></pre></div></td></tr></table></div>
 
 <p>In this particular case, once 4.4.4.4 is seized, the owner will immediately erase all data on 5.5.5.5 thus leaving a cold trail.</p>
-<h1>IP Cloaking</h1>
+<h2>IP Cloaking</h2>
 <p>To further hinder investigations, IP cloaking can also be used. IP cloaking serves different content depending on the source IP of the visitor. Hence, if you know that Walt Sidney uses the IP range 9.9.9.9/24, we can forward this IP range to a different web server hosting a fan site dedicated to Walt Sidney.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>iptables -t nat -A PREROUTING -s 9.9.9.9/24 -p tcp --dport 443 -j DNAT --to-destination 127.0.0.1:1443
@@ -299,7 +299,7 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

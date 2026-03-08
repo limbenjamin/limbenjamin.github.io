@@ -204,10 +204,10 @@
 <p class="admonition-title">Disclaimer</p>
 <p>Reverse Engineering certain apps may be illegal. Fraudulently obtaining tokens, credits or other in app items may also be illegal. This article is strictly for educational purposes. I am not responsible for your actions. </p>
 </div>
-<h1>Reverse Engineering Process</h1>
+<h2>Reverse Engineering Process</h2>
 <p>The first step in reverse engineering an android app is to extract the APK file from the device. We then need to unpack the APK file and disassemble it to obtain smali code. smali is an assembly language that runs on Dalvik VM, which is Android's JVM. smali code can be obtained by 'baksmaling' Dalvik executable files (.dex). Fortunately, there are tools which automate the entire process. I recommend <a href="http://www.vaibhavpandey.com/apkstudio/">APK Studio</a>, which I found to be very handy, especially since you can build, export and install the app directly from the IDE. </p>
 <p>The next step is to try to obtain the java source code. <a href="https://github.com/skylot/jadx">JADX</a> is a dex to Java decompiler. Java source code is much easier to read compared to dex code, just as C is much easier to read compared to assembly code. However, I have found that <code>JADX</code> does not produce recompilable source code. Hence, I make use of the Java source to understand the code, identify the location that I wish to make a change, find the corresponding location in the smali code, edit the smali code, build, export, install and run. If <code>proguard</code> was used during the compilation process, you will get obfuscated class and method names, which will slow you down quite a bit. Otherwise, you get Java code that is very close to the original, including the comments left by the developer.</p>
-<h1>Example</h1>
+<h2>Example</h2>
 <p>We will look at the Java and smali code of a very simple example.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -349,7 +349,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

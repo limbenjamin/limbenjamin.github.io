@@ -241,10 +241,10 @@ th, td{
 <li>Metadata change time can be progammatically set, however it will be overwritten to current time as this operation is considered changing file metadata. </li>
 <li>As of Windows Vista and Server 2008, Microsoft has <a href="https://support.microsoft.com/en-us/help/942448/changes-to-the-file-system-and-to-the-storage-stack-to-restrict-direct">blocked direct disk write to mounted volumes</a>. Hence, this will not work on the SYSTEM drive.</li>
 </ol>
-<h1>SetFileTime API</h1>
+<h2>SetFileTime API</h2>
 <p>This is the highest level API. It is rather uninteresting, as it does not allow us to modify the metadata change time. It will only be able to fool someone who uses <code>right click -&gt;
 Properties</code> to view the file timestamp information. Any further probing will reveal that the timestomping has been performed.</p>
-<h1>SetFileInformationByHandle</h1>
+<h2>SetFileInformationByHandle</h2>
 <p><code>SetFileInformationByHandle</code> allows us to update the <code>_FILE_BASIC_INFORMATION</code> structure. Internally, I believe what happens is that this function calls the <code>NtSetInformationFile</code> function, after it has returned, it will update the <code>ChangeTime</code> timestamp to the current time. This behaviour is not good since we are trying to do timestomping, hence we have to go deeper.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
@@ -261,10 +261,10 @@ Properties</code> to view the file timestamp information. Any further probing wi
     } FILE_BASIC_INFORMATION, *PFILE_BASIC_INFORMATION;
 </code></pre></div></td></tr></table></div>
 
-<h1>NtSetInformationFile</h1>
+<h2>NtSetInformationFile</h2>
 <p><code>NtSetInformationFile</code> is an undocumented NT API. We cannot just import the library and call the function. In order to access the function, we will need to get the handle to <code>ntdll.dll</code> during runtime and get the process address for <code>NtSetInformationFile</code>. Once done, we can update the <code>_FILE_BASIC_INFORMATION</code> structure. <a href="https://limbenjamin.com/pages/ntimetools.html">nTimetools</a> uses this API. Based on my testing, we can modify the <code>ChangeTime</code> timestamp to any timestamp of our liking.</p>
 <p><img alt="image" src="//limbenjamin.com/media/ntimetools2.png"></p>
-<h1>CreateFile(.\PhysicalDrive0)</h1>
+<h2>CreateFile(.\PhysicalDrive0)</h2>
 <p>This is the lowest level possible. We are opening a handle to the raw device. With this level of access, we can read or write individual bytes on the hard disk itself. The challenge with this method is the lack of any data structures. You will need to define your own MFT entry structure, MFT structure and start parsing the blob of data you have just read. While the <code>$MFT</code> is rather well researched, others such as <code>$I30</code>, <code>$LogFile</code> are largely unknown. That said, with this level of access, the sky is the limit. You could selectively overwrite event log entries or even system drivers. However, it is also extremely dangerous, improper writes may leave your filesystem in an inconsistent state or corrupt it entirely.  </p>
 <p>As of Windows Vista and Server 2008, Microsoft has <a href="https://support.microsoft.com/en-us/help/942448/changes-to-the-file-system-and-to-the-storage-stack-to-restrict-direct">blocked direct disk write to mounted volumes</a>. It is still possible to do direct disk read on mounted volumes. The <a href="https://github.com/clymb3r/PowerShell/tree/master/Invoke-NinjaCopy">Invoke-Ninjacopy library</a> does just that. </p>
       </div><!-- .entry-content -->
@@ -322,7 +322,7 @@ Properties</code> to view the file timestamp information. Any further probing wi
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

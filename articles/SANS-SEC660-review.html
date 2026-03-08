@@ -199,14 +199,14 @@
         <h1 class="entry-title-single-page"><a href="../articles/SANS-SEC660-review.html">SANS SEC660 review</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <h1>SEC660</h1>
+        <h2>SEC660</h2>
 <p>I recently had the opportunity to attend the SANS SEC660 course held in Singapore in October 2017. The course was conducted by Tim Medin and covered advanced penetration testing and exploit writing. SEC660 started off introducing ARP spoofing, SSL striping and IPv6 router advertisements MITM attacks. It would have been perfect if there was a lab on NBNS/LLMNR spoofing, ARP spoofing is well known and network administrators are already using port security to bind a MAC address to a particular switch port. Day 2 in my opinion was not as useful, exploiting improper cryptographic implementations in the wild are not as yielding and at most likely to provide unauthorized access to a certain resource or maybe partial disclosure of a cookie. It is unlikely to result in RCE and also involves a lot of guesswork. Day 3 was interesting, fuzzing is a good black box method to find vulnerabilities. After all, computer time is cheap while researcher's time is costly. </p>
 <p>Day 4 and 5 was the main course. We covered buffer overflows and the methods to defeat different types of protection mechanisms. Fortunately, I was already familiar with the basics of buffer overflow, otherwise I would not have been able to catch up. It was challenging and I spent the evenings practising the techniques at home in preparation for the CTF on day 6. The CTF on day 6 was not as difficult as I expected, as a pen tester, I used a pen testing approach to tackle the challenges. Perhaps our opponents were weak, but I was able to maintain a comfortable lead throughout and finished with the challenge coin. On hindsight, maybe I should have skimped on the practice and attended NetWars Core instead.  </p>
 <p>Having gone through the OSCP course, I feel that SEC660 perfectly complements where OSCP left off. OSCP focused on enumeration and adapting public exploits, the labs expressly forbidded us from launching MITM attacks. SEC660 starts off with MITM attacks. OSCP only covered simple buffer overflow and the JMP ESP technique. SEC660 expanded on that and covered ret2libc, repairing stack canaries and introduced ROP.</p>
 <p>CTF Tips: The weak hack the challenges, the strong hack the machines, the strongest hack the players. Think of how you can leverage the other players who are logged onto the same machine and tackling the same challenges.</p>
-<h1>NetWars Defense</h1>
+<h2>NetWars Defense</h2>
 <p>NetWars Defense was a whole different story. The competition was strong, really strong. A SANS record was broken. For the first time, someone managed to finish the entire CTF. In most other competitions in the US, the winning score is around 600. A score of 600 would not even place you in the Top 10 in Singapore. Given my lack of experience in defense, I struggled quite a bit with some of the tools used. At the end of the first day, I ranked 13th on the leaderboard, just out of coin territory. The second day was an even greater struggle, the competition was so strong that you had to complete a number of questions in the final level to get into the Top 10. I finished 6th with a score of 681. </p>
-<h1>Bonus</h1>
+<h2>Bonus</h2>
 <p>2 of 2 coins One. I mean won.</p>
 <p><img alt="sec660" src="//limbenjamin.com/media/sec660.jpg"></p>
 <p><img alt="netwars defense" src="//limbenjamin.com/media/netwarsdef.jpg"></p>
@@ -265,7 +265,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

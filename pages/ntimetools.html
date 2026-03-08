@@ -214,10 +214,10 @@ nTimetools is a suite of console tools developed to work with timestamps in Wind
 <p><img alt="image" src="//limbenjamin.com/media/ntimetools2.png"></p>
 <p>The syntax for nTimestomp is <code>nTimestomp.exe -F F:\VERSION-FOR508-18-2A.txt -M "1995-05-19 12:34:56.7890123" -A "1995-05-19 12:34:56.7890123" -C "1995-05-19 23:59:59.0000001" -B "1995-05-19 23:59:59.0000001"</code> The separator for the nanoseconds portion is a dot and not a colon. The date format is <code>YYYY-MM-DD</code>. Filename is a required argument, any combination of <code>-M -A -C -B</code> is accepted, current timestamp will be retained if that argument is not specified.</p>
 <p>FAT does not keep track of metadata change time, hence the null value. The difference in timestamps is due to the level of precision of FAT timestamps. Also, creation timestamps on mounted drives cannot be modified to due API limitations.  </p>
-<h1>Downloads</h1>
+<h2>Downloads</h2>
 <p><a href="https://limbenjamin.com/files/nTimeTools/nTimeview_v1.0_x64.exe">nTimeview_v1.0_64bit</a> - SHA1() = 7b0506dca02e7a3dd9ba4fcbe4f4ff45008d31c8<br>
 <a href="https://limbenjamin.com/files/nTimeTools/nTimestomp_v1.2_x64.exe">nTimestomp_v1.2_64bit</a> - SHA1() = 1175837865ab8282f1905b66c7417efdd8a56259  </p>
-<h1>Q&amp;A</h1>
+<h2>Q&amp;A</h2>
 <h2>Are there any similar tools out there?</h2>
 <p>Joakim Schicht (jschicht) has an excellent set of tools out there, MftRcrd and SetMace, that work with timestamps of up to 100-nanosecond precision. These tools work in a different way. The raw device is mounted and the MFT is parsed and read from. The advantage of doing so is that $FILE_NAME timestamps can also be read. This allows a more in-depth check for signs of timestomping. However, the downside of using raw device mounting is that it will only work on NTFS filesystems and it requires privileged access. For SetMace, due to restrictions placed in recent version of Windows on writing to a raw device, it will only work on non system drives.  </p>
 <h2>Can I have the source code?</h2>
@@ -265,7 +265,7 @@ nTimestomp v1.2 (14/09/21) - Consistency in order of MACB arguments. Added flags
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

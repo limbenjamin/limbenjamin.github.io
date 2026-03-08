@@ -200,25 +200,25 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>A number of friends have recently sought my advice on NAS and RAID solutions for storing their personal data. I do not usually give brand recommendations but I will discuss the technology involved. I have never used RAID nor found a need for it, this is because RAID (Redundant Array of Independent Disks) is meant for redundancy and not backup. For backup, I use a combination of a spare HDD as well as cloud services like Dropbox and github for code. </p>
-<h1>Situations where RAID will not save you</h1>
+<h2>Situations where RAID will not save you</h2>
 <ol>
 <li>You accidentally delete a file. Without a second copy on a HDD, you are shit out of luck.</li>
 <li>Your computer gets infected by malware which deletes or encrypts your files. <a href="http://www.techrepublic.com/article/cryptowall-what-it-is-and-how-to-protect-your-systems/">Ransomware</a> is trending now.</li>
 <li>You accidentally spill water on your computer. With a proper backup, your spare HDD is lying safely in a drawer somewhere else. </li>
 <li>Natural disasters - fire, flooding. Cloud backup will save you since the data is not stored in your house, or stash your spare HDD with a friend, relative or neighbour.</li>
 </ol>
-<h1>Situations where RAID is useful</h1>
+<h2>Situations where RAID is useful</h2>
 <ol>
 <li>Mission critical situations. If a HDD fails, the system still runs fine, albeit with slightly degraded performance until you replace the HDD and the array is rebuilt. You won't have customers calling in to complain why they are unable to access the system the entire morning because you are busily reinstalling the OS and copying files from a backup.</li>
 <li>Performance. With RAID 5/6, you get read and write speeds which are slightly faster than a non RAID setup. With RAID 0, you get insane speeds, but RAID 0 is basically striping with no parity bits so if 1 HDD dies, you lose everything.</li>
 <li>You own a shit ton of data. Like 6TB worth of data and every single byte is important to you. You cannot afford 6 x 2TB HDD to backup all 6TB worth of data. So you buy 4 x 2TB HDD and configure it in RAID5, praying that only 1 HDD fails at any one time.</li>
 </ol>
-<h1>Backup Methods</h1>
+<h2>Backup Methods</h2>
 <ol>
 <li>File Backup. Connect a spare HDD and copy the files over. Enough said.</li>
 <li>System Image. You are cloning the entire HDD including all system files and partitions. In case your OS cannot boot, file backups will not be able to save you, you have to reinstall the OS and all your programs before you can copy the files over. With a system image, you just need to reclone it onto the HDD and it will work.</li>
 </ol>
-<h1>My Method</h1>
+<h2>My Method</h2>
 <p>I have a 80GB partition for my OS and the rest of the space on my SSD is a 2nd partition for games. Yeah, games are huge. I make a system image of the OS partition monthly. My working files, which are being updated regularly, is stored in the Dropbox folder and code is pushed to Github in a private repository. In the event that my SSD crashes, I will restore the system image, wait for Dropbox to sync, pull from my Github repository and re-download the game files. By doing so, the only data I would have lost would be the new programs I have installed within the last month. This is an acceptable trade off for me considering that it requires only 80GB on the spare HDD and takes less than an hour a month to clone the system image.</p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -275,7 +275,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

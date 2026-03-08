@@ -200,14 +200,14 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>Enumerating sites which are hosted on the same IP address can sometimes tell us a lot about a server. Is it shared hosting? Is it a legitimate server which was compromised for C2 operations? Does the site owner have any other shady business dealings on the side? I am aware that there are sites out there which index the IP address and domain name to provide such a service. However, for this article, I will be touching on manual methods to enumerate these sites.</p>
-<h1>Subject Alternative Name</h1>
+<h2>Subject Alternative Name</h2>
 <p><img alt="image" src="//limbenjamin.com/media/ssl_alt_name.jpg"></p>
 <p>A single SSL cert can be valid for multiple domain names. This method is the easiest as you just need to inspect the cert with a web browser. Such a practice is likely to be done by hobby webmasters. E.g. the boss of a small IT shop might use his company server to host a fan site dedicated to his favourite football team. To prevent such links, webmasters can simply register separate certs for each website they are hosting. This used to be costly since the certs have to be renewed on a regular basis but Lets Encrypt has put that to rest.  </p>
-<h1>Apache Default Vhost</h1>
+<h2>Apache Default Vhost</h2>
 <p>An apache installation will by default serve up the first vhost if a suitable <code>ServerAlias</code> cannot be found. To exploit this, you could <code>nslookup</code> the IP address and attempt to directly visit it in the browser. However, some webmasters might have configured IP-based virtual hosting. To circumvent that, one method I have found to be useful is to register a free DDNS address and point it at that IP and subsequently visit that address in your browser. To prevent such an occurence, webmasters should create a catchall vhost to sinkhole all unknown DDNS addresses pointed to their IP. Take note that the sinkhole vhost has to be the last vhost so it does not sinkhole your actual domain traffic. </p>
-<h1>No SNI support</h1>
+<h2>No SNI support</h2>
 <p>An apache installation will also by default serve up the first vhost to a client which does not support SNI. To simulate a such a client, you can run <code>openssl s_client -connect domain.com:443</code>. The previous <code>sinkhole</code> vhost will not work in this case because it has to be the last vhost. In such a case, the webmaster should also register a non-existent domain as the first vhost so as to sinkhole non SNI supported traffic.</p>
-<h1>Summary</h1>
+<h2>Summary</h2>
 <p>The final vhost configuration should look like this.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -288,7 +288,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

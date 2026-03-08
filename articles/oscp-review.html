@@ -200,15 +200,15 @@
       </header><!-- .entry-header -->
       <div class="entry-content">
         <p>Having passed my OSCP exam last week, I thought it would be good for me to share my thoughts with OSCP aspirants out there. A little bit on my background first. I have a bachelors degree in computing specialising in information security and have worked as a network pen tester for slightly over a year. I consider myself proficient with both Windows and Linux. </p>
-<h1>Lab</h1>
+<h2>Lab</h2>
 <p>I bought the 90 day package after reading online reviews from other OSCP candidates. Offensive Security recommends going through the course materials first before starting on the lab. However, after a quick glance at the materials, I realised that I was already familiar with most of it. Hence, I dove straight into the lab, only referring back to the course materials on subjects which I am less familiar with. All in, it took me 57 days to root all 50+ lab machines. I paused for 8 days in the middle to complete the exercises so it actually took 49 days. I spent approximately 4 hours every weekday and the entire day on weekends rooting these machines. I had a few cheat days where I took a break from the OSCP but by and large stuck to my regimen of rooting 1 machine every weekday, or at least obtain a low priv shell. Being disciplined and sticking to a routine is important if you want to root all the machines.</p>
 <p>I would recommend:<br>
 1.   30 day package - Experienced pen tester interested in certification only. (you wont have time to root all lab machines)<br>
 2.   60 day package - Experienced pen tester or working on the course full time.<br>
 3.   90 day package - Everyone else.  </p>
-<h1>Exam</h1>
+<h2>Exam</h2>
 <p>I managed to pass the exam on my first try. You will want to book early since the slots get taken up quite quickly. I started my exam at 6am and got the first machine within 30 minutes. With the low hanging fruit done, I then focused on the other machines, alternating between them every hour or so when I get stuck. I managed to get a low priv shell before lunch. After lunch, I worked on the buffer overflow machine and completed it within an hour. By 4pm, I managed to get a second low priv shell on another machine, and escalated that machine within the next 30 minutes since the privesc vector was rather obvious. I then alternated among the other machines but could not get any further. I decided to call it a day at 10pm, after 6 hours with no results. With the 5 bonus points from the lab report, I estimated my score to be 70-80, enough for a pass. I submitted my report the next day at 3pm and received the good news via email at midnight the following day.  </p>
-<h1>Advice</h1>
+<h2>Advice</h2>
 <h2>Start small to big</h2>
 <p>When looking for vulns, start from the smallest possible module. Start looking at the Wordpress plugins, followed by Wordpress Core itself, and end off with apache web server. Wordpress plugins have a userbase of tens to hundreds, Wordpress is used by millions, apache runs 40% of the web. If there were to be a vuln, it is most likely found in code that is rarely deployed with almost nobody auditing it. Popular frameworks and software are likely to have higher code quality. </p>
 <h2>Understand errors</h2>
@@ -273,7 +273,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sat Mar  7 22:43:40 2026<br />
+                    Page generated on Sun Mar  8 09:03:56 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
