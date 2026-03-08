@@ -95,7 +95,7 @@ h2,
   text-decoration: none;
   padding-bottom: 0.3em;
   border-bottom: 2px solid #0e94ec;
-  display: inline-block;
+  display: table;
 }
 
 h3,
