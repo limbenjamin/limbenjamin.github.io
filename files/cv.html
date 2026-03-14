@@ -102,6 +102,7 @@
 
 		/* =Row: role + date
 		----------------------------------------------- */
+
 		.row {
 			display: flex;
 			justify-content: space-between;
@@ -136,7 +137,6 @@
 			break-inside: avoid;
 		}
 		.cert-row:last-child { border-bottom: none; }
-		.cert-row.inactive { opacity: 0.45; }
 		.cert-row.expired .cert-name::after,
 		.cert-row.retired .cert-name::after {
 			font-size: 11px;
@@ -148,12 +148,20 @@
 
 		/* =Bullet lists
 		----------------------------------------------- */
+		.bullets-narrow {
+			list-style: disc;
+			margin: 4px 0 8px 0;
+			padding-left: 16px;
+			margin-block-start: 0em;
+			margin-block-end: 0em;
+		}
+
 		.bullets {
 			list-style: disc;
 			margin: 4px 0 8px 0;
 			padding-left: 16px;
 		}
-		.bullets li {
+		.bullets-narrow li, .bullets li {
 			font-size: 12px;
 			line-height: 18px;
 			color: #333;
@@ -162,6 +170,9 @@
 		}
 		.bullets li::marker { color: #0e94ec; font-size: 10px; }
 		.bullets li:last-child { margin-bottom: 0; }
+
+		.bullets-narrow li::marker { color: #0e94ec; font-size: 10px; }
+		.bullets-narrow li:last-child { margin-bottom: 0; }
 
 		/* Sub-bullets */
 		.bullets .sub {
@@ -173,7 +184,7 @@
 			position: relative;
 			padding-left: 14px;
 			color: #555;
-			font-size: 11px;
+			font-size: 11.5px;
 			line-height: 16px;
 		}
 		.bullets .sub li::before {
@@ -186,38 +197,6 @@
 			background: #aaa;
 			-webkit-print-color-adjust: exact;
 			print-color-adjust: exact;
-		}
-
-		/* =Achievement items (bullet + right-aligned date)
-		----------------------------------------------- */
-		.bullets li.achiev-li {
-			display: flex;
-			justify-content: space-between;
-			align-items: baseline;
-			list-style: none;
-			position: relative;
-			padding-left: 14px;
-		}
-		.bullets li.achiev-li::before {
-			content: '';
-			position: absolute;
-			left: 2px;
-			top: 6px;
-			width: 6px;
-			height: 6px;
-			border-radius: 50%;
-			background: #0e94ec;
-			-webkit-print-color-adjust: exact;
-			print-color-adjust: exact;
-		}
-		.achiev-text { flex: 1; }
-		.achiev-date {
-			font-size: 11px;
-			font-weight: 600;
-			color: #555;
-			white-space: nowrap;
-			margin-left: 12px;
-			flex-shrink: 0;
 		}
 
 		/* =Page break
@@ -246,7 +225,7 @@
 			</div>
 			<div class="contact-info">
 				<span class="contact-label">Email</span>
-				<a href="mailto:mail@limbenjamin.com">mail@limbenjamin.com</a>
+				<a href="/cdn-cgi/l/email-protection#adc0ccc4c1edc1c4c0cfc8c3c7ccc0c4c383cec2c0"><span class="__cf_email__" data-cfemail="6805090104280401050a0d060209050106460b0705">[email&#160;protected]</span></a>
 				<span class="separator"></span>
 				<span class="contact-label">Web</span>
 				<a href="https://limbenjamin.com">https://limbenjamin.com</a>
@@ -263,16 +242,16 @@
 						<div class="row"><span><span class="role">Senior Principal Engineer (MDR)</span> <span class="company">| Dell Technologies</span></span><span class="date">2024 – Present</span></div>
 						<div class="row"><span><span class="role">Principal Engineer (MDR)</span> <span class="company">| Dell Technologies</span></span><span class="date">2021 – 2024</span></div>
 						<ul class="bullets">
-							<li>Involved in set up of Managed Detection &amp; Response (MDR) service from 0 to 400+ customers globally.</li>
-							<li>Provided subject matter expertise on attack techniques, threat hunting and malware analysis.</li>
-							<li>As <b>Cybersecurity Automation Team Lead</b>, spearheaded development of Python WebApp to scale MDR.
+							<li>Involved in set up of Managed Detection &amp; Response (MDR) service from 0 to 400+ global customers.</li>
+							<li>SME for attack techniques, threat hunting and malware analysis.</li>
+							<li>As <b>Cybersecurity Automation Team Lead</b>, led development of Python WebApp to scale MDR.
 								<ul class="sub">
 									<li>Assigns alerts and investigations from multiple tenants to on-shift analysts on a single pane of glass.</li>
-									<li>Generates reports and slides for customer review, and metrics for billing and management reporting.</li>
-									<li>Used GenAI to perform initial alert triage and review investigation quality.</li>
+									<li>Generates reports and slides for customer review, billing and management reporting.</li>
+									<li>Used LLM models to triage alerts and review investigation quality.</li>
 									<li>250K Alerts, 70K Investigations assigned, 2.5K customer reports, 10K Investigations reviewed to date.</li>
-									<li>4 geographically distributed instances. Automated CI/CD using Azure DevOps pipeline.</li>
-									<li>Integrated code coverage, trivy dependency scanning and SBOM generation into pipeline.</li>
+									<li>Deployed 4 geographically distributed instances with Azure DevOps CI/CD.</li>
+									<li>Integrated code coverage, Trivy dependency scanning and SBOM generation into pipeline.</li>
 									<li>Led team of developers to optimize Web App and continue feature development.</li>
 								</ul>
 							</li>
@@ -333,11 +312,11 @@
 					<div class="cert-row"><span class="cert-name">GIAC Certified Forensic Analyst (GCFA)</span><span class="cert-date">2018</span></div>
 					<div class="cert-row"><span class="cert-name">Advanced Penetration Testing, Exploit Writing, and Ethical Hacking (SEC660)</span><span class="cert-date">2017</span></div>
 					<div class="cert-row"><span class="cert-name">Offensive Security Certified Professional (OSCP)</span><span class="cert-date">2017</span></div>
-					<div class="cert-row inactive retired"><span class="cert-name">Microsoft Security Administrator Associate (MS-500)</span><span class="cert-date">2022 – 2025</span></div>
-					<div class="cert-row inactive expired"><span class="cert-name">GIAC Reverse Engineering Malware (GREM)</span><span class="cert-date">2019 – 2023</span></div>
-					<div class="cert-row inactive expired"><span class="cert-name">CREST Registered Penetration Tester (CRT)</span><span class="cert-date">2018 – 2021</span></div>
-					<div class="cert-row inactive expired"><span class="cert-name">CREST Practitioner Security Analyst (CPSA)</span><span class="cert-date">2018 – 2021</span></div>
-					<div class="cert-row inactive expired"><span class="cert-name">Certified Information Systems Security Professional (CISSP)</span><span class="cert-date">2017 – 2019</span></div>
+					<div class="cert-row retired"><span class="cert-name">Microsoft Security Administrator Associate (MS-500)</span><span class="cert-date">2022 – 2025</span></div>
+					<div class="cert-row expired"><span class="cert-name">GIAC Reverse Engineering Malware (GREM)</span><span class="cert-date">2019 – 2023</span></div>
+					<div class="cert-row expired"><span class="cert-name">CREST Registered Penetration Tester (CRT)</span><span class="cert-date">2018 – 2021</span></div>
+					<div class="cert-row expired"><span class="cert-name">CREST Practitioner Security Analyst (CPSA)</span><span class="cert-date">2018 – 2021</span></div>
+					<div class="cert-row expired"><span class="cert-name">Certified Information Systems Security Professional (CISSP)</span><span class="cert-date">2017 – 2019</span></div>
 				</div>
 			</div><!-- /Certifications -->
 
@@ -368,16 +347,23 @@
 			<div class="section">
 				<div class="section__title">Achievements</div>
 				<div class="section__list">
-					<ul class="bullets">
-						<li class="achiev-li"><span class="achiev-text">Submitted valid vulnerabilities to <a href="https://bugcrowd.com/h/limbenjamin">Bitdefender, FireEye &amp; Sophos Bug Bounty program</a>.</span><span class="achiev-date">2020 – 2022</span></li>
-						<li class="achiev-li"><span class="achiev-text">Top 10 team in open category of STACK the Flags CTF.</span><span class="achiev-date">2020</span></li>
-						<li class="achiev-li"><span class="achiev-text">Discovered currently unpatched method to <a href="https://github.com/limbenjamin/LogServiceCrash">crash Windows Event Logger Service</a>.</span><span class="achiev-date">2020</span></li>
-						<li class="achiev-li"><span class="achiev-text">Completed the 6th annual Flare-On Challenge.</span><span class="achiev-date">2019</span></li>
-						<li class="achiev-li"><span class="achiev-text">Top 3 team in CLOUDSEC Challenge.</span><span class="achiev-date">2019</span></li>
-						<li class="achiev-li"><span class="achiev-text">Developed tools that log TCP connections, perform timestomping and other functions.</span><span class="achiev-date">2016 – Present</span></li>
-						<li class="achiev-li"><span class="achiev-text">Won the SEC660, FOR508, FOR610, SEC540, SEC511, Core and Cyber Defense NetWars Coin.</span><span class="achiev-date"></span></li>
-						<li class="achiev-li"><span class="achiev-text">Black Hat Asia 2015 Student Scholarship Recipient.</span><span class="achiev-date">2015</span></li>
-					</ul>
+
+					<div class="row"><ul class="bullets-narrow"><li>Submitted valid vulnerabilities to <a href="https://bugcrowd.com/h/limbenjamin">Bitdefender, FireEye &amp; Sophos Bug Bounty program</a>.</li></ul><span class="date">2020 – 2022</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Top 10 team in open category of STACK the Flags CTF.</li></ul><span class="date">2020</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Discovered currently unpatched method to <a href="https://github.com/limbenjamin/LogServiceCrash">crash Windows Event Logger Service</a>.</li></ul><span class="date">2020</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Completed the 6th annual Flare-On Challenge.</li></ul><span class="date">2019</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Top 3 team in CLOUDSEC Challenge.</li></ul><span class="date">2019</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Developed tools that log TCP connections, perform timestomping and other functions.</li></ul><span class="date">2016 – Present</span></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Won the SEC660, FOR508, FOR610, SEC540, SEC511, Core and Cyber Defense NetWars Coin.</li></ul></div>
+
+					<div class="row"><ul class="bullets-narrow"><li>Black Hat Asia 2015 Student Scholarship Recipient.</li></ul></div>
+
 				</div>
 			</div><!-- /Achievements -->
 
@@ -413,7 +399,7 @@
 	</div><!-- /container -->
 </div><!-- /sheet -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function () {
 	// A4 page dimensions in mm, converted to px at 96dpi
 	// 1mm = 3.7795px at 96dpi
@@ -523,17 +509,4 @@
 	}
 
 	// Run after fonts and layout settle
-	if (document.fonts && document.fonts.ready) {
-		document.fonts.ready.then(function () {
-			requestAnimationFrame(function () {
-				requestAnimationFrame(paginate);
-			});
-		});
-	} else {
-		window.addEventListener('load', paginate);
-	}
-})();
-</script>
-
-</body>
-</html>
+	if (document.fonts && d
