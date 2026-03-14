@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-02-27T18:42:00+08:00</updated><entry><title>Integrate Kaiterra Sensedge Mini with HA</title><link href="https://limbenjamin.com/articles/integrate-kaiterra-sensedege-mini-home-assistant.html" rel="alternate"></link><published>2026-02-27T18:42:00+08:00</published><updated>2026-02-27T18:42:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-02-27:/articles/integrate-kaiterra-sensedege-mini-home-assistant.html</id><summary type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is through MQTT. Since I am using Home Assistant container, I had to run a mosquitto docker container first. Since mosquitto by default on port 1883 does not provide any protocol encryption, it seemed pointless to setup a password, hence I allowed anonymous access&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-03-14T11:41:00+08:00</updated><entry><title>CSIT Mini CTF 2026 Walkthrough</title><link href="https://limbenjamin.com/articles/csit-mini-ctf-2026-walkthrough.html" rel="alternate"></link><published>2026-03-14T11:41:00+08:00</published><updated>2026-03-14T11:41:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-03-14:/articles/csit-mini-ctf-2026-walkthrough.html</id><summary type="html">&lt;p&gt;The CSIT Mini CTF 2026 presented us with a 2 stage Windows binary. The first stage downloads an ascii payload from &lt;code&gt;https://minictf2026.s3.us-east-1.amazonaws.com/enc_release-2.txt&lt;/code&gt;, performs some decoding where the bits were inverted and reversed, and then loaded into memory and executed. The simpler way to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The CSIT Mini CTF 2026 presented us with a 2 stage Windows binary. The first stage downloads an ascii payload from &lt;code&gt;https://minictf2026.s3.us-east-1.amazonaws.com/enc_release-2.txt&lt;/code&gt;, performs some decoding where the bits were inverted and reversed, and then loaded into memory and executed. The simpler way to get hold of the decoded binary is to search for where &lt;code&gt;output.exe&lt;/code&gt; is referenced, insert and breakpoint there and inspect the memory to get the decoded payload. The rationale is that the payload should already be in plaintext since it is close to where it is written out, hence doing so allow us to skip though the other non-relevant parts. &lt;/p&gt;
+&lt;p&gt;The second stage payload iterates through random strings, hashes them and checks if it matches 12 pre-specified MD5 hashes. If it matches, the string is encrypted using &lt;code&gt;PKCS1_OAEP&lt;/code&gt; and then base64 encoded and sent out over the network. The server probably performs the functions in reverse. It base64 decodes each line, uses the RSA private key to decrypt and verifies that all 12 plaintext strings were sent. When the network traffic for the second stage payload is inspected in wireshark, the observant would only notice 11 base64 encoded strings, and deduce that since there were 12 MD5 hashes in the binary, that could be the missing key. The final MD5 hash, &lt;code&gt;3bf1114a986ba87ed28fc1b5884fc2f8&lt;/code&gt; pre-image could be trivially cracked since it corresponded to &lt;code&gt;shadow&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Solving the second stage would thus require either patching the binary to include &lt;code&gt;shadow&lt;/code&gt; in the plaintext string, or to fully reverse the entire binary and write a python script to RSA encrypt each plaintext string, base64 encode it and send it over the network. The former option would be simpler and is probably the intended solution.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;
+&lt;span class="normal"&gt;33&lt;/span&gt;
+&lt;span class="normal"&gt;34&lt;/span&gt;
+&lt;span class="normal"&gt;35&lt;/span&gt;
+&lt;span class="normal"&gt;36&lt;/span&gt;
+&lt;span class="normal"&gt;37&lt;/span&gt;
+&lt;span class="normal"&gt;38&lt;/span&gt;
+&lt;span class="normal"&gt;39&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# 0x0042C3B8    32 B    MD5 hash[0]: &amp;#39;a3527a5dabb280c471b07f15becb9f12&amp;#39;.
+# 0x0042C3DC    32 B    MD5 hash[1]: &amp;#39;e0e7aa5bcd7cfdde08e71cf6f6c54cf6&amp;#39;.
+# 0x0042C400    32 B    MD5 hash[2]: &amp;#39;dbc5c57d2d12ca4e7a794ad60944e1ff&amp;#39;.
+# 0x0042C424    32 B    MD5 hash[3]: &amp;#39;24b499ce8a4c42e58248a09fa33f73aa&amp;#39;.
+# 0x0042C448    32 B    MD5 hash[4]: &amp;#39;a471ad29ba98d59c1b2d9c4195194d66&amp;#39;.
+# 0x0042C46C    32 B    MD5 hash[5]: &amp;#39;f1a0848f41ff40bbfd7f362c4b96a054&amp;#39;.
+# 0x0042C490    32 B    MD5 hash[6]: &amp;#39;96541659008679773ff430af165a4453&amp;#39;.
+# 0x0042C4B4    32 B    MD5 hash[7]: &amp;#39;838bf61cff974fecea5e3eaa1deb1fca&amp;#39;.
+# 0x0042C4D8    32 B    MD5 hash[8]: &amp;#39;93f40ec1f4293ef041e43bcca112b0f3&amp;#39;.
+# 0x0042C4FC    32 B    MD5 hash[9]: &amp;#39;91ea4b818957448c2be90ed980f4d280&amp;#39;.
+# 0x0042C520    32 B    MD5 hash[10]: &amp;#39;6c5f6b0b8fa5e15ed59faf633cb4ccf2&amp;#39;.
+# 0x0042C544    32 B    MD5 hash[11]: &amp;#39;3bf1114a986ba87ed28fc1b5884fc2f8&amp;#39;.
+
+
+import hashlib
+
+
+crib = &amp;#39;4304br1r7n lr1qunn4c363d0 1fcb040un75 513qd3nlp541u4 nc10lc1ru7cm0u q0munn7146l3 p475r3cp1y1c f11l74bf3y1n 50u7nr703p 1h13bnrl7yn4 4n7c07cn034n1 63clp071430m1l5 l37mm71d44nn4141r3155bn517h5 1lpl0ry3blhcy4 006y7urr5p3r34 mur7chl6u44471 06l0l7014nc 37346v0nc11m7 3r44fr13b6rl ml3lu5lf0u1 5711l17ln4n0c k31pcl50cd410 vp4c34r7110nr 451j7nx0up017 lp515c11705 5lu0b61uru l71yx0rp1 56r171v03374nr 401r01477cnn1 05uccf14fn113 7474117754n5rnun0b x43l7c1363 71py3n53rck m1l1l50un54pu 14436d13nf7bl l1cp6104ll0h 053unnr3f5415 7c3474n30cn1v 15luy41ml7n1b 045hc0673c41ll r77cm1c54n47yul11 r1y1qpp0u7n 3lun74cl13b n1q4u71300cv 3fv7n5133nfrc3 cc416u750nr n0cl73p415 411nnful0m7 p3n0643n1r7r1 u50br5r373p0 64r01y71n5d n3rn5l1fcf3073 c4rbl33x3 1f4pncl701 30rclh4y5m 364l7r x7nu33 rp01lx 5uu3015q0b lnu7r37uc 30ru17rm1c53 43n70ndc7c34 nc3d710r3 17h0550p34 ff11bn7y135l4 64frl3351p 41n1nl734duv 55crcyn71173 63r1n147n75n 331pm15c7 r034417munplb 137c63x3 4rn0nc43770c 015l33qbn5u 3cp1xlhy3r nrp4l3u74r3r7 ffbc1l117134ny 04cu10c7mnu5 pq31l5u573y4d1 d1yn640rulq 14mmcnc4rulb710u 036lh5453017r c0lh3r10r6 r474r34n13vm7 cppl5417m513 y44700c73nncr 3nn41brl71m3 71lpf5y3uru p145l0lcbyly l3r0h7cp1 n3c3rvff3135 74n310016c7x 0xrp110lu5 4ycr7u0fb50 r31650dn4 p55cup30u1r 35n371ru l07c43ncn4b3 cn3x704r13 4n1myn416m7 shadow&amp;#39;
+
+# can&amp;#39;t find the input for the last MD5 hash
+for key in crib.split(&amp;#39; &amp;#39;):
+    hashaa = hashlib.md5(key.encode(&amp;#39;utf-8&amp;#39;)).hexdigest()
+    if hashaa == &amp;#39;3bf1114a986ba87ed28fc1b5884fc2f8&amp;#39;:
+        print(key)
+
+
+order = [&amp;#39;p475r3cp1y1c&amp;#39;, &amp;#39;50u7nr703p&amp;#39;, &amp;#39;vp4c34r7110nr&amp;#39;, &amp;#39;451j7nx0up017&amp;#39;, &amp;#39;m1l1l50un54pu&amp;#39;, &amp;#39;n0cl73p415&amp;#39;, &amp;#39;43n70ndc7c34&amp;#39;, &amp;#39;r034417munplb&amp;#39;, &amp;#39;04cu10c7mnu5&amp;#39;, &amp;#39;c0lh3r10r6&amp;#39;, &amp;#39;n3c3rvff3135&amp;#39;]
+
+#from Crypto.Cipher import PKCS1_OAEP
+#from Crypto.PublicKey import RSA
+#import base64
+
+#der = #bytes.fromhex(&amp;#39;30820122300D06092A864886F70D01010105000382010F003082010A0282010100E2F0578560B35A55FAA8BF8441889A2AE2D54A547CE62ECBB3D015AC8A2C55559B2882FC2455A04C7BB24499CF1D6AA70A9FE859C6B3D91926C7EAD4D2A08D4064120FC9713914BD229C0739B0334EDC51CB07DE878C7C559FDD17FAE6D456884E3C80A2DB745699767B3F781B4B7797858E19000D70685413C1DE3F2828BFC60424C0E3D39193B20B721EF3B3BD4C01ACB8E4AED1126D0836CF230199573B44E0281715C29DF79D1FDC1B6D818D9F9EF98A24743EA435E34B928EBDEAF3ECF5FE2B584188E87C035E08D1236B405695B9F875531BCC0E94F35A411E665F4F6083F48EF67EAB2EDE1B632AED00A0E08C022F4C0E6633A5DEB4CC0A981840C6810203010001&amp;#39;)
+#key = RSA.import_key(der)
+#cipher = PKCS1_OAEP.new(key)
+#for each in order:
+#   ct = base64.b64encode(cipher.encrypt(each.encode(&amp;quot;utf-8&amp;quot;)))
+    #print(ct.decode(&amp;quot;utf-8&amp;quot;))
+#   print(each)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;Video Walkthrough here.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/X8H-PaHgPck?si=1WivyHqTDEA6cYVU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;</content><category term="articles"></category><category term="Security"></category></entry><entry><title>Integrate Kaiterra Sensedge Mini with HA</title><link href="https://limbenjamin.com/articles/integrate-kaiterra-sensedege-mini-home-assistant.html" rel="alternate"></link><published>2026-02-27T18:42:00+08:00</published><updated>2026-02-27T18:42:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-02-27:/articles/integrate-kaiterra-sensedege-mini-home-assistant.html</id><summary type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've recently come into a Kaiterra Sensedge Mini and spent some time integrating it into my Home Assistant setup. The Kaiterra Sensedge Mini is a commercial grade Air Quality Sensor capable of monitoring CO2, TVOC, PM2.5, PM10, Humidity and Temperature. The easiest route to integrating with Home Assistant is through MQTT. Since I am using Home Assistant container, I had to run a mosquitto docker container first. Since mosquitto by default on port 1883 does not provide any protocol encryption, it seemed pointless to setup a password, hence I allowed anonymous access&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -4746,91 +4829,6 @@ crc32(0x3ea) =  0x47022e8d
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cl&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;           &lt;/span&gt;&lt;span class="c1"&gt;; cl - current position of encoded shellcode&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;r11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="c1"&gt;; r11 - current position of actual shellcode&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;short&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;decode&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
-&lt;p&gt;Student ID: SLAE64-XXXXX&lt;/p&gt;</content><category term="articles"></category><category term="Security"></category></entry><entry><title>SLAE64 #3 - Egghunter shellcode</title><link href="https://limbenjamin.com/articles/slae64-3-egghunter-shellcode.html" rel="alternate"></link><published>2019-05-18T10:20:00+08:00</published><updated>2019-05-18T10:20:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-05-18:/articles/slae64-3-egghunter-shellcode.html</id><summary type="html">&lt;p&gt;As usual, I will only be touching on interesting or unique points in the shellcode.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Line 25/26: To avoid having the egg in memory, I moved &lt;code&gt;0x5090508f&lt;/code&gt; into a register and incremented it to get &lt;code&gt;0x50905090&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Line 27: &lt;code&gt;repne scasd&lt;/code&gt; searches the next 4 bytes and increments the address …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;As usual, I will only be touching on interesting or unique points in the shellcode.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Line 25/26: To avoid having the egg in memory, I moved &lt;code&gt;0x5090508f&lt;/code&gt; into a register and incremented it to get &lt;code&gt;0x50905090&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Line 27: &lt;code&gt;repne scasd&lt;/code&gt; searches the next 4 bytes and increments the address searched automatically. This saves space compared to manual searching. However, the caveat is that it only searches at every 4 byte boundary. Hence there is a need for padding. For actual use, you might have to seed the memory with shellcode with different padding prepended.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Egghunter.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;
-&lt;span class="normal"&gt;22&lt;/span&gt;
-&lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;
-&lt;span class="normal"&gt;28&lt;/span&gt;
-&lt;span class="normal"&gt;29&lt;/span&gt;
-&lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;
-&lt;span class="normal"&gt;33&lt;/span&gt;
-&lt;span class="normal"&gt;34&lt;/span&gt;
-&lt;span class="normal"&gt;35&lt;/span&gt;
-&lt;span class="normal"&gt;36&lt;/span&gt;
-&lt;span class="normal"&gt;37&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;_start&lt;/span&gt;
-&lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.text&lt;/span&gt;
-
-&lt;span class="nl"&gt;_start:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;dh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x10&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-
-
-&lt;span class="nl"&gt;check_access:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x15&lt;/span&gt;&lt;span class="w"&gt;           &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="c1"&gt;; access syscall&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;cmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jne&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;short&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;finding_egg&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;inc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;short&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;check_access&lt;/span&gt;
-
-
-&lt;span class="nl"&gt;finding_egg:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rcx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rcx&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cl&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x4&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;shl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rcx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;; find egg within page with access&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x5090508f&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;inc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;eax&lt;/span&gt;&lt;span class="c1"&gt;;        ; egghunter signature itself is never present in memory&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;repne&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;scasd&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jne&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;short&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;check_access&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;; not found within this page, going back to check access&lt;/span&gt;
-
-
-&lt;span class="nl"&gt;found:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;jmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-
-
-&lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.data&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_padding:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;db&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;; padding to align egg to 4 byte boundary&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_egg:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;db&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x31&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xf7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xe1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x5f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xff&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x83&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xc2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x08&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x68&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x4f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x4b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x48&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x89&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xe6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x05&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x6a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x3c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x58&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x05&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
 &lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
