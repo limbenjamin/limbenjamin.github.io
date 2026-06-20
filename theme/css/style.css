@@ -121,8 +121,6 @@ p {
   margin: 1em 0em 2em 0em;
   letter-spacing: 0.02em;
   text-align: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 * > p:first-child {
