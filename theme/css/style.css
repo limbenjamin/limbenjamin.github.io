@@ -143,7 +143,6 @@ img {
 ----------------------------------------------- */
 .main-content-area {
   margin-bottom: 40px;
-  max-width: 890px;
 }
 
 /* =Post styling
@@ -436,6 +435,11 @@ article.post {
 }
 .full-width {
   width: 100%;
+}
+
+.entry-content {
+  max-width: 890px;
+  margin: 0 auto;
 }
 
 .entry-content p {
