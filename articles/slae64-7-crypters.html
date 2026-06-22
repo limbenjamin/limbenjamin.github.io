@@ -11,8 +11,6 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="limbenjamin" />
-  <link rel="manifest" href="/site.webmanifest" />
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css" type="text/css" media="all">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
@@ -241,11 +239,11 @@
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
-<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">rsa</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">hashes</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">padding</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.backends</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_backend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric</span><span class="w"> </span><span class="kn">import</span> <span class="n">rsa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">serialization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">hashes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric</span><span class="w"> </span><span class="kn">import</span> <span class="n">padding</span>
 
 
 <span class="n">private_key</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="n">generate_private_key</span><span class="p">(</span>
@@ -362,13 +360,13 @@
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">hashes</span>
-<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">padding</span>
-<span class="kn">import</span> <span class="nn">ctypes</span><span class="o">,</span> <span class="nn">mmap</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.backends</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_backend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">serialization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">hashes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric</span><span class="w"> </span><span class="kn">import</span> <span class="n">padding</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span><span class="o">,</span><span class="w"> </span><span class="nn">mmap</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 
-<span class="k">def</span> <span class="nf">create_shellcode_function</span> <span class="p">(</span><span class="n">shellcode_str</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_shellcode_function</span> <span class="p">(</span><span class="n">shellcode_str</span><span class="p">):</span>
     <span class="n">shellcode_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">shellcode_str</span><span class="p">)</span>
 
     <span class="c1"># Allocate memory with a RWX private anonymous mmap</span>
@@ -448,28 +446,7 @@
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/security.html">Security</a>        <br />
-        <div class="similararticleline"></div>
-        <h2>Similar Articles</h2>
-          <div class="similararticlerow">
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-4-sse42-crc32c-encoder.html"><b>SLAE64 #4 - SSE4.2 CRC32C Encoder - </b>
-              I decided to do something special for the custom encoder shellcode. I used the Intel SSE4.2 CRC32C function to encode the shellcode. CRC32 is a hash function, not an encoding function, so in ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-2-revshell-tcp-shellcode.html"><b>SLAE64 #2 - Revshell TCP shellcode - </b>
-              This shellcode is very similar to the Bindshell TCP shellcode, so please refer to it for the unique and interesting points. There is only 1 additional point I would like to make: Line 8/37: ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-6-polymorphic-shellcode.html"><b>SLAE64 #6 - Polymorphic shellcode - </b>
-              I have taken shellcode #603 and #859 from shell-storm and created polymorphic version that passed clamav scan. The original version of both shellcodes were detected by clamav scan due to the ...</a>
-              </blockquote>
-              <blockquote class="similar_posts">
-              <a href="../articles/slae64-1-bindshell-tcp-shellcode.html"><b>SLAE64 #1 - Bindshell TCP shellcode - </b>
-              There are many SLAE64 blogposts each explaining their variant of shellcode out there. I thought I would join in the fun. This is my version of the Bindshell TCP shellcode. I'll keep it brief and ...</a>
-              </blockquote>
-          </div>
-      </div>
+          <a href="../tag/security.html">Security</a>      </div>
       <br />
     </div>
   </div>
@@ -499,7 +476,7 @@
                     <a href="../feeds/all.atom.xml">Atom Feed</a> | 
                     <a href="../sitemap.xml">Sitemap</a><br />
                     This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    Page generated on Sun Jun 21 07:09:44 2026<br />
+                    Page generated on Mon Jun 22 18:53:53 2026<br />
                     &copy; 2012-2026 <a href="..">Benjamin Lim</a> </div>
         </div>
       </div><!-- .site-info -->
