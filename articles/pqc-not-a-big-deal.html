@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Benjamin Lim">
-  <meta name="description" content="Zuboff believes that Big Tech has the capability to process large volumes of consumer behavioural data and use that to influence consumer behaviour...">
+  <meta name="description" content="Post-Quantum Cryptography Is Not a Big Deal Every few months, a new wave of articles appears warning that quantum computers will soon render all...">
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -27,20 +27,20 @@
 
   <link href="https://limbenjamin.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="limbenjamin Full Atom Feed" />
 
-<meta name="keywords" content="limbenjamin, Data, Legal">
+<meta name="keywords" content="limbenjamin, Coding, Security, Server">
 
-<meta property="og:title" content="Big Tech and Persuasion">
+<meta property="og:title" content="PQC is not a big deal">
 <meta property="og:type" content="website">
 <meta property="og:image" content="http://limbenjamin.com/media/code.png"/>
 <meta property="og:image:secure_url" content="https://limbenjamin.com/media/code.png"/>
 <meta property="og:site_name" content="https://limbenjamin.com">
-<meta property="og:description" content="Zuboff believes that Big Tech has the capability to process large volumes of consumer behavioural data and use that to influence consumer behaviour [1]. According to Zuboff, this data is able to reveal what &#34;a particular individual in a particular time and place was thinking, feeling, and doing&#34; [2]. Zuboff …">
-<meta property="og:url" content="https://limbenjamin.com/articles/big-tech-and-persuasion.html">
+<meta property="og:description" content="Post-Quantum Cryptography Is Not a Big Deal Every few months, a new wave of articles appears warning that quantum computers will soon render all existing encryption obsolete and that organisations need to act urgently. The reality is considerably more mundane. For most people and most organisations, the transition to post-quantum …">
+<meta property="og:url" content="https://limbenjamin.com/articles/pqc-not-a-big-deal.html">
 <meta property="fb:admins" content="557193263"/>
 <meta property="fb:app_id" content="520142688161055"/>
 
 
-  <title>Big Tech and Persuasion</title>
+  <title>PQC is not a big deal</title>
   
 </head>
 
@@ -193,43 +193,54 @@
   <div class="blog-item-wrap">
     <div class="post-inner-content">
       <header class="entry-header page-header">
-        <span class="cat-item"><time datetime="2024-03-06 09:50:00+08:00">Mar 06, 2024</time></span>
-        <h1 class="entry-title-single-page"><a href="../articles/big-tech-and-persuasion.html">Big Tech and Persuasion</a></h1>
+        <span class="cat-item"><time datetime="2026-07-03 14:18:00+08:00">Jul 03, 2026</time></span>
+        <h1 class="entry-title-single-page"><a href="../articles/pqc-not-a-big-deal.html">PQC is not a big deal</a></h1>
       </header><!-- .entry-header -->
       <div class="entry-content">
-        <p>Zuboff believes that Big Tech has the capability to process large volumes of consumer behavioural data and use that to influence consumer behaviour [1]. According to Zuboff, this data is able to reveal what "a particular individual in a particular time and place was thinking, feeling, and doing" [2]. Zuboff believes that these organizations also have the ability to "brush aside users' decision rights", in other words, directly influence their behaviour [3]. Zuboff believes that consumer's autonomy is taken away and consumers are made to purchase goods out of their free will.</p>
-<p>Doctorow believes that Zuboff's statements are an over exaggeration, and there is no mind-reading or mind-control. He believes that consumers still retain their autonomy, Big Tech is just able to more efficiently segment consumers using the data it has to deliver more targeted advertising [4]. Big Tech is just better at sifting out and identifying consumers who already have some intention to purchase those goods and selectively advertise to them. Doctorow uses the example of marketing diapers to new parents to make his point across. If mind-control was possible, diaper companies would have everyone be buying diapers. However, we do not see this happening. Rather, Big Tech is able to segment customers and more effectively persuade new parents who already require diapers to purchase from the advertised brand.</p>
-<p>Doctorow also believes that Big Tech makes use of deception in their practices [5]. Hence, consumers are still rational and in full control of their mental faculties. However, they are making a rational decision based on bad information introduced by deceptive practices. To use an example, if an information board in an indoor shopping mall deceived consumers by indicating that it is currently raining outside, a perfectly rational person might choose to buy an umbrella based on that bad information. It is a conscious and deliberate decision by that person and he was not mind-controlled into buying an umbrella.</p>
-<p>Lastly, Doctorow believes that dominance contributed to the effectiveness in the deception used by Big Tech. He uses the example of Google Search becoming the source of truth due to its dominance in the search engine industry [6]. To build on the umbrella example earlier, if the shopping mall had no windows, balconies or roof terraces, there is no way for consumers to verify if it was truly raining outside without leaving the mall. Faced with the decision of walking all the way to the entrance to verify for themselves and getting back to the umbrella shop on the 4th floor, the deception pulled off by the shopping mall would be a lot more effective.</p>
-<p>[1] Shoshana Zuboff (2019) 'The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power' (Profile Books 2019), Chapter 3, Section IV. The Discovery of Behavioral Surplus</p>
-<p>[2] ibid.</p>
-<p>[3] ibid, Chapter 3, Section VII. The Secrets of Extraction </p>
-<p>[4] Cory Doctorow (2020) 'How to Destroy Surveillance Capitalism' (OneZero 2020), pp. 13-15</p>
-<p>[5] ibid, pp. 15-17</p>
-<p>[6] ibid, pp. 17-18</p>
+        <h1>Post-Quantum Cryptography Is Not a Big Deal</h1>
+<p>Every few months, a new wave of articles appears warning that quantum computers will soon render all existing encryption obsolete and that organisations need to act urgently. The reality is considerably more mundane. For most people and most organisations, the transition to post-quantum cryptography (PQC) is just routine IT hygiene dressed up in alarming language.</p>
+<h2>What PQC Actually Means in Practice</h2>
+<p>The concern is legitimate in principle. Algorithms like RSA and ECDH rely on mathematical problems — integer factorisation and discrete logarithm — that a sufficiently powerful quantum computer could solve using Shor's algorithm. NIST finalised its first set of PQC standards in 2024, namely ML-KEM, ML-DSA and SLH-DSA, which are designed to resist quantum attacks.</p>
+<p>So far so good. But the question of what this means operationally is far less dramatic than the headlines suggest.</p>
+<h3>Browsers</h3>
+<p>For end users browsing the web, the migration to PQC ciphers is entirely invisible. Chrome has already been shipping experimental support for X25519Kyber768 as a hybrid key exchange since 2023, and other major browsers are following suit. For an organisation managing endpoints, this means patching browsers to a version that supports PQC negotiation. That is it. Patch management is already something every organisation should be doing on a regular cadence. There is nothing new here operationally.</p>
+<h3>In-House Developed Applications</h3>
+<p>For applications developed internally that make use of cryptographic libraries — whether OpenSSL, BoringSSL, libsodium or similar — the migration path is equally straightforward in principle. It involves updating to a library version that supports the new algorithms and testing that nothing breaks. Developers already do this regularly, either to pick up new features or to patch vulnerabilities. A zero-day in OpenSSL triggers an emergency update cycle. Adopting a new cipher suite is just a planned version bump. The key exchange or signature algorithm is typically abstracted away by the library, so the application code changes are minimal.</p>
+<h3>Vendor Applications</h3>
+<p>For commercial off-the-shelf software, the organisation has even less to do. The vendor will update their product on their own roadmap, as they always have done for cryptographic transitions in the past. TLS 1.0 was deprecated, RC4 was removed, SHA-1 certificates were distrusted — in each case, the vendors pushed updates and administrators applied them. PQC will follow the same pattern. The main action item is to check that vendors have a published roadmap and to factor that into procurement decisions.</p>
+<h2>The Threat Model Does Not Apply to Most People</h2>
+<p>The more significant point is that the realistic threat vector for quantum-enabled attacks is extremely narrow.</p>
+<p>The attack scenario most frequently cited is "harvest now, decrypt later" (HNDL): an adversary intercepts and stores encrypted traffic today, intending to decrypt it once a sufficiently powerful quantum computer exists. This is a real concern for certain classes of data. But it requires the adversary to be able to intercept your traffic in the first place.</p>
+<p>Traffic interception at scale requires the resources and positioning of a nation-state actor. The NSA, GCHQ, and their equivalents have the infrastructure to do this. A cybercriminal group running ransomware does not. If a nation-state adversary is targeting your communications specifically, you have much larger problems than your choice of key exchange algorithm — your threat model encompasses supply chain compromise, insider threats, physical access and a range of other vectors that are far easier to exploit than waiting a decade for a viable quantum computer.</p>
+<p>For HNDL to be worth the effort, the data being harvested needs to retain its value far into the future — state secrets, long-term strategic intelligence, classified government communications. The average enterprise's TLS traffic, even if harvested today, is unlikely to be worth decrypting in ten years. By then the transactions will be irrelevant, the credentials will have been rotated and the data will have been superseded.</p>
+<h2>Who Should Actually Be Concerned</h2>
+<p>This does not mean PQC is irrelevant. Certain sectors have legitimate reasons to take it seriously ahead of the general curve. Defence and intelligence agencies protecting classified material with a decades-long shelf life, financial institutions processing transactions whose records must remain confidential for extended periods, and critical infrastructure operators whose systems are difficult to update once deployed all have reasons to prioritise this now.</p>
+<p>For everyone else, the appropriate response is to ensure that PQC support is on the roadmap — for browsers via normal patch cycles, for in-house applications via library updates, for vendor software via procurement conversations — and to monitor the space without panic.</p>
+<h2>Conclusion</h2>
+<p>The cryptographic community has been working on this problem for years and the standards are now in place. The transition will happen incrementally as software is updated, which is exactly how every previous cryptographic migration has worked. There is no cliff edge. The organisations that should be worried about quantum adversaries already know who they are. For everyone else, keeping your software up to date is sufficient.</p>
       </div><!-- .entry-content -->
       <br /><br />
       <div class="article_meta">
         Tags:
-          <a href="../tag/data.html">Data</a>,          <a href="../tag/legal.html">Legal</a>        <br />
+          <a href="../tag/coding.html">Coding</a>,          <a href="../tag/security.html">Security</a>,          <a href="../tag/server.html">Server</a>        <br />
         <div class="similararticleline"></div>
         <h2>Similar Articles</h2>
           <div class="similararticlerow">
               <blockquote class="similar_posts">
-              <a href="../articles/big-tech-and-surveillance.html"><b>Big Tech and Surveillance - </b>
-              The "false trade-off" in Solove's words is also known as a false dichotomy. The public is misled into choosing one of two unappealing options when there could be other viable alternatives. Solove ...</a>
+              <a href="../articles/integrating-kasm-with-azure-oidc.html"><b>Integrating Kasm with MS Azure Internal OIDC - </b>
+              Recently, I faced issues integrating Kasm with Microsoft Azure Internal OIDC due to outdated documentation. After some trial and error, I got it to work. Here's the list of inaccuracies in the ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/big-tech-and-persuasion.html"><b>Big Tech and Persuasion - </b>
-              Zuboff believes that Big Tech has the capability to process large volumes of consumer behavioural data and use that to influence consumer behaviour [1]. According to Zuboff, this data is able to ...</a>
+              <a href="../articles/yubikey-wsl-agent-refused-operation.html"><b>Yubikey WSL: Agent refused operation - </b>
+              I recently had problems using my Yubikey GPG key to SSH from my WSL instance to a linux server. After the usual checks, it seemed like it was a client side error sign_and_send_pubkey: signing ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/regulating-recommenders.html"><b>Regulating Recommenders - </b>
-              Cobbe believes that it is important to regulate recommenders because they play a key role in promoting content to a "large audience" and thus has a larger impact [1]. This makes sense considering ...</a>
+              <a href="../articles/public-ip-hijacking-over-lan.html"><b>Public IP Hijacking over LAN - </b>
+              This is a topic that is not commonly discussed. Most articles about IP hijacking deal with the subject at the ISP level, i.e. hijacking of BGP protocol. However, IP hijacking can be performed on ...</a>
               </blockquote>
               <blockquote class="similar_posts">
-              <a href="../articles/singapore-gazette-search.html"><b>Singapore Gazette Search - </b>
-              Update (9 Jan 2020) The government has announced the decision to make all publications in the Gazette freely available to the public. Kudos to the government for doing so! As such, there is no ...</a>
+              <a href="../articles/migrating-rsyslog-to-splunk.html"><b>Migrating rsyslog to Splunk - </b>
+              I recently decided to migrate my server cluster's logging mechanism from rsyslog to Splunk. My previous setup was to use rsyslog to centralise all logging onto /var/remotelog/ on a central ...</a>
               </blockquote>
           </div>
       </div>

